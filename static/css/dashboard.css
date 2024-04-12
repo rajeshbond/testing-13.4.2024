@@ -244,14 +244,14 @@ main .content {
 /* Styling for the container */
 .subscription-box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 20px; /* Increased for better spacing */
   padding: 20px 0; /* Padding around the grid */
 }
 
 /* Styling for each subscription box */
 .subscription-box {
-  border: 2px solid #007bff;
+  /* border: 2px solid #007bff; */
   border-radius: 10px;
   padding: 15px;
   text-align: center;
@@ -265,17 +265,18 @@ main .content {
 .subscription-box img {
   border-radius: 0.4rem;
   width: 150%; /* Make images responsive within their container */
-  max-width: 250px; /* Maximum width to ensure images are not too large */
+  max-width: 400px; /*Maximum width to ensure images are not too large*/
   margin-top: 5px;
   margin-bottom: 10px;
 }
 
 /* Styling for buttons */
-.btn-subscribe {
+img .btn-subscribe {
   padding: 10px 20px;
   color: white;
   background-color: #007bff;
   border: none;
+  width: 100%;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px; /* Added some space above the button */
@@ -284,7 +285,9 @@ main .content {
 .subscription-box button {
   margin-top: 2rem; /* Align button to the bottom */
   padding: 10px 20px;
+  width: auto;
   border: none;
+  /* width: 90%; */
   font-weight: 600;
   background-color: var(--clr-primary-variant);
   color: white;
