@@ -100,6 +100,11 @@ def refresh_id_token(current_id_token):
 
 # ---------------------Get Method -------------------------------------------
 
+@app.get("/env")
+async def get_env():
+    # print(f"---------------------{settings.your_id}")
+    return JSONResponse(content=settings.your_id)
+
 @app.get("/")
 async def root(request: Request):
     user = request.session.get("user")

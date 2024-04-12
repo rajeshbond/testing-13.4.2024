@@ -1,8 +1,8 @@
 
-
 const closeBtn = document.querySelector("#close-btn");
 const sidebar = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu-bar");
+let RAZORPAY_id
 console.log(sidebar);
 menuBtn.addEventListener("click", () => {
   console.log("clicked");
@@ -28,6 +28,7 @@ subscribePlanDisplay();
 async function updateUsername() {
   try {
     const userData = await getUserData();
+    // console.log(userData);
     const username = userData.user.name;
     const userStatus = userData.user.isSubscribed;
     document.querySelector("#username").innerText = username;
@@ -79,6 +80,8 @@ function logout() {
       // Handle error (e.g., display error message)
     });
 }
+
+
 
 async function account() {
   let content = document.querySelector(".content");
@@ -348,11 +351,18 @@ async function rzscreen(data, plan , Amount, coupon_applied) {
   
   const orderId = data.id;
   console.log('RZScreen');
-  console.log(data);
+  // console.log(data);
   console.log(`order_id: ${orderId}`);
   console.log(`plan: ${plan}`);
   console.log(`amount: ${Amount}`);
   console.log(`coupon_applied: ${coupon_applied}`);
+  try{
+     await fetchEnvironmentVariables();
+    // console.log(RZY_ID)
+  }
+  catch(error){
+    console.error(error);
+  }
   try {
     const userData = await getUserData();
     userName = userData.user.name;
@@ -372,7 +382,7 @@ async function rzscreen(data, plan , Amount, coupon_applied) {
   function handlePayment() {
     var options = {
       
-      "key": "rzp_test_qWk0YL6y728X61", // Enter your Razorpay Key ID
+      "key": `${RAZORPAY_id}`, // Enter your Razorpay Key ID
       // "amount": "50000", // Amount is in currency subunits (50000 paise = ₹500.00)
       "currency": "INR",
       "name": "Compounding Funda",
@@ -501,4 +511,20 @@ async function updateCouponStatus(coupion_applied){
   console.log(serverResponse);
   return serverResponse;
 
+}
+
+async function fetchEnvironmentVariables() {
+  try {
+      const response = await fetch('/env');
+      if (!response.ok) {
+          throw new Error('Failed to fetch environment variables');
+      }
+      const data = await response.json();
+      console.log(data);
+      RAZORPAY_id = data // This will log the environment variables to the console
+      return data;
+      // Use the environment variables as needed in your JavaScript application
+  } catch (error) {
+      console.error('Error:', error);
+  }
 }
