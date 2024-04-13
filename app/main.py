@@ -264,7 +264,7 @@ def signup(request: schemes.Signup):
         # print(f"--database---------{testb}")
         
         send_mail.send_confirmation_email(email_to=email, name = name, plan='free_plan')
-        # assign_permission(senderEmail=email,name=name, plan='free_plan')
+        assign_permission(senderEmail=email,name=name, plan='free_plan')
         
       
         send_mail.send_verification_email(email_to=email, update_link=email_verification_link)   
@@ -570,7 +570,7 @@ def assign_permission(senderEmail,name , plan):
 
     email = senderEmail
     subscribe_plan = plan
-    # print(f"-----assign permission----{plan}---------{plan}")
+    print(f"-----assign permission----{plan}---------{plan}")
     try:
         credentials = Credentials.from_service_account_info(settings.google_cloud_api_main)
         drive_service = build('drive', 'v3', credentials=credentials)
