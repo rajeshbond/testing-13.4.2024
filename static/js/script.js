@@ -25,7 +25,7 @@ function signIn() {
     .then(response => {
       // Check if response is successful
       document.getElementById("processing-indicator").style.display = "none";
-      console.log(response.json());
+      // console.log(response)
       if (response.status == 208) {
         // throw new Error('Network response was not ok');
         window.alert('Error: Email is not verified \n Please check your email');
@@ -255,16 +255,3 @@ function logout() {
   
 }
 
-function togglePasswordVisibility() {
-  var passwordInput = document.getElementById("password");
-  var toggleIcon = document.querySelector(".toggle-password i");
-  if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      toggleIcon.classList.remove("fa-eye");
-      toggleIcon.classList.add("fa-eye-slash");
-  } else {
-      passwordInput.type = "password";
-      toggleIcon.classList.remove("fa-eye-slash");
-      toggleIcon.classList.add("fa-eye");
-  }
-}
