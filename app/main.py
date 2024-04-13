@@ -133,10 +133,13 @@ async def get_forgetpwd(request: Request):
 @app.get('/screener', response_class=HTMLResponse)
 async def get_gsheet(request: Request):
     user = request.session.get("user")
+    update_user_subsription(request)
     try:
         db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+
+        # print(db_data_user)
     
-        if (db_data_user['subscriptionDetails']['free_trial_over'] == False) or (db_data_user['subscriptionDetails']['paidSubscription'] == True):
+        if (db_data_user['screener_active']):
             return templates.TemplateResponse("gsheet.html", {"request": request})
         else:
             return RedirectResponse(url="/dashboard")
@@ -158,6 +161,8 @@ async def get_dashboard(request: Request):
             return RedirectResponse(url="/")
         db_data_user= db.collection('users').document(user['localId']).get().to_dict()
         if db_data_user:
+            # print(f"-----------------{db_data_user}")
+            # update_user_subsription(request)
             return templates.TemplateResponse("dashboard.html", {"request": request })
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(f"error {e}"))
@@ -200,6 +205,10 @@ async def login(request1: schemes.SignIn, request: Request):
             return JSONResponse(content={"email_status": "unverifed"}, status_code=status.HTTP_208_ALREADY_REPORTED)
         else:
             request.session["user"] = dict(user) # user session
+            # db_user = db.collection('users').document(user['localId'])
+            # db_data_user= db_user.get().to_dict()
+            # print(f"------user-----{db_data_user}")
+            
             return JSONResponse(content={"data": "Login Successful"}, status_code=status.HTTP_200_OK)
 
     except Exception as e:
@@ -238,7 +247,7 @@ def signup(request: schemes.Signup):
             'subscriptionDetails':{
                 'currentSubscription': 'Free - trial - 90 days',
                 'subscriptionStatus': 'Active',
-                'coupon_applied':'no coupon applied',
+                'coupon_applied':'TRIAL90',
                 'free_trial_over': False,
                 'subscriptionDate': datetime.now().isoformat(),
                 'subscriptionEndDate': (datetime.now() + timedelta(90)).isoformat(),
@@ -355,41 +364,23 @@ async def subscribe(request:Request):
 
 # ------------------------post Method -------------------------------------------
 @app.post('/revoke')
-async def revoke_permission(user_data:schemes.UserData):
+async def revoke_permission(user_data:schemes.UserData,request: Request):
+    user = request.session.get("user")
+    db_user = db.collection('users').document(user['localId']).get().to_dict()
     email = user_data.email
+    print(f"==============={email}======={db_user['isUserAdmin']}")
     try:
-        credentials = Credentials.from_service_account_info(settings.google_cloud_api_main)
-        # print(f"---------------------------{credentials}-------------")
-        drive_service = build('drive', 'v3', credentials=credentials)
-        # Sheet ID
-        sheet_id_1 = settings.sheet_id
-        # Email address to grant access
-        email_address = email
-        # Retrieve permission ID for the specified email address
-        response = drive_service.permissions().list(fileId=sheet_id_1, fields='permissions(id,emailAddress,role)').execute()
-        permissions = response.get('permissions', [])
-        # print(permissions)
-
-        permission_id = None
-        for permission in permissions:
-            # print(permission)
-            if permission['emailAddress'] == email_address:
-                permission_id = permission['id']
-
-                break
-
-        # If permission found, revoke it
-        if permission_id:
-            drive_service.permissions().delete(fileId=sheet_id_1, permissionId=permission_id).execute()
-            # print(f"Revoked access for {email_address} from Google Sheet '{sheet_id}'.")
-            send_mail.send_revoke_email(email_to=email_address, sheet_id=sheet_id_1 )
-            return JSONResponse(content={"status":f" Permission succefully removed  {email_address}"}, status_code=200)
+        if db_user['isUserAdmin']: 
+            print("inside if ")
+            revokeGoogleSheetPermission(email)
+            return JSONResponse(content={"status":f" Permission succefully removed  {email}"}, status_code=200)
         else:
-            # print(f"No access found for {email_address} in Google Sheet '{sheet_id}'.")
-            return JSONResponse(content={"status":f"No permission found for {email_address}"}, status_code=200)
+            print("inside else")
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Looks like your dont have admin Rights" )
     except Exception as e:
-        print(f"Error --------> {e}")
-        raise HTMLResponse(status_code= 400 , detail = "Invalid Credentials")
+        print(f"in side exception {e}")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"{e}")
+    
 # ------------------------Disconnect api ---------------------------------
 @ app.post('/discount',status_code= status.HTTP_200_OK)
 async def fetchdiscount(request2: schemes.DiscountCode, request: Request):
@@ -443,15 +434,16 @@ async def confimation(rpconfrimation: schemes.RazarPayConfrimation, request: Req
         db_user = db.collection('users').document(user['localId'])
         db_data_user= db_user.get().to_dict()
         if rpconfrimation.plan == "Achivers Club" or rpconfrimation.plan == "Champions Club":
-            subEnd = (datetime.now() + timedelta(365*25)).isoformat()
+            subEnd = (datetime.now() + timedelta(364*25)).isoformat()
         else:
-            subEnd = (datetime.now() + timedelta(365)).isoformat()
+            subEnd = (datetime.now() + timedelta(364)).isoformat()
             # comment: 
         pay_id = rpconfrimation.payment_id
         client = razorpay.Client(auth=(settings.your_id,settings.your_secret))
         paymentdetails = client.payment.fetch(pay_id)
         if(rpconfrimation.orderId == paymentdetails['order_id']):
             data ={
+                "screener_active":True,
                 'subscriptionDetails':{
                     'currentSubscription': rpconfrimation.plan,
                     'subscriptionStatus': 'Active',
@@ -478,7 +470,6 @@ async def confimation(rpconfrimation: schemes.RazarPayConfrimation, request: Req
                 'screener_active': True,
             }
             update = db_user.update(data_screen)
-
             return JSONResponse(content={"data": "Payment Sucessful Successful"}, status_code=status.HTTP_200_OK)   
         else:
             return JSONResponse(content={"data": "Payment Failed"}, status_code=status.HTTP_504_GATEWAY_TIMEOUT)
@@ -612,3 +603,101 @@ def assign_permission(senderEmail,name , plan):
         raise HTMLResponse(status_code= 400 , detail = "Invalid Credentials")
     
 # Get a reference to the counter node in your Firebase Realtime Database
+def update_user_subsription(current_user):
+    user = current_user.session.get("user")
+    db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+    # print(f"-------current user ----------{db_data_user}")
+    screener_active_status =db_data_user['screener_active'] 
+    free_trail_over_status =db_data_user['subscriptionDetails']['free_trial_over']
+    paidSubscription_status =db_data_user['subscriptionDetails']['paidSubscription']
+    currentSubscription_status =db_data_user['subscriptionDetails']['currentSubscription']
+    sub_start_date = db_data_user['subscriptionDetails']['subscriptionEndDate']
+    subscriptionStatus =db_data_user['subscriptionDetails']['subscriptionDate']
+    sub_expiry_date = db_data_user['subscriptionDetails']['subscriptionEndDate']
+    if (free_trail_over_status == False and currentSubscription_status == "Free - trial - 90 days"):
+        print("inside ")
+        if sub_expiry_date < datetime.now().isoformat():
+            print(f"----------contiotion True---------{sub_expiry_date} -----{datetime.now().isoformat()}")
+            updated_status = {
+                'subscriptionDetails':{
+                    'currentSubscription': f"{currentSubscription_status} - Ended",
+                    'subscriptionStatus': 'In-Active',
+                    'free_trial_over': True,
+                    'subscriptionDate': datetime.now().isoformat(),
+                    'subscriptionEndDate': sub_expiry_date,
+                    'coupon_applied': "Free90",
+                    'paidSubscription': False,
+                    "coupon_applied":"no coupon applied"
+                },
+                "screener_active":False,
+            }
+            db.collection('users').document(user['localId']).update(updated_status)
+            revokeGoogleSheetPermission(db_data_user['email'])
+            return
+            # print(f" data -------------{updated_status}")
+    elif (paidSubscription_status == True and free_trail_over_status == True ):
+        if sub_expiry_date < datetime.now().isoformat():
+            print('in side paid')
+            updated_status = {
+                    'subscriptionDetails':{
+                        'currentSubscription': f"{currentSubscription_status} - Ended",
+                        'subscriptionStatus': 'In-Active',
+                        'free_trial_over': True,
+                        'subscriptionDate': datetime.now().isoformat(),
+                        'subscriptionEndDate': sub_expiry_date,
+                        'coupon_applied': "Free90",
+                        'paidSubscription': False,
+                        "coupon_applied":"no coupon applied"
+                    },
+                    "screener_active":False,
+                }
+            db.collection('users').document(user['localId']).update(updated_status)
+            revokeGoogleSheetPermission(db_data_user['email'])
+            return
+            # print(f" paid -------------{updated_status}")
+
+    else:
+        return 
+
+
+def revokeGoogleSheetPermission(current_user):
+    
+    email_address = current_user
+    print(f"---email-----{email_address}")
+    try:
+        credentials = Credentials.from_service_account_info(settings.google_cloud_api_main)
+        # print(f"---------------------------{credentials}-------------")
+        drive_service = build('drive', 'v3', credentials=credentials)
+        # Sheet ID
+        sheet_id_1 = settings.sheet_id
+        # Email address to grant access
+      
+        # Retrieve permission ID for the specified email address
+        response = drive_service.permissions().list(fileId=sheet_id_1, fields='permissions(id,emailAddress,role)').execute()
+        permissions = response.get('permissions', [])
+        # print(permissions)
+
+        permission_id = None
+        for permission in permissions:
+            # print(permission)
+            if permission['emailAddress'] == email_address:
+                permission_id = permission['id']
+
+                break
+
+        # If permission found, revoke it
+        if permission_id:
+            drive_service.permissions().delete(fileId=sheet_id_1, permissionId=permission_id).execute()
+            # print(f"Revoked access for {email_address} from Google Sheet '{sheet_id}'.")
+            send_mail.send_revoke_email(email_to=email_address, sheet_id=sheet_id_1 )
+            return JSONResponse(content={"status":f" Permission succefully removed  {email_address}"}, status_code=200)
+        else:
+            # print(f"No access found for {email_address} in Google Sheet '{sheet_id}'.")
+            return JSONResponse(content={"status":f"No permission found for {email_address}"}, status_code=200)
+    except Exception as e:
+        print(f"Error --------> {e}")
+        raise HTMLResponse(status_code= 400 , detail = "Invalid Credentials")
+    pass
+
+
+

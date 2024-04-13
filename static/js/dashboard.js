@@ -40,19 +40,19 @@ async function updateUsername() {
 async function screener() {
   try {
     const userData = await getUserData();
-    data = userData.user.subscriptionDetails.subscriptionEndDate
-
-    if (
-      userData.user.subscriptionDetails.free_trial_over == false ||
-      userData.user.subscriptionDetails.paidSubscription == true
-    ) {
-        window.location.href = "/screener";
+    data = userData.user.subscriptionDetails.subscriptionEndDate;
+    current_state = userData.user.subscriptionDetails.currentSubscription;
+    isScreenerState = userData.user.screener_active;
+    // console.log(`screene ${isScreenerState}`);
+    if(isScreenerState){
+      window.location.href = "/screener"; 
     }else{
+      sweetAlert("OOPS...", `your ${current_state} \n Please Join immediatley to the valid Plan`, "error");
       subscribePlanDisplay();
-      swal("oops !!!", "Your Free trial is over \n Please Subscribe to paid plan", "error")
-      
-
     }
+    
+    
+    
   } catch (error) {
     console.error(error);
   }
@@ -101,6 +101,8 @@ async function account() {
   content.innerHTML = htmlContent;
   try {
     const userData = await getUserData();
+    console.log(userData.user)
+    isScreenerState = userData.user.screener_active
     userName = userData.user.name;
     userEmail = userData.user.email;
     subscriptionStatus = userData.user.subscriptionDetails.subscriptionStatus;
@@ -118,7 +120,9 @@ async function account() {
     document.querySelector("#displayEmail").innerText = userEmail;
     document.querySelector("#subscription-status").innerText =
       subscriptionStatus;
-    document.querySelector("#subscription-status").style.color = "green";
+    document.querySelector("#subscription-status").style.color = isScreenerState? "green" : "red";
+    document.querySelector("#subscription-type").style.color = isScreenerState? "green" : "red";
+    document.querySelector("#subscription-end-date").style.color = isScreenerState? "green" : "red";
     document.querySelector("#subscription-type").innerText =
       currentSubscription;
     document.querySelector("#subscription-start-date").innerText =
