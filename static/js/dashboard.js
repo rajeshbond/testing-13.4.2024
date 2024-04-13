@@ -118,6 +118,7 @@ async function account() {
     document.querySelector("#displayEmail").innerText = userEmail;
     document.querySelector("#subscription-status").innerText =
       subscriptionStatus;
+    document.querySelector("#subscription-status").style.color = "green";
     document.querySelector("#subscription-type").innerText =
       currentSubscription;
     document.querySelector("#subscription-start-date").innerText =

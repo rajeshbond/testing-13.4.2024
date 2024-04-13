@@ -84,7 +84,7 @@ class EmailService:
       
 # ------------------- send VErification mail link ------------------
     def send_verification_email(self, email_to, update_link):
-        print("======================={mail verification}========================================")
+        # print("======================={mail verification}========================================")
         # Setup the email content
         body = f"Dear,\n\nPlease click on the link below to verify your email. \n\n {update_link} \n\n Please call customer support \n\nregards,\nCompounding Funda" 
         

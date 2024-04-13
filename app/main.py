@@ -79,8 +79,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
-# local_db = fire_database(db)
-# app.mount("/static", StaticFiles(directory="static"), name="static")
+
 # ---------------------Define Functions  -------------------------------------------
 
 def refresh_id_token(current_id_token):
@@ -99,7 +98,7 @@ def refresh_id_token(current_id_token):
 
 
 # ---------------------Get Method -------------------------------------------
-
+# ---------------------Sending virtual enviroment to Java Scripts ---------------
 @app.get("/env")
 async def get_env():
     # print(f"---------------------{settings.your_id}")
@@ -189,31 +188,28 @@ async def login(request1: schemes.SignIn, request: Request):
     # print(request1.password)
     try:
         user = pyre.auth().sign_in_with_email_and_password(email=request1.email, password=request1.password)
-        # print(user)
-
-        if user == None:
-            return JSONResponse(content={"data": "Invalid credentials"}, status_code=status.HTTP_401_UNAUTHORIZED)
+        userser_info = pyre.auth().get_account_info(user['idToken'])
+        print(f"---------------user info {userser_info['users'][0]['email']}")
+        isUserVerifired = userser_info['users'][0]['emailVerified']
+        email = userser_info['users'][0]['email']
+        print(f"Data extracted {isUserVerifired}")
+        if isUserVerifired == False:
+            email_verification_link = auth.generate_email_verification_link(email)
+            print(f'----------------{email_verification_link}')
+            send_mail.send_verification_email(email_to=email, update_link=email_verification_link) 
+            return JSONResponse(content={"email_status": "unverifed"}, status_code=status.HTTP_208_ALREADY_REPORTED)
         else:
-            ur = auth.get_user(user['localId'])
+            request.session["user"] = dict(user) # user session
+            return JSONResponse(content={"data": "Login Successful"}, status_code=status.HTTP_200_OK)
 
-        
-            if(ur.email_verified):
-            
-                request.session["user"] = dict(user) # user
-                
-                return JSONResponse(content={"data": "Login Successful"}, status_code=status.HTTP_200_OK)
-                
-            else:            
-        
-                email_verification_link = auth.generate_email_verification_link(ur.email)
-
-                send_mail.send_verification_email(email_to=ur.email, update_link=email_verification_link) 
-                return JSONResponse(content={"data": "Please verify your email"}, status_code=status.HTTP_208_ALREADY_REPORTED)
     except Exception as e:
+        print(f"Exception {e}")
         raise HTTPException(
-            status_code=400,
-            detail= f" Invaid credentials --{e}")
-        
+        status_code=400,
+        detail= f" Invaid credentials --{e}")
+
+       
+    
 # ------------------------Post Method -------------------------------------------
 # ------------------------Signup-------------------------------------------
 
@@ -230,8 +226,6 @@ def signup(request: schemes.Signup):
             email=email,
             password=pasword
         )
-
-        # print(f"----------user created------{user}")
 
         data = {
             'uid':user.uid,
@@ -261,7 +255,7 @@ def signup(request: schemes.Signup):
         # print(f"--database---------{testb}")
         
         send_mail.send_confirmation_email(email_to=email, name = name, plan='free_plan')
-        assign_permission(senderEmail=email,name=name, plan='free_plan')
+        # assign_permission(senderEmail=email,name=name, plan='free_plan')
         
       
         send_mail.send_verification_email(email_to=email, update_link=email_verification_link)   

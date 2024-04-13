@@ -15,10 +15,11 @@
     <img src="static/images/logo2.png" alt="Logo" class="logo">
     <div id="signin-section">
       <div class="input-container">
-        <input type="text" id="username" placeholder="Email">
+        <input type="text" id="username" placeholder="Email" required>
       </div>
       <div class="input-container">
-        <input type="password" id="password" placeholder="Password">
+        <input type="password" id="password" placeholder="Password" required>
+        
       </div>
       <button onclick="signIn()">Sign In</button>
       <a href="/forgetpwd" onclick="forgotPassword()" class="forgot-password">Forgot Password?</a>

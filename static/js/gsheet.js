@@ -1,6 +1,10 @@
 // Function to set the source of the iframe to your Google Sheets document
+console.log("screener");
+
+
 function setGoogleSheetIframeSource() {
     // Replace 'YOUR_EMBED_URL' with the embed URL of your Google Sheets document
+    console.log("Google sheet");
     var embedUrl = 'https://docs.google.com/spreadsheets/d/1uqbCj754ZmtzetUnS7jrMOELNbbiayyBSTfR3mtTFpQ/edit#gid=0';
     document.getElementById('sheetFrame').src = embedUrl;
 }
