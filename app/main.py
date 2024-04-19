@@ -129,6 +129,9 @@ async def get_signup(request: Request):
 @app.get('/forgetpwd', response_class=HTMLResponse)
 async def get_forgetpwd(request: Request):
     return templates.TemplateResponse("forgetpwd.html", {"request": request})
+@app.get('/traderegister', response_class=HTMLResponse)
+async def get_forgetpwd(request: Request):
+    return templates.TemplateResponse("trading.html", {"request": request})
 
 @app.get('/screener', response_class=HTMLResponse)
 async def get_gsheet(request: Request):

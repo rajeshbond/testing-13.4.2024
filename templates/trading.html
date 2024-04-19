@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="static/css/trading.css">
+  <title>Trading Register</title>
+</head>
+<body>
+  <main-container>
+   <div class="tile-box">
+    <div class="div-tile-1"></div>
+    <div class="div-tile-1">
+      <h1 class="title">Compounding Funda</h1>      
+    </div>
+    <div class="div-tile-2">
+      <button id="dash-back">Dashboard</button>
+    </div> 
+   </div>
+   <div class="buysell-box">
+    <div class="bs-real-btn">
+      <button id="bs-real-btn">Realisation</button>
+    </div>
+    
+    <div class="bs-bs-bth">
+      <button id="buy" onclick="showPopUpBuy()">Buy</button>
+      <button id="sell" onclick="showPopUpSell()">Sell</button>
+
+    </div>
+
+    <div class="bs-pnl">
+      <p class="pnl-display">PNL</p>
+      <p id="pnl">3000</p>
+    </div>
+    </div>
+    <div class="transaction">
+      <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Symbol</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+        
+      </div>
+
+    </div>
+
+
+
+  </main-container>
+  <script src="static/js/trading.js"></script>
+</body>
+</html>

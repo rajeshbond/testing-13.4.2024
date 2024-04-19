@@ -61,6 +61,12 @@ class RazarPayConfrimation(BaseModel):
 class Updatecoupon(BaseModel):
     couponused:str
 
+class TradeRegisterInput(BaseModel):
+    date:date
+    symbol:str
+    price:float
+    qty:int
+
 
 
 
