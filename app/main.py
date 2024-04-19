@@ -566,7 +566,8 @@ async def updatecoupon(disx: schemes.Updatecoupon,request: Request):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error while getting user data: {e}")
           
-
+@app.post('/updateregentry',status_code=status.HTTP_200_OK)
+async def update_entry(entry:)
 
 # ------------------------ Methods -------------------------------------------
 def assign_permission(senderEmail,name , plan):
