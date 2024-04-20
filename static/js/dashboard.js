@@ -3,7 +3,7 @@ const closeBtn = document.querySelector("#close-btn");
 const sidebar = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu-bar");
 let RAZORPAY_id
-console.log(sidebar);
+// console.log(sidebar);
 menuBtn.addEventListener("click", () => {
   console.log("clicked");
   sidebar.style.display = "block";
@@ -49,15 +49,30 @@ async function screener() {
     }else{
       sweetAlert("OOPS...", `your ${current_state} \n Please Join immediatley to the valid Plan`, "error");
       subscribePlanDisplay();
-    }
-    
-    
-    
+    }    
   } catch (error) {
     console.error(error);
   }
 }
 
+async function tradingbook() {
+  try {
+    console.log("-------------------------------------")
+    const userData1 = await getUserData();
+    data = userData1.user.subscriptionDetails.subscriptionEndDate;
+    current_state = userData1.user.subscriptionDetails.currentSubscription;
+    isScreenerState = userData1.user.screener_active;
+    // console.log(`screene ${isScreenerState}`);
+    if(isScreenerState){
+      window.location.href = "/traderegister"; 
+    }else{
+      sweetAlert("OOPS...", `your ${current_state} \n Please Join immediatley to the valid Plan`, "error");
+      subscribePlanDisplay();
+    }    
+  } catch (error) {
+    console.error(error);
+  }
+}
 function logout() {
   // Perform logout operation here, such as calling logout API
 
@@ -198,10 +213,6 @@ function achivers_club(){
     showPopup(plan=plan,planAmont = planAmount);
 }
   
-
-
-
-
 function market_club(){
   console.log("market_club");
     plan = "Market Talk Club";
@@ -533,3 +544,21 @@ async function fetchEnvironmentVariables() {
       console.error('Error:', error);
   }
 }
+
+const tradingButton = document.querySelector('#trading-reg')
+
+tradingButton.addEventListener('click',async function(){
+  console.log("Trading button clicked")
+  try {
+    const userData = await getUserData();
+    isScreenerState = userData.user.screener_active;
+    if(isScreenerState){
+      window.location.href = "/traderegister"; 
+    }else{
+      sweetAlert("OOPS...", `your ${current_state} \n Please Join immediatley to the valid Plan`, "error");
+      subscribePlanDisplay();
+    }    
+  } catch (error) {
+    console.error(error);
+  }
+});

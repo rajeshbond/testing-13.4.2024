@@ -62,10 +62,14 @@ class Updatecoupon(BaseModel):
     couponused:str
 
 class TradeRegisterInput(BaseModel):
+    type:str
     date:date
     symbol:str
     price:float
     qty:int
+class test(BaseModel):
+    test:str
+  
 
 
 

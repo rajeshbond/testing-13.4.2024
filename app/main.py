@@ -567,7 +567,49 @@ async def updatecoupon(disx: schemes.Updatecoupon,request: Request):
         raise HTTPException(status_code=400, detail=f"Error while getting user data: {e}")
           
 @app.post('/updateregentry',status_code=status.HTTP_200_OK)
-async def update_entry(entry:)
+async def update_entry(entry:schemes.TradeRegisterInput, request: Request):
+    print(f"-----------------------in side------------------------")
+    record={
+        "EntryType":entry.type,
+        "EntryDate":entry.date.isoformat(),
+        "EntrySymbol": entry.symbol,
+        "EntryPrice": entry.price,
+        "EntryQty": entry.qty,
+        "created_at":datetime.now().isoformat()
+    }
+    try:
+        user = request.session.get('user')
+        if user:
+            parent_doc_ref = db.collection('users').document(user['localId'])
+            subcollection_ref = parent_doc_ref.collection('entry')
+            subcollection_ref.add(record)
+        else:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+    except Exception as e:
+        print(e)
+@app.post('/test',status_code=status.HTTP_200_OK)
+async def test():
+    print("Ping sucess")
+    return {"sucess":"done"}
+@app.get("/fetchunregister", status_code=status.HTTP_200_OK)
+async def fetchUnRegister(request: Request):
+    try:
+        user = request.session.get("user")
+        if user:
+            parent_doc_ref = db.collection('users').document(user['localId'])
+            subcollection_ref = parent_doc_ref.collection('entry')
+            # query_snapshot = subcollection_ref.get()
+            query_snapshot = subcollection_ref.order_by('created_at', direction=firestore.Query.DESCENDING).get()
+    
+            entries = []
+            for doc in query_snapshot:
+                entries.append(doc.to_dict())
+            # print(entries)
+            return JSONResponse(content={"records":entries}, status_code=status.HTTP_200_OK)
+        else:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
 
 # ------------------------ Methods -------------------------------------------
 def assign_permission(senderEmail,name , plan):
@@ -662,6 +704,7 @@ def update_user_subsription(current_user):
 
     else:
         return 
+
 
 
 def revokeGoogleSheetPermission(current_user):

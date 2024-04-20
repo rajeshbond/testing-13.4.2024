@@ -1,4 +1,17 @@
 
+const fetchunRecouds = async () => {
+  try {
+    const response = await fetch("/fetchunregister");
+    const data = await response.json();
+    // console.log(response)
+    // console.log(data.records)
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 
 // Function to create and show the pop-up
 function showPopUpBuy() {
@@ -33,16 +46,24 @@ function showPopUpBuy() {
   document.getElementById('inputForm').addEventListener('submit', function(event) {
     event.preventDefault();
     // Get input values and perform submission logic
-    var dateValue = document.getElementById('dateInput').value;
-    var symbolValue = document.getElementById('symbolInput').value;
-    var symbolPriceValue = document.getElementById('symbol-price').value;
-    var symbolqtyValue = document.getElementById('symbol-price-qty').value;
-    console.log('Date:', dateValue);
-    console.log('Symbol:', symbolValue);
-    console.log('Symbol Price:', symbolPriceValue);
-    console.log('Symbol Price:', symbolqtyValue);
+    let dateValue = document.getElementById('dateInput').value;
+    let symbolValue = document.getElementById('symbolInput').value;
+    let symbolPriceValue = document.getElementById('symbol-price').value;
+    let symbolqtyValue = document.getElementById('symbol-price-qty').value;
     document.getElementById('popDiv').classList.remove('show');
+    if(dateValue !="" && symbolValue !="", symbolPriceValue !="", symbolqtyValue !=""){
+      tradeEntry(tyre = 'Buy', date = dateValue, symbol = symbolValue, price = symbolPriceValue , qty = symbolqtyValue);
+      document.getElementById('popDiv').classList.remove('show');
+      populateTable();
+      }else{
+        console.log("The Error")
+    }
   });
+
+  
+ 
+
+
   document.getElementById('closeButton').addEventListener('click', function() {
     document.getElementById('popDiv').classList.remove('show');
   });
@@ -94,7 +115,13 @@ function showPopUpSell() {
     console.log('Symbol:', symbolValue);
     console.log('Symbol Price:', symbolPriceValue);
     console.log('Symbol Price:', symbolqtyValue);
-    document.getElementById('popDiv').classList.remove('show');
+    if(dateValue !="" && symbolValue !="", symbolPriceValue !="", symbolqtyValue !=""){
+      tradeEntry(tyre = 'Sell', date = dateValue, symbol = symbolValue, price = symbolPriceValue , qty = symbolqtyValue);
+      document.getElementById('popDiv').classList.remove('show');
+      populateTable();
+      }else{
+        console.log("The Error")
+    }
   });
   document.getElementById('closeButton').addEventListener('click', function() {
     document.getElementById('popDiv').classList.remove('show');
@@ -104,44 +131,84 @@ function showPopUpSell() {
   document.getElementById('popDiv').classList.add('show');
 }
 
-const data = [
-  { date: '01-04-2024', symbol: 'Reliance', price: '150.00', qty: 10 },
-  { date: '2024-04-01', symbol: 'SBIN', price: '-1200.00', qty: 5 },
-  { date: '2024-04-01', symbol: 'INFY', price: '-1200.00', qty: 5 },
-  { date: '2024-04-01', symbol: 'GOOGL', price: '1200.00', qty: 5 },
-  { date: '2024-04-01', symbol: 'GOOGL', price: '-1200.00', qty: 5 }
-  // More rows can be added here
-];
-function populateTable() {
- 
-  let html = ``;
 
+async function populateTable() {
+  recived = await fetchunRecouds()
+  data = recived.records
+
+  data.forEach((element, index) => {
+    console.log(element);
+  });
+  let html = ``;
+  
+  document.querySelector('#tableBody').innerHTML = html;
 
   // Loop through each data entry and create table rows
-  data.forEach(item => {
+  data.forEach((item, index) => {
     let bgColorClass = '';
     let btnName = '';
-        if (parseFloat(item.price) > 0) {
+    console.log(item.EntryType)
+        if (item.EntryType == "Buy") {
             bgColorClass = 'negative-price';
             btnName = 'Sell';
-        } else if (parseFloat(item.price) < 0) {
+        } else if (item.EntryType== "Sell") {
             bgColorClass = 'positive-price';
             btnName = 'Buy';
         }
-        console.log(`bgcolr = ${bgColorClass}`)
+        // console.log(`bgcolr = ${bgColorClass}`)
 
       html += `<tr>
-                  <td>${item.date}</td>
-                  <td>${item.symbol}</td>
-                  <td>${item.price}</td>
-                  <td>${item.qty}</td>
+                  <td>${item.EntryDate}</td>
+                  <td>${item.EntrySymbol}</td>
+                  <td>${item.EntryPrice}</td>
+                  <td>${item.EntryQty}</td>
                   <td><button button class="buy-sell-btn ${bgColorClass}">${btnName}</button></td>
               </tr>`;
   });
 
-  console.log(html)
+  // console.log(html)
   // Set innerHTML of the table container
   document.querySelector('#tableBody').innerHTML += html;
+}
+
+async function tradeEntry(tyre = type, date = date, symbol = symbol, price = price , qty = qty){
+  try{
+    const data = {
+      type: tyre,
+      date: date,
+      symbol: symbol,
+      price: price,
+      qty: qty
+    }
+      
+    
+  console.log(data)
+  const response = await fetch("/updateregentry", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+
+  const serverResponse = await response.json();
+  console.log("Server response:", serverResponse);
+}
+catch(error){
+  console.log(error)
+}
+
+}
+
+function dashboard1() {
+  try{
+      window.location.href = "/dashboard"; 
+  }catch(e){
+      console.log(e);
+  }
 }
 
 window.onload = populateTable;
