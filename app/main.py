@@ -585,7 +585,7 @@ async def update_entry(entry:schemes.TradeRegisterInput, request: Request):
     record={
         "EntryType":entry.type,
         "EntryDate":entry.date.isoformat(),
-        "EntrySymbol": entry.symbol,
+        "EntrySymbol": entry.symbol.upper(),
         "EntryPrice": entry.price,
         "EntryQty": entry.qty,
         "created_at":datetime.now().isoformat()
