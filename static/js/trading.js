@@ -111,10 +111,6 @@ function showPopUpSell() {
     var symbolValue = document.getElementById('symbolInput').value;
     var symbolPriceValue = document.getElementById('symbol-price').value;
     var symbolqtyValue = document.getElementById('symbol-price-qty').value;
-    console.log('Date:', dateValue);
-    console.log('Symbol:', symbolValue);
-    console.log('Symbol Price:', symbolPriceValue);
-    console.log('Symbol Price:', symbolqtyValue);
     if(dateValue !="" && symbolValue !="", symbolPriceValue !="", symbolqtyValue !=""){
       tradeEntry(tyre = 'Sell', date = dateValue, symbol = symbolValue, price = symbolPriceValue , qty = symbolqtyValue);
       document.getElementById('popDiv').classList.remove('show');
@@ -147,7 +143,7 @@ async function populateTable() {
   data.forEach((item, index) => {
     let bgColorClass = '';
     let btnName = '';
-    // console.log(item.EntryType)
+    // console.log(item[index])
         if (item.EntryType == "Buy") {
             bgColorClass = 'negative-price';
             btnName = 'Sell';
@@ -163,7 +159,7 @@ async function populateTable() {
                   <td>${item.EntrySymbol}</td>
                   <td>${item.EntryPrice}</td>
                   <td>${item.EntryQty}</td>
-                  <td><button class="buy-sell-btn ${bgColorClass}" data-index="${item}">${btnName}</button>
+                  <td><button class="buy-sell-btn ${bgColorClass}" data-btn-index="${index}">${btnName}</button>
                   <button class="record-cancel" " style="font-size: 24px;" data-index="${index}">&times</button>
                   </td>
               </tr>`;
@@ -173,19 +169,32 @@ async function populateTable() {
   // Set innerHTML of the table container
   document.querySelector('#tableBody').innerHTML += html;
   // Handle button click
+
+const exitBtn = document.querySelectorAll(".buy-sell-btn")
+exitBtn.forEach(button1=>{
+  button1.addEventListener('click', function(){
+    let index = this.getAttribute('data-btn-index');
+      // console.log(data[index])
+      openPOPup(data[index])
+      
+  });
+})  
 document.querySelectorAll('.record-cancel').forEach(button => {
   button.addEventListener('click', function() {
-      let index = this.getAttribute('data-index');
-      // console.log(data[index].doc_id)
-      deleteRecords(data[index].doc_id);
+      let ind = this.getAttribute('data-index');
+      console.log(data[ind].doc)
+      deleteRecords(data[ind].doc_id);
+    });
 
   });
-});
-
-
 
 }
 
+function openPOPup(item){
+  console.log("inside funtion")
+  console.log(item);
+  return;
+}
 async function deleteRecords(doc_id){
   console.log(`docID ${doc_id}`)
   try {
@@ -198,7 +207,6 @@ async function deleteRecords(doc_id){
     }
 
     const data = await response.json();
-    console.log(data.message);
     // Optionally, reload the page or remove the row visually from the table
     // For example, if you want to remove the row without reloading:
     // document.querySelector(`button[data-index="${index}"]`).closest('tr').remove();
@@ -219,7 +227,7 @@ async function tradeEntry(tyre = type, date = date, symbol = symbol, price = pri
     }
       
     
-  console.log(data)
+  // console.log(data)
   const response = await fetch("/updateregentry", {
     method: "POST",
     headers: {
@@ -247,5 +255,6 @@ function dashboard1() {
       console.log(e);
   }
 }
+
 
 window.onload = populateTable;
