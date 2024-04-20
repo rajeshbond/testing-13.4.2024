@@ -69,6 +69,8 @@ class TradeRegisterInput(BaseModel):
     qty:int
 class test(BaseModel):
     test:str
+class RecordId(BaseModel):
+    recordId: str
   
 
 

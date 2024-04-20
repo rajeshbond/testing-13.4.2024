@@ -135,10 +135,10 @@ function showPopUpSell() {
 async function populateTable() {
   recived = await fetchunRecouds()
   data = recived.records
-
-  data.forEach((element, index) => {
-    console.log(element);
-  });
+ 
+  // data.forEach((element, index) => {
+  //   console.log(element);
+  // });
   let html = ``;
   
   document.querySelector('#tableBody').innerHTML = html;
@@ -147,7 +147,7 @@ async function populateTable() {
   data.forEach((item, index) => {
     let bgColorClass = '';
     let btnName = '';
-    console.log(item.EntryType)
+    // console.log(item.EntryType)
         if (item.EntryType == "Buy") {
             bgColorClass = 'negative-price';
             btnName = 'Sell';
@@ -159,16 +159,53 @@ async function populateTable() {
 
       html += `<tr>
                   <td>${item.EntryDate}</td>
+                  <td>${item.EntryType}</td>
                   <td>${item.EntrySymbol}</td>
                   <td>${item.EntryPrice}</td>
                   <td>${item.EntryQty}</td>
-                  <td><button button class="buy-sell-btn ${bgColorClass}">${btnName}</button></td>
+                  <td><button class="buy-sell-btn ${bgColorClass}" data-index="${item}">${btnName}</button>
+                  <button class="record-cancel" " style="font-size: 24px;" data-index="${index}">&times</button>
+                  </td>
               </tr>`;
   });
 
   // console.log(html)
   // Set innerHTML of the table container
   document.querySelector('#tableBody').innerHTML += html;
+  // Handle button click
+document.querySelectorAll('.record-cancel').forEach(button => {
+  button.addEventListener('click', function() {
+      let index = this.getAttribute('data-index');
+      // console.log(data[index].doc_id)
+      deleteRecords(data[index].doc_id);
+
+  });
+});
+
+
+
+}
+
+async function deleteRecords(doc_id){
+  console.log(`docID ${doc_id}`)
+  try {
+    const response = await fetch(`/delete_record/${doc_id}`, {
+        method: 'DELETE'
+    });
+    
+    if (!response.ok) {
+        throw new Error('Something went wrong');
+    }
+
+    const data = await response.json();
+    console.log(data.message);
+    // Optionally, reload the page or remove the row visually from the table
+    // For example, if you want to remove the row without reloading:
+    // document.querySelector(`button[data-index="${index}"]`).closest('tr').remove();
+    populateTable(); 
+} catch (error) {
+    console.error('Error:', error);
+}
 }
 
 async function tradeEntry(tyre = type, date = date, symbol = symbol, price = price , qty = qty){
