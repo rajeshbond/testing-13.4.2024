@@ -191,7 +191,7 @@ document.querySelectorAll('.record-cancel').forEach(button => {
 }
 
 function openPOPup(item){
-  console.log("inside funtion")
+
   console.log(item);
   return;
 }
