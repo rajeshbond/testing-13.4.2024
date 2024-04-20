@@ -596,6 +596,7 @@ async def update_entry(entry:schemes.TradeRegisterInput, request: Request):
             parent_doc_ref = db.collection('users').document(user['localId'])
             subcollection_ref = parent_doc_ref.collection('entry')
             subcollection_ref.add(record)
+            return HTTPException(status_code=status.HTTP_200_OK, detail=f"Record Added Sucessfully")
         else:
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
     except Exception as e:
