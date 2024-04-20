@@ -175,7 +175,7 @@ exitBtn.forEach(button1=>{
   button1.addEventListener('click', function(){
     let index = this.getAttribute('data-btn-index');
       // console.log(data[index])
-      openPOPup(data[index])
+      openPOPup(data[index]);
       
   });
 })  
@@ -191,9 +191,55 @@ document.querySelectorAll('.record-cancel').forEach(button => {
 }
 
 function openPOPup(item){
-
+  
   console.log(item);
-  return;
+  var popHTML = `
+  <div id="popDiv" class="popEffect">
+  <button id="closeButton" class="closeButton">&times;</button>
+  <p></p>
+  <form id="inputForm">
+    <label for="dateInput">Date:</label>
+    <input type="date" id="dateInput" name="dateInput"><br><br>
+    <label for="symbolInput">Symbol:</label>
+    <input type="text" id="symbolInput" name="symbolInput"><br><br>
+    <label for="symbol-price">BuyingPrice:</label>
+    <input type="text" id="symbol-price" name="symbolInput" pattern="[0-9]*\.?[0-9]*" inputmode="numeric"><br><br>
+    <label for="symbol-price">Buying Qty:</label>
+    <input type="text" id="symbol-price-qty" name="symbolInput" pattern="[0-9]*" inputmode="numeric"><br><br>
+    <button id="submit">Sell</button>
+  </form>
+</div>
+  `;
+
+  // Append pop-up container HTML to document body
+  document.body.innerHTML += popHTML;
+
+  // Add event listeners
+  let submitButtonColor = document.querySelector("#submit")
+  let popcss = document.querySelector(".popEffect");
+  popcss.style.border = '1px solid red';
+  popcss.style.backgroundColor = 'white';
+  submitButtonColor.style.backgroundColor ="red";
+
+
+  document.getElementById('inputForm').addEventListener('submit', function() {
+    // event.preventDefault();
+    // Get input values and perform submission logic
+    // var dateValue = document.getElementById('dateInput').value;
+    // var symbolValue = document.getElementById('symbolInput').value;
+    // var symbolPriceValue = document.getElementById('symbol-price').value;
+    // var symbolqtyValue = document.getElementById('symbol-price-qty').value;
+  });
+  document.getElementById('closeButton').addEventListener('click', function() {
+    document.getElementById('popDiv').classList.remove('show');
+    console.log(test)
+  });
+
+  // Show the pop-up
+  document.getElementById('popDiv').classList.add('show');
+  console.log(open)
+  
+  
 }
 async function deleteRecords(doc_id){
   console.log(`docID ${doc_id}`)
@@ -255,6 +301,8 @@ function dashboard1() {
       console.log(e);
   }
 }
+
+
 function dateconverter(date) {
   const dateObj = new Date(date);
   const options = { day: "2-digit", month: "2-digit", year: "numeric" };
