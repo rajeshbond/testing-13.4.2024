@@ -131,13 +131,26 @@ async def get_forgetpwd(request: Request):
     return templates.TemplateResponse("forgetpwd.html", {"request": request})
 @app.get('/traderegister', response_class=HTMLResponse)
 async def get_forgetpwd(request: Request):
-    return templates.TemplateResponse("trading.html", {"request": request})
+    try:
+        user = request.session.get("user")
+        update_user_subsription(request)
+        db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+
+        # print(db_data_user)
+    
+        if (db_data_user['screener_active']):
+            return templates.TemplateResponse("trading.html", {"request": request})
+        else:
+            return RedirectResponse(url="/dashboard")
+    except Exception as e:
+        return RedirectResponse(url="/")
+    
 
 @app.get('/screener', response_class=HTMLResponse)
 async def get_gsheet(request: Request):
-    user = request.session.get("user")
-    update_user_subsription(request)
     try:
+        user = request.session.get("user")
+        update_user_subsription(request)
         db_data_user= db.collection('users').document(user['localId']).get().to_dict()
 
         # print(db_data_user)
