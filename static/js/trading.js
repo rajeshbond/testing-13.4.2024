@@ -152,9 +152,9 @@ async function populateTable() {
             btnName = 'Buy';
         }
         // console.log(`bgcolr = ${bgColorClass}`)
-
+        // date = dateconverter(item.EntryDate)
       html += `<tr>
-                  <td>${item.EntryDate}</td>
+                  <td>${dateconverter(item.EntryDate)}</td>
                   <td>${item.EntryType}</td>
                   <td>${item.EntrySymbol}</td>
                   <td>${item.EntryPrice}</td>
@@ -254,6 +254,11 @@ function dashboard1() {
   }catch(e){
       console.log(e);
   }
+}
+function dateconverter(date) {
+  const dateObj = new Date(date);
+  const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+  return dateObj.toLocaleDateString("en-GB", options).replace(/\//g, "-");
 }
 
 
