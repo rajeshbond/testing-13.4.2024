@@ -161,6 +161,7 @@ function exitPOPup(item){
   var container = document.querySelector('.container');
   var entryType = item.EntryType;
   var stockSymbol = item.EntrySymbol;
+  var entryStockPr = item.EntryPrice;
   console.log(entryType)
   var modalHTML = `
   <div class="modal">
@@ -173,35 +174,48 @@ function exitPOPup(item){
         <label for="exit-date">Exit Date:</label>
         <input type="date" id="exit-date" class="entry-date-input" required><br><br>
         <label for="stock-name">Stock Name:</label>
-        <input type="text" id="stock-name" class="symbol" placeholder="Stock Name" required><br><br>
-        <label for="stock-price">Buying Price:</label>
-        <input type="text" id="stock-price" class="symbol" placeholder="Stock Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
+        <input type="text" id="stock-name" class="symbol" placeholder="Stock Name"><br><br>
+        <label for="stock-price">Entry Price:</label>
+        <input type="text" id="entry-stock-price" class="symbol" placeholder="Entry Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
+        <label for="stock-price">Exit Price:</label>
+        <input type="text" id="stock-price" class="symbol" placeholder="Exit Stock Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
         <button id="submit3" class="submit-button"></button>
       </form>
     </div>
   </div>
   `;
-
+  try{}
+  catch (error){}
   // Insert the modal HTML content into the container
   container.innerHTML += modalHTML;
   modalHTML="";
   var exitDateInput = document.querySelector('#exit-date');
   var stockNameInput = document.querySelector('#stock-name');
+  var enrtyStockPriceInput = document.querySelector('#entry-stock-price');
   var exitStockPriceInput = document.querySelector('#stock-price');
   let submitButton = document.querySelector('#submit3')
+
   stockNameInput.value = stockSymbol;
-  submitButton.addEventListener('click', ()=>{
+  enrtyStockPriceInput.value = entryStockPr;
+  submitButton.addEventListener('click', function(event){
+    event.preventDefault();
     var exitDate = exitDateInput.value;
     var stockName = stockNameInput.value;
+    var enrtyStockPrice = enrtyStockPriceInput.value
     var exitstockPrice = exitStockPriceInput.value;
-    console.log(exitDate);
-    console.log(stockName);
-    console.log(exitstockPrice);
-    if(stockNameInput !="" && stockName!="" && exitstockPrice!=""){
-      completeTrade(eType = item.EntryType,eDate=item.EntryDate,ePrice=item.EntryPrice,eQty = item.EntryQty,eStock = item.EntrySymbol,eUid = item.EntrySymbol,exitDate=exitDate,exitSymbol = stockNam , exitPrice = exitstockPrice );  
+    if(exitDate != "" && exitstockPrice !=""){
+      console.log(exitDate);
+      console.log(stockName);
+      console.log(exitstockPrice);
       modal.classList.remove("active");
-    }
+      completeTrade(item=item, exitDate = exitDate, exitPrice = exitstockPrice);
+      console.log("snumit button clicked");
+    }else{
+      console.log('error');
+      
 
+    }
+    
   });
 
 
@@ -301,8 +315,11 @@ function dateconverter(date) {
   return dateObj.toLocaleDateString("en-GB", options).replace(/\//g, "-");
 }
 
-function completeTrade(eType = eType,eDate=eDate,ePrice=ePrice,eQty = eQty,eStock = item.EntrySymbol,eUid = item.EntrySymbol,exitDate=exitDate,exitSymbol = stockNam , exitPrice = exitstockPrice ){
-
+function completeTrade(item = item,exitDate=exitDate,exitPrice = exitPrice ){
+  console.log('In side complete trade');
+  console.log(item);
+  console.log(exitDate);
+  console.log(exitPrice)
 }
 
 
