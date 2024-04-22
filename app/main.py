@@ -646,7 +646,8 @@ def completeTradeEntry(centry:schemes.CompleteTrade,request: Request):
     "entry_price": centry.price,
     "entry_qty": centry.qty,
     "exit_date": centry.exit_date.isoformat(),
-    "exit_price": centry.exit_price
+    "exit_price": centry.exit_price,
+    "created_at":datetime.now().isoformat()
 }
     print(record)
 
@@ -661,6 +662,26 @@ def completeTradeEntry(centry:schemes.CompleteTrade,request: Request):
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
     except Exception as e:
          raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+@app.get("/fetchfilled", status_code=status.HTTP_200_OK)
+async def fetchUnRegister(request: Request):
+    try:
+        user = request.session.get("user")
+        if user:
+            parent_doc_ref = db.collection('users').document(user['localId'])
+            subcollection_ref = parent_doc_ref.collection('filled')
+            # query_snapshot = subcollection_ref.get()
+            query_snapshot = subcollection_ref.order_by('created_at', direction=firestore.Query.DESCENDING).get()
+
+            entries = []
+            entries = [{**doc.to_dict()} for doc in query_snapshot]
+            print(entries)
+            return JSONResponse(content={"records":entries}, status_code=status.HTTP_200_OK)
+        else:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+
+
 # ------------------------ Methods -------------------------------------------
 def assign_permission(senderEmail,name , plan):
 

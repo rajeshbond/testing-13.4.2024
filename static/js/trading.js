@@ -1,4 +1,5 @@
 
+let pNL = 0.0;
 const fetchunRecords = async () => {
   try {
     const response = await fetch("/fetchunregister");
@@ -11,8 +12,9 @@ const fetchunRecords = async () => {
   }
 };
 async function populateTable() {
-  recived = await fetchunRecords()
-  data = recived.records
+  let recived = await fetchunRecords()
+  let data = recived.records
+  console.log(data)
  
  
   let html = ``;
@@ -146,7 +148,7 @@ function entryPOPup(item){
     if(entryDate!="" && stockName!="" && stockPrice!="" && stockQty!=""){
       tradeEntry(tyre = tradeTpye, date = entryDate, symbol = stockName, price = stockPrice , qty = stockQty);
       modal.classList.remove("active");
-      populateTable1();
+      populateTable();
     }
     
   });
@@ -178,7 +180,7 @@ function exitPOPup(item){
         <label for="exit-stock-name">Stock Name:</label>
         <input type="text" id="exit-stock-name" class="symbol" placeholder="Stock Name"><br><br>
         <label for="exit-stock-price">Entry Price:</label>
-        <input type="text" id="exit-stock-price" class="symbol" placeholder="Entry Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
+        <input type="text" id="entry-stock-price" class="symbol" placeholder="Entry Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
         <label for="exit-stock-price">Exit Price:</label>
         <input type="text" id="exit-stock-price" class="symbol" placeholder="Exit Stock Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
         <button id="submit3" class="submit-button"></button>
@@ -192,7 +194,7 @@ function exitPOPup(item){
   container.innerHTML += modalHTML1;
   var exitDateInput = document.querySelector('#exit-date');
   var stockNameInput = document.querySelector('#exit-stock-name');
-  var enrtyStockPriceInput = document.querySelector('#exit-stock-price');
+  var enrtyStockPriceInput = document.querySelector('#entry-stock-price');
   var exitStockPriceInput = document.querySelector('#exit-stock-price');
   let submitButton = document.querySelector('#submit3')
 
@@ -350,7 +352,6 @@ function dateconverter(date) {
     console.log(error)
   }
 }
-let currentButtonState = "";
 
 function pnlScreen(){
   console.log("inside pnl Screen")
@@ -358,11 +359,15 @@ function pnlScreen(){
   const entryButton = document.querySelector("#bs-entry-btn");
   const pnlTable = document.querySelector(".table-container");
   const entryTable = document.querySelector(".table-container1");
+  const buyButton = document.querySelector("#buy");
+  const sellButton = document.querySelector("#sell");
   pnlButton.style.display = 'none';
   entryButton.style.display = 'block';
   entryTable.style.display = 'flex';
   pnlTable.style.display = "none";
-
+  // buyButton.style.display = "none";
+  // sellButton.style.display = "none";
+  populatePNLTable();
 }
 function entryScreen(){
   console.log("inside entry screen")
@@ -370,10 +375,74 @@ function entryScreen(){
   const entryButton = document.querySelector("#bs-entry-btn");
   const pnlTable = document.querySelector(".table-container");
   const entryTable = document.querySelector(".table-container1");
+  const buyButton = document.querySelector("#buy");
+  const sellButton = document.querySelector("#sell");
   pnlButton.style.display = 'block';
   entryButton.style.display = 'none';
   entryTable.style.display = 'none';
   pnlTable.style.display = "flex";
+  // buyButton.style.display = "block";
+  // sellButton.style.display = "none";
+}
+const fetchpnlRecords = async () => {
+  try {
+    const response = await fetch("/fetchfilled");
+    const data = await response.json();
+    console.log(data.records)
+    return data.records;
+  } catch (error) {
+    console.error(error);
+  }
+};
+async function populatePNLTable(){
+  let recived = await fetchpnlRecords()
+  console.log(recived)
+  // let data = recived.recordss
+  // console.log(`recived-Data:${recived}`)
+ 
+ 
+  let html = ``;
+  let pnlTable = document.querySelector('#tableBody-realised');  
+  pnlTable.innerHTML = html;
+
+  // Loop through each data entry and create table rows
+  recived.forEach((item, index) => {
+      console.log(`item:${item.entry_symbol}`);
+      exitPrice = item.exit_price;
+      entryPrice = item.entry_price;
+      qty = item.entry_qty;
+      let localPnl = (exitPrice-entryPrice)*qty
+      pNL += localPnl;
+      console.log(`ExitPrice:${exitPrice}`);
+      console.log(`EntryPrice:${entryPrice}`)
+      console.log(`profit:${localPnl}`)
+      console.log(`Qty:${qty}`)
+      let pnlBgColor = '';
+      let localpnl = (item.exit_price - item.entry_price)*item.entry_qty;
+      if(localPnl < 0){
+        pnlBgColor = 'losspnl';
+      }else if (localPnl>0) {
+        pnlBgColor = 'profitpnl';
+      } else {
+        pnlBgColor = 'default';
+      }
+      html += `<tr>
+                  <td>${dateconverter(item.entry_date)}</td>
+                  <td>${item.entry_type}</td>
+                  <td>${item.entry_symbol}</td>
+                  <td>${item.entry_price.toFixed(2)}	</td>
+                  <td>${item.entry_qty}</td>
+                  <td>${dateconverter(item.exit_date)}</td>
+                  <td>${item.entry_price.toFixed(2)}</td>
+                  <td class="${pnlBgColor}">${localPnl.toFixed(2)}</td>
+                 
+              </tr>`;
+  });
+
+  // console.log(html)
+  // Set innerHTML of the table container
+  pnlTable.innerHTML += html;
+
 }
 
 window.onload = populateTable;
