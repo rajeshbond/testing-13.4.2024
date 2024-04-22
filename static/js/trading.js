@@ -31,7 +31,7 @@ async function populateTable() {
             bgColorClass = 'positive-price';
             btnName = 'Buy';
         }
-        let tradeValue = (item.EntryPrice)*(item.EntryQty);
+        let tradeValue = ((item.EntryPrice)*(item.EntryQty)).toFixed(2);
         // console.log(`bgcolr = ${bgColorClass}`)
         // date = dateconverter(item.EntryDate)
       html += `<tr>
@@ -146,7 +146,7 @@ function entryPOPup(item){
     if(entryDate!="" && stockName!="" && stockPrice!="" && stockQty!=""){
       tradeEntry(tyre = tradeTpye, date = entryDate, symbol = stockName, price = stockPrice , qty = stockQty);
       modal.classList.remove("active");
-      populateTable();
+      populateTable1();
     }
     
   });
@@ -291,7 +291,7 @@ async function tradeEntry(tyre = type, date = date, symbol = symbol, price = pri
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
-
+  // populateTable1();
   const serverResponse = await response.json();
   console.log("Server response:", serverResponse);
 }
@@ -350,6 +350,28 @@ function dateconverter(date) {
     console.log(error)
   }
 }
+let currentButtonState = "";
 
+function pnlScreen(){
+  const pnlButton = document.querySelector("#bs-real-btn");
+  const entryButton = document.querySelector("#bs-entry-btn");
+  const pnlTable = document.querySelector(".table-container");
+  const entryTable = document.querySelector(".table-container1");
+  pnlButton.style.display = 'none';
+  entryButton.style.display = 'block';
+  entryTable.style.display = 'none';
+  pnlTable.style.display = "flex";
+
+}
+function entryScreen(){
+  const pnlButton = document.querySelector("#bs-real-btn");
+  const entryButton = document.querySelector("#bs-entry-btn");
+  const pnlTable = document.querySelector(".table-container");
+  const entryTable = document.querySelector(".table-container1");
+  pnlButton.style.display = 'block';
+  entryButton.style.display = 'none';
+  entryTable.style.display = 'flex';
+  pnlTable.style.display = "none";
+}
 
 window.onload = populateTable;

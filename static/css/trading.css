@@ -99,6 +99,7 @@ b{
   flex-direction:column;
   align-items: center;
   width: 700px;
+
 }
 .display-items{
   margin-top: 10px;
@@ -113,13 +114,23 @@ b{
   justify-self: space-evenly;
 
 }
-
+/* entry table */
 .table-container {
- position: absolute;
+  display: flex;
+  position: absolute;
   left: 0.1rem; 
   overflow-x: auto; /* Enable horizontal scrolling on small screens */
   margin: 0 auto; /* Center the table container horizontally */
-  text-align: left; /* Align text inside table cells to the left */
+  text-align: center; /* Align text inside table cells to the left */
+}
+/* PNL Table */
+.table-container1{
+  display: none;
+  position: absolute;
+  left: 0.1rem; 
+  overflow-x: auto; /* Enable horizontal scrolling on small screens */
+  margin: 0 auto; /* Center the table container horizontally */
+  text-align: center; /* Align text inside table cells to the left */
 }
 table {
   width: 100%;
@@ -242,56 +253,33 @@ th {
   background-color: var(--clr-white);
 }
 #bs-real-btn{
+  display: block;
   margin: 0.2rem;
   padding: 0.2 rem;
   height: 2rem;
-  width: 6rem;
+  width: 4rem;
   background-color: orange;
   font-weight:700;
   border-radius: 1rem;
   color: var(--clr-dark);
   cursor: pointer;
 }
-
-
-
-/* Popup Container buy */
-#popDiv{
-  background-color: var(--clr-white);
-  width: 500px;
-}
-#popDiv1{
-  background-color: var(--clr-white);
-  width: 500px;
-}
-
-.popEffect {
+#bs-entry-btn{
   display: none;
-  background-color: #f0f0f0;
-  /* border: 1px solid green; */
-  padding: 5px;
-  border-radius: 5px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.popEffect.show {
-  display: block;
-  animation: popAnimation 0.5s ease;
-}
-
-.closeButton {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
+  margin: 0.2rem;
+  padding: 0.2 rem;
+  height: 2rem;
+  width: 4rem;
+  border: 0.1rem solid black;
+  background-color: orange;
+  font-weight:700;
+  border-radius: 1rem;
+  color: var(--clr-white);
   cursor: pointer;
-  color: #888;
 }
+
+
+
 #submit{
   /* background-color: green; */
   position: relative;

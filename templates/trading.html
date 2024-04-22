@@ -20,8 +20,9 @@
     </div> 
    </div>
    <div class="buysell-box">
-    <div class="bs-real-btn">
-      <button id="bs-real-btn">Realisation</button>
+    <div id="realisation-screen" class="bs-real-btn">
+      <button id="bs-real-btn" onclick="pnlScreen()">PNL</button>
+      <button id="bs-entry-btn" onclick="entryScreen()">Entry</button>
     </div>
     
     <div class="bs-bs-bth">
@@ -52,26 +53,35 @@
             <tbody id="tableBody"></tbody>
         </table>
     </div>
-    <div class="realisation">
-      <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Entry Date</th>
-                    <th>Entry Trade</th>
-                    <th>Symbol</th>
-                    <th>Entry Price</th>
-                    <th>Qty</th>
-                    <th>Exit Date</th>
-                    <th>Exit Price</th>
-                    <th>Profit Loss</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody-realised"></tbody>
-        </table>
-    </div>
         
       </div>
+      <div class="realisation">
+        <div class="table-container1">
+          <table>
+              <thead>
+                  <tr>
+                      <th>Entry Date</th>
+                      <th>Entry Trade</th>
+                      <th>Symbol</th>
+                      <th>Entry Price</th>
+                      <th>Qty</th>
+                      <th>Exit Date</th>
+                      <th>Exit Price</th>
+                      <th>Profit Loss</th>
+                  </tr>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+              </thead>
+              <tbody id="tableBody-realised"></tbody>
+          </table>
+      </div>
+      
       <div class="container"></div>
 
     </div>
