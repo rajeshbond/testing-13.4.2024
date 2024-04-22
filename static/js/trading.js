@@ -77,6 +77,7 @@ function entryPOPup(item){
   var container = document.querySelector('.container');
   var tradeType = item.EntryType;
   console.log(` Trade Tpye : ${tradeTpye}`)
+  container.innerHTML = '';
   var modalHTML = `
   <div class="modal">
     <div class="modal-header">
@@ -85,14 +86,14 @@ function entryPOPup(item){
     </div>
     <div class="modal-body">
       <form id="input-form">
-        <label for="exit-date">Exit Date:</label>
-        <input type="date" id="exit-date" class="entry-date-input" required><br><br>
-        <label for="stock-name">Stock Name:</label>
-        <input type="text" id="stock-name" class="symbol" placeholder="Stock Name" required><br><br>
-        <label for="stock-price">Buying Price:</label>
-        <input type="text" id="stock-price" class="symbol" placeholder="Stock Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
-        <label for="stock-qty">Buying Qty:</label>
-        <input type="text" id="stock-qty" class="symbol" placeholder="Stock Qty" pattern="[0-9]*" inputmode="numeric" required><br><br>
+        <label for="entry-date">Entry Date:</label>
+        <input type="date" id="entry-date" class="entry-date-input" required><br><br>
+        <label for="entry-stock-name">Stock Name:</label>
+        <input type="text" id="entry-stock-name" class="symbol" placeholder="Stock Name" required><br><br>
+        <label for="entry-stock-price">Entry Price:</label>
+        <input type="text" id="entry-stock-price" class="symbol" placeholder="Stock Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
+        <label for="entry-stock-qty">Enrty Qty:</label>
+        <input type="text" id="entry-stock-qty" class="symbol" placeholder="Stock Qty" pattern="[0-9]*" inputmode="numeric" required><br><br>
         <button id="submit2" class="submit-button"></button>
       </form>
     </div>
@@ -131,10 +132,10 @@ function entryPOPup(item){
   }
   submitButton.addEventListener('click', function(event){
     event.preventDefault();
-    var entryDateInput = document.querySelector('#exit-date');
-    var stockNameInput = document.querySelector('#stock-name');
-    var stockPriceInput = document.querySelector('#stock-price');
-    var stockQtyInput = document.querySelector('#stock-qty');
+    var entryDateInput = document.querySelector('#entry-date');
+    var stockNameInput = document.querySelector('#entry-stock-name');
+    var stockPriceInput = document.querySelector('#entry-stock-price');
+    var stockQtyInput = document.querySelector('#entry-stock-qty');
        // Extracting input values
     var entry
     var entryDate = entryDateInput.value;
@@ -161,9 +162,10 @@ function exitPOPup(item){
   var container = document.querySelector('.container');
   var entryType = item.EntryType;
   var stockSymbol = item.EntrySymbol;
-  var entryStockPr = item.EntryPrice;
+  // var entryStockPr = item.EntryPrice;
   console.log(entryType)
-  var modalHTML = `
+  container.innerHTML = '';
+  var modalHTML1 = `
   <div class="modal">
     <div class="modal-header">
       <h4 class="header-h4"></h4>
@@ -173,12 +175,12 @@ function exitPOPup(item){
       <form id="input-form">
         <label for="exit-date">Exit Date:</label>
         <input type="date" id="exit-date" class="entry-date-input" required><br><br>
-        <label for="stock-name">Stock Name:</label>
-        <input type="text" id="stock-name" class="symbol" placeholder="Stock Name"><br><br>
-        <label for="stock-price">Entry Price:</label>
-        <input type="text" id="entry-stock-price" class="symbol" placeholder="Entry Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
-        <label for="stock-price">Exit Price:</label>
-        <input type="text" id="stock-price" class="symbol" placeholder="Exit Stock Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
+        <label for="exit-stock-name">Stock Name:</label>
+        <input type="text" id="exit-stock-name" class="symbol" placeholder="Stock Name"><br><br>
+        <label for="exit-stock-price">Entry Price:</label>
+        <input type="text" id="exit-stock-price" class="symbol" placeholder="Entry Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
+        <label for="exit-stock-price">Exit Price:</label>
+        <input type="text" id="exit-stock-price" class="symbol" placeholder="Exit Stock Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
         <button id="submit3" class="submit-button"></button>
       </form>
     </div>
@@ -187,16 +189,15 @@ function exitPOPup(item){
   try{}
   catch (error){}
   // Insert the modal HTML content into the container
-  container.innerHTML += modalHTML;
-  modalHTML="";
+  container.innerHTML += modalHTML1;
   var exitDateInput = document.querySelector('#exit-date');
-  var stockNameInput = document.querySelector('#stock-name');
-  var enrtyStockPriceInput = document.querySelector('#entry-stock-price');
-  var exitStockPriceInput = document.querySelector('#stock-price');
+  var stockNameInput = document.querySelector('#exit-stock-name');
+  var enrtyStockPriceInput = document.querySelector('#exit-stock-price');
+  var exitStockPriceInput = document.querySelector('#exit-stock-price');
   let submitButton = document.querySelector('#submit3')
 
   stockNameInput.value = stockSymbol;
-  enrtyStockPriceInput.value = entryStockPr;
+  enrtyStockPriceInput.value = item.EntryPrice;
   submitButton.addEventListener('click', function(event){
     event.preventDefault();
     var exitDate = exitDateInput.value;
