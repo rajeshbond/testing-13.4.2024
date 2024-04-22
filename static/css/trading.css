@@ -260,6 +260,10 @@ th {
   background-color: var(--clr-white);
   width: 500px;
 }
+#popDiv1{
+  background-color: var(--clr-white);
+  width: 500px;
+}
 
 .popEffect {
   display: none;
@@ -292,22 +296,23 @@ th {
   /* background-color: green; */
   position: relative;
   width: 6rem;
+  font-size: 18px;
   border-radius: 1rem;
   color: var(--clr-white);
   height: 2rem;
   left: 12rem;
 }
-#dateInput{
+.dateInput{
   /* height: 3rem; */
   font-size: 18px;
 }
-#symbolInput{
+.symbolInput{
   font-size: 18px;
 }
-#symbol-price{
+.symbol-price{
   font-size: 18px;
 }
-#symbol-price-qty{
+.symbol-price-qty{
   font-size: 18px;
 }
 
@@ -320,6 +325,12 @@ th {
  width: 2rem;
  border-radius: 1rem;
  cursor: pointer;
+}
+.record-cancel{
+  height: 2rem;
+  width: 2rem;
+  border-radius: 1rem; 
+  cursor: pointer;
 }
 
 .positive-price{
@@ -349,3 +360,115 @@ th {
   0% { transform: scale(0); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
+  /* pop modal */
+
+  .modal{
+    width: 40%;
+    height: 50%;
+    /* background-color: #4286F5; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 1rem;
+    border: 2px solid black;
+    transform: translate(-50%,-50%) scale(0);
+    /* opacity: 0; */
+
+    transition: 0.2 ease-in-out;
+    display: none;
+    z-index: 2px;
+  }
+  
+  .modal.active{
+    display: block ;
+    /* opacity: 1; */
+    transform: translate(-50%,-50%) scale(1);
+    z-index: 2;
+  }
+  .modal .modal-header{
+    display: flex;
+    height: 40px;
+    width: 40%;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    justify-content: space-evenly;
+    /* background-color:; */
+    /* background-color: aqua; */
+  }
+  .modal .modal-header h4{
+    font-size: 35px;
+    padding: 10px;
+    margin-top: 1.5rem;
+    position: fixed;
+    left: 25px; 
+    right: 50%;
+    width: 50%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* background-color: red; */
+  }
+  .modal .modal-header .close-btn-1{
+    background-color: transparent;
+    font-size: 32px;
+    position: fixed;
+    right: 15px;
+    top: 15px;
+    border: none;
+    outline: none;
+    color: red;
+    cursor: pointer;
+    z-index: 9999;
+  }
+  .modal .modal-header .close-btn:hover{
+    color: black;
+  }
+
+  .modal-body{
+    width: 100%;
+    padding: 20px;
+    /* background-color: rebeccapurple; */
+    display:flex;
+    flex-direction: column;
+  }
+  .modal-body label{
+    font-size: 18px;
+    color: gray;
+    margin-right: 20px;
+  }
+  
+  .modal-body .entry-date-input,.symbol{
+    font-size: 20px;
+    border: none;
+  }
+  
+  .modal-body .submit-button{
+    background-color: red;
+    margin-top: 40px;
+    width: 150px;
+    height: 35px;
+    border: none;
+    outline: none;
+    position: absolute;
+    color: #fff;
+    left: 32%;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+   
+  /* .modal-body .cancel-btn{
+    background-color: white;
+    width: 100px;
+    height: 30px;
+    border: 0.1rem solid red;
+    outline: none;
+    position: fixed;
+    right: 10%;
+    bottom: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+   */
