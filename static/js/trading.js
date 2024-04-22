@@ -353,25 +353,27 @@ function dateconverter(date) {
 let currentButtonState = "";
 
 function pnlScreen(){
+  console.log("inside pnl Screen")
   const pnlButton = document.querySelector("#bs-real-btn");
   const entryButton = document.querySelector("#bs-entry-btn");
   const pnlTable = document.querySelector(".table-container");
   const entryTable = document.querySelector(".table-container1");
   pnlButton.style.display = 'none';
   entryButton.style.display = 'block';
-  entryTable.style.display = 'none';
-  pnlTable.style.display = "flex";
+  entryTable.style.display = 'flex';
+  pnlTable.style.display = "none";
 
 }
 function entryScreen(){
+  console.log("inside entry screen")
   const pnlButton = document.querySelector("#bs-real-btn");
   const entryButton = document.querySelector("#bs-entry-btn");
   const pnlTable = document.querySelector(".table-container");
   const entryTable = document.querySelector(".table-container1");
   pnlButton.style.display = 'block';
   entryButton.style.display = 'none';
-  entryTable.style.display = 'flex';
-  pnlTable.style.display = "none";
+  entryTable.style.display = 'none';
+  pnlTable.style.display = "flex";
 }
 
 window.onload = populateTable;
