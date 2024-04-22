@@ -1,5 +1,5 @@
 
-const fetchunRecouds = async () => {
+const fetchunRecords = async () => {
   try {
     const response = await fetch("/fetchunregister");
     const data = await response.json();
@@ -11,7 +11,7 @@ const fetchunRecouds = async () => {
   }
 };
 async function populateTable() {
-  recived = await fetchunRecouds()
+  recived = await fetchunRecords()
   data = recived.records
  
  
@@ -315,11 +315,39 @@ function dateconverter(date) {
   return dateObj.toLocaleDateString("en-GB", options).replace(/\//g, "-");
 }
 
-function completeTrade(item = item,exitDate=exitDate,exitPrice = exitPrice ){
-  console.log('In side complete trade');
-  console.log(item);
-  console.log(exitDate);
-  console.log(exitPrice)
+ async function completeTrade(item = item,exitDate=exitDate,exitPrice = exitPrice ){
+  
+  try{
+    const data = {
+      type: item.EntryType,
+      date:item.EntryDate ,
+      symbol: item.EntrySymbol ,
+      price: item.EntryPrice,
+      qty: item.EntryQty,
+      // doc_id:item.doc_id,
+      exit_date: exitDate,
+      exit_price: exitPrice
+    }
+    console.log(data)
+    const response = await fetch("/ctentry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+  
+    const serverResponse = await response.json();
+    deleteRecords(item.doc_id);
+    console.log("Server response:", serverResponse);
+   
+  }
+  catch(error){
+    console.log(error)
+  }
 }
 
 

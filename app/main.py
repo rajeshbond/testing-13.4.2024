@@ -600,7 +600,7 @@ async def update_entry(entry:schemes.TradeRegisterInput, request: Request):
         else:
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
     except Exception as e:
-        print(e)
+         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
 @app.post('/test',status_code=status.HTTP_200_OK)
 async def test():
     print("Ping sucess")
@@ -636,7 +636,31 @@ async def delete_entry(doc_id:str,request: Request):
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+@app.post('/ctentry', status_code=status.HTTP_200_OK)
+def completeTradeEntry(centry:schemes.CompleteTrade,request: Request):
+    print(centry)
+    record={
+    "entry_type": centry.type,
+    "entry_date": centry.date.isoformat(),
+    "entry_symbol":centry.symbol,
+    "entry_price": centry.price,
+    "entry_qty": centry.qty,
+    "exit_date": centry.exit_date.isoformat(),
+    "exit_price": centry.exit_price
+}
+    print(record)
 
+    try:
+        user = request.session.get('user')
+        if user:
+            parent_doc_ref = db.collection('users').document(user['localId'])
+            subcollection_ref = parent_doc_ref.collection('filled')
+            subcollection_ref.add(record)
+            return HTTPException(status_code=status.HTTP_200_OK, detail=f"Record Added Sucessfully")
+        else:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+    except Exception as e:
+         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
 # ------------------------ Methods -------------------------------------------
 def assign_permission(senderEmail,name , plan):
 

@@ -71,6 +71,11 @@ class test(BaseModel):
     test:str
 class RecordId(BaseModel):
     recordId: str
+class CompleteTrade(TradeRegisterInput):
+    # doc_id:str
+    exit_date:date
+    exit_price:float
+
   
 
 
