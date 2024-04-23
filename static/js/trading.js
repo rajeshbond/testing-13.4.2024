@@ -452,7 +452,7 @@ function updateScreenPNL(item){
   if(item>0){
     screenPNL.style.color='green';
   }else if(item<0){
-    screenPNL.style.color='green';
+    screenPNL.style.color='red';
   }
   // console.log(`PNL: ${test}`)
   screenPNL.textContent=item.toFixed(2);
