@@ -217,7 +217,7 @@ th {
 }
 #pnl{
   align-self: center;
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: 800;
   background-color: var(--clr-white);
 }
@@ -280,6 +280,7 @@ th {
   color: var(--clr-white);
   cursor: pointer;
 }
+
 
 
 

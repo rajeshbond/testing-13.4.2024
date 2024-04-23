@@ -1,5 +1,5 @@
 
-let pNL = 0.0;
+let pNLGlobal = 100;
 const fetchunRecords = async () => {
   try {
     const response = await fetch("/fetchunregister");
@@ -359,12 +359,12 @@ function pnlScreen(){
   const entryButton = document.querySelector("#bs-entry-btn");
   const pnlTable = document.querySelector(".table-container");
   const entryTable = document.querySelector(".table-container1");
-  const buyButton = document.querySelector("#buy");
-  const sellButton = document.querySelector("#sell");
+  const buySellButton = document.querySelector('.bs-bs-bth');
   pnlButton.style.display = 'none';
   entryButton.style.display = 'block';
   entryTable.style.display = 'flex';
   pnlTable.style.display = "none";
+  buySellButton.style.display = 'none';
   // buyButton.style.display = "none";
   // sellButton.style.display = "none";
   populatePNLTable();
@@ -375,12 +375,12 @@ function entryScreen(){
   const entryButton = document.querySelector("#bs-entry-btn");
   const pnlTable = document.querySelector(".table-container");
   const entryTable = document.querySelector(".table-container1");
-  const buyButton = document.querySelector("#buy");
-  const sellButton = document.querySelector("#sell");
+  const buySellButton = document.querySelector('.bs-bs-bth');
   pnlButton.style.display = 'block';
   entryButton.style.display = 'none';
   entryTable.style.display = 'none';
   pnlTable.style.display = "flex";
+  buySellButton.style.display = 'block';
   // buyButton.style.display = "block";
   // sellButton.style.display = "none";
 }
@@ -394,7 +394,7 @@ const fetchpnlRecords = async () => {
     console.error(error);
   }
 };
-async function populatePNLTable(){
+async function populatePNLTable(item){
   let recived = await fetchpnlRecords()
   console.log(recived)
   // let data = recived.recordss
@@ -404,7 +404,7 @@ async function populatePNLTable(){
   let html = ``;
   let pnlTable = document.querySelector('#tableBody-realised');  
   pnlTable.innerHTML = html;
-
+  pNLGlobal = 0;
   // Loop through each data entry and create table rows
   recived.forEach((item, index) => {
       console.log(`item:${item.entry_symbol}`);
@@ -412,13 +412,14 @@ async function populatePNLTable(){
       entryPrice = item.entry_price;
       qty = item.entry_qty;
       let localPnl = (exitPrice-entryPrice)*qty
-      pNL += localPnl;
+      pNLGlobal += localPnl;
       console.log(`ExitPrice:${exitPrice}`);
       console.log(`EntryPrice:${entryPrice}`)
       console.log(`profit:${localPnl}`)
       console.log(`Qty:${qty}`)
       let pnlBgColor = '';
       let localpnl = (item.exit_price - item.entry_price)*item.entry_qty;
+      pNLGlobal += localpnl;
       if(localPnl < 0){
         pnlBgColor = 'losspnl';
       }else if (localPnl>0) {
@@ -442,7 +443,19 @@ async function populatePNLTable(){
   // console.log(html)
   // Set innerHTML of the table container
   pnlTable.innerHTML += html;
-
+  console.log(`PNL: ${pNLGlobal}`)
+  updateScreenPNL(pNLGlobal);
 }
-
-window.onload = populateTable;
+console.log(`PNL: ${pNLGlobal}`)
+function updateScreenPNL(item){
+  console.log(`PNL-updated: ${item}`)
+  let screenPNL = document.querySelector("#pnl");
+  if(item>0){
+    screenPNL.style.color='green';
+  }else if(item<0){
+    screenPNL.style.color='green';
+  }
+  // console.log(`PNL: ${test}`)
+  screenPNL.textContent=item.toFixed(2);
+}
+window.onload = populateTable, populatePNLTable;
