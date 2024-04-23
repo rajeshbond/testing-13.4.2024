@@ -412,7 +412,6 @@ async function populatePNLTable(item){
       entryPrice = item.entry_price;
       qty = item.entry_qty;
       let localPnl = (exitPrice-entryPrice)*qty
-      pNLGlobal += localPnl;
       console.log(`ExitPrice:${exitPrice}`);
       console.log(`EntryPrice:${entryPrice}`)
       console.log(`profit:${localPnl}`)
@@ -434,7 +433,7 @@ async function populatePNLTable(item){
                   <td>${item.entry_price.toFixed(2)}	</td>
                   <td>${item.entry_qty}</td>
                   <td>${dateconverter(item.exit_date)}</td>
-                  <td>${item.entry_price.toFixed(2)}</td>
+                  <td>${item.exit_price.toFixed(2)}</td>
                   <td class="${pnlBgColor}">${localPnl.toFixed(2)}</td>
                  
               </tr>`;
