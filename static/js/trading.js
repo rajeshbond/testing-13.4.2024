@@ -66,7 +66,20 @@ document.querySelectorAll('.record-cancel').forEach(button => {
   button.addEventListener('click', function() {
       let ind = this.getAttribute('data-index');
       console.log(data[ind].doc)
-      deleteRecords(data[ind].doc_id);
+      swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this record!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+      },
+      function(){
+        deleteRecords(data[ind].doc_id);
+        swal("Deleted!", "Selected ReCord has been deleted.", "success");
+      });
+      // deleteRecords(data[ind].doc_id);
     });
 
   });
@@ -446,8 +459,20 @@ async function populatePNLTable(){
     btn.addEventListener("click", (event) => {
       let index = event.target.getAttribute("data-index-1");
       record_id = recived[index].doc_id;
-      console.log(record_id);
-      deleteRecordsPnl(record_id);
+      // console.log(record_id);
+      swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this record!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+      },
+      function(){
+        deleteRecordsPnl(record_id);
+        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+      });
     })
   });
   updateScreenPNL(pNLGlobal);
@@ -478,6 +503,7 @@ async function deleteRecordsPnl(doc_id){
     // For example, if you want to remove the row without reloading:
     // document.querySelector(`button[data-index="${index}"]`).closest('tr').remove();
   populatePNLTable();
+  return;
 ; 
 } catch (error) {
     console.error('Error:', error);
