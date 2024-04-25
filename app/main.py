@@ -673,13 +673,28 @@ async def fetchUnRegister(request: Request):
             query_snapshot = subcollection_ref.order_by('created_at', direction=firestore.Query.DESCENDING).get()
 
             entries = []
-            entries = [{**doc.to_dict()} for doc in query_snapshot]
+            entries = [{**doc.to_dict(),"doc_id": doc.id } for doc in query_snapshot]
             print(entries)
             return JSONResponse(content={"records":entries}, status_code=status.HTTP_200_OK)
         else:
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+    
+@app.delete("/delete_record-pnl/{doc_id}")
+async def delete_entry(doc_id:str,request: Request):
+    try:
+        user = request.session.get("user")
+        if user:
+            doc_ref = db.collection('users').document(user['localId']).collection('filled').document(doc_id) 
+            # Delete the document
+            doc_ref.delete()
+            return HTTPException(status_code=status.HTTP_200_OK, detail=f"Record Sucessfully Deleted")
+        else:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 
 # ------------------------ Methods -------------------------------------------

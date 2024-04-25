@@ -324,6 +324,14 @@ th {
   border-radius: 1rem; 
   cursor: pointer;
 }
+.record-cancel-1{
+  height: 2rem;
+  width: 2rem;
+  color: red;
+  font-size: 24px;
+  border-radius: 1rem; 
+  cursor: pointer;
+}
 
 .positive-price{
   background-color: green;

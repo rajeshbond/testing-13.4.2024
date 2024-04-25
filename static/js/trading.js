@@ -14,7 +14,7 @@ const fetchunRecords = async () => {
 async function populateTable() {
   let recived = await fetchunRecords()
   let data = recived.records
-  console.log(data)
+
  
  
   let html = ``;
@@ -354,7 +354,6 @@ function dateconverter(date) {
 }
 
 function pnlScreen(){
-  console.log("inside pnl Screen")
   const pnlButton = document.querySelector("#bs-real-btn");
   const entryButton = document.querySelector("#bs-entry-btn");
   const pnlTable = document.querySelector(".table-container");
@@ -387,16 +386,22 @@ function entryScreen(){
 const fetchpnlRecords = async () => {
   try {
     const response = await fetch("/fetchfilled");
+    let pNL = 0;
     const data = await response.json();
-    console.log(data.records)
+    records = data.records
+    records.forEach((item, index) => {
+      let localpnl = (item.exit_price - item.entry_price)*item.entry_qty;
+      pNL += localpnl;
+    })
+    updateScreenPNL(pNL);
     return data.records;
+
   } catch (error) {
     console.error(error);
   }
 };
-async function populatePNLTable(item){
+async function populatePNLTable(){
   let recived = await fetchpnlRecords()
-  console.log(recived)
   // let data = recived.recordss
   // console.log(`recived-Data:${recived}`)
  
@@ -407,15 +412,10 @@ async function populatePNLTable(item){
   pNLGlobal = 0;
   // Loop through each data entry and create table rows
   recived.forEach((item, index) => {
-      console.log(`item:${item.entry_symbol}`);
       exitPrice = item.exit_price;
       entryPrice = item.entry_price;
       qty = item.entry_qty;
       let localPnl = (exitPrice-entryPrice)*qty
-      console.log(`ExitPrice:${exitPrice}`);
-      console.log(`EntryPrice:${entryPrice}`)
-      console.log(`profit:${localPnl}`)
-      console.log(`Qty:${qty}`)
       let pnlBgColor = '';
       let localpnl = (item.exit_price - item.entry_price)*item.entry_qty;
       pNLGlobal += localpnl;
@@ -435,19 +435,24 @@ async function populatePNLTable(item){
                   <td>${dateconverter(item.exit_date)}</td>
                   <td>${item.exit_price.toFixed(2)}</td>
                   <td class="${pnlBgColor}">${localPnl.toFixed(2)}</td>
-                 
-              </tr>`;
+                  <td><button class="record-cancel-1" data-index-1="${index}">&times</button></td>
+                  `;
   });
-
   // console.log(html)
   // Set innerHTML of the table container
   pnlTable.innerHTML += html;
-  console.log(`PNL: ${pNLGlobal}`)
+  xcloseButton = document.querySelectorAll(".record-cancel-1");
+  xcloseButton.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      let index = event.target.getAttribute("data-index-1");
+      record_id = recived[index].doc_id;
+      console.log(record_id);
+      deleteRecordsPnl(record_id);
+    })
+  });
   updateScreenPNL(pNLGlobal);
 }
-console.log(`PNL: ${pNLGlobal}`)
 function updateScreenPNL(item){
-  console.log(`PNL-updated: ${item}`)
   let screenPNL = document.querySelector("#pnl");
   if(item>0){
     screenPNL.style.color='green';
@@ -456,5 +461,26 @@ function updateScreenPNL(item){
   }
   // console.log(`PNL: ${test}`)
   screenPNL.textContent=item.toFixed(2);
+}
+async function deleteRecordsPnl(doc_id){
+  console.log(`docID ${doc_id}`)
+  try {
+    const response = await fetch(`/delete_record-pnl/${doc_id}`, {
+        method: 'DELETE'
+    });
+    
+    if (!response.ok) {
+        throw new Error('Something went wrong');
+    }
+
+    const data = await response.json();
+    // Optionally, reload the page or remove the row visually from the table
+    // For example, if you want to remove the row without reloading:
+    // document.querySelector(`button[data-index="${index}"]`).closest('tr').remove();
+  populatePNLTable();
+; 
+} catch (error) {
+    console.error('Error:', error);
+}
 }
 window.onload = populateTable, populatePNLTable;
