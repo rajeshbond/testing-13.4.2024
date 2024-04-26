@@ -1,5 +1,5 @@
 
-let pNLGlobal = 100;
+let pNLGlobal = 0;
 const fetchunRecords = async () => {
   try {
     const response = await fetch("/fetchunregister");
@@ -414,7 +414,7 @@ const fetchpnlRecords = async () => {
   }
 };
 async function populatePNLTable(){
-  let recived = await fetchpnlRecords()
+  let recived = await fetchpnlRecords();
   // let data = recived.recordss
   // console.log(`recived-Data:${recived}`)
  
@@ -428,10 +428,15 @@ async function populatePNLTable(){
       exitPrice = item.exit_price;
       entryPrice = item.entry_price;
       qty = item.entry_qty;
-      let localPnl = (exitPrice-entryPrice)*qty
-      let pnlBgColor = '';
-      let localpnl = (item.exit_price - item.entry_price)*item.entry_qty;
+      trade_type = item.entry_type;
+      let localpnl = 0;
+      if(trade_type == 'buy'){
+        localpnl = (item.exit_price - item.entry_price)*item.entry_qty;
+      }else{
+        localpnl = (item.entry_price - item.exit_price)*item.entry_qty;
+      }
       pNLGlobal += localpnl;
+      let pnlBgColor = '';
       if(localPnl < 0){
         pnlBgColor = 'losspnl';
       }else if (localPnl>0) {

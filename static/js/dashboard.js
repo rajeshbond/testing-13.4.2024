@@ -216,7 +216,7 @@ function achivers_club(){
 function market_club(){
   console.log("market_club");
     plan = "Market Talk Club";
-    planAmount = 2199;
+    planAmount = 2999;
     showPopup(plan=plan,planAmont = planAmount);
 }
 
