@@ -167,7 +167,7 @@ function subscribePlanDisplay() {
           <button class ="btn-subscribe" onclick="achivers_club()">Join Now</button>
       </div>
       <div class="subscription-box">
-          <img src="static/images/market_club.jpg" alt="market_club">
+          <img src="static/images/market_club.jpeg" alt="market_club">
           <button class ="btn-subscribe" onclick="market_club()">Join Now</button>
       </div>
       
