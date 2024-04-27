@@ -468,3 +468,11 @@ th {
   .default{
     color: black;
   }
+  .Buy{
+    color: green;
+    font-weight: 600;
+  }
+  .Sell{
+    color: red;
+    font-weight: 600;
+  }

@@ -430,29 +430,29 @@ async function populatePNLTable(){
       qty = item.entry_qty;
       trade_type = item.entry_type;
       let localpnl = 0;
-      if(trade_type == 'buy'){
+      if(trade_type == 'Buy'){
         localpnl = (item.exit_price - item.entry_price)*item.entry_qty;
       }else{
         localpnl = (item.entry_price - item.exit_price)*item.entry_qty;
       }
       pNLGlobal += localpnl;
       let pnlBgColor = '';
-      if(localPnl < 0){
+      if(localpnl < 0){
         pnlBgColor = 'losspnl';
-      }else if (localPnl>0) {
+      }else if (localpnl>0) {
         pnlBgColor = 'profitpnl';
       } else {
         pnlBgColor = 'default';
       }
       html += `<tr>
                   <td>${dateconverter(item.entry_date)}</td>
-                  <td>${item.entry_type}</td>
+                  <td class="${trade_type}">${item.entry_type}</td>
                   <td>${item.entry_symbol}</td>
                   <td>${item.entry_price.toFixed(2)}	</td>
                   <td>${item.entry_qty}</td>
                   <td>${dateconverter(item.exit_date)}</td>
                   <td>${item.exit_price.toFixed(2)}</td>
-                  <td class="${pnlBgColor}">${localPnl.toFixed(2)}</td>
+                  <td class="${pnlBgColor}">${localpnl.toFixed(2)}</td>
                   <td><button class="record-cancel-1" data-index-1="${index}">&times</button></td>
                   `;
   });
