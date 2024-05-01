@@ -215,7 +215,7 @@ async def login(request1: schemes.SignIn, request: Request):
         email = userser_info['users'][0]['email']
         print(f"Data extracted {isUserVerifired}")
         if isUserVerifired == False:
-            email_verification_link = auth.generate_email_verification_link(email)
+            email_verification_link = await pyre.auth.generate_email_verification_link(email)
             print(f'----------------{email_verification_link}')
             send_mail.send_verification_email(email_to=email, update_link=email_verification_link) 
             return JSONResponse(content={"email_status": "unverifed"}, status_code=status.HTTP_208_ALREADY_REPORTED)
@@ -273,11 +273,14 @@ def signup(request: schemes.Signup):
             'created_at': datetime.now().isoformat(),
         } 
 
-        email_verification_link = auth.generate_email_verification_link(email=email)
-        # print(email_verification_link)
-        send_mail.send_verification_email(email_to=email, update_link=email_verification_link)     
+        # email_verification_link = auth.generate_email_verification_link(email=email)
+     
+        # send_mail.send_verification_email(email_to=email, update_link=email_verification_link)     
         db.collection('users').document(user.uid).set(data)
         # print(f"--database---------{testb}")
+        email_verification_link = auth.generate_email_verification_link(email=email)
+        print(email_verification_link)
+        send_mail.send_verification_email(email_to=email, update_link=email_verification_link)
         
         send_mail.send_confirmation_email(email_to=email, name = name, plan='free_plan')
         assign_permission(senderEmail=email,name=name, plan='free_plan')
