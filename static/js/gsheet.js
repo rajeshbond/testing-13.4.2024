@@ -8,6 +8,17 @@ function setGoogleSheetIframeSource() {
     var embedUrl = 'https://docs.google.com/spreadsheets/d/1uqbCj754ZmtzetUnS7jrMOELNbbiayyBSTfR3mtTFpQ/edit#gid=0';
     document.getElementById('sheetFrame').src = embedUrl;
 }
+const getUserData = async () => {
+    try {
+      const response = await fetch("/getUsername");
+      const data = await response.json();
+    //   console.log(data);
+    //   console.log(data.user.subscriptionDetails.free_trial_over);
+      return data.user;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 
 // function callApi() {
@@ -32,9 +43,21 @@ function dashboard() {
     }
 }
 
+async function showPopup() {
+    const data = await getUserData();
+    isPaid = data.subscriptionDetails.free_trial_over;
+    // console.log(data);
+   if(!isPaid){
+    console.log("show popup");
+    swal("Hi "+data.name +", \n Please upgrade to paid plans");
+    setTimeout(showPopup, 10 * 60 * 1000);    
+   }
+    
+}
+
+
 // Function to call the API and refresh Google Sheets data when the page loads
 window.onload = function() {
-    // callApi();
-    // refreshGoogleSheetData();
     setGoogleSheetIframeSource();
+    showPopup();
 };
