@@ -1,5 +1,5 @@
 // Function to set the source of the iframe to your Google Sheets document
-console.log("screener");
+// console.log("screener");
 
 
 function setGoogleSheetIframeSource() {
@@ -10,20 +10,20 @@ function setGoogleSheetIframeSource() {
 }
 
 
-function callApi() {
+// function callApi() {
 
-    fetch('https://final-scan.onrender.com/start')
-    .then(response => response.json())
-    .then(data => console.log(data)) // Handle API response as needed
-    .catch(error => console.error('Error:', error));
-}
+//     fetch('https://final-scan.onrender.com/start')
+//     .then(response => response.json())
+//     .then(data => console.log(data)) // Handle API response as needed
+//     .catch(error => console.error('Error:', error));
+// }
 
 // Function to refresh the iframe source every 5 minutes
-function refreshGoogleSheetData() {
-    setGoogleSheetIframeSource();
-    callApi();
-    setTimeout(refreshGoogleSheetData, 2 * 60 * 1000); // Refresh every 2 minutes (5 * 60 * 1000 milliseconds)
-}
+// function refreshGoogleSheetData() {
+//     setGoogleSheetIframeSource();
+//     callApi();
+//     setTimeout(refreshGoogleSheetData, 2 * 60 * 1000); // Refresh every 2 minutes (5 * 60 * 1000 milliseconds)
+// }
 function dashboard() {
     try{
         window.location.href = "/dashboard"; 
@@ -34,6 +34,7 @@ function dashboard() {
 
 // Function to call the API and refresh Google Sheets data when the page loads
 window.onload = function() {
-    callApi();
-    refreshGoogleSheetData();
+    // callApi();
+    // refreshGoogleSheetData();
+    setGoogleSheetIframeSource();
 };
