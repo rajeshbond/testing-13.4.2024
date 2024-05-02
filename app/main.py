@@ -292,6 +292,9 @@ def signup(request: schemes.Signup):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error creating user: {e}")
 
+
+
+
     return{
         "message": "Signup Success"
     }
