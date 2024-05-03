@@ -49,7 +49,7 @@ async function showPopup() {
     // console.log(data);
    if(!isPaid){
     console.log("show popup");
-    swal("Hi "+data.name +", \n Please upgrade to paid plans");
+    swal("Hi "+data.name +", \n your free trial is going to expire soon.\n Please upgrade to premium and enjoy the service seemlessly.");
     setTimeout(showPopup, 10 * 60 * 1000);    
    }
     
