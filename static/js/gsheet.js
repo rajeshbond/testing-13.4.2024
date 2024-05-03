@@ -46,13 +46,18 @@ function dashboard() {
 async function showPopup() {
     const data = await getUserData();
     isPaid = data.subscriptionDetails.free_trial_over;
-    // console.log(data);
    if(!isPaid){
     console.log("show popup");
-    swal("Hi "+data.name +", \n your free trial is going to expire soon.\n Please upgrade to premium and enjoy the service seemlessly.");
+    swal(`Hi ${data.name}`, `Your free trial is going to expire soon. \n Please upgrade to premium and enjoy the service seemlessly !!!`);
     setTimeout(showPopup, 10 * 60 * 1000);    
    }
     
+}
+
+function dateconverter(date) {
+  const dateObj = new Date(date);
+  const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+  return dateObj.toLocaleDateString("en-GB", options).replace(/\//g, "-");
 }
 
 
