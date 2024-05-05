@@ -38,7 +38,7 @@ async function populateTable() {
         // date = dateconverter(item.EntryDate)
       html += `<tr>
                   <td>${dateconverter(item.EntryDate)}</td>
-                  <td>${item.EntryType}</td>
+                  <td class ="${item.EntryType}">${item.EntryType}</td>
                   <td>${item.EntrySymbol}</td>
                   <td>${item.EntryPrice}</td>
                   <td>${item.EntryQty}</td>
@@ -65,7 +65,7 @@ exitBtn.forEach(button=>{
 document.querySelectorAll('.record-cancel').forEach(button => {
   button.addEventListener('click', function() {
       let ind = this.getAttribute('data-index');
-      console.log(data[ind].doc)
+      // console.log(data[ind].doc)
       swal({
         title: "Are you sure?",
         text: "You will not be able to recover this record!",
@@ -88,10 +88,10 @@ document.querySelectorAll('.record-cancel').forEach(button => {
 
 function entryPOPup(item){
   let tradeTpye = item;
-  console.log(item)
+  // console.log(item)
   var container = document.querySelector('.container');
   var tradeType = item.EntryType;
-  console.log(` Trade Tpye : ${tradeTpye}`)
+  // console.log(` Trade Tpye : ${tradeTpye}`)
   container.innerHTML = '';
   var modalHTML = `
   <div class="modal">
@@ -171,14 +171,12 @@ function entryPOPup(item){
   
 }
 function exitPOPup(item){
-  
-  console.log(item);
-
+  // console.log(item);
   var container = document.querySelector('.container');
   var entryType = item.EntryType;
   var stockSymbol = item.EntrySymbol;
   // var entryStockPr = item.EntryPrice;
-  console.log(entryType)
+  // console.log(entryType)
   container.innerHTML = '';
   var modalHTML1 = `
   <div class="modal">
@@ -188,13 +186,17 @@ function exitPOPup(item){
     </div>
     <div class="modal-body">
       <form id="input-form">
-        <label for="exit-date">Exit Date:</label>
+        <label for="exit-date">Exit Date*:</label>
         <input type="date" id="exit-date" class="entry-date-input" required><br><br>
         <label for="exit-stock-name">Stock Name:</label>
-        <input type="text" id="exit-stock-name" class="symbol" placeholder="Stock Name"><br><br>
+        <input type="text" id="exit-stock-name" class="symbol" placeholder="Stock Name" readonly><br><br>
+        <label for="entry-stock-qty">Enrty Qty:</label>
+        <input type="text" id="entry-stock-qty" class="symbol" placeholder="Stock Qty" pattern="[0-9]*" inputmode="numeric" readonly><br><br>
+        <label for="exit-stock-qty">Exit Qty*:</label>
+        <input type="text" id="exit-stock-qty" class="symbol" placeholder="Exit Stock Qty" pattern="[0-9]*" inputmode="numeric" required><br><br>
         <label for="exit-stock-price">Entry Price:</label>
-        <input type="text" id="entry-stock-price" class="symbol" placeholder="Entry Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
-        <label for="exit-stock-price">Exit Price:</label>
+        <input type="text" id="entry-stock-price" class="symbol" placeholder="Entry Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" readonly><br><br>
+        <label for="exit-stock-price">Exit Price*:</label>
         <input type="text" id="exit-stock-price" class="symbol" placeholder="Exit Stock Price" pattern="[0-9]*\.?[0-9]*" inputmode="numeric" required><br><br>
         <button id="submit3" class="submit-button"></button>
       </form>
@@ -207,29 +209,41 @@ function exitPOPup(item){
   container.innerHTML += modalHTML1;
   var exitDateInput = document.querySelector('#exit-date');
   var stockNameInput = document.querySelector('#exit-stock-name');
+  var entryStockQtyInput = document.querySelector('#entry-stock-qty');
+  var exitStockQtyInput = document.querySelector('#exit-stock-qty');
   var enrtyStockPriceInput = document.querySelector('#entry-stock-price');
   var exitStockPriceInput = document.querySelector('#exit-stock-price');
   let submitButton = document.querySelector('#submit3')
 
   stockNameInput.value = stockSymbol;
   enrtyStockPriceInput.value = item.EntryPrice;
+  entryStockQtyInput.value = item.EntryQty;
+  exitStockQtyInput.value = item.EntryQty;
   submitButton.addEventListener('click', function(event){
     event.preventDefault();
     var exitDate = exitDateInput.value;
     var stockName = stockNameInput.value;
-    var enrtyStockPrice = enrtyStockPriceInput.value
+    var entryStockQty = Number(entryStockQtyInput.value);
     var exitstockPrice = exitStockPriceInput.value;
-    if(exitDate != "" && exitstockPrice !=""){
-      console.log(exitDate);
-      console.log(stockName);
-      console.log(exitstockPrice);
+    var exitStockQty = Number(exitStockQtyInput.value);
+    // console.log(typeof exitDate);
+    // console.log(stockName);
+    // console.log(entryStockQty);
+    // console.log(typeof exitstockPrice);
+    // console.log(typeof exitStockQty)
+    if(exitDate != "" && exitstockPrice !="" && exitStockQty != "" && entryStockQty >= exitStockQty){
+      // console.log(exitDate);
+      // console.log(stockName);
+      // console.log(entryStockQty);
+      // console.log(exitstockPrice);
+      // console.log(exitStockQty)
       modal.classList.remove("active");
-      completeTrade(item=item, exitDate = exitDate, exitPrice = exitstockPrice);
-      console.log("snumit button clicked");
+      completeTrade(item=item, exitDate = exitDate, exitPrice = exitstockPrice , exitQty = exitStockQty);
+      // console.log("snumit button clicked");
+     
     }else{
-      console.log('error');
-      
-
+      // console.log('error');
+      swal("Alert", "Details are not correct", "warning")
     }
     
   });
@@ -264,7 +278,7 @@ function exitPOPup(item){
   
 }
 async function deleteRecords(doc_id){
-  console.log(`docID ${doc_id}`)
+  // console.log(`docID ${doc_id}`)
   try {
     const response = await fetch(`/delete_record/${doc_id}`, {
         method: 'DELETE'
@@ -308,7 +322,7 @@ async function tradeEntry(tyre = type, date = date, symbol = symbol, price = pri
   }
   // populateTable1();
   const serverResponse = await response.json();
-  console.log("Server response:", serverResponse);
+  // console.log("Server response:", serverResponse);
 }
 catch(error){
   console.log(error)
@@ -331,20 +345,20 @@ function dateconverter(date) {
   return dateObj.toLocaleDateString("en-GB", options).replace(/\//g, "-");
 }
 
- async function completeTrade(item = item,exitDate=exitDate,exitPrice = exitPrice ){
-  
+ async function completeTrade(item = item,exitDate=exitDate,exitPrice = exitPrice,exitQty = exitStockQty ){
+
   try{
     const data = {
       type: item.EntryType,
       date:item.EntryDate ,
       symbol: item.EntrySymbol ,
       price: item.EntryPrice,
-      qty: item.EntryQty,
+      qty: exitQty,
       // doc_id:item.doc_id,
       exit_date: exitDate,
-      exit_price: exitPrice
+      exit_price: exitPrice,
     }
-    console.log(data)
+    // console.log(data)
     const response = await fetch("/ctentry", {
       method: "POST",
       headers: {
@@ -356,9 +370,35 @@ function dateconverter(date) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
   
-    const serverResponse = await response.json();
-    deleteRecords(item.doc_id);
-    console.log("Server response:", serverResponse);
+    // const serverResponse = await response.json();
+    if(item.EntryQty == exitQty){
+      // console.log("True");
+      deleteRecords(item.doc_id);
+    }else{
+     
+      if(item.EntryQty > exitQty){
+        balance = item.EntryQty - exitQty
+        // console.log(`balance -->${balance}`)
+        // console.log("false test")
+        new_data = {
+            exit_qty:balance ,
+            uid: item.doc_id
+        }
+        const response = await fetch("/updaterecord", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(new_data),
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        populateTable(); 
+      }
+    }
+    
+    // console.log("Server response:", serverResponse);
    
   }
   catch(error){
@@ -382,7 +422,7 @@ function pnlScreen(){
   populatePNLTable();
 }
 function entryScreen(){
-  console.log("inside entry screen")
+  // console.log("inside entry screen")
   const pnlButton = document.querySelector("#bs-real-btn");
   const entryButton = document.querySelector("#bs-entry-btn");
   const pnlTable = document.querySelector(".table-container");
@@ -476,7 +516,7 @@ async function populatePNLTable(){
       },
       function(){
         deleteRecordsPnl(record_id);
-        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        swal("Deleted!", "Your file has been deleted .", "success");
       });
     })
   });
@@ -493,7 +533,7 @@ function updateScreenPNL(item){
   screenPNL.textContent=item.toFixed(2);
 }
 async function deleteRecordsPnl(doc_id){
-  console.log(`docID ${doc_id}`)
+  // console.log(`docID ${doc_id}`)
   try {
     const response = await fetch(`/delete_record-pnl/${doc_id}`, {
         method: 'DELETE'

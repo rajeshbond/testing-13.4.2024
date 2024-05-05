@@ -363,13 +363,13 @@ th {
   /* pop modal */
 
   .modal{
-    width: 40%;
-    height: 50%;
+    width: 80 rem;
+    height: 120 rem;
     /* background-color: #4286F5; */
     position: fixed;
     top: 50%;
     left: 50%;
-    border-radius: 1rem;
+    border-radius: 1.5 rem;
     border: 2px solid black;
     transform: translate(-50%,-50%) scale(0);
     /* opacity: 0; */
@@ -382,7 +382,7 @@ th {
   .modal.active{
     display: block ;
     /* opacity: 1; */
-    transform: translate(-50%,-50%) scale(1);
+    transform: translate(-50%,-50%);
     z-index: 2;
   }
   .modal .modal-header{
@@ -424,8 +424,8 @@ th {
   }
 
   .modal-body{
-    width: 100%;
-    padding: 20px;
+    width: 80 rem;
+    padding: 10px;
     /* background-color: rebeccapurple; */
     display:flex;
     flex-direction: column;
@@ -437,7 +437,7 @@ th {
   }
   
   .modal-body .entry-date-input,.symbol{
-    font-size: 20px;
+    font-size: 18px;
     border: none;
   }
   

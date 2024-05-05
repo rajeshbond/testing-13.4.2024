@@ -46,6 +46,9 @@ function dashboard() {
 async function showPopup() {
     const data = await getUserData();
     isPaid = data.subscriptionDetails.free_trial_over;
+    exp_date = dateconverter(data.subscriptionDetails.subscriptionEndDate);
+    exp = new Date(exp_date);
+    console.log(exp);
    if(!isPaid){
     console.log("show popup");
     swal(`Hi ${data.name}`, `Your free trial is going to expire soon. \n Please upgrade to premium and enjoy the service seemlessly !!!`);

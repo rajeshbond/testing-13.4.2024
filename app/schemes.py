@@ -75,6 +75,9 @@ class CompleteTrade(TradeRegisterInput):
     # doc_id:str
     exit_date:date
     exit_price:float
+class UpdateRecord(BaseModel):
+    exit_qty : int
+    uid : str
 
   
 

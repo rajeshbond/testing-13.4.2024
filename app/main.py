@@ -701,6 +701,19 @@ async def delete_entry(doc_id:str,request: Request):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.post('/updaterecord', status_code=status.HTTP_200_OK)
+async def updare_record(uprec:schemes.UpdateRecord,request: Request):
+   
+    print(uprec.uid)
+    try:
+        user = request.session.get("user")
+        if user:
+            print(user)
+            doc_ref = db.collection('users').document(user['localId']).collection('entry').document(uprec.uid) 
+            doc_ref.update({"EntryQty":uprec.exit_qty})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 
 # ------------------------ Methods -------------------------------------------
