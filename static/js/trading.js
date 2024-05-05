@@ -416,7 +416,8 @@ function pnlScreen(){
   entryButton.style.display = 'block';
   entryTable.style.display = 'flex';
   pnlTable.style.display = "none";
-  buySellButton.style.display = 'none';
+  // buySellButton.style.display = 'none';
+  buySellButton.style.visibility = "hidden";
   // buyButton.style.display = "none";
   // sellButton.style.display = "none";
   populatePNLTable();
@@ -426,13 +427,15 @@ function entryScreen(){
   const pnlButton = document.querySelector("#bs-real-btn");
   const entryButton = document.querySelector("#bs-entry-btn");
   const pnlTable = document.querySelector(".table-container");
+  const pnlscreen = document.querySelector(".bs-pnl")
   const entryTable = document.querySelector(".table-container1");
   const buySellButton = document.querySelector('.bs-bs-bth');
   pnlButton.style.display = 'block';
   entryButton.style.display = 'none';
   entryTable.style.display = 'none';
   pnlTable.style.display = "flex";
-  buySellButton.style.display = 'block';
+  buySellButton.style.visibility = "visible";
+  // buySellButton.style.display = 'block';
   // buyButton.style.display = "block";
   // sellButton.style.display = "none";
 }

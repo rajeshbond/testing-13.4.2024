@@ -2,8 +2,12 @@
 const closeBtn = document.querySelector("#close-btn");
 const sidebar = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu-bar");
+const referbth = document.getElementById("refer");
 let RAZORPAY_id
 // console.log(sidebar);
+
+
+
 menuBtn.addEventListener("click", () => {
   console.log("clicked");
   sidebar.style.display = "block";
@@ -154,6 +158,7 @@ async function account() {
     console.error(error);
   }
 }
+
 
 function subscribePlanDisplay() {
   let content = document.querySelector(".content");
@@ -562,3 +567,11 @@ tradingButton.addEventListener('click',async function(){
     console.error(error);
   }
 });
+
+
+
+function refEarn(){
+  console.log("refer and earn");
+}
+
+

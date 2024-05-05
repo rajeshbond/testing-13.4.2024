@@ -210,13 +210,13 @@ async def login(request1: schemes.SignIn, request: Request):
     try:
         user = pyre.auth().sign_in_with_email_and_password(email=request1.email, password=request1.password)
         userser_info = pyre.auth().get_account_info(user['idToken'])
-        print(f"---------------user info {userser_info['users'][0]['email']}")
+        # print(f"---------------user info {userser_info['users'][0]['email']}")
         isUserVerifired = userser_info['users'][0]['emailVerified']
         email = userser_info['users'][0]['email']
-        print(f"Data extracted {isUserVerifired}")
+        # print(f"Data extracted {isUserVerifired}")
         if isUserVerifired == False:
             email_verification_link = await pyre.auth.generate_email_verification_link(email)
-            print(f'----------------{email_verification_link}')
+            # print(f'----------------{email_verification_link}')
             send_mail.send_verification_email(email_to=email, update_link=email_verification_link) 
             return JSONResponse(content={"email_status": "unverifed"}, status_code=status.HTTP_208_ALREADY_REPORTED)
         else:
@@ -279,7 +279,7 @@ def signup(request: schemes.Signup):
         db.collection('users').document(user.uid).set(data)
         # print(f"--database---------{testb}")
         email_verification_link = auth.generate_email_verification_link(email=email)
-        print(email_verification_link)
+        # print(email_verification_link)
         send_mail.send_verification_email(email_to=email, update_link=email_verification_link)
         
         send_mail.send_confirmation_email(email_to=email, name = name, plan='free_plan')
@@ -390,14 +390,14 @@ async def revoke_permission(user_data:schemes.UserData,request: Request):
     user = request.session.get("user")
     db_user = db.collection('users').document(user['localId']).get().to_dict()
     email = user_data.email
-    print(f"==============={email}======={db_user['isUserAdmin']}")
+    # print(f"==============={email}======={db_user['isUserAdmin']}")
     try:
         if db_user['isUserAdmin']: 
-            print("inside if ")
+            # print("inside if ")
             revokeGoogleSheetPermission(email)
             return JSONResponse(content={"status":f" Permission succefully removed  {email}"}, status_code=200)
         else:
-            print("inside else")
+            # print("inside else")
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Looks like your dont have admin Rights" )
     except Exception as e:
         print(f"in side exception {e}")
@@ -546,7 +546,7 @@ async def checkcoupon(disc: schemes.DiscountCode,request: Request):
 
                         return JSONResponse(content={"data":{'status':False,'coupon':'Coupon not vaild for the user','coupon_state':'not applicable'}}, status_code=status.HTTP_200_OK)
                     elif discount['coupon_used'] == True:
-                        print('coupon used')
+                        # print('coupon used')
                         return JSONResponse(content={"data":{'status':False,'coupon':'coupon already used ','coupon_state':'not applicable'}}, status_code=status.HTTP_200_OK)
                     elif discount['valid'] < datetime.now().isoformat():
                         # print('coupon expired')
@@ -564,7 +564,7 @@ async def updatecoupon(disx: schemes.Updatecoupon,request: Request):
     try:
         user = request.session.get("user")
         # print(user['localId'])
-        print(disx.couponused)
+        # print(disx.couponused)
         discount = db.collection('coupon').document(disx.couponused).get().to_dict()
         # print(f"----------------------{discount}")
         if discount == None:
@@ -587,7 +587,7 @@ async def updatecoupon(disx: schemes.Updatecoupon,request: Request):
           
 @app.post('/updateregentry',status_code=status.HTTP_200_OK)
 async def update_entry(entry:schemes.TradeRegisterInput, request: Request):
-    print(f"-----------------------in side------------------------")
+    # print(f"-----------------------in side------------------------")
     record={
         "EntryType":entry.type,
         "EntryDate":entry.date.isoformat(),
@@ -609,7 +609,7 @@ async def update_entry(entry:schemes.TradeRegisterInput, request: Request):
          raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
 @app.post('/test',status_code=status.HTTP_200_OK)
 async def test():
-    print("Ping sucess")
+    # print("Ping sucess")
     return {"sucess":"done"}
 @app.get("/fetchunregister", status_code=status.HTTP_200_OK)
 async def fetchUnRegister(request: Request):
@@ -644,7 +644,7 @@ async def delete_entry(doc_id:str,request: Request):
         raise HTTPException(status_code=500, detail=str(e))
 @app.post('/ctentry', status_code=status.HTTP_200_OK)
 def completeTradeEntry(centry:schemes.CompleteTrade,request: Request):
-    print(centry)
+    # print(centry)
     record={
     "entry_type": centry.type,
     "entry_date": centry.date.isoformat(),
@@ -655,7 +655,7 @@ def completeTradeEntry(centry:schemes.CompleteTrade,request: Request):
     "exit_price": centry.exit_price,
     "created_at":datetime.now().isoformat()
 }
-    print(record)
+    # print(record)
 
     try:
         user = request.session.get('user')
@@ -680,7 +680,7 @@ async def fetchUnRegister(request: Request):
 
             entries = []
             entries = [{**doc.to_dict(),"doc_id": doc.id } for doc in query_snapshot]
-            print(entries)
+            # print(entries)
             return JSONResponse(content={"records":entries}, status_code=status.HTTP_200_OK)
         else:
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
@@ -690,6 +690,12 @@ async def fetchUnRegister(request: Request):
 @app.delete("/delete_record-pnl/{doc_id}")
 async def delete_entry(doc_id:str,request: Request):
     try:
+
+
+
+
+
+        
         user = request.session.get("user")
         if user:
             doc_ref = db.collection('users').document(user['localId']).collection('filled').document(doc_id) 
@@ -703,12 +709,10 @@ async def delete_entry(doc_id:str,request: Request):
 
 @app.post('/updaterecord', status_code=status.HTTP_200_OK)
 async def updare_record(uprec:schemes.UpdateRecord,request: Request):
-   
-    print(uprec.uid)
+
     try:
         user = request.session.get("user")
         if user:
-            print(user)
             doc_ref = db.collection('users').document(user['localId']).collection('entry').document(uprec.uid) 
             doc_ref.update({"EntryQty":uprec.exit_qty})
     except Exception as e:
@@ -721,12 +725,12 @@ def assign_permission(senderEmail,name , plan):
 
     email = senderEmail
     subscribe_plan = plan
-    print(f"-----assign permission----{plan}---------{plan}")
+    # print(f"-----assign permission----{plan}---------{plan}")
     try:
         credentials = Credentials.from_service_account_info(settings.google_cloud_api_main)
         drive_service = build('drive', 'v3', credentials=credentials)
         # Sheet ID
-        print(f"-----sheet----{settings.sheet_id}---------{drive_service}")
+        # print(f"-----sheet----{settings.sheet_id}---------{drive_service}")
         sheet_id_1 = settings.sheet_id
         # Email address to grant access
         email_address = email
@@ -741,11 +745,11 @@ def assign_permission(senderEmail,name , plan):
             fields='id'
         ).execute()
 
-        print(f"Shared Google Sheet '{sheet_id_1}' with {email_address} for view access.")
+        # print(f"Shared Google Sheet '{sheet_id_1}' with {email_address} for view access.")
     
 
         send_mail.send_confirmation_email(email_to=email_address, name=name , plan=subscribe_plan)
-        print(f"View Permission granted {email_address}")
+        # print(f"View Permission granted {email_address}")
         return JSONResponse(content={"status":f"View Permission granted {email_address}"}, status_code=201)
 
     
@@ -766,9 +770,9 @@ def update_user_subsription(current_user):
     subscriptionStatus =db_data_user['subscriptionDetails']['subscriptionDate']
     sub_expiry_date = db_data_user['subscriptionDetails']['subscriptionEndDate']
     if (free_trail_over_status == False and currentSubscription_status == "Free - trial - 90 days"):
-        print("inside ")
+        # print("inside ")
         if sub_expiry_date < datetime.now().isoformat():
-            print(f"----------contiotion True---------{sub_expiry_date} -----{datetime.now().isoformat()}")
+            # print(f"----------contiotion True---------{sub_expiry_date} -----{datetime.now().isoformat()}")
             updated_status = {
                 'subscriptionDetails':{
                     'currentSubscription': f"{currentSubscription_status} - Ended",
@@ -788,7 +792,7 @@ def update_user_subsription(current_user):
             # print(f" data -------------{updated_status}")
     elif (paidSubscription_status == True and free_trail_over_status == True ):
         if sub_expiry_date < datetime.now().isoformat():
-            print('in side paid')
+            # print('in side paid')
             updated_status = {
                     'subscriptionDetails':{
                         'currentSubscription': f"{currentSubscription_status} - Ended",
@@ -815,7 +819,7 @@ def update_user_subsription(current_user):
 def revokeGoogleSheetPermission(current_user):
     
     email_address = current_user
-    print(f"---email-----{email_address}")
+    # print(f"---email-----{email_address}")
     try:
         credentials = Credentials.from_service_account_info(settings.google_cloud_api_main)
         # print(f"---------------------------{credentials}-------------")
