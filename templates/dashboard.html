@@ -1,102 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="static/css/dashboard.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="static/css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
-  <title>Dash Board</title>
-  <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
-</head>
-<body>
-  <!-- container Starts here -->
-  <div class="container">
-    <!-- aside Starts here -->
-    <aside>
-      <!-- top starts here -->
-      <div class="top">
-        <div class="logo">
-          <img src="static/images/logo.png" alt="">
-          <h2>Compounding Funda</h2>
+    <title>Dash Board</title>
+    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <!-- container Starts here -->
+    <div class="container">
+      <!-- aside Starts here -->
+      <aside>
+        <!-- top starts here -->
+        <div class="top">
+          <div class="logo">
+            <img src="static/images/logo.png" alt="" />
+            <h2>Compounding Funda</h2>
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-symbols-outlined">close</span>
+          </div>
         </div>
-        <div class="close" id="close-btn">
-          <span class="material-symbols-outlined">close</span>
-        </div>
-      </div>
-      <!-- top ends here -->
-      <!-- side bar starts here -->
-      <div class="slide-bar">
-        <a href="#">
-          <span class="material-symbols-outlined">person</span>
-          <h3 id="username"></h3>
-        </a>
-        <a href="#" onclick="account()">
-          <span class="material-symbols-outlined">manage_accounts</span>
-          <h3>Account</h3>
-        </a>
-        <a href="#" class="scrneer" onclick="screener()">
-          <span class="material-symbols-outlined">finance_mode</span>
-          <h3>Screener</h3>
-        </a>
-        <a href="#" id="trading-reg">
-          <span class="material-symbols-outlined">candlestick_chart</span>
-          <h3>Trading Jounral</h3>
-        </a>
-      
-        <a href="#"  onclick="subscribePlanDisplay()">
-          <span class="material-symbols-outlined">point_of_sale</span>
-          <h3>Offers</h3>
-        </a>
-        <a href="https://prd.motilaloswal.com/PRAN/FranchiseeRefferal/RaLead/CJ0AlqmRepojoNI7EFZLdw7WyV1jfx5yZk2deNfzK7MHHXHyWPowTPF1Pv!!dDNJ1of1U@@5JvsI5LfV7YeLOdIkziig5kaeY4xQ!!0idQyKp8=" target="_blank">
-          <span class="material-symbols-outlined">file_open</span>
-          <h3>Open Demat Account</h3>
-        </a>
-        <a href="#" onclick="refEarn()">
-          <span class="material-symbols-outlined">share</span>
-          <h3>Refer & Earn</h3>
-        </a>
-     
-        <a href="#" onclick="support()">
-          <span class="material-symbols-outlined">support_agent</span>
-          <h3>Support</h3>
-        </a>
-        <a href="#" class="logout" onclick="logout()">
-          <span class="material-symbols-outlined">logout</span>
-          <h3>Logout</h3>
-        </a>
-      </div>
-      <!-- side bar ends here -->
+        <!-- top ends here -->
+        <!-- side bar starts here -->
+        <div class="slide-bar">
+          <a href="#">
+            <span class="material-symbols-outlined">person</span>
+            <h3 id="username"></h3>
+          </a>
+          <a href="#" onclick="account()">
+            <span class="material-symbols-outlined">manage_accounts</span>
+            <h3>Account</h3>
+          </a>
+          <a href="#" class="scrneer" onclick="screener()">
+            <span class="material-symbols-outlined">finance_mode</span>
+            <h3>Screener</h3>
+          </a>
+          <a href="#" id="trading-reg">
+            <span class="material-symbols-outlined">candlestick_chart</span>
+            <h3>Trading Jounral</h3>
+          </a>
 
-    </aside>
-    <!-- aside ends here -->
-    <!-- main Starts here -->
-    <main>
-      <div class="main-heading">
-          <button id = "menu-bar">
+          <a href="#" onclick="subscribePlanDisplay()">
+            <span class="material-symbols-outlined">point_of_sale</span>
+            <h3>Offers</h3>
+          </a>
+          <a
+            href="https://prd.motilaloswal.com/PRAN/FranchiseeRefferal/RaLead/CJ0AlqmRepojoNI7EFZLdw7WyV1jfx5yZk2deNfzK7MHHXHyWPowTPF1Pv!!dDNJ1of1U@@5JvsI5LfV7YeLOdIkziig5kaeY4xQ!!0idQyKp8="
+            target="_blank"
+          >
+            <span class="material-symbols-outlined">file_open</span>
+            <h3>Open Demat Account</h3>
+          </a>
+          <a href="#" id="refer-earn">
+            <span class="material-symbols-outlined">share</span>
+            <h3>Refer & Earn</h3>
+          </a>
+
+          <a href="#" onclick="support()">
+            <span class="material-symbols-outlined">support_agent</span>
+            <h3>Support</h3>
+          </a>
+          <a href="#" class="logout" onclick="logout()">
+            <span class="material-symbols-outlined">logout</span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+        <!-- side bar ends here -->
+      </aside>
+      <!-- aside ends here -->
+      <!-- main Starts here -->
+      <main>
+        <div class="main-heading">
+          <button id="menu-bar">
             <span class="material-symbols-outlined">menu</span>
           </button>
-          <span><h2>Dashboard</h2></span> 
-      </div>
-      <div class="content">
+          <span><h2>Dashboard</h2></span>
+        </div>
         <div class="content">
-          
-          
-      </div>
-
-      </div>
-    </main>
-    <!-- main ends here -->
-    <!-- <div class="right">
+          <div class="content"></div>
+        </div>
+      </main>
+      <!-- main ends here -->
+      <!-- <div class="right">
       <h1>Right</h1>
     </div> -->
-
-  </div>
-  <!-- Comtainer ends here -->
-<script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
-  <script src="static/js/dashboard.js"></script>
-</body>
+    </div>
+    <!-- Comtainer ends here -->
+    <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css"
+    />
+    <script src="static/js/dashboard.js"></script>
+  </body>
 </html>

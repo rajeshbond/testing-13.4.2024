@@ -45,7 +45,7 @@ settings = Settings()
 
 # print(f"============={settings.google_cloud_api_main}")
 # -----------------FastAPI-----------------
-app = FastAPI()
+app = FastAPI(title="Comounding Funda",description="Comounding Funda",version="1.0.0")
 
 send_mail = EmailService(settings.email,settings.password)
 ##### lIST OF origins
@@ -125,6 +125,9 @@ async def root(request: Request):
 @app.get('/signup', response_class=HTMLResponse)
 async def get_signup(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request})
+@app.get('/admin', response_class=HTMLResponse)
+async def get_signup(request: Request):
+    return templates.TemplateResponse("adminpage.html", {"request": request})
 
 @app.get('/forgetpwd', response_class=HTMLResponse)
 async def get_forgetpwd(request: Request):
@@ -607,10 +610,13 @@ async def update_entry(entry:schemes.TradeRegisterInput, request: Request):
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
     except Exception as e:
          raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
-@app.post('/test',status_code=status.HTTP_200_OK)
+@app.get('/test',status_code=status.HTTP_200_OK)
 async def test():
-    # print("Ping sucess")
-    return {"sucess":"done"}
+   
+    users = db.collection('users').get()
+    entries = [{**doc.to_dict(), "doc_id": doc.id} for doc in users]
+    print(entries)
+    return {"sucess":entries}
 @app.get("/fetchunregister", status_code=status.HTTP_200_OK)
 async def fetchUnRegister(request: Request):
     try:
@@ -717,7 +723,40 @@ async def updare_record(uprec:schemes.UpdateRecord,request: Request):
             doc_ref.update({"EntryQty":uprec.exit_qty})
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
+    
+@app.post('/referral', status_code=status.HTTP_200_OK)
+async def referal(ref:schemes.Referal,request: Request):
+    print(ref)
+    ref_uid = ref.uid
+    try:
+        user = request.session.get("user")
+        if user and ref_uid == user['localId']:
+            parent_doc_ref = db.collection('users').document(user['localId'])
+            data = {
+                "referal": True
+            }
+            ref_data = {
+                "refralAccount": 0,
+                "refralAmount": 0,
+                "payableReferal": 0,
+                "uid": ref_uid,
+                "terms":ref.terms,
+                "bankDetails":{
+                    "nameOnBank":ref.nameOnBank,
+                    "bankName":ref.bankName,
+                    "ifscCode=":ref.ifscCode,
+                    "accountType":ref.accountType,
+                },
+                "created_at":datetime.now().isoformat()
+            }
+            db.collection('referal').document(ref_uid).set(ref_data)
+            parent_doc_ref.update(data)
+            return HTTPException(status_code=status.HTTP_200_OK, detail=f"Referal Added Sucessfully")
+        else:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+    pass
 
 
 # ------------------------ Methods -------------------------------------------

@@ -244,16 +244,16 @@ main .content {
 /* Styling for the container */
 .subscription-box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 20px; /* Increased for better spacing */
-  padding: 20px 0; /* Padding around the grid */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 5px; /* Increased for better spacing */
+  padding: 5px 0; /* Padding around the grid */
 }
 
 /* Styling for each subscription box */
 .subscription-box {
   /* border: 2px solid #007bff; */
   border-radius: 10px;
-  padding: 15px;
+  padding: 5px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -264,10 +264,15 @@ main .content {
 /* Styling for images within subscription boxes */
 .subscription-box img {
   border-radius: 0.4rem;
-  width: 150%; /* Make images responsive within their container */
-  max-width: 400px; /*Maximum width to ensure images are not too large*/
+  width: 120%; /* Make images responsive within their container */
+  max-width: 300px; /*Maximum width to ensure images are not too large*/
   margin-top: 5px;
   margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.subscription-box img:hover {
+  transform: scale(1.05);
 }
 
 /* Styling for buttons */
@@ -399,6 +404,36 @@ img .btn-subscribe {
   position: relative;
 }
 
+.popup-bank-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.popup-bank-details-content {
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+.bank-details{
+  align-items: first baseline;
+  text-align: left;
+}
+
 .close {
   position: absolute;
   top: 10px;
@@ -406,22 +441,70 @@ img .btn-subscribe {
   cursor: pointer;
 }
 
-input[type="text"], button {
+input[type="text"],select{
   margin-top: 10px;
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
   font-size: 16px;
+  text-transform: uppercase;
+}
+.terms-container {
+  display: flex;
+  flex-direction: row;
+  color: var(--clr-danger);
+}
+.terms-container input[type="checkbox"] {  
+ cursor: pointer;
+ opacity: 100%;
 }
 
-button {
+#terms {
+  margin-top: -8px;
+  padding: 2px 2px;
+  border-radius: 1px;
+  border: 2px solid black;
+  font-size: 5px;
+  margin-right: 10px;
+  color: var(--clr-danger);
+}
+
+.terms-container input:checked::after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff; /* White border for a light tick */
+  background-color: #4CAF50; /* Green background for the checkbox */
+}
+.bank-details-heading h2{
+  display: flex;
+  text-align: center;
+}
+.checkout-btn{
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+.terms-para{
+  color: var(--clr-danger);
+  margin-top: 5px;
+  font-size: 12px;
+}
+#checkout-btn, #bank-submit{
   background-color: #007bff;
+  margin-top: 10px;
   color: #fff;
   cursor: pointer;
+  width: 100px;
+  height: 40px;
+  font-size: 16px;
+  align-items: center;
 }
 
-button:hover {
-  background-color: #0056b3;
+#checkout-btn, #bank-submit:hover {
+  background-color: green;
 }
 
 
@@ -438,6 +521,173 @@ button:hover {
   font-weight: bold;
   margin-top: 10px; 
 }
+
+
+/*  referal Program */
+
+.refral-container{
+  display: inline;
+}
+.refral-container .heading{
+  text-align: center;
+  font-size: 50px;
+  margin: 2rem 0 1.5rem;
+  color: var(--card-padding);
+}
+.refral-container .sub-heading-ref{
+  text-align: center;
+  font-size: 30px;
+  margin: 2rem 0 1.5rem;
+  color: var(--clr-primary-variant);
+}
+.refral-container .text-para{
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: left;
+}
+.refral-container .text-artilce{
+  position: absolute;
+  left: 30rem;
+  top: 20rem;
+  width: 40%;
+  height: 30%;
+  align-items: center;
+  display: flex;
+}
+ul {
+  list-style-type: none;
+  font-size: 15px; /* Sets the bullet style to a filled circle */
+
+}
+li{
+  padding-bottom: 10px;
+}
+ li:before {
+            content: "• "; /* Adding bullet manually */
+        
+}
+.course{
+  padding-left: 15px;
+  color: blue;
+}
+.enrol{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.enroll-button{
+  width: 10rem;
+  height: 3rem;
+  background-color: green;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  padding-left: 20;
+  cursor: pointer;
+}
+
+
+ /* user refereal page */
+
+ .content .container-refer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  /* background: #f5f5f5; */
+
+  background-color: #f5f5f5;
+  font-family: 'Poppins', sans-serif;
+}
+
+.top-section{
+  height: 5rem;
+  display: flex;
+  background-color: var(--clr-primary);
+  position: absolute;
+  top: 70px;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+
+.top-section h2{
+  margin-top: 10px;    
+  font-size: 0.9rem;
+  align-items: center;
+  user-select: text;
+}
+
+.top-section h3{
+  font-size: 0.70rem;
+  color: var(--clr-color-background);
+}
+
+.middle-section{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  position: absolute;
+  top: 14rem;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.first-middle-container, .second-middle-container, .third-middle-container, .fourth-middle-container{
+  width: 10rem;
+  height: 6rem;
+  border-radius: 1rem;
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10rem;
+
+}
+
+.middle-section h4{
+  margin-top: 5px;
+  margin-bottom: 2px;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.middle-section h5{
+  margin-top: 5px;
+  font-size: 16px;
+  justify-content: space-evenly;
+  font-weight: 400;
+}
+
+.bottom-table {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 20.5rem;
+  width: 100%;
+}
+.main-table{
+  width: 100%;
+  height: 98%;
+}
+.main-table th{
+  background-color: white;
+}
+
+.main-table tr{
+  background-color: white;
+  width: 100%;
+  justify-self: space-evenly;
+  vertical-align: middle;
+}
+.main-table td{
+  background-color: white;
+  text-align: center;
+}
+
+
 
 
 
@@ -520,3 +770,4 @@ button:hover {
   }
 
  }
+

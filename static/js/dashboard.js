@@ -164,11 +164,11 @@ function subscribePlanDisplay() {
   let content = document.querySelector(".content");
   htmlContent = `<div class="subscription-box-container">
       <div class="subscription-box">
-        <img src="static/images/champions_club.jpg" alt="champions_club">
+        <img src="static/images/champions_club.jpeg" alt="champions_club">
         <button class ="btn-subscribe" onclick="champions_club()">Join Now</button>
       </div>
       <div class="subscription-box">
-          <img src="static/images/achivers_club.jpg" alt="achivers_club">
+          <img src="static/images/achivers_club.jpeg" alt="achivers_club">
           <button class ="btn-subscribe" onclick="achivers_club()">Join Now</button>
       </div>
       <div class="subscription-box">
@@ -569,9 +569,307 @@ tradingButton.addEventListener('click',async function(){
 });
 
 
+const sharebtn = document.querySelector('#refer-earn');
+sharebtn.addEventListener('click',async function(){
+  userfetch = await getUserData();
+  referralStatus = userfetch.user.referal;
+  // console.log(referralStatus);
+  if(referralStatus){
+    console.log("you are already sign up for referal");
+    referralDetailspage();
+  }else{
+    referalSignUpPage();
+  }
 
-function refEarn(){
-  console.log("refer and earn");
+})
+
+async function referalSignUpPage() {
+  let content = document.querySelector(".content");
+  htmlContent = `
+  <div class="refral-container">
+    <!-- <h1 class ="heading">Referal program</h1> -->
+  <h4 class="sub-heading-ref">Refer and Earn </h4>
+  <div class="text-para">
+    <div class="text-artilce">
+      <ul>
+        <li>
+          Join our referral program today and start earning for every friend you refer!
+        </li>
+        <li>
+          Our referral program provides you with the opportunity to earn by referring others through the link.
+        </li>
+        <li>
+          Please note that the referral program is only applicable when the referred user successfully subscribes to either:
+          <ul>
+            <li class="course">Champion's Club Membership</li>
+            <li class="course">Achiever's Club Membership</li>
+          </ul>
+        </li>
+        <li>
+            For every membership successfully subscribed to under the mentioned plans, you'll receive a fixed 20% of the user's payment as a referral reward.
+        </li>
+        <li>
+            Withdrawal of rewards will be available upon successful collection of payment on our end and can be initiated at the end of each month.
+        </li>
+        <li>
+          Compounding Funda reserves all rights to change/withdraw/modify all the above conditions without any prior notice/information.
+        </li>
+        <li>
+          By signing up, you are accepting all the terms and conditions applicable to the Referral Program.
+        </li>
+        
+        <div class="enrol">
+          <button class="enroll-button">Sign up</button>
+        </div>
+        
+      </ul>
+    </div>
+    
+  </div>
+  </div>`
+
+  content.innerHTML = "";
+  content.innerHTML = htmlContent;
+  const referralBtn = document.querySelector(".enroll-button");
+
+referralBtn.addEventListener('click',async function(){
+  currentUser = await getUserData();
+  bankDetrailsPopup();  
+//   const response = await fetch("/referral", {
+//     method: "POST",
+//     headers: {
+//         "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({uid:currentUser.user.uid}),
+//   });
+//   console.log(response.status);
+//   if(response.status == 200){
+//     sweetAlert("Congratulations!", "You have successfully joined the referral program", "success");
+//     referralDetailspage();
+//   }else{
+//     sweetAlert("OOPS...", "Something went wrong", "error");
+//   }
+//   return response;
+})
+}
+
+async function referralDetailspage(){
+  let currentUser = await getUserData();
+  console.log(currentUser)
+  let content = document.querySelector(".content");
+  htmlContent = `
+  <div class="top-section">
+      <h2>your referral link</h2>
+      <h2>
+        <!-- <a href="https://learn.compoundingfunda.com/">https://www.learn.compoundingfunda.com/Df53u6YcoKPdP1qWS1xhkuZFwQ13</a> -->
+        https://www.learn.compoundingfunda.com/${currentUser.user.uid}
+      </h2>
+      <h3>copy and share link with other to open account</h3>
+    </div>
+    <div class="middle-section">
+      <div class="first-middle-container">
+        <h4>Total Ref</h4>
+        <h5>0</h5>
+      </div>
+      <div class="second-middle-container">
+        <h4>Paid ref</h4>
+        <h5>0</h5>
+      </div>
+      <div class="third-middle-container">
+        <h4>Ref Amount</h4>
+        <h5>0</h5>
+      </div>
+      <div class="fourth-middle-container">
+        <h4>Ref Paid</h4>
+        <h5>0</h5>
+      </div>
+
+    </div>
+    <div class="bottom-table">
+      <table-container-bottom>
+        <div class="table">
+          <table class="main-table">
+            <thead>
+              <tr>
+                <th>
+                  sno
+                </th>
+                <th>
+                  Name
+                </th>
+                <th>
+                  subscribed Plan
+                </th>
+                <th>
+                  Amount Paid
+                </th>
+                <th>
+                  referral Amount
+                </th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Rajesh Bondgilwar</td>
+                <td>Free - trial -90</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Rajesh Bondgilwar</td>
+                <td>Free - trial -90</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Rajesh Bondgilwar</td>
+                <td>Free - trial -90</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Rajesh Bondgilwar</td>
+                <td>Free - trial -90</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </table-container-bottom>
+
+    </div>
+    
+  </div>
+  `
+  
+
+  content.innerHTML = "";
+  content.innerHTML = htmlContent;
+
+}
+
+function bankDetrailsPopup() {
+  // Create the popup elements
+  // console.log("Bank details popup called");
+  const popupOverlay = document.createElement('div');
+  popupOverlay.classList.add('popup-bank-details');
+  
+  const popup = document.createElement('div');
+  popup.classList.add('popup-bank-details-content');
+  // console.log(plan, planAmount);
+
+  popup.innerHTML = `
+  <div class="bank-details-heading">
+    <h2>Bank Details </h2>
+  </div>
+    <div class="form-group">
+      <div class="bank-details">
+      <label for="name">Name*:</label>
+      <input type="text" id="name-on-bank"  placeholder="Name on Bank Account" required>
+      </div>
+      <div class="bank-details">
+      <label for="bank-name">Bank Name*:</label>
+      <input type="text" id="bank-name"  placeholder="Name of Bank Account" required>
+      </div>
+      <div class="bank-details">
+      <label for="ifdcode">IFSC Code*:</label>
+      <input type="text" id="ifdcode"  placeholder="IFSC Code" required>
+      </div>
+      <div class="bank-details">
+      <label for="account-number">Account Number*:</label>
+      <input type="text" id="account-number"  placeholder="Account Number" required>
+      </div>
+      <div class="bank-details">
+      <label for="account-type">Account Type*:</label>
+      <select id="account-type" required>
+        <option value="SAVINGS">SAVINGS</option>
+        <option value="CURRENT">CURRENT</option>
+      </select>
+      </div>
+      <div class="terms-container">
+        <input type="checkbox" id="terms" value="terms" name="terms" checked>
+        <label for="terms">I agree to the <a href="#">terms and conditions</a>.</label><br>
+      </div>
+
+      <p class="terms-para">* please provide correct details,under any circumstances compounding funda will not be responsible for any misattribution, misrepresentation or misstatement</p>
+      <div class="checkout-btn">
+        <button id="bank-submit">submit</button>
+      </div>
+      <span class="close">&times;</span>
+    </div>
+    
+  `;
+  
+  // Append the popup elements to the document body
+  document.body.appendChild(popupOverlay);
+  popupOverlay.appendChild(popup);
+
+  const bankSubmit = document.getElementById('bank-submit');
+  const terms = document.getElementById('terms').checked;
+  bankSubmit.addEventListener('click', async function() {
+    // console.log("Bank submit clicked");
+    const nameOnBank = document.getElementById('name-on-bank').value;
+    const bankName = document.getElementById('bank-name').value;
+    const ifscCode = document.getElementById('ifdcode').value;
+    const accountNumber = document.getElementById('account-number').value;
+    const accountType = document.getElementById('account-type').value;
+    const terms = document.getElementById('terms').checked;
+    if(terms){
+      if(nameOnBank != "" && bankName != "" && ifscCode != "" && accountNumber != "" && accountType != ""){
+        let currentUser = await getUserData();
+        referUserData = {
+          nameOnBank: nameOnBank,
+          bankName: bankName,
+          ifscCode: ifscCode,
+          accountNumber: accountNumber,
+          accountType: accountType,
+          terms: terms,
+          uid:currentUser.user.uid
+        }
+         // Remove the popup elements when closed     
+        // console.log(nameOnBank, bankName, ifscCode, accountNumber, accountType);
+        response = userReferalRegistration(referUserData);
+        document.body.removeChild(popupOverlay);
+      }else{
+        sweetAlert("Error", "Please fill all the details", "error");
+      }
+      }else{
+        sweetAlert("Error", "Please accept terms and conditions to continue", "error");
+      }
+   
+    })
+     
+  // Add event listener to close button
+  const closeBtn = popup.querySelector('.close');
+  closeBtn.addEventListener('click', function() {
+    document.body.removeChild(popupOverlay); // Remove the popup elements when closed
+  });
 }
 
 
+async function userReferalRegistration(data = referUserData){ {
+  // let currentUser = await getUserData();
+  // console.log(`current user ${currentUser}`)
+  // let cleanData = JSON.stringify(data);
+  // let refData = JSON.parse(cleanData)
+  // console.log(`userReferalRegistration called with data ${cleanData}`);
+  // console.log(`Registration called with data ${refData.nameOnBank}`);
+  const response = await fetch("/referral", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+    });
+      // console.log(response.status);
+    if(response.status == 200){
+    sweetAlert("Congratulations!", "You have successfully joined the referral program", "success");
+    referralDetailspage();
+    }else{
+    sweetAlert("OOPS...", "Something went wrong", "error");
+    }
+    return response;
+}}

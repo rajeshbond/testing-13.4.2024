@@ -1,0 +1,22 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 0;
+  list-style: none;
+  appearance: none;
+  background-color: var(--clr-white);
+}
+
+
+.container-item {
+  display: flex;
+  flex-direction: row;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  justify-content: space-between;
+}
+
+
+

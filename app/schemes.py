@@ -78,6 +78,17 @@ class CompleteTrade(TradeRegisterInput):
 class UpdateRecord(BaseModel):
     exit_qty : int
     uid : str
+class Referal(BaseModel):
+    uid : str
+    nameOnBank: str
+    bankName: str
+    ifscCode: str
+    accountType: str
+    terms:bool
+
+
+
+
 
   
 
