@@ -631,11 +631,11 @@ li{
 }
 
 .middle-section{
-  width: 80%;
+  width: 75%;
   height: 10%;
   display: flex;
   position: absolute;
-  top: 14rem;
+  top: 13rem;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -645,6 +645,7 @@ li{
   width: 8rem;
   height: 5rem;
   border-radius: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   border: 1px solid var(--clr-primary-variant);
   background-color: #FFFFFF;
@@ -670,7 +671,7 @@ li{
   width: 70%;
   margin-left: 1rem;
   position: absolute;
-  top: 22rem;
+  top: 20rem;
 }
 .ref-table thead{
   background-color: var(--clr-primary);
@@ -678,7 +679,7 @@ li{
 }
 .ref-table tbody{
   background-color: white;
-  color: var(--clr-primary);
+  color: var(--clr-dark);
   text-align: center;
 }
 .td-name{
