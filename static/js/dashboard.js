@@ -654,22 +654,25 @@ referralBtn.addEventListener('click',async function(){
 }
 
 async function referralDetailspage(){
-  let currentUser = await getUserData();
-  console.log(currentUser)
+  refdata = await fetchReferralData();
+  refdata = refdata;
+  console.log(refdata);
+  refReords = refdata.refRecord;
+  console.log(refReords);
   let content = document.querySelector(".content");
   htmlContent = `
-  <div class="top-section">
+  <div class="refral-container">
+    <div class="top-section">
       <h2>your referral link</h2>
       <h2>
-        <!-- <a href="https://learn.compoundingfunda.com/">https://www.learn.compoundingfunda.com/Df53u6YcoKPdP1qWS1xhkuZFwQ13</a> -->
-        https://www.learn.compoundingfunda.com/${currentUser.user.uid}
+        https://www.learn.compoundingfunda.com/${refdata.user.uid}
       </h2>
       <h3>copy and share link with other to open account</h3>
     </div>
     <div class="middle-section">
       <div class="first-middle-container">
         <h4>Total Ref</h4>
-        <h5>0</h5>
+        <h5>${refReords.length}</h5>
       </div>
       <div class="second-middle-container">
         <h4>Paid ref</h4>
@@ -683,71 +686,51 @@ async function referralDetailspage(){
         <h4>Ref Paid</h4>
         <h5>0</h5>
       </div>
-
     </div>
-    <div class="bottom-table">
-      <table-container-bottom>
-        <div class="table">
-          <table class="main-table">
-            <thead>
-              <tr>
-                <th>
-                  sno
-                </th>
-                <th>
-                  Name
-                </th>
-                <th>
-                  subscribed Plan
-                </th>
-                <th>
-                  Amount Paid
-                </th>
-                <th>
-                  referral Amount
-                </th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Rajesh Bondgilwar</td>
-                <td>Free - trial -90</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Rajesh Bondgilwar</td>
-                <td>Free - trial -90</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Rajesh Bondgilwar</td>
-                <td>Free - trial -90</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Rajesh Bondgilwar</td>
-                <td>Free - trial -90</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </table-container-bottom>
-
+    <div class="bottom-section">
+      <section class="bottom-section-content">
+      <table class="ref-table">
+      <thead>
+      <tr>
+        <th>Sr.</th>
+        <th>Name</th>
+        <th>Subscription</th>
+        <th>Coupon Code</th>
+        <th>Amount</th>
+        <th>Referral Earning</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+      </table>
+      </section>
     </div>
+</div>
+
     
   </div>
-  `
-  
-
+  `;
   content.innerHTML = "";
   content.innerHTML = htmlContent;
+  tableBody = document.querySelector("tbody");
+  let html = ``;
+  refReords.forEach(function (item, index) {
+    html += `<tr>
+      <td>${index + 1}</td>
+      <td class="td-name">${item.name}</td>
+      <td>${item.subscriptionDetaiks.currentSubscription}</td>
+      <td>${item.subscriptionDetaiks.coupon_applied}</td>
+      <td>${item.subscriptionDetaiks.amountPaid}</td>
+      <td>${item.subscriptionDetaiks.applicableRefferal}</td>
+      <td>${index + 1}</td>
+
+    </tr>`
+  })
+  tableBody.innerHTML = html;
+
+
+
 
 }
 
@@ -873,3 +856,10 @@ async function userReferalRegistration(data = referUserData){ {
     }
     return response;
 }}
+
+async function fetchReferralData(){
+  const response = await fetch("/fetchRefRecord");
+  const data = await response.json();
+  // console.log(data);
+  return data
+}

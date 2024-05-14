@@ -693,6 +693,24 @@ async def fetchUnRegister(request: Request):
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
     
+@app.get("/fetchRefRecord", status_code=status.HTTP_200_OK)
+async def fetchRefRegister(request: Request):
+    try:
+        user = request.session.get("user")
+        if user:
+            parent_doc_ref = db.collection('referal').document(user['localId'])
+            user1 = parent_doc_ref.get().to_dict()
+            subcollection_ref = parent_doc_ref.collection('ReferedClient')
+            query_snapshot = subcollection_ref.get()
+            entries = []
+            entries = [{**doc.to_dict(),"doc_id": doc.id } for doc in query_snapshot]
+            print(entries)
+            return JSONResponse(content={"user":user1,"refRecord":entries}, status_code=status.HTTP_200_OK)
+        else:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+    
 @app.delete("/delete_record-pnl/{doc_id}")
 async def delete_entry(doc_id:str,request: Request):
     try:
