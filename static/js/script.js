@@ -38,7 +38,7 @@ function signIn() {
         return response.json();
       }else if (response.status == 200) {
         console.log('Login Scuccessful');
-        window.location.href = '/dashboard';
+        window.location.href = '/';
         window.alert('Login Scuccessful\nDisclaimer: \n'+ "We are not SEBI Registered.\nInformation transmitted as Generated");
     
         return response.json();

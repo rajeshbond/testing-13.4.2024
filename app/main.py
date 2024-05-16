@@ -110,8 +110,12 @@ async def root(request: Request):
     # print(credentials_data)
     try:
         if user:
-           
-            return RedirectResponse(url="/dashboard")
+            db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+            print(f"signin {db_data_user['isUserAdmin']}")
+            if db_data_user['isUserAdmin']:
+                return RedirectResponse(url="/admin")
+            else:
+                return RedirectResponse(url="/dashboard")
         return templates.TemplateResponse(  
                 name="signin.html",
                 context={"request": request}
@@ -127,7 +131,15 @@ async def get_signup(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request})
 @app.get('/admin', response_class=HTMLResponse)
 async def get_signup(request: Request):
-    return templates.TemplateResponse("adminpage.html", {"request": request})
+    user = request.session.get("user")
+    if user:
+            db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+            print(f"signin {db_data_user['isUserAdmin']}")
+            if db_data_user['isUserAdmin']:
+                return templates.TemplateResponse("adminpage.html", {"request": request})
+            else:
+                return RedirectResponse(url="/")
+    
 
 @app.get('/forgetpwd', response_class=HTMLResponse)
 async def get_forgetpwd(request: Request):
@@ -610,7 +622,7 @@ async def update_entry(entry:schemes.TradeRegisterInput, request: Request):
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
     except Exception as e:
          raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
-@app.get('/test',status_code=status.HTTP_200_OK)
+@app.get('/testuser',status_code=status.HTTP_200_OK)
 async def test():
    
     users = db.collection('users').get()
@@ -698,13 +710,17 @@ async def fetchRefRegister(request: Request):
     try:
         user = request.session.get("user")
         if user:
+            # userRecords = db.collection('users').get()
+            # userRec = []
+            # userRec = [{**doc.to_dict(), "doc_id": doc.id} for doc in userRecords]
+            # print(f"userRecord {userRec}")
             parent_doc_ref = db.collection('referal').document(user['localId'])
             user1 = parent_doc_ref.get().to_dict()
             subcollection_ref = parent_doc_ref.collection('ReferedClient')
-            query_snapshot = subcollection_ref.get()
+            query_snapshot = subcollection_ref.where("subscriptionDetaiks.refPaid","==",False).get()
             entries = []
             entries = [{**doc.to_dict(),"doc_id": doc.id } for doc in query_snapshot]
-            print(entries)
+            # print(entries)
             return JSONResponse(content={"user":user1,"refRecord":entries}, status_code=status.HTTP_200_OK)
         else:
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")

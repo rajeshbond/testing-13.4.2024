@@ -36,7 +36,7 @@ async function populateTable() {
         let tradeValue = ((item.EntryPrice)*(item.EntryQty)).toFixed(2);
         // console.log(`bgcolr = ${bgColorClass}`)
         // date = dateconverter(item.EntryDate)
-      html += `<tr>
+      html += `<tr class="row-body">
                   <td>${dateconverter(item.EntryDate)}</td>
                   <td class ="${item.EntryType}">${item.EntryType}</td>
                   <td>${item.EntrySymbol}</td>
