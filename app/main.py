@@ -138,7 +138,9 @@ async def get_signup(request: Request):
             if db_data_user['isUserAdmin']:
                 return templates.TemplateResponse("adminpage.html", {"request": request})
             else:
-                return RedirectResponse(url="/")
+                return RedirectResponse(url="/dashboard")
+    else:
+        return RedirectResponse(url="/")
     
 
 @app.get('/forgetpwd', response_class=HTMLResponse)
@@ -193,7 +195,7 @@ async def get_dashboard(request: Request):
         db_data_user= db.collection('users').document(user['localId']).get().to_dict()
         if db_data_user:
             # print(f"-----------------{db_data_user}")
-            # update_user_subsription(request)
+            update_user_subsription(request)
             return templates.TemplateResponse("dashboard.html", {"request": request })
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(f"error {e}"))
@@ -207,6 +209,7 @@ async def get_user_data(request: Request):
             return JSONResponse(content={"error": "User not authenticated"}, status_code=401)
 
         db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+        print(db_data_user)
     
 
         if not db_data_user:
@@ -627,7 +630,7 @@ async def test():
    
     users = db.collection('users').get()
     entries = [{**doc.to_dict(), "doc_id": doc.id} for doc in users]
-    print(entries)
+    # print(entries)
     return {"sucess":entries}
 @app.get("/fetchunregister", status_code=status.HTTP_200_OK)
 async def fetchUnRegister(request: Request):

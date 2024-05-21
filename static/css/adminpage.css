@@ -395,6 +395,7 @@ main .content {
   text-align: center;
   vertical-align:middle;
   font-weight: 600;
+  user-select: text;
 }
 .user-name td{
   margin-top: 5rem;

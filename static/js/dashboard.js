@@ -21,6 +21,11 @@ const getUserData = async () => {
   try {
     const response = await fetch("/getUsername");
     const data = await response.json();
+    const adminDisplay = document.querySelector('#admin-panel');
+    isAdmin = data.user.isUserAdmin
+    if (isAdmin == true) {
+      adminDisplay.style.display = "block";
+    }
     return data;
   } catch (error) {
     console.error(error);
@@ -635,21 +640,6 @@ async function referalSignUpPage() {
 referralBtn.addEventListener('click',async function(){
   currentUser = await getUserData();
   bankDetrailsPopup();  
-//   const response = await fetch("/referral", {
-//     method: "POST",
-//     headers: {
-//         "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({uid:currentUser.user.uid}),
-//   });
-//   console.log(response.status);
-//   if(response.status == 200){
-//     sweetAlert("Congratulations!", "You have successfully joined the referral program", "success");
-//     referralDetailspage();
-//   }else{
-//     sweetAlert("OOPS...", "Something went wrong", "error");
-//   }
-//   return response;
 })
 }
 
@@ -863,3 +853,7 @@ async function fetchReferralData(){
   // console.log(data);
   return data
 }
+async function adminPanel(){
+    window.location.href = '/admin';
+}
+  

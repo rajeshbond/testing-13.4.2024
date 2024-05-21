@@ -90,7 +90,7 @@ usertab.addEventListener('click', async()=>{
  </div>
  <div class="search-block">
   <span class="material-symbols-outlined">search</span>
-  <input type="text" class="search-input" placeholder="user name...">
+  <input type="search" class="search-input" placeholder="user name...">
     <button class="search-button">Search</button>
   </div>
  </div>
