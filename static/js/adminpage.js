@@ -104,7 +104,6 @@ usertab.addEventListener('click', async()=>{
         <th>Current Plan</th>
         <th>Coupon used</th>
         <th>Amont Paid</th>
-        <th>Subscription Date</th>
         <th>User Status</th>
         <th>Action</th>
       </tr>
