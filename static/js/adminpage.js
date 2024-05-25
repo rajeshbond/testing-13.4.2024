@@ -104,6 +104,7 @@ usertab.addEventListener('click', async()=>{
         <th>Current Plan</th>
         <th>Coupon used</th>
         <th>Amont Paid</th>
+        <th>Subscription Date</th>
         <th>User Status</th>
         <th>Action</th>
       </tr>
@@ -126,6 +127,7 @@ usertab.addEventListener('click', async()=>{
         amount = item.razorpayconfimation.Amount
       }else{
         amount=0;
+        date="N/A";
       }
       html += `<tr class="row-user">
       <td>${index+1}</td>
@@ -138,7 +140,6 @@ usertab.addEventListener('click', async()=>{
       <td>${amount}</td>
       <td>${item.subscriptionDetails.subscriptionStatus}</td>
       <td><button class="table-edit-button">Edit User</button></td>
-        
       </tr>`
     })
     tablebody.innerHTML = html;
