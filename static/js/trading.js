@@ -163,7 +163,7 @@ function entryPOPup(item){
       modal.classList.remove("active");
       populateTable();
     }
-    
+     populateTable();
   });
   
   
