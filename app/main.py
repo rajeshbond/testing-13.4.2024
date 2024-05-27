@@ -232,6 +232,7 @@ async def get_coupondetails(request: Request):
         if db_user.get("isUserAdmin"):
             db_coupon_all = db.collection('coupon').get()
             
+            
             entries = []
             ist = pytz.timezone('Asia/Kolkata')
             today_ist = datetime.now(ist).date()
@@ -251,6 +252,8 @@ async def get_coupondetails(request: Request):
             #     print(entries)
             
             return JSONResponse(content={"success": [entry.dict() for entry in entries]})
+            # return {"success": entries}
+
         else:
             return JSONResponse(content={"error": "User not Admin"}, status_code=403)
     except Exception as e:
@@ -826,6 +829,7 @@ async def referal(ref:schemes.Referal,request: Request):
 
 @app.post('/createAllCoupon', status_code=status.HTTP_200_OK)
 async def createAllCoupon(coup:schemes.CreateCoupon, request: Request):
+    print("Create coupon API called")
     try:
         user = request.session.get("user")
         if not user:
@@ -835,12 +839,14 @@ async def createAllCoupon(coup:schemes.CreateCoupon, request: Request):
             db_user = db.collection('users').document(user['localId']).get().to_dict()
             if db_user.get('isUserAdmin'):
                 coup_data={
-                    "couponApplicable":coup.couponApplicable,
-                    "discountFlat":coup.discountFlat,
-                    "discountPercentage":coup.discountPercentage,
-                    "valid":coup.validDate.datetime()
+                     "applicablePlan":coup.couponApplicable,
+                     "applicable":coup.applicable,
+                     "discount_flat":coup.discountFlat,
+                     "discount_multiplier":coup.discountPercentage,
+                     "valid":coup.validDate,
                 }
-                db.collection('coupon').document(coup.couponName).set(coup_data)
+          
+                db.collection('coupon').document(coup.couponName.upper()).set(coup_data)
                 return HTTPException(status_code=status.HTTP_200_OK, detail=f"Coupon created Scucessfully")
             else: 
                 return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Admin User")

@@ -97,6 +97,7 @@ class Coupon(BaseModel):
     used: Optional[bool] = None
 class CreateCoupon(BaseModel):
     couponName:str
+    applicable:Optional[str] = 'all'
     couponApplicable:str
     discountFlat:int
     discountPercentage:float

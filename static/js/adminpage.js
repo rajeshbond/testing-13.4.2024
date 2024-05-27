@@ -234,7 +234,7 @@ couponControl.addEventListener('click',async ()=>{
               <th>Discount Flat</th>
               <th>Discount multiplier</th>
               <th>Valid till</th>
-              <th>Delete</th>
+          
           </tr>
       </thead>
       <tbody class="coupon-table-body">
@@ -248,6 +248,7 @@ couponControl.addEventListener('click',async ()=>{
   const displayall = document.querySelector('#all-coupon');
   displayall.addEventListener('click',()=>{
     let tablebody = document.querySelector(".coupon-table-body");
+    
     let html = ``;
     finalallCoupons.forEach(function (item, index) {
       // console.log(item);
@@ -261,9 +262,10 @@ couponControl.addEventListener('click',async ()=>{
       <td>${item.discount_flat}</td>
       <td>${item.discount_multiplier}</td>
       <td>${item.valid}</td>
-      <td><i class="fa-solid fa-trash delete-record"></i></td>
+      
       </tr>`
     })
+    tablebody.innerHTML = ``;
     tablebody.innerHTML = html;
   });
 });
@@ -336,13 +338,13 @@ async function createCoupon(){
     event.preventDefault();
     console.log("Buttton Clicked");
     const couponName = document.querySelector('#coupon-name').value;
-    const applicable = document.querySelector('#account-type').value;
+    const couponApplicable = document.querySelector('#account-type').value;
     const discountFlat = document.querySelector('#discount-flat').value;
     const discountPercentage = document.querySelector('#discount-percentage').value;
     const validDate = document.querySelector('#vaild-date').value;
-    if(couponName && applicable && discountFlat && discountPercentage && validDate){
-      console.log(couponName,applicable,discountFlat,discountPercentage,validDate);
-      createCouponData(couponName,applicable,discountFlat,discountPercentage,validDate);
+    if(couponName && couponApplicable && discountFlat && discountPercentage && validDate){
+      console.log(couponName,couponApplicable,discountFlat,discountPercentage,validDate);
+      createCouponData(couponName,couponApplicable,discountFlat,discountPercentage,validDate);
       document.querySelector(".overlay").style.display = "none";
       document.querySelector(".pop").style.display = "none";
       }
@@ -354,7 +356,29 @@ async function createCoupon(){
 
 }// End of createCoupon  
 
-function createCouponData (couponName,applicable,discountFlat,discountPercentage,validDate){
+async function createCouponData (couponName,couponApplicable,discountFlat,discountPercentage,validDate){
   console.log("Create coupon called");
-  console.log(`coupon Name :- ${couponName}\n applicable:- ${applicable} \n discount flat:-${discountFlat} discount percentage:-${discountPercentage} \n valid date:- ${validDate}`);
+  console.log(`coupon Name :- ${couponName}\n applicable:- ${couponApplicable} \n discount flat:-${discountFlat} discount percentage:-${discountPercentage} \n valid date:- ${validDate}`);
+  const data = {
+    couponName: couponName,
+    applicable: 'all',
+    couponApplicable: couponApplicable,
+    discountFlat: discountFlat,
+    discountPercentage: discountPercentage,
+    validDate: validDate
+  }
+  const response = await fetch("/createAllCoupon", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+});
+const server = await response.json();
+console.log(server.status_code);
+if(server.status_code == 200){
+  swal("Coupon Created Successfully", "Coupon created", "success");
+}
+else{
+    swal("Coupon Not Created", "Coupon not created", "error");}
 }

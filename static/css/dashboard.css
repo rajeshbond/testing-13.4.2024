@@ -526,6 +526,10 @@ input[type="text"],select{
   margin-top: 10px; 
 }
 
+#apply-btn{
+  background-color: #7d8da1;
+}
+
 
 /*  referal Program */
 

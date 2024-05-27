@@ -481,7 +481,6 @@ main .content {
   flex-direction: column;
   border: 1px solid #ccc;
   left: 50%;
-  z-index: 20px;
   transform: translate(-50%,-50%);
   position: absolute;
   background-color:#fff;
@@ -532,7 +531,7 @@ main .content {
   border: none;
   border-radius: 4px;
   font-size: 16px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 .coupon-applicable{
   margin-top: 10px;
@@ -566,6 +565,5 @@ main .content {
   background-color: green;
   color: #fff;
   font-weight: bold;
-  z-index: 55px;
   cursor: pointer;
 }
