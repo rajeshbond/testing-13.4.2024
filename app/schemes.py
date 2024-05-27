@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime , date
+from typing import List, Optional
 
 class SignIn(BaseModel):
     email:str
@@ -86,7 +87,20 @@ class Referal(BaseModel):
     accountType: str
     terms:bool
 
-
+class Coupon(BaseModel):
+    doc_id: str
+    valid: str
+    discount_multiplier: float
+    applicable: str
+    applicablePlan: str
+    discount_flat: int
+    used: Optional[bool] = None
+class CreateCoupon(BaseModel):
+    couponName:str
+    couponApplicable:str
+    discountFlat:int
+    discountPercentage:float
+    validDate:datetime
 
 
 

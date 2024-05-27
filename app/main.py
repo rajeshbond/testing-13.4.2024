@@ -11,6 +11,7 @@ from . import schemes
 from fastapi.responses import RedirectResponse
 import logging
 from datetime import datetime, timedelta ,timezone
+import pytz
 # -------------------env ---------------------
 from dotenv import load_dotenv
 import os
@@ -219,7 +220,41 @@ async def get_user_data(request: Request):
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
     
-# ------------------------Post Method -------------------------------------------
+# -------------------Get All Coupon details ------------------
+@app.get('/coupondetails')
+async def get_coupondetails(request: Request):
+    try:
+        user = request.session.get("user")
+        if not user:
+            return JSONResponse(content={"error": "User not authenticated"}, status_code=401)
+        
+        db_user = db.collection('users').document(user['localId']).get().to_dict()
+        if db_user.get("isUserAdmin"):
+            db_coupon_all = db.collection('coupon').get()
+            
+            entries = []
+            ist = pytz.timezone('Asia/Kolkata')
+            today_ist = datetime.now(ist).date()
+            for doc in db_coupon_all:
+                doc_dict = doc.to_dict()
+                valid_date_utc = doc_dict['valid']
+                valid_date_ist = valid_date_utc.astimezone(ist).date()
+                if valid_date_ist >= today_ist:
+                    doc_dict['valid'] = valid_date_ist.strftime("%d-%m-%Y")
+                    entries.append(schemes.Coupon(doc_id=doc.id, **doc_dict))
+            # for doc in db_coupon_all:
+            #     doc_dict = doc.to_dict()
+            #     valid_date = doc_dict['valid'].strftime("%d-%m-%Y")
+            #     doc_dict['valid'] = valid_date
+            #     # doc_dict['valid'] = doc_dict['valid'].isoformat()
+            #     entries.append(schemes.Coupon(doc_id=doc.id, **doc_dict))
+            #     print(entries)
+            
+            return JSONResponse(content={"success": [entry.dict() for entry in entries]})
+        else:
+            return JSONResponse(content={"error": "User not Admin"}, status_code=403)
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")# ------------------------Post Method -------------------------------------------
 # ------------------------Login-------------------------------------------
 @app.post('/signin', status_code= status.HTTP_200_OK)
 async def login(request1: schemes.SignIn, request: Request):
@@ -733,12 +768,6 @@ async def fetchRefRegister(request: Request):
 @app.delete("/delete_record-pnl/{doc_id}")
 async def delete_entry(doc_id:str,request: Request):
     try:
-
-
-
-
-
-        
         user = request.session.get("user")
         if user:
             doc_ref = db.collection('users').document(user['localId']).collection('filled').document(doc_id) 
@@ -795,6 +824,28 @@ async def referal(ref:schemes.Referal,request: Request):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
     pass
 
+@app.post('/createAllCoupon', status_code=status.HTTP_200_OK)
+async def createAllCoupon(coup:schemes.CreateCoupon, request: Request):
+    try:
+        user = request.session.get("user")
+        if not user:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+        else:
+
+            db_user = db.collection('users').document(user['localId']).get().to_dict()
+            if db_user.get('isUserAdmin'):
+                coup_data={
+                    "couponApplicable":coup.couponApplicable,
+                    "discountFlat":coup.discountFlat,
+                    "discountPercentage":coup.discountPercentage,
+                    "valid":coup.validDate.datetime()
+                }
+                db.collection('coupon').document(coup.couponName).set(coup_data)
+                return HTTPException(status_code=status.HTTP_200_OK, detail=f"Coupon created Scucessfully")
+            else: 
+                return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Admin User")
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
 
 # ------------------------ Methods -------------------------------------------
 def assign_permission(senderEmail,name , plan):

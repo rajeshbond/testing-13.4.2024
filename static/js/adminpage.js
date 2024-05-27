@@ -204,3 +204,157 @@ usertab.addEventListener('click', async()=>{
   
 
 });
+
+
+const couponControl = document.querySelector('#coupon-control');
+console.log(couponControl);
+
+couponControl.addEventListener('click',async ()=>{
+  let allCoupons = await fetchallcoupon();
+  let finalallCoupons = allCoupons.success;
+  console.log(finalallCoupons);
+  let content = document.querySelector(".content");
+  let htmlContent = `<div class="content">
+  <div class="coupon-head">
+      <span>
+          <button id="all-coupon">Active Coupon</button>
+      </span>
+   
+      <span>
+          <button id="create-coupon" onclick="createCoupon()">Create Coupon</button>
+      </span>
+  </div>
+  <table class="coupon-table">
+      <thead>
+          <tr>
+              <th>Sr</th>
+              <th>Coupon Name</th> 
+              <th>Applicable</th>
+              <th>Applicable Plan</th>
+              <th>Discount Flat</th>
+              <th>Discount multiplier</th>
+              <th>Valid till</th>
+              <th>Delete</th>
+          </tr>
+      </thead>
+      <tbody class="coupon-table-body">
+          
+      </tbody>
+  </table>
+  <div class="overlay"></div>
+</div>`;
+  content.innerHTML = ``;
+  content.innerHTML = htmlContent;
+  const displayall = document.querySelector('#all-coupon');
+  displayall.addEventListener('click',()=>{
+    let tablebody = document.querySelector(".coupon-table-body");
+    let html = ``;
+    finalallCoupons.forEach(function (item, index) {
+      // console.log(item);
+      html += `<tr class="row-user">
+      <td>${index+1}</td>
+      <td class="user-name">
+        ${item.doc_id}
+      </td>
+      <td>${item.applicable}</td>
+      <td>${item.applicablePlan}</td>
+      <td>${item.discount_flat}</td>
+      <td>${item.discount_multiplier}</td>
+      <td>${item.valid}</td>
+      <td><i class="fa-solid fa-trash delete-record"></i></td>
+      </tr>`
+    })
+    tablebody.innerHTML = html;
+  });
+});
+
+async function fetchallcoupon(){
+  try {
+    const response = await fetch("/coupondetails");
+    const allUserData = await response.json();
+    // console.log(allUserData);
+    return allUserData;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function createCoupon(){
+  console.log("Create coupon called");
+  let couponPOP = document.querySelector(".overlay");
+  let htmlCoupon =`<div class="pop">
+      <button id="close-btn-pop"><i class="fa-solid fa-xmark"></i></button>
+      <div class="form">
+          <form action="">
+              <h2 class="pop-titile">Create Coupon</h2>
+              <div class="input-box">
+                  <label for="coupon-code">Coupon Code Name*:</label>
+                  <input type="text" id="coupon-name" placeholder="Enter Coupon Code" required>
+                 <div class="coupon-applicable">
+                  <label for="account-type">Coupon Applicable*:</label>
+                  <select id="account-type" required>
+                  <option value="All plans">All PLANS</option>
+                  <option value="champions_club">CHAMPIONS_CLUB</option>
+                  <option value="achivers_club">ACHIVERS_CLUB</option>
+                  <option value="market_club">MARKET_CLUB</option>
+                  </select>
+                 </div>
+                 <div class="discount-flat">
+                  <label for="discount-flat">Discount flat*:</label>
+                  <input type="text" id="discount-flat" placeholder="ex. 200 or 20" required>
+                 </div>
+                 <div class="discount-percentage">
+                  <label for="discount-percentage">Discount Percentage*:</label>
+                  <input type="text" id="discount-percentage" placeholder=" Ex.0.1 / 0.2"  min="0" max="1" step="0.01" required>
+                 </div>
+                 <div class="valid-date">
+                  <label for="valid-date">Valid Date*:</label>
+                  <input id="vaild-date" type="date" required>
+                 </div>
+                 <div class="coupon-submit-btn">
+                  <button id="create-coup">Create Coupon</button>
+                 </div>
+                 <!-- <div class="coupon-submit-btn">
+                      <button id="create-coupon-btn" onclick="createCoupon()">Create</button>
+                 </div> -->
+          </form>
+      </div>
+     
+  </div>`;
+  couponPOP.innerHTML = ``;
+  couponPOP.innerHTML = htmlCoupon;
+  document.querySelector(".overlay").style.display = "flex";
+  document.querySelector(".pop").style.display = "flex";
+
+  const closeBtn = document.querySelector("#close-btn-pop");
+  closeBtn.addEventListener('click',()=>{
+    document.querySelector(".overlay").style.display = "none";
+    document.querySelector(".pop").style.display = "none";
+  });
+  const createCouponBtn = document.querySelector('#create-coup');
+  createCouponBtn.addEventListener('click',(event)=>{
+    event.preventDefault();
+    console.log("Buttton Clicked");
+    const couponName = document.querySelector('#coupon-name').value;
+    const applicable = document.querySelector('#account-type').value;
+    const discountFlat = document.querySelector('#discount-flat').value;
+    const discountPercentage = document.querySelector('#discount-percentage').value;
+    const validDate = document.querySelector('#vaild-date').value;
+    if(couponName && applicable && discountFlat && discountPercentage && validDate){
+      console.log(couponName,applicable,discountFlat,discountPercentage,validDate);
+      createCouponData(couponName,applicable,discountFlat,discountPercentage,validDate);
+      document.querySelector(".overlay").style.display = "none";
+      document.querySelector(".pop").style.display = "none";
+      }
+    else{
+      swal("Missing something", "I need all the fields", "error")
+    }
+      
+  });
+
+}// End of createCoupon  
+
+function createCouponData (couponName,applicable,discountFlat,discountPercentage,validDate){
+  console.log("Create coupon called");
+  console.log(`coupon Name :- ${couponName}\n applicable:- ${applicable} \n discount flat:-${discountFlat} discount percentage:-${discountPercentage} \n valid date:- ${validDate}`);
+}
