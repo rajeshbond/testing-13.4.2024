@@ -210,7 +210,7 @@ async def get_user_data(request: Request):
             return JSONResponse(content={"error": "User not authenticated"}, status_code=401)
 
         db_data_user= db.collection('users').document(user['localId']).get().to_dict()
-        print(db_data_user)
+        # print(db_data_user)
     
 
         if not db_data_user:
@@ -367,7 +367,7 @@ def referrallogin(request:Request, referral_code:str):
     ref_data = db.collection('referal').get()
     for doc in ref_data:
         if referral_code == doc.id:
-            print(f'{doc.id} => {doc.to_dict()}')
+            # print(f'{doc.id} => {doc.to_dict()}')
             return templates.TemplateResponse(name='signup.html', context={'request':request, 'referral_code':referral_code})
         else:
             return templates.TemplateResponse(name='signup.html', context={'request':request, 'referral_code':"not_found"})
@@ -682,10 +682,10 @@ async def update_entry(entry:schemes.TradeRegisterInput, request: Request):
          raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
 @app.get('/fetch/testuser',status_code=status.HTTP_200_OK)
 async def test():
-    print("===================================hello==============================================")
+    # print("===================================hello==============================================")
     users = db.collection('users').get()
     entries = [{**doc.to_dict(), "doc_id": doc.id} for doc in users]
-    print(entries)
+    # print(entries)
     return {"sucess":entries}
 @app.get("/api/fetchunregister", status_code=status.HTTP_200_OK)
 async def fetchUnRegister(request: Request):
@@ -765,9 +765,9 @@ async def fetchUnRegister(request: Request):
     
 @app.get("/api/fetchRefRecord", status_code=status.HTTP_200_OK)
 async def fetchRefRegister(request: Request):
-    print("fetchRefRecord")
+    # print("fetchRefRecord")
     try:
-        print("===========================Rajesh=================================")
+        # print("===========================Rajesh=================================")
         user = request.session.get("user")
         if user:
             # userRecords = db.collection('users').get()
@@ -780,7 +780,7 @@ async def fetchRefRegister(request: Request):
             query_snapshot = subcollection_ref.where("subscriptionDetails.refPaid","==",False).get()
             entries = []
             entries = [{**doc.to_dict(),"doc_id": doc.id } for doc in query_snapshot]
-            print(entries)
+            # print(entries)
             return JSONResponse(content={"user":user1,"refRecord":entries}, status_code=status.HTTP_200_OK)
         else:
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
@@ -814,7 +814,7 @@ async def updare_record(uprec:schemes.UpdateRecord,request: Request):
     
 @app.post('/referral', status_code=status.HTTP_200_OK)
 async def referal(ref:schemes.Referal,request: Request):
-    print(ref)
+    # print(ref)
     ref_uid = ref.uid
     try:
         user = request.session.get("user")
@@ -848,7 +848,7 @@ async def referal(ref:schemes.Referal,request: Request):
 
 @app.post('/createAllCoupon', status_code=status.HTTP_200_OK)
 async def createAllCoupon(coup:schemes.CreateCoupon, request: Request):
-    print("Create coupon API called")
+    # print("Create coupon API called")
     try:
         user = request.session.get("user")
         if not user:
