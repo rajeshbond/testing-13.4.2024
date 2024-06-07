@@ -268,7 +268,7 @@ couponControl.addEventListener('click',async ()=>{
 
 async function fetchallcoupon(){
   try {
-    const response = await fetch("/coupondetails");
+    const response = await fetch("/api/coupondetails");
     const allUserData = await response.json();
     // console.log(allUserData);
     return allUserData;

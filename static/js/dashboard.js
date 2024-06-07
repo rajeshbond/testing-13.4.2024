@@ -19,7 +19,7 @@ closeBtn.addEventListener("click", () => {
 
 const getUserData = async () => {
   try {
-    const response = await fetch("/getUsername");
+    const response = await fetch("/api/getUsername");
     const data = await response.json();
     const adminDisplay = document.querySelector('#admin-panel');
     isAdmin = data.user.isUserAdmin

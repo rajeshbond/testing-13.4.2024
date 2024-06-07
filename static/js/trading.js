@@ -2,10 +2,10 @@
 let pNLGlobal = 0;
 const fetchunRecords = async () => {
   try {
-    const response = await fetch("/fetchunregister");
+    const response = await fetch("/api/fetchunregister");
     const data = await response.json();
-    // console.log(response)
-    // console.log(data.records)
+    console.log(response)
+    console.log(data.records)
     return data;
   } catch (error) {
     console.error(error);
@@ -440,7 +440,7 @@ function entryScreen(){
 }
 const fetchpnlRecords = async () => {
   try {
-    const response = await fetch("/fetchfilled");
+    const response = await fetch("/api/fetchfilled");
     let pNL = 0;
     const data = await response.json();
     records = data.records

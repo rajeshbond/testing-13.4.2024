@@ -10,7 +10,7 @@ function setGoogleSheetIframeSource() {
 }
 const getUserData = async () => {
     try {
-      const response = await fetch("/getUsername");
+      const response = await fetch("/api/getUsername");
       const data = await response.json();
     //   console.log(data);
     //   console.log(data.user.subscriptionDetails.free_trial_over);
@@ -21,20 +21,6 @@ const getUserData = async () => {
   };
 
 
-// function callApi() {
-
-//     fetch('https://final-scan.onrender.com/start')
-//     .then(response => response.json())
-//     .then(data => console.log(data)) // Handle API response as needed
-//     .catch(error => console.error('Error:', error));
-// }
-
-// Function to refresh the iframe source every 5 minutes
-// function refreshGoogleSheetData() {
-//     setGoogleSheetIframeSource();
-//     callApi();username
-//     setTimeout(refreshGoogleSheetData, 2 * 60 * 1000); // Refresh every 2 minutes (5 * 60 * 1000 milliseconds)
-// }
 function dashboard() {
     try{
         window.location.href = "/dashboard"; 

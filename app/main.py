@@ -147,7 +147,7 @@ async def get_signup(request: Request):
 @app.get('/forgetpwd', response_class=HTMLResponse)
 async def get_forgetpwd(request: Request):
     return templates.TemplateResponse("forgetpwd.html", {"request": request})
-@app.get('/traderegister', response_class=HTMLResponse)
+@app.get('/traderegister', response_class=HTMLResponse) 
 async def get_forgetpwd(request: Request):
     try:
         user = request.session.get("user")
@@ -201,7 +201,7 @@ async def get_dashboard(request: Request):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(f"error {e}"))
 
-@app.get('/getUsername',response_class=HTMLResponse)
+@app.get('/api/getUsername',response_class=HTMLResponse)
 async def get_user_data(request: Request):
     try:
         user = request.session.get("user")
@@ -221,7 +221,7 @@ async def get_user_data(request: Request):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
     
 # -------------------Get All Coupon details ------------------
-@app.get('/coupondetails')
+@app.get('/api/coupondetails')
 async def get_coupondetails(request: Request):
     try:
         user = request.session.get("user")
@@ -361,7 +361,7 @@ def signup(request: schemes.Signup):
     }
 
 # --------------------- get referral login -----------------------------------
-
+# get method Referal login page
 @app.get('/{referral_code}', status_code= status.HTTP_200_OK)
 def referrallogin(request:Request, referral_code:str):
     ref_data = db.collection('referal').get()
@@ -687,7 +687,7 @@ async def test():
     entries = [{**doc.to_dict(), "doc_id": doc.id} for doc in users]
     print(entries)
     return {"sucess":entries}
-@app.get("/fetchunregister", status_code=status.HTTP_200_OK)
+@app.get("/api/fetchunregister", status_code=status.HTTP_200_OK)
 async def fetchUnRegister(request: Request):
     try:
         user = request.session.get("user")
@@ -744,7 +744,7 @@ def completeTradeEntry(centry:schemes.CompleteTrade,request: Request):
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
     except Exception as e:
          raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
-@app.get("/fetchfilled", status_code=status.HTTP_200_OK)
+@app.get("/api/fetchfilled", status_code=status.HTTP_200_OK)
 async def fetchUnRegister(request: Request):
     try:
         user = request.session.get("user")
