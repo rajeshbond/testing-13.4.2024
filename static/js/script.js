@@ -40,7 +40,6 @@ function signIn() {
         console.log('Login Scuccessful');
         window.location.href = '/';
         window.alert('Login Scuccessful\nDisclaimer: \n'+ "We are not SEBI Registered.\nInformation transmitted as Generated");
-    
         return response.json();
       }else {
         window.alert('Error: ' + "Invalid username or password");
@@ -56,6 +55,18 @@ function signIn() {
   }
 
 function signUp() {
+  const referralCode = document.getElementById('referralCode').value;
+  if(referralCode == "not_found"){
+    window.alert('Invalid Referral Code');
+    window.location.href = '/';
+    return;
+  }
+  
+  if(referralCode){
+    console.log("Referral Code:", referralCode);
+  }else{
+    console.log("No Referral Code");
+  }
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -67,12 +78,25 @@ function signUp() {
     if (isDataEntered) {
       let processingIndicator = document.getElementById('processing-indicator');
       processingIndicator.style.display = isDataEntered ? 'block' : 'none';
-      const data = {
-        name: name,
-        email: email,
-        password: password,
-        mobile: mobile,
-      };
+      let data;
+      if(referralCode){
+        data = {
+          name: name,
+          email: email,
+          password: password,
+          mobile: mobile,
+          referral_code: referralCode
+        };
+
+      }else{
+        data = {
+          name: name,
+          email: email,
+          password: password,
+          mobile: mobile,
+        };
+      }
+      console.log(data);
       fetch('/signup', {
         method: 'POST',
         headers: {

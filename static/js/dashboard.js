@@ -848,9 +848,9 @@ async function userReferalRegistration(data = referUserData){ {
 }}
 
 async function fetchReferralData(){
-  const response = await fetch("/fetchRefRecord");
+  const response = await fetch("/api/fetchRefRecord");
   const data = await response.json();
-  // console.log(data);
+  console.log(data);
   return data
 }
 async function adminPanel(){

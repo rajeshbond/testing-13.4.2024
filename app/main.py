@@ -301,12 +301,14 @@ def signup(request: schemes.Signup):
     email = request.email
     pasword = request.password
     mobile = request.mobile
-
+    referal = request.referral_code
+    print(referal)
     try:
         user = auth.create_user(
             email=email,
             password=pasword
         )
+        print(user.uid)
 
         data = {
             'uid':user.uid,
@@ -314,10 +316,11 @@ def signup(request: schemes.Signup):
             'email':email,
             'mobile':mobile,
             'isUserAdmin': False,
+            'referral_code': referal,
             'screener_active': True,
             'isBlocked': False,
             'subscriptionDetails':{
-                'currentSubscription': 'Free - trial - 90 days',
+                'currentSubscription': 'Free - trial - 90 days', 
                 'subscriptionStatus': 'Active',
                 'coupon_applied':'TRIAL90',
                 'free_trial_over': False,
@@ -328,7 +331,7 @@ def signup(request: schemes.Signup):
             'isEmailVerified': False,
             'created_at': datetime.now().isoformat(),
         } 
-
+        print(data)
         # email_verification_link = auth.generate_email_verification_link(email=email)
      
         # send_mail.send_verification_email(email_to=email, update_link=email_verification_link)     
@@ -340,12 +343,14 @@ def signup(request: schemes.Signup):
         
         send_mail.send_confirmation_email(email_to=email, name = name, plan='free_plan')
         assign_permission(senderEmail=email,name=name, plan='free_plan')
-        
+        if referal!=None:
+            db.collection('referal').document(referal).update({u'users': firebase_admin.firestore.ArrayUnion([user.uid])})
       
-        send_mail.send_verification_email(email_to=email, update_link=email_verification_link)   
+        # send_mail.send_verification_email(email_to=email, update_link=email_verification_link)   
     except auth.EmailAlreadyExistsError:
         raise HTTPException(status_code=400, detail=f"Email already exists for {email}")
     except Exception as e:
+        print(f"Error creating user: {e}")
         raise HTTPException(status_code=400, detail=f"Error creating user: {e}")
 
 
@@ -354,6 +359,18 @@ def signup(request: schemes.Signup):
     return{
         "message": "Signup Success"
     }
+
+# --------------------- get referral login -----------------------------------
+
+@app.get('/{referral_code}', status_code= status.HTTP_200_OK)
+def referrallogin(request:Request, referral_code:str):
+    ref_data = db.collection('referal').get()
+    for doc in ref_data:
+        if referral_code == doc.id:
+            print(f'{doc.id} => {doc.to_dict()}')
+            return templates.TemplateResponse(name='signup.html', context={'request':request, 'referral_code':referral_code})
+        else:
+            return templates.TemplateResponse(name='signup.html', context={'request':request, 'referral_code':"not_found"})
 
 # ------------------------Post Method -------------------------------------------
 # ------------------------Forget Password-------------------------------------------
@@ -663,12 +680,12 @@ async def update_entry(entry:schemes.TradeRegisterInput, request: Request):
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
     except Exception as e:
          raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
-@app.get('/testuser',status_code=status.HTTP_200_OK)
+@app.get('/fetch/testuser',status_code=status.HTTP_200_OK)
 async def test():
-   
+    print("===================================hello==============================================")
     users = db.collection('users').get()
     entries = [{**doc.to_dict(), "doc_id": doc.id} for doc in users]
-    # print(entries)
+    print(entries)
     return {"sucess":entries}
 @app.get("/fetchunregister", status_code=status.HTTP_200_OK)
 async def fetchUnRegister(request: Request):
@@ -746,9 +763,11 @@ async def fetchUnRegister(request: Request):
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
     
-@app.get("/fetchRefRecord", status_code=status.HTTP_200_OK)
+@app.get("/api/fetchRefRecord", status_code=status.HTTP_200_OK)
 async def fetchRefRegister(request: Request):
+    print("fetchRefRecord")
     try:
+        print("===========================Rajesh=================================")
         user = request.session.get("user")
         if user:
             # userRecords = db.collection('users').get()
@@ -758,10 +777,10 @@ async def fetchRefRegister(request: Request):
             parent_doc_ref = db.collection('referal').document(user['localId'])
             user1 = parent_doc_ref.get().to_dict()
             subcollection_ref = parent_doc_ref.collection('ReferedClient')
-            query_snapshot = subcollection_ref.where("subscriptionDetaiks.refPaid","==",False).get()
+            query_snapshot = subcollection_ref.where("subscriptionDetails.refPaid","==",False).get()
             entries = []
             entries = [{**doc.to_dict(),"doc_id": doc.id } for doc in query_snapshot]
-            # print(entries)
+            print(entries)
             return JSONResponse(content={"user":user1,"refRecord":entries}, status_code=status.HTTP_200_OK)
         else:
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")

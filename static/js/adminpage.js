@@ -10,9 +10,9 @@ const getUserData = async () => {
 }
 const getAllUserData = async () => {
   try {
-    const response = await fetch("/testuser");
+    const response = await fetch("/fetch/testuser");
     const allUserData = await response.json();
-    console.log(allUserData);
+    // console.log(allUserData);
     return allUserData;
   } catch (error) {
     console.error(error);
@@ -24,7 +24,7 @@ async function updateUsername() {
   
   try {
     const userData = await getUserData();
-    console.log(userData);
+    // console.log(userData);
     const username = userData.user.name;
     const userStatus = userData.user.isSubscribed;
     document.querySelector("#username").innerText = username;
@@ -72,7 +72,6 @@ const usertab = document.querySelector("#user-control")
 usertab.addEventListener('click', async()=>{
   let allData = await getAllUserData();
   pureUserData = allData.sucess;
-  console.log(pureUserData);
   const content = document.querySelector('.content');
   let htmlContent = `<div class="option-strip">
   <div class="user-btn">
@@ -119,28 +118,24 @@ usertab.addEventListener('click', async()=>{
   const displayall = document.querySelector('#all-users');
   displayall.addEventListener('click',()=>{
     let tablebody = document.querySelector(".user-table-body");
-     let html = ``;
-    pureUserData.forEach(function (item, index) {
-      let amount = 0;
-      if(item.razorpayconfimation){
-        amount = item.razorpayconfimation.Amount
-      }else{
-        amount=0;
-        date="N/A";
-      }
-      html += `<tr class="row-user">
+    let html = ``;
+    pureUserData.forEach(function(item, index){
+   
+      html += `<tr>
       <td>${index+1}</td>
       <td class="user-name">
-        ${item.name}
+        ${item.email}
       </td>
       <td>${item.mobile}</td>
-      <td>${item.subscriptionDetails.currentSubscription}</td>
-      <td>${item.subscriptionDetails.coupon_applied}</td>
-      <td>${amount}</td>
-      <td>${item.subscriptionDetails.subscriptionStatus}</td>
-      <td><button class="table-edit-button">Edit User</button></td>
-      </tr>`
+      <td>${item.subscriptionDetails?item.subscriptionDetails.currentSubscription:"Free"}</td>
+      <td>${item.subscriptionDetails?item.subscriptionDetails.coupon_applied:"-"}</td>
+      <td>${item.razorpayconfimation?item.razorpayconfimation.Amount:0}</td>
+      <td>${item.subscriptionDetails?item.subscriptionDetails.subscriptionStatus:"-"}</td>
+      <td><button class="table-edit-button">Edit User</button></td>  
+      </tr>` ;
+         
     })
+    
     tablebody.innerHTML = html;
   });
 
@@ -171,7 +166,7 @@ usertab.addEventListener('click', async()=>{
   });
   const inactiveUser = document.querySelector("#inactive-user");
   inactiveUser.addEventListener('click',()=>{
-    console.log("Inactive user");
+    // console.log("Inactive user");
     let tablebody = document.querySelector(".user-table-body");
     let html = ``;
     pureUserData.forEach(function(item, index){
@@ -188,10 +183,10 @@ usertab.addEventListener('click', async()=>{
           ${item.name}
         </td>
         <td>${item.mobile}</td>
-        <td>${item.subscriptionDetails.currentSubscription}</td>
-        <td>${item.subscriptionDetails.coupon_applied}</td>
-        <td>${amount}</td>
-        <td>${item.subscriptionDetails.subscriptionStatus}</td>
+        <td>${item.subscriptionDetails?item.subscriptionDetails.currentSubscription:"Free"}</td>
+        <td>${item.subscriptionDetails?item.subscriptionDetails.coupon_applied:"-"}</td>
+        <td>${item.razorpayconfimation?item.razorpayconfimation.Amount:0}</td>
+        <td>${item.subscriptionDetails?item.subscriptionDetails.subscriptionStatus:"-"}</td>
         <td><button class="table-edit-button">Edit User</button></td>  
         </tr>`;
         }
@@ -207,12 +202,13 @@ usertab.addEventListener('click', async()=>{
 
 
 const couponControl = document.querySelector('#coupon-control');
-console.log(couponControl);
+// console.log(couponControl);
 
 couponControl.addEventListener('click',async ()=>{
   let allCoupons = await fetchallcoupon();
   let finalallCoupons = allCoupons.success;
-  console.log(finalallCoupons);
+  // console.log(finalallCoupons);
+  
   let content = document.querySelector(".content");
   let htmlContent = `<div class="content">
   <div class="coupon-head">

@@ -19,6 +19,7 @@ class Signup(BaseModel):
     email:str
     password:str
     mobile:str
+    referral_code: Optional[str] = None
 
     class Config:
         json_schema_extra = {
@@ -26,7 +27,8 @@ class Signup(BaseModel):
                 "name": "sample",
                 "email": "sample@gmail.com",
                 "password": "password",
-                "mobile": "1234567890"
+                "mobile": "1234567890",
+                "referral_code": "sample"
 
             }
         }
