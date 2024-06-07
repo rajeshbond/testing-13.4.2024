@@ -124,7 +124,7 @@ usertab.addEventListener('click', async()=>{
       html += `<tr>
       <td>${index+1}</td>
       <td class="user-name">
-        ${item.email}
+        ${item.name}
       </td>
       <td>${item.mobile}</td>
       <td>${item.subscriptionDetails?item.subscriptionDetails.currentSubscription:"Free"}</td>

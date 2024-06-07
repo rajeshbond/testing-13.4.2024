@@ -644,6 +644,7 @@ referralBtn.addEventListener('click',async function(){
 }
 
 async function referralDetailspage(){
+  console.log("referalDetailspage called");
   refdata = await fetchReferralData();
   refdata = refdata;
   console.log(refdata);
@@ -654,9 +655,14 @@ async function referralDetailspage(){
   <div class="refral-container">
     <div class="top-section">
       <h2>your referral link</h2>
+      <div class="ref-link">
       <h2>
-        https://www.learn.compoundingfunda.com/${refdata.user.uid}
+         https://www.learn.compoundingfunda.com/${refdata.user.uid}
       </h2>
+      <button class="copy-btn" onClick="copyToClipboard()">
+        <i class="fa-solid fa-copy"></i>
+      </button>
+      </div>
       <h3>copy and share link with other to open account</h3>
     </div>
     <div class="middle-section">
@@ -718,12 +724,34 @@ async function referralDetailspage(){
     </tr>`
   })
   tableBody.innerHTML = html;
-
-
-
-
 }
 
+function copyToClipboard() {
+  // navigator.clipboard.writeText(`https://www.learn.compoundingfunda.com/${refdata.user.uid}`);
+  // sweetAlert("Copied!", "Link copied to clipboard", "success");
+  const referralLink = `https://www.learn.compoundingfunda.com/${refdata.user.uid}`;
+        
+        // Check if the Clipboard API is supported
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(referralLink).then(function() {
+                // Show a notification that the link was copied
+                sweetAlert("Copied!", "Referral Link copied", "success");
+            }).catch(function(err) {
+                console.error("Could not copy text: ", err);
+            });
+        } else {
+            // Fallback for browsers that do not support the Clipboard API
+            const tempTextarea = document.createElement("textarea");
+            tempTextarea.value = referralLink;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            tempTextarea.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
+            document.body.removeChild(tempTextarea);
+            // Show a notification that the link was copied
+            sweetAlert("Copied!", "Referral Link copied", "success");
+        }
+}
 function bankDetrailsPopup() {
   // Create the popup elements
   // console.log("Bank details popup called");
@@ -814,6 +842,8 @@ function bankDetrailsPopup() {
       }
    
     })
+
+
      
   // Add event listener to close button
   const closeBtn = popup.querySelector('.close');
@@ -823,13 +853,7 @@ function bankDetrailsPopup() {
 }
 
 
-async function userReferalRegistration(data = referUserData){ {
-  // let currentUser = await getUserData();
-  // console.log(`current user ${currentUser}`)
-  // let cleanData = JSON.stringify(data);
-  // let refData = JSON.parse(cleanData)
-  // console.log(`userReferalRegistration called with data ${cleanData}`);
-  // console.log(`Registration called with data ${refData.nameOnBank}`);
+async function userReferalRegistration(data = referUserData){ {;
   const response = await fetch("/referral", {
     method: "POST",
     headers: {

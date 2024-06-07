@@ -666,23 +666,29 @@ li{
 .ref-link{
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-evenly;
 }
-.ref-link button{
-  /* margin-left: 5px; */
+
+.copy-btn{
   margin-left: 5px;
-  height: 30px;
-  width: 30px;
-  font-size: 25px;
   cursor: pointer;
   margin-top: 20px;
-  color: var(--clr-primary-variant);
   background-color: white;
-  border: none;
-  color: --(--clr-primary-variant);
-  
+  color: var(--clr-primary-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.copy-btn:hover{
+  color: var(--clr-warning);
+}
+.copy-btn i{
+  height: 30px;
+  font-size: 30px;
+  padding: 0.8px;
+  vertical-align: middle;
+}
+
 .middle-section h4{
   margin-top: 5px;
   margin-bottom: 2px;
@@ -715,16 +721,10 @@ li{
   text-align: left;
 }
 
-
-
-
-
-
 /* --------------{main section ends here}---------------- */
 
 
 /* media query  */
-
 
 @media screen and (max-width: 1000px) {
   .container{
