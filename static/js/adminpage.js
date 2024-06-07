@@ -1,7 +1,7 @@
 
 const getUserData = async () => {
   try {
-    const response = await fetch("/getUsername");
+    const response = await fetch("/api/getUsername");
     const data = await response.json();
     return data;
   } catch (error) {

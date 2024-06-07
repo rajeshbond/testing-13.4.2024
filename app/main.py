@@ -112,7 +112,7 @@ async def root(request: Request):
     try:
         if user:
             db_data_user= db.collection('users').document(user['localId']).get().to_dict()
-            print(f"signin {db_data_user['isUserAdmin']}")
+            # print(f"signin {db_data_user['isUserAdmin']}")
             if db_data_user['isUserAdmin']:
                 return RedirectResponse(url="/admin")
             else:
