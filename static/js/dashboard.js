@@ -715,10 +715,10 @@ async function referralDetailspage(){
     html += `<tr>
       <td>${index + 1}</td>
       <td class="td-name">${item.name}</td>
-      <td>${item.subscriptionDetaiks.currentSubscription}</td>
-      <td>${item.subscriptionDetaiks.coupon_applied}</td>
-      <td>${item.subscriptionDetaiks.amountPaid}</td>
-      <td>${item.subscriptionDetaiks.applicableRefferal}</td>
+      <td>${item.subscriptionDetails.currentSubscription}</td>
+      <td>${item.subscriptionDetails.coupon_applied}</td>
+      <td>${item.subscriptionDetails.amountPaid}</td>
+      <td>${item.subscriptionDetails.applicableRefferal}</td>
       <td>${index + 1}</td>
 
     </tr>`
