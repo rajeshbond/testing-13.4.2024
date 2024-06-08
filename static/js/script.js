@@ -22,11 +22,13 @@ function signIn() {
       },
       body: JSON.stringify(data)
     })
-    .then(response => {
+    .then(async response => {
       // Check if response is successful
       document.getElementById("processing-indicator").style.display = "none";
-      // console.log(response)
-      if (response.status == 208) {
+      const data = await response.json();
+      // console.log(response.status)
+      // console.log(data.email_status)
+      if (response.status == 208 || data.email_status == "unverifed" ) {
         // throw new Error('Network response was not ok');
         window.alert('Error: Email is not verified \n Please check your email');
         window.location.href = '/';
@@ -37,7 +39,7 @@ function signIn() {
         window.location.href = '/';
         return response.json();
       }else if (response.status == 200) {
-        console.log('Login Scuccessful');
+        // console.log('Login Scuccessful');
         window.location.href = '/';
         window.alert('Login Scuccessful\nDisclaimer: \n'+ "We are not SEBI Registered.\nInformation transmitted as Generated");
         return response.json();

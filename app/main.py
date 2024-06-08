@@ -263,15 +263,19 @@ async def get_coupondetails(request: Request):
 async def login(request1: schemes.SignIn, request: Request):
     # print(request1.email)
     # print(request1.password)
+    
     try:
         user = pyre.auth().sign_in_with_email_and_password(email=request1.email, password=request1.password)
+        if not user:
+            return JSONResponse(content={"error": "Invalid email or password"}, status_code=401)
         userser_info = pyre.auth().get_account_info(user['idToken'])
         # print(f"---------------user info {userser_info['users'][0]['email']}")
         isUserVerifired = userser_info['users'][0]['emailVerified']
         email = userser_info['users'][0]['email']
         # print(f"Data extracted {isUserVerifired}")
         if isUserVerifired == False:
-            email_verification_link = await pyre.auth.generate_email_verification_link(email)
+            # email_verification_link = await pyre.auth.generate_email_verification_link(email)
+            email_verification_link = auth.generate_email_verification_link(email=email)
             # print(f'----------------{email_verification_link}')
             send_mail.send_verification_email(email_to=email, update_link=email_verification_link) 
             return JSONResponse(content={"email_status": "unverifed"}, status_code=status.HTTP_208_ALREADY_REPORTED)
@@ -284,10 +288,10 @@ async def login(request1: schemes.SignIn, request: Request):
             return JSONResponse(content={"data": "Login Successful"}, status_code=status.HTTP_200_OK)
 
     except Exception as e:
-        print(f"Exception {e}")
-        raise HTTPException(
-        status_code=400,
-        detail= f" Invaid credentials --{e}")
+         print(f"Exception {e}")
+         raise HTTPException(
+         status_code=400,
+         detail= f" Invaid credentials --{e}")
 
        
     
