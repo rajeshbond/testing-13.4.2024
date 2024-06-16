@@ -41,7 +41,8 @@ function signIn() {
       }else if (response.status == 200) {
         // console.log('Login Scuccessful');
         window.location.href = '/';
-        window.alert('Login Scuccessful\nDisclaimer: \n'+ "We are not SEBI Registered.\nInformation transmitted as Generated");
+        // window.alert('Login Scuccessful\nDisclaimer: \n'+ "We are not SEBI Registered.\nInformation transmitted as Generated");
+        // disPOPup();
         return response.json();
       }else {
         window.alert('Error: ' + "Invalid username or password");
@@ -279,5 +280,41 @@ function logout() {
     window.alert('Logged out successfully');
   })
   
+}
+
+
+function disPOPup(){
+  // window.alert('Please Login First');
+  let htmlContent = '';
+  popdisp = document.querySelector('#overlay');
+  htmlContent = `<div class="popup">
+        <h2>Disclaimer</h2>
+        <h3>Kind Attention of All Members</h3>
+        <p>Disclaimer from Admins as per SEBI norms:<p>
+        <ul>
+            <li>Equity Investments are subject to 100% market risks. Kindly refer to your financial consultant advice before Trading & Investing in stock markets.</li>
+            <li>This group/channel is only for Educational and Learning, Knowledge Purposes. Admins have no responsibility for your intended decision & financial losses. Keep calculated & always analyzed your cash position and risk bearing capacity before following msg of our group postings.</li>
+            <li>Stock market investments are VERY RISKY and being part of this group, you agree that you understand the Market risks involved. Profits and Losses are part of Share market. Most of the times, retail traders end up making only Losses in Share market.</li>
+            <li>All member pls follow guidelines as applicable even in past too.</li>
+        </ul>
+        <p>SEBI SOCIAL MEDIA MANDATE & MANDATORY DISCLAIMER AS REQUIRED BY SEBI</p>
+        <p>Disclaimer/ disclosure</p>
+        <ul>
+            <li>This group/channel does not provide any tips/recommendations/advice</li>
+            <li>All updates/analysis/posts/discussions are only for educational and learning purpose.</li>
+            <li>Do Consult your financial advisor before taking trades or investment decisions</li>
+            <li>Group/Channel Admins or Members are not responsible for any financial losses</li>
+            <li>Disclaimer/disclosure/terms and conditions applicable to all members of this group/channel</li>
+        </ul>
+        <p>We are not SEBI registered. Members posting may not be SEBI registered also. All the posts are for education and learning purpose only.</p>
+       <div class="but-agg"><button onclick="closePopup()">I Agree</button></div>
+    </div>
+</div>`;
+console.log(htmlContent);
+popdisp.innerHTML = htmlContent;
+function closePopup() {
+  console.log("clicked");
+  document.getElementById('overlay').style.display = 'none';
+  }
 }
 

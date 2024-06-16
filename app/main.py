@@ -116,7 +116,8 @@ async def root(request: Request):
             if db_data_user['isUserAdmin']:
                 return RedirectResponse(url="/admin")
             else:
-                return RedirectResponse(url="/dashboard")
+                return RedirectResponse(url="/disclaimer")
+                # return RedirectResponse(url="/dashboard")
         return templates.TemplateResponse(  
                 name="signin.html",
                 context={"request": request}
@@ -142,8 +143,10 @@ async def get_signup(request: Request):
                 return RedirectResponse(url="/dashboard")
     else:
         return RedirectResponse(url="/")
-    
-
+# -----------------------------------Get Method for Disclaimer Page------------------------------------------- 
+@app.get('/disclaimer', response_class=HTMLResponse)
+async def get_disclaimer(request: Request):
+    return templates.TemplateResponse("disc.html", {"request": request})
 @app.get('/forgetpwd', response_class=HTMLResponse)
 async def get_forgetpwd(request: Request):
     return templates.TemplateResponse("forgetpwd.html", {"request": request})
@@ -163,6 +166,22 @@ async def get_forgetpwd(request: Request):
     except Exception as e:
         return RedirectResponse(url="/")
     
+@app.get('/championscreener', response_class=HTMLResponse)
+async def get_gsheet(request: Request):
+    try:
+        user = request.session.get("user")
+        update_user_subsription(request)
+        db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+
+        print(db_data_user)
+    
+        if (db_data_user['screener_active']):
+            return templates.TemplateResponse("champion.html", {"request": request})
+        else:
+            return RedirectResponse(url="/dashboard")
+    except Exception as e:
+        return RedirectResponse(url="/")
+    
 
 @app.get('/screener', response_class=HTMLResponse)
 async def get_gsheet(request: Request):
@@ -177,6 +196,29 @@ async def get_gsheet(request: Request):
             return templates.TemplateResponse("gsheet.html", {"request": request})
         else:
             return RedirectResponse(url="/dashboard")
+    except Exception as e:
+        return RedirectResponse(url="/")
+    
+# -----------------------------champions Dashboard
+@app.get('/campdashboard', response_class=HTMLResponse)
+async def champ_dashboard(request: Request):
+    try:
+        user = request.session.get("user")
+        update_user_subsription(request)
+        db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+        # print(db_data_user)
+        screener_active = db_data_user['screener_active']
+        currentSubscription = db_data_user['subscriptionDetails']['currentSubscription']
+        print(f"currentSubscription {currentSubscription} <----> screener_active {screener_active}")
+        if (currentSubscription == 'Champions Club' or currentSubscription == 'Admin') and screener_active == True:
+            return templates.TemplateResponse("champion.html", {"request": request})
+        else:
+            return RedirectResponse(url="/dashboard")
+    
+        # if (db_data_user['screener_active']):
+        #     return templates.TemplateResponse("gsheet.html", {"request": request})
+        # else:
+        #     return RedirectResponse(url="/dashboard")
     except Exception as e:
         return RedirectResponse(url="/")
     

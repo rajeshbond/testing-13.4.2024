@@ -149,7 +149,9 @@ aside .slide-bar{
   top: 1rem
 
 }
-
+.champ{
+  background: yellow;
+}
 .user-support{
   align-items: center;
 }
@@ -798,3 +800,6 @@ li{
 
  }
 
+
+
+ /*  show disclaimer pop up  */

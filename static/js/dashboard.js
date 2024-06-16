@@ -7,7 +7,6 @@ let RAZORPAY_id
 // console.log(sidebar);
 
 
-
 menuBtn.addEventListener("click", () => {
   console.log("clicked");
   sidebar.style.display = "block";
@@ -21,6 +20,7 @@ const getUserData = async () => {
   try {
     const response = await fetch("/api/getUsername");
     const data = await response.json();
+    // console.log(data);
     const adminDisplay = document.querySelector('#admin-panel');
     isAdmin = data.user.isUserAdmin
     if (isAdmin == true) {
@@ -33,7 +33,9 @@ const getUserData = async () => {
 };
 
 updateUsername();
-subscribePlanDisplay();
+// ShowDisclaimer();
+displaySequence();
+// subscribePlanDisplay();
 async function updateUsername() {
   try {
     const userData = await getUserData();
@@ -881,3 +883,46 @@ async function adminPanel(){
     window.location.href = '/admin';
 }
   
+async function displaySequence(){
+  try {
+    const userData = await getUserData();
+    // console.log(userData);
+    condition1 = userData.user.screener_active;
+    condition2 = userData.user.subscriptionDetails.currentSubscription;
+    if(condition1 && (condition2 == "Champions Club" || condition2 == "Achivers Club" || condition2 == "Market Talk Club")){
+        console.log(condition2);
+        account();
+    }else{
+        console.log(condition2);
+        subscribePlanDisplay();
+    }
+    
+  } catch (error) {
+    console.error(error);
+  }
+} 
+
+
+
+function ShowDisclaimer(){
+  console.log("disclaimer");
+}
+
+async function champDisplay() {
+  console.log("champDisplay Rajesh");
+  try {
+    const userData = await getUserData();
+    current_state = userData.user.subscriptionDetails.currentSubscription;
+    isScreenerState = userData.user.screener_active;
+    console.log(`screene ${isScreenerState} ${current_state}`);
+    console.log(`screene ${isScreenerState}`);
+    if(isScreenerState && current_state == "Champions Club"){
+      window.location.href = "/campdashboard"; 
+    }else{
+      sweetAlert("OOPS...", `Your plan is ${current_state} \n Please upgrade to Champions Club`, "error");
+      subscribePlanDisplay();
+    }    
+  } catch (error) {
+    console.error(error);
+  }
+}
