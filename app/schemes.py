@@ -104,6 +104,8 @@ class CreateCoupon(BaseModel):
     discountFlat:int
     discountPercentage:float
     validDate:datetime
+class EditUser(BaseModel):
+    uid : str
 
 
 

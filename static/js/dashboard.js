@@ -166,7 +166,31 @@ async function account() {
   }
 }
 
+// With all the plan options
+// function subscribePlanDisplay() {
+//   let content = document.querySelector(".content");
+//   htmlContent = `<div class="subscription-box-container">
+//       <div class="subscription-box">
+//         <img src="static/images/champions_club.jpeg" alt="champions_club">
+//         <button class ="btn-subscribe" onclick="champions_club()">Join Now</button>
+//       </div>
+//       <div class="subscription-box">
+//           <img src="static/images/achivers_club.jpeg" alt="achivers_club">
+//           <button class ="btn-subscribe" onclick="achivers_club()">Join Now</button>
+//       </div>
+//       <div class="subscription-box">
+//           <img src="static/images/market_club.jpeg" alt="market_club">
+//           <button class ="btn-subscribe" onclick="market_club()">Join Now</button>
+//       </div>
+      
+//   </div>
+//   <div class="clearfix"></div>`;
+//   // Select the content element where you want to add the TradingView widget
 
+//   content.innerHTML = "";
+//   content.innerHTML = htmlContent;
+// }
+// The Function is without market club plan
 function subscribePlanDisplay() {
   let content = document.querySelector(".content");
   htmlContent = `<div class="subscription-box-container">
@@ -177,11 +201,7 @@ function subscribePlanDisplay() {
       <div class="subscription-box">
           <img src="static/images/achivers_club.jpeg" alt="achivers_club">
           <button class ="btn-subscribe" onclick="achivers_club()">Join Now</button>
-      </div>
-      <div class="subscription-box">
-          <img src="static/images/market_club.jpeg" alt="market_club">
-          <button class ="btn-subscribe" onclick="market_club()">Join Now</button>
-      </div>
+
       
   </div>
   <div class="clearfix"></div>`;

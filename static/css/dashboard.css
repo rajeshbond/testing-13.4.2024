@@ -248,10 +248,19 @@ main .content {
 /* subscription box  */
 /* Subscription box container styling */
 /* Styling for the container */
+
+/* with all the options in one place */
+/* .subscription-box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 5px; /* Increased for better spacing 
+  padding: 5px 0; /* Padding around the grid 
+}   */
 .subscription-box-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 5px; /* Increased for better spacing */
+  grid-auto-rows: minmax(100px, auto);
+  gap: 100px; /*Increased for better spacing*/
   padding: 5px 0; /* Padding around the grid */
 }
 

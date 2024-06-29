@@ -31,6 +31,7 @@ function dashboard() {
 
 async function showPopup() {
     const data = await getUserData();
+    console.log(data);
     isPaid = data.subscriptionDetails.free_trial_over;
     exp_date = dateconverter(data.subscriptionDetails.subscriptionEndDate);
     exp = new Date(exp_date);

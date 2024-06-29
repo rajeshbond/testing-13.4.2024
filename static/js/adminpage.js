@@ -131,12 +131,23 @@ usertab.addEventListener('click', async()=>{
       <td>${item.subscriptionDetails?item.subscriptionDetails.coupon_applied:"-"}</td>
       <td>${item.razorpayconfimation?item.razorpayconfimation.Amount:0}</td>
       <td>${item.subscriptionDetails?item.subscriptionDetails.subscriptionStatus:"-"}</td>
-      <td><button class="table-edit-button">Edit User</button></td>  
+      <td><button class="table-edit-button" id="edit-btn" data-index="${index}">Edit User</button></td>  
       </tr>` ;
          
     })
     
     tablebody.innerHTML = html;
+    userEditButton = document.querySelectorAll("#edit-btn");
+    userEditButton.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        let index = event.target.getAttribute('data-index');
+        // console.log(pureUserData[index].doc_id);
+        // const userid = pureUserData[index].doc_id;
+        const userid = pureUserData[index];
+        console.log(userid);       
+        editUser(userid);
+      });
+    });
   });
 
   const paidUser = document.querySelector('#paid-user');
@@ -158,7 +169,7 @@ usertab.addEventListener('click', async()=>{
       <td>${item.subscriptionDetails.subscriptionStatus}</td>
       <td><button class="table-edit-button">Edit User</button></td>  
       </tr>` ;
-      }
+      } 
          
     })
     
@@ -288,7 +299,7 @@ async function createCoupon(){
               <div class="input-box">
                   <label for="coupon-code">Coupon Code Name*:</label>
                   <input type="text" id="coupon-name" placeholder="Enter Coupon Code" required>
-                 <div class="coupon-applicable">
+                  <div class="coupon-applicable">
                   <label for="account-type">Coupon Applicable*:</label>
                   <select id="account-type" required>
                   <option value="All plans">All PLANS</option>
@@ -377,4 +388,8 @@ if(server.status_code == 200){
 }
 else{
     swal("Coupon Not Created", "Coupon not created", "error");}
+}
+
+function editUser(usedData){
+  console.log(`User id:- ${usedData.doc_id}`);
 }
