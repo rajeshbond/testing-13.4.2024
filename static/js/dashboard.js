@@ -244,13 +244,13 @@ function achivers_club(){
     planAmount = 9999;
     showPopup(plan=plan,planAmont = planAmount);
 }
-  
-function market_club(){
-  console.log("market_club");
-    plan = "Market Talk Club";
-    planAmount = 2999;
-    showPopup(plan=plan,planAmont = planAmount);
-}
+  // Market club is offline
+// function market_club(){
+//   console.log("market_club");
+//     plan = "Market Talk Club";
+//     planAmount = 2999;
+//     showPopup(plan=plan,planAmont = planAmount);
+// }
 
 function showPopup(plan, planAmount ) {
   // Create the popup elements
