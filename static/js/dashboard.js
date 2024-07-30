@@ -56,7 +56,22 @@ async function screener() {
     isScreenerState = userData.user.screener_active;
     // console.log(`screene ${isScreenerState}`);
     if(isScreenerState){
-      window.location.href = "/screener"; 
+      swal({
+        title: "Disclaimer",
+        text: "The data provided herein is sourced from reliable and authorized data providers. However, users are advised to exercise due diligence and verify the accuracy and completeness of the data independently. Neither the data provider nor any associated entity shall be liable for any errors, omissions, or losses arising from the use of this data. Investors should consult their financial advisors and consider their risk tolerance before making any investment decisions based on this information",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, I Agree!!!",
+        closeOnConfirm: false
+      },
+      function(){
+        swal.close();
+        // window.location.href = "/campdashboard"; 
+        window.location.href = "/screener"; 
+      });
+      
+      // window.location.href = "/screener"; 
     }else{
       sweetAlert("OOPS...", `your ${current_state} \n Please Join immediatley to the valid Plan`, "error");
       subscribePlanDisplay();
@@ -937,7 +952,30 @@ async function champDisplay() {
     console.log(`screene ${isScreenerState} ${current_state}`);
     console.log(`screene ${isScreenerState}`);
     if(isScreenerState && current_state == "Champions Club"){
-      window.location.href = "/campdashboard"; 
+      swal({
+        title: "Disclaimer",
+        text: "The data provided herein is sourced from reliable and authorized data providers. However, users are advised to exercise due diligence and verify the accuracy and completeness of the data independently. Neither the data provider nor any associated entity shall be liable for any errors, omissions, or losses arising from the use of this data. Investors should consult their financial advisors and consider their risk tolerance before making any investment decisions based on this information.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, I Agree!!!",
+        closeOnConfirm: false
+      }, function(){
+        swal.close();
+        window.location.href = "/campdashboard"; 
+      });
+      
+      // Apply custom styles after the swal is displayed
+      setTimeout(function() {
+        var swalText = document.querySelector('.swal-text');
+        if (swalText) {
+          swalText.style.maxHeight = '100px';
+          swalText.style.overflowY = 'auto';
+        }
+      }, 0);
+      
+      
+      // window.location.href = "/campdashboard"; 
     }else{
       sweetAlert("OOPS...", `Your plan is ${current_state} \n Please upgrade to Champions Club`, "error");
       subscribePlanDisplay();

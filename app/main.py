@@ -166,21 +166,24 @@ async def get_forgetpwd(request: Request):
     except Exception as e:
         return RedirectResponse(url="/")
     
-@app.get('/championscreener', response_class=HTMLResponse)
-async def get_gsheet(request: Request):
-    try:
-        user = request.session.get("user")
-        update_user_subsription(request)
-        db_data_user= db.collection('users').document(user['localId']).get().to_dict()
 
-        print(db_data_user)
+
     
-        if (db_data_user['screener_active']):
-            return templates.TemplateResponse("champion.html", {"request": request})
-        else:
-            return RedirectResponse(url="/dashboard")
-    except Exception as e:
-        return RedirectResponse(url="/")
+# @app.get('/championscreener', response_class=HTMLResponse)
+# async def get_gsheet(request: Request):
+#     try:
+#         user = request.session.get("user")
+#         update_user_subsription(request)
+#         db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+
+#         print(db_data_user)
+    
+#         if (db_data_user['screener_active']):
+#             return templates.TemplateResponse("champion.html", {"request": request})
+#         else:
+#             return RedirectResponse(url="/dashboard")
+#     except Exception as e:
+#         return RedirectResponse(url="/")
     
 
 @app.get('/screener', response_class=HTMLResponse)
@@ -211,7 +214,7 @@ async def champ_dashboard(request: Request):
         currentSubscription = db_data_user['subscriptionDetails']['currentSubscription']
         print(f"currentSubscription {currentSubscription} <----> screener_active {screener_active}")
         if (currentSubscription == 'Champions Club' or currentSubscription == 'Admin') and screener_active == True:
-            return templates.TemplateResponse("champion.html", {"request": request})
+            return templates.TemplateResponse("champapp.html", {"request": request})
         else:
             return RedirectResponse(url="/dashboard")
     
@@ -651,7 +654,7 @@ async def checkcoupon(disc: schemes.DiscountCode,request: Request):
                                 discount['valid'] = discount['valid'].isoformat(
                                 )   
                         # print(f"formated ------{discount}")
-                        if discount['valid'] < datetime.now().isoformat():
+                        if discount['valid'] <= datetime.now().isoformat():
                             # print('coupon expired')
                             return JSONResponse(content={"data":{'status':False,'coupon':'coupon expired','coupon_state':'not applicable'}}, status_code=status.HTTP_200_OK)    
                         return JSONResponse(content={"data":{'status':True,'coupon':disc.code,'discount_multiplier':discount['discount_multiplier'],'discount_flat':discount['discount_flat']}}, status_code=status.HTTP_200_OK)                
@@ -917,6 +920,51 @@ async def createAllCoupon(coup:schemes.CreateCoupon, request: Request):
                 return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Admin User")
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+    
+
+@app.post('/backup', status_code=status.HTTP_200_OK)
+async def backup(request: Request):
+    try:
+        user = request.session.get("user")
+        print(user)
+        if not user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User is not Logged In")
+        
+        # Initialize Firestore DB
+        db = firestore.client()
+        db_user = db.collection('users').document(user['localId']).get().to_dict()
+        print(db_user)
+        if not db_user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+        
+        if db_user.get('isUserAdmin'):
+            # Add backup code
+            result = backup_firebase_data()
+            return result
+        else:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User is not an Admin User")
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+
+
+# @app.post('/backup', status_code=status.HTTP_200_OK)
+# async def backup(request: Request):
+#     try:
+#         user = request.session.get("user")
+#         if not user:
+#             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+#         else:
+
+#             db_user = db.collection('users').document(user['localId']).get().to_dict()
+#             if db_user.get('isUserAdmin'):
+#                 pass 
+#                 #Add backup code
+#             else: 
+#                 return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Admin User")
+#     except Exception as e:
+#         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+    
+
 
 # ------------------------ Methods -------------------------------------------
 def assign_permission(senderEmail,name , plan):
@@ -1015,7 +1063,6 @@ def update_user_subsription(current_user):
 
 
 def revokeGoogleSheetPermission(current_user):
-    
     email_address = current_user
     # print(f"---email-----{email_address}")
     try:
@@ -1053,5 +1100,33 @@ def revokeGoogleSheetPermission(current_user):
         raise HTMLResponse(status_code= 400 , detail = "Invalid Credentials")
     pass
 
+def doc_snapshots_to_dict(snapshots):
+    return [doc.to_dict() for doc in snapshots]
 
+# Backup function
+def backup_firebase_data():
+    try:
+        # Initialize Firestore DB
+        # Backup files
+        user_backup_file = 'firebase_user_backup.json'
+        referal_backup_file = 'firebase_referal_backup.json'
+
+        # Get data from Firestore
+        user_snapshots = db.collection('users').get()
+        referal_snapshots = db.collection('referal').get()
+
+        # Convert DocumentSnapshots to dictionaries
+        user_backup = doc_snapshots_to_dict(user_snapshots)
+        referal_backup = doc_snapshots_to_dict(referal_snapshots)
+
+        # Save the data to local JSON files
+        with open(user_backup_file, 'w') as user_file:
+            json.dump(user_backup, user_file, indent=2)
+
+        with open(referal_backup_file, 'w') as referal_file:
+            json.dump(referal_backup, referal_file, indent=2)
+
+        return {"message": f"Backup completed and saved to {user_backup_file} and {referal_backup_file}"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
