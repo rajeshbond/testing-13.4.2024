@@ -1,0 +1,80 @@
+[
+  {
+    "created_at": "2024-07-04T20:52:55.510103",
+    "uid": "1VG8KWmJF0M4q9MlmHrmHCpMopp1",
+    "terms": true,
+    "bankDetails": {
+      "ifscCode=": "ICIC0000016",
+      "nameOnBank": "Georgee Zacharia",
+      "bankName": "ICICI BANK",
+      "accountType": "SAVINGS"
+    },
+    "payableReferal": 0,
+    "refralAmount": 0,
+    "refralAccount": 0,
+    "users": [
+      "6nzaZ17CvjYHR1iSDw9LNrGVrAK2",
+      "y0bey0R2ITZ0B7Is7jBnvg1TrKr1"
+    ]
+  },
+  {
+    "created_at": "2024-06-03T23:19:10.943015",
+    "uid": "3csjUGdonDTK59TpzNCfopwFSuw2",
+    "terms": true,
+    "bankDetails": {
+      "ifscCode=": "Vhb",
+      "nameOnBank": "Trx",
+      "bankName": "Gdcg",
+      "accountType": "SAVINGS"
+    },
+    "payableReferal": 0,
+    "refralAmount": 0,
+    "refralAccount": 0,
+    "users": [
+      "hLNh1Z5jreTiQ5coNhCt0TZUjRs2",
+      "3yl7560PtTXCAyWjsMiLzbk5f262"
+    ]
+  },
+  {
+    "created_at": "2024-07-31T07:48:02.039061",
+    "uid": "7qcckpQCA2dTEqZJfVelO8Uhbf92",
+    "terms": true,
+    "bankDetails": {
+      "ifscCode=": "UTIB0000032",
+      "nameOnBank": "MARMIK DOSHI",
+      "bankName": "AXIS BANK",
+      "accountType": "SAVINGS"
+    },
+    "payableReferal": 0,
+    "refralAmount": 0,
+    "refralAccount": 0
+  },
+  {
+    "created_at": "2024-06-03T21:55:33.358699",
+    "uid": "Df53u6YcoKPdP1qWS1xhkuZFwQ13",
+    "terms": true,
+    "bankDetails": {
+      "ifscCode=": "rest",
+      "nameOnBank": "test",
+      "bankName": "tesr",
+      "accountType": "CURRENT"
+    },
+    "payableReferal": 0,
+    "refralAmount": 0,
+    "refralAccount": 0
+  },
+  {
+    "created_at": "2024-07-28T17:38:48.249309",
+    "uid": "NMmzjrfNAsTvCTkOFMagqmBzRnB2",
+    "terms": true,
+    "bankDetails": {
+      "ifscCode=": "cnrb0018378",
+      "nameOnBank": "madhu bindal",
+      "bankName": "canara bank",
+      "accountType": "SAVINGS"
+    },
+    "payableReferal": 0,
+    "refralAmount": 0,
+    "refralAccount": 0
+  }
+]

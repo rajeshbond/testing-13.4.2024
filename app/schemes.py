@@ -106,7 +106,16 @@ class CreateCoupon(BaseModel):
     validDate:datetime
 class EditUser(BaseModel):
     uid : str
+    planToChange:str
+    # mobile : str
 
+
+class EditMobile(BaseModel):
+    mobile : str
+    uid : str
+
+class GetUser(BaseModel):
+    uid : str
 
 
   

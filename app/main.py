@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI, HTTPException, status, WebSocket
+from fastapi import FastAPI, HTTPException, status, WebSocket, Response
 from fastapi.responses import HTMLResponse, JSONResponse
 import random , uuid
 from starlette.middleware.sessions import SessionMiddleware
@@ -82,7 +82,11 @@ templates = Jinja2Templates(directory="templates")
 
 
 # ---------------------Define Functions  -------------------------------------------
-
+def add_cache_control_headers(response: Response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
 def refresh_id_token(current_id_token):
     try:
         # Verify the current ID token
@@ -212,7 +216,7 @@ async def champ_dashboard(request: Request):
         # print(db_data_user)
         screener_active = db_data_user['screener_active']
         currentSubscription = db_data_user['subscriptionDetails']['currentSubscription']
-        print(f"currentSubscription {currentSubscription} <----> screener_active {screener_active}")
+        # print(f"currentSubscription {currentSubscription} <----> screener_active {screener_active}")
         if (currentSubscription == 'Champions Club' or currentSubscription == 'Admin') and screener_active == True:
             return templates.TemplateResponse("champapp.html", {"request": request})
         else:
@@ -351,13 +355,13 @@ def signup(request: schemes.Signup):
     pasword = request.password
     mobile = request.mobile
     referal = request.referral_code
-    print(referal)
+    # print(referal)
     try:
         user = auth.create_user(
             email=email,
             password=pasword
         )
-        print(user.uid)
+        # print(user.uid)
 
         data = {
             'uid':user.uid,
@@ -380,7 +384,7 @@ def signup(request: schemes.Signup):
             'isEmailVerified': False,
             'created_at': datetime.now().isoformat(),
         } 
-        print(data)
+        # print(data)
         # email_verification_link = auth.generate_email_verification_link(email=email)
      
         # send_mail.send_verification_email(email_to=email, update_link=email_verification_link)     
@@ -507,6 +511,19 @@ async def subscribe(request:Request):
     
 
 # ------------------------post Method -------------------------------------------
+@app.post('/api/getUserData', status_code=status.HTTP_200_OK)
+async def get_user_data(userID: schemes.GetUser,request: Request):
+
+    try:
+        # print(userID.uid)
+        
+        db_user = db.collection('users').document(userID.uid).get().to_dict()
+        # print(db_user)
+        return JSONResponse(content={"data":db_user}, status_code=status.HTTP_200_OK)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Error while getting user data: {e}")
+    
+
 @app.post('/revoke')
 async def revoke_permission(user_data:schemes.UserData,request: Request):
     user = request.session.get("user")
@@ -822,14 +839,13 @@ async def fetchRefRegister(request: Request):
             # userRecords = db.collection('users').get()
             # userRec = []
             # userRec = [{**doc.to_dict(), "doc_id": doc.id} for doc in userRecords]
-            # print(f"userRecord {userRec}")
+           
             parent_doc_ref = db.collection('referal').document(user['localId'])
             user1 = parent_doc_ref.get().to_dict()
             subcollection_ref = parent_doc_ref.collection('ReferedClient')
             query_snapshot = subcollection_ref.where("subscriptionDetails.refPaid","==",False).get()
             entries = []
             entries = [{**doc.to_dict(),"doc_id": doc.id } for doc in query_snapshot]
-            # print(entries)
             return JSONResponse(content={"user":user1,"refRecord":entries}, status_code=status.HTTP_200_OK)
         else:
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
@@ -863,7 +879,6 @@ async def updare_record(uprec:schemes.UpdateRecord,request: Request):
     
 @app.post('/referral', status_code=status.HTTP_200_OK)
 async def referal(ref:schemes.Referal,request: Request):
-    # print(ref)
     ref_uid = ref.uid
     try:
         user = request.session.get("user")
@@ -893,11 +908,33 @@ async def referal(ref:schemes.Referal,request: Request):
             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
-    pass
+@app.post('/api/createUserCoupon', status_code=status.HTTP_200_OK)
+def createUserCoupon(coup1:schemes.CreateCoupon, request: Request):
+    try:
+        user = request.session.get("user")
+        if not user:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+        else:
 
+            db_user = db.collection('users').document(user['localId']).get().to_dict()
+            if db_user.get('isUserAdmin'):
+                coup_data={
+                     "applicablePlan":coup1.couponApplicable,
+                     "applicable":coup1.applicable,
+                     "discount_flat":coup1.discountFlat,
+                     "discount_multiplier":coup1.discountPercentage,
+                     "valid":coup1.validDate,
+                     "coupon_used":False,
+                }
+          
+                db.collection('coupon').document(coup1.couponName.upper()).set(coup_data)
+                return HTTPException(status_code=status.HTTP_200_OK, detail=f"Coupon created Scucessfully")
+            else: 
+                return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Admin User")
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
 @app.post('/createAllCoupon', status_code=status.HTTP_200_OK)
 async def createAllCoupon(coup:schemes.CreateCoupon, request: Request):
-    # print("Create coupon API called")
     try:
         user = request.session.get("user")
         if not user:
@@ -921,8 +958,86 @@ async def createAllCoupon(coup:schemes.CreateCoupon, request: Request):
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
     
+@app.post('/editMobile', status_code=status.HTTP_200_OK)
+async def editUserMobile(mobile:schemes.EditMobile, request: Request):
+    try:
+        user = request.session.get("user")
+        if not user:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+        else:
 
-@app.post('/backup', status_code=status.HTTP_200_OK)
+            db_user = db.collection('users').document(user['localId']).get().to_dict()
+            if db_user.get('isUserAdmin'):
+                data = {
+                    "mobile": mobile.mobile
+                }
+                db.collection('users').document(mobile.uid).update(data)
+                return HTTPException(status_code=status.HTTP_200_OK, detail=f"Mobile Updated Scucessfully")
+            else: 
+                return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Admin User")
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+    
+@app.post('/api/editUserSubscription', status_code=status.HTTP_200_OK)
+async def editUserSubscrition(sub:schemes.EditUser, request: Request):
+
+    flag = 1
+    try:
+        user = request.session.get("user")
+        if not user:
+            return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
+        else:
+
+            db_user = db.collection('users').document(user['localId']).get().to_dict()
+            if db_user.get('isUserAdmin'):
+
+                db_user_data = db.collection('users').document(sub.uid).get().to_dict()
+
+          
+                db_user_data['subscriptionDetails']['subscriptionDate'] = ensure_isoformat(db_user_data['subscriptionDetails']['subscriptionDate'])
+                db_user_data['subscriptionDetails']['subscriptionEndDate'] = ensure_isoformat(db_user_data['subscriptionDetails']['subscriptionEndDate'])
+
+                if sub.planToChange == 'Free - trial - 90 days':
+                    subEnd = (db_user_data['subscriptionDetails']['subscriptionEndDate']).isoformat()
+                elif sub.planToChange == 'Champions Club' or sub.planToChange == 'Achivers Club':
+                    subEnd = (datetime.now() + timedelta(364*25)).isoformat()
+                elif sub.planToChange == 'Market Talk Club':
+                    subEnd = (db_user_data['subscriptionDetails']['subscriptionDate'] + timedelta(364)).isoformat()
+                else:
+                    return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Invalid Subscription Plan")
+                if not db_user_data['screener_active']:
+                    flag = 0
+                subscriptionStatus = {
+                    'free_trial_over':True,
+                    'paidSubscription':True,
+                    'subscriptionDate':db_user_data['subscriptionDetails']['subscriptionDate'].isoformat(),
+                    'subscriptionEndDate':subEnd,
+                    'subscriptionStatus':'Active',
+                    'currentSubscription':sub.planToChange,
+                    'coupon_applied': "TRIAL90" if sub.planToChange == "Free - trial - 90 days" else "Admin Upgrade"
+                }
+                razorpayconfimation = {
+                    'Amount': float(0.0)
+                }
+                data = {
+                    "screener_active": True,
+                    "subscriptionDetails": subscriptionStatus,
+                    "razorpayconfimation": razorpayconfimation,   
+                }  
+                db.collection('users').document(sub.uid).update(data)
+                if flag == 0:
+                    assign_permission(senderEmail=db_user_data['email'], name=db_user_data['name'], plan=sub.planToChange)
+                else:
+                    send_mail.send_confirmation_email(email_to=db_user_data['email'], name=db_user_data['name'], plan=sub.planToChange)
+
+                return HTTPException(status_code=status.HTTP_200_OK, detail=f"User Updated Scucessfully {data} ")
+            else: 
+                return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Admin User")
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+
+
+@app.post('/api/backup', status_code=status.HTTP_200_OK)
 async def backup(request: Request):
     try:
         user = request.session.get("user")
@@ -947,22 +1062,7 @@ async def backup(request: Request):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
 
 
-# @app.post('/backup', status_code=status.HTTP_200_OK)
-# async def backup(request: Request):
-#     try:
-#         user = request.session.get("user")
-#         if not user:
-#             return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Logged In")
-#         else:
 
-#             db_user = db.collection('users').document(user['localId']).get().to_dict()
-#             if db_user.get('isUserAdmin'):
-#                 pass 
-#                 #Add backup code
-#             else: 
-#                 return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Admin User")
-#     except Exception as e:
-#         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
     
 
 
@@ -1130,3 +1230,9 @@ def backup_firebase_data():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+def ensure_isoformat(date_field):
+    if isinstance(date_field, str):
+        return datetime.fromisoformat(date_field)
+    # if isinstance(date_field, datetime):
+    #     return date_field.isoformat()
+    return date_field
