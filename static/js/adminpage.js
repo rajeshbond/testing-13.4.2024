@@ -503,7 +503,7 @@ async function openEditPOP(uid){
           <button type="button" onclick="editPlan()"><i class="fa-solid fa-pen-to-square small-btn"></i></button>
           <br><br>
           <div class="create-coupon1">
-            <button type="button" id="create-coupon" onclick="createCouponUser('${userData.uid}')"><i class="fa-solid fa-ticket"></i> User Coupon</button>
+            <button type="button" id="create-coupon1" onclick="createCouponUser('${userData.uid}')"><i class="fa-solid fa-ticket"></i> User Coupon</button>
           </div>
           <br><br>
           <div class="conf">
@@ -537,7 +537,7 @@ function createCouponUser(userUid){
           <button id="close-btn-pop" onclick="closeCreateCoupon()"><i class="fa-solid fa-xmark"></i></button>
           <div class="form">
               <form action="">
-                  <!-- <h2 class="pop-titile">Create Coupon</h2> -->
+                  <h2 class="pop-titile">Coupon for User</h2> 
                   <div class="input-box">
                       <label for="coupon-code">Coupon Code Name*:</label>
                       <input type="text" id="coupon-name" placeholder="Enter Coupon Code" required>
