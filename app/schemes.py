@@ -87,6 +87,7 @@ class Referal(BaseModel):
     bankName: str
     ifscCode: str
     accountType: str
+    accountNumber: str
     terms:bool
 
 class Coupon(BaseModel):
