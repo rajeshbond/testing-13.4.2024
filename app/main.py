@@ -246,7 +246,8 @@ async def get_dashboard(request: Request):
         if db_data_user:
             # print(f"-----------------{db_data_user}")
             update_user_subsription(request)
-            return templates.TemplateResponse("dashboard.html", {"request": request })
+            # return templates.TemplateResponse("dashboard.html", {"request": request })
+            return templates.TemplateResponse("new_dashboard.html", {"request": request })
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(f"error {e}"))
 
