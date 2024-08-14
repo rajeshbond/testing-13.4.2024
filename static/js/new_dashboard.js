@@ -82,7 +82,7 @@ async function updateUsername() {
     // console.log(userData);
     const username = userData.user.name;
     const userStatus = userData.user.isSubscribed;
-    document.querySelector("#username").innerText = username;
+    document.querySelector("#username").innerHTML  = `<i class="fa-solid fa-user"></i> ${username}`;
   } catch (error) {
     console.error(error);
   }
