@@ -274,7 +274,8 @@ footer {
   display: flex;
   /* grid-template-columns: 33% 33% 33%; */
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly
+  ;
   align-items:  start;
 }
 .footer-table .footer-table__left, .footer-table .footer-table__center, .footer-table .footer-table__right{
