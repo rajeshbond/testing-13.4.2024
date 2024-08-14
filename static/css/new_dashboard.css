@@ -238,7 +238,7 @@ main {
 
 footer {
   background-color: #01A75A;
-  color: var(--clr-white);
+  /* color: var(--clr-white); */
   text-align: center;
   padding: 1rem;
   overflow-x: auto;
@@ -262,14 +262,14 @@ footer {
 
 
 .footer-table__center a,.footer-table__right a, .footer-table__left a{
-  color: #fff;
+  color: black;
   width: 33%;
   text-decoration: none;
   margin-left: 1rem;
   font-size: 1.2rem;
 }
 .copy-right-footer p a{
-  color: #fff;
+  color: black;
   font-size: 1.2rem;
   margin: 0;
   text-decoration: none;
