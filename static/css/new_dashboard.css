@@ -452,6 +452,7 @@ img .btn-subscribe {
   width: 100%;
   text-align: center;
   position: relative;
+  z-index: 500;
 }
 
 .popup-bank-details {
