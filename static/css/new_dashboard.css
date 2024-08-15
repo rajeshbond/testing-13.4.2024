@@ -226,7 +226,7 @@ header .title {
   align-items: center;
   overflow-x: auto; /* Enable horizontal scrolling on small screens */
   overflow-y: hidden; /* Hide vertical scrollbar */
-  z-index: 500; /* Ensure it's above other content */
+  z-index: 100; /* Ensure it's above other content */
 }
 
 .sub-header-menu__nav::-webkit-scrollbar {
