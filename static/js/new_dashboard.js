@@ -291,23 +291,6 @@ async function championsDashboard() {
   `;
   subMenuNavBar.innerHTML = champHTML;
 }
-// function championsDashboard() {
-//   displayNone();
-//   const img = document.querySelector('.main .img-container img');
-//         if (img) {
-//             img.style.display = "block";
-//         }
-//   const subMenuNavBar = document.querySelector('.sub-header-menu__nav1');
-//   subMenuNavBar.style.display = "flex";
-  
-//   // console.log(activeBoard);
-//   let champHTML = `
-//       <li><a href="#" onclick="traderboard()">Trader Board</a></li>
-//       <li><a href="#" onclick="investorboard()">Investor Board</a></li>
-//   `;
-//   champHTML += ``;
-//   subMenuNavBar.innerHTML = champHTML;
-// }
 
 
 async function achiversDashboard() {
@@ -325,24 +308,11 @@ async function achiversDashboard() {
   }
 
   let champHTML = `
-    <li><a href="#" onclick="achiversboard()">Achivers Screener</a></li>
+    <li><a href="#" onclick="achiversboard()">Achivers Board</a></li>
   `;
   subMenuNavBar.innerHTML = champHTML;
 }
-// async function achiversDashboard(){
-//   displayNone();
-//   const img = document.querySelector('.main .img-container img');
-//         if (img) {
-//             img.style.display = "block";
-//         }
-//   const subMenuNavBar = document.querySelector('.sub-header-menu__nav1');
-//   subMenuNavBar.style.display = "flex";
-//   let champHTML = `
-//       <li><a href="#" onclick="achiversboard()">Achivers Screener</a></li>
-//   `;
-//   champHTML += ``;
-//   subMenuNavBar.innerHTML = champHTML;
-// }
+
 
 async function traderboard() {
   // console.log("Traders Board");

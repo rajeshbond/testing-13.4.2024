@@ -321,7 +321,7 @@ header .title {
   background: white;
   position: fixed;
   top: 8rem; /* Ensure it sticks below the main header */
-  left: 0;
+  left: 1.2rem;
   align-items: center;
   overflow-x: auto; /* Enable horizontal scrolling on small screens */
   overflow-y: hidden; /* Hide vertical scrollbar */
