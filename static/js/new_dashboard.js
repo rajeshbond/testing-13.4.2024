@@ -1,7 +1,7 @@
 let RAZORPAY_id
 const referbth = document.getElementById("refer");
 const closeBtn = document.querySelector("#close-btn");
-
+displayNone();
 
 document.addEventListener('DOMContentLoaded', function() {
   const menuIcon = document.querySelector('.header-menu__icon');
@@ -233,20 +233,8 @@ async function screener() {
     isScreenerState = userData.user.screener_active;
     // console.log(`screene ${isScreenerState}`);
     if(isScreenerState){
-      swal({
-        title: "Disclaimer",
-        text: "The data provided herein is sourced from reliable and authorized data providers. However, users are advised to exercise due diligence and verify the accuracy and completeness of the data independently. Neither the data provider nor any associated entity shall be liable for any errors, omissions, or losses arising from the use of this data. Investors should consult their financial advisors and consider their risk tolerance before making any investment decisions based on this information",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, I Agree!!!",
-        closeOnConfirm: false
-      },
-      function(){
-        swal.close();
-        // window.location.href = "/campdashboard"; 
-        window.location.href = "/screener"; 
-      });
+      // ShowDisclaimer("screener");
+      achiversDashboard();
       
       // window.location.href = "/screener"; 
     }else{
@@ -260,43 +248,20 @@ async function screener() {
 
 // Champions Club
 
-function ShowDisclaimer(){
-  console.log("disclaimer");
-}
+
+
 
 async function champDisplay() {
-  console.log("champDisplay Rajesh");
+  // console.log("champDisplay Rajesh");
   try {
     const userData = await getUserData();
     current_state = userData.user.subscriptionDetails.currentSubscription;
     isScreenerState = userData.user.screener_active;
-    console.log(`screene ${isScreenerState} ${current_state}`);
-    console.log(`screene ${isScreenerState}`);
+    // console.log(`screene ${isScreenerState} ${current_state}`);
+    // console.log(`screene ${isScreenerState}`);
     if(isScreenerState && current_state == "Champions Club"){
-      swal({
-        title: "Disclaimer",
-        text: "The data provided herein is sourced from reliable and authorized data providers. However, users are advised to exercise due diligence and verify the accuracy and completeness of the data independently. Neither the data provider nor any associated entity shall be liable for any errors, omissions, or losses arising from the use of this data. Investors should consult their financial advisors and consider their risk tolerance before making any investment decisions based on this information.",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, I Agree!!!",
-        closeOnConfirm: false
-      }, function(){
-        swal.close();
-        window.location.href = "/campdashboard"; 
-      });
-      
-      // Apply custom styles after the swal is displayed
-      setTimeout(function() {
-        var swalText = document.querySelector('.swal-text');
-        if (swalText) {
-          swalText.style.maxHeight = '100px';
-          swalText.style.overflowY = 'auto';
-        }
-      }, 0);
-      
-      
-      // window.location.href = "/campdashboard"; 
+      championsDashboard(); 
+    
     }else{
       sweetAlert("OOPS...", `Your plan is ${current_state} \n Please upgrade to Champions Club`, "error");
       subscribePlanDisplay();
@@ -306,7 +271,93 @@ async function champDisplay() {
   }
 }
 
+async function championsDashboard() {
+  // Await the completion of displayNone
+  await displayNone();
 
+  const img = document.querySelector('.img-container img');
+  // if (img) {
+  //   img.style.display = "none";
+  // }
+
+  const subMenuNavBar = document.querySelector('.sub-header-menu__nav1');
+  if (subMenuNavBar) {
+    subMenuNavBar.style.display = "flex";
+  }
+
+  let champHTML = `
+    <li><a href="#" onclick="traderboard()">Trader Board</a></li>
+    <li><a href="#" onclick="investorboard()">Investor Board</a></li>
+  `;
+  subMenuNavBar.innerHTML = champHTML;
+}
+// function championsDashboard() {
+//   displayNone();
+//   const img = document.querySelector('.main .img-container img');
+//         if (img) {
+//             img.style.display = "block";
+//         }
+//   const subMenuNavBar = document.querySelector('.sub-header-menu__nav1');
+//   subMenuNavBar.style.display = "flex";
+  
+//   // console.log(activeBoard);
+//   let champHTML = `
+//       <li><a href="#" onclick="traderboard()">Trader Board</a></li>
+//       <li><a href="#" onclick="investorboard()">Investor Board</a></li>
+//   `;
+//   champHTML += ``;
+//   subMenuNavBar.innerHTML = champHTML;
+// }
+
+
+async function achiversDashboard() {
+  // Await the completion of displayNone
+  await displayNone();
+
+  const img = document.querySelector('.img-container img');
+  // if (img) {
+  //   img.style.display = "none";
+  // }
+
+  const subMenuNavBar = document.querySelector('.sub-header-menu__nav1');
+  if (subMenuNavBar) {
+    subMenuNavBar.style.display = "flex";
+  }
+
+  let champHTML = `
+    <li><a href="#" onclick="achiversboard()">Achivers Screener</a></li>
+  `;
+  subMenuNavBar.innerHTML = champHTML;
+}
+// async function achiversDashboard(){
+//   displayNone();
+//   const img = document.querySelector('.main .img-container img');
+//         if (img) {
+//             img.style.display = "block";
+//         }
+//   const subMenuNavBar = document.querySelector('.sub-header-menu__nav1');
+//   subMenuNavBar.style.display = "flex";
+//   let champHTML = `
+//       <li><a href="#" onclick="achiversboard()">Achivers Screener</a></li>
+//   `;
+//   champHTML += ``;
+//   subMenuNavBar.innerHTML = champHTML;
+// }
+
+async function traderboard() {
+  // console.log("Traders Board");
+  ShowDisclaimer("traderboard");
+}
+async function investorboard() {
+  // console.log("Inverstor Board");
+
+  ShowDisclaimer("investorboard");
+}
+async function achiversboard() {
+
+  console.log("Achivers Board");
+  ShowDisclaimer("screener");
+}
 
 
 // date converter 
@@ -963,9 +1014,58 @@ async function userReferalRegistration(data = referUserData){ {;
     return response;
 }}
 
+
+// mislenious functions
 async function fetchReferralData(){
   const response = await fetch("/api/fetchRefRecord");
   const data = await response.json();
   console.log(data);
   return data
 }
+
+// Make sure to use async/await correctly
+async function displayNone() {
+  document.querySelector('.sub-header-menu__nav1').style.display = "none";
+  // const img = document.querySelector('.img-container img');
+  // if (!img) {
+  //   img.style.display = "block";
+  // }
+}
+
+// Show notificaton 
+
+function ShowDisclaimer(page){
+  console.log("disclaimer");
+  swal({
+    title: "Disclaimer",
+    text: "The data provided herein is sourced from reliable and authorized data providers. However, users are advised to exercise due diligence and verify the accuracy and completeness of the data independently. Neither the data provider nor any associated entity shall be liable for any errors, omissions, or losses arising from the use of this data. Investors should consult their financial advisors and consider their risk tolerance before making any investment decisions based on this information.",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Yes, I Agree!!!",
+    closeOnConfirm: false
+  }, function(){
+    swal.close();
+    // window.location.href = `/${page}`; 
+    if (page == "traderboard") {
+      window.location.href = `/${page}`;
+    }
+    else if (page == "investorboard") {
+      window.location.href = `/${page}`;
+      // window.location.href = `/${page}`;
+    }
+    else if (page == "screener") {
+      window.location.href = `/${page}`;  
+    }else{
+      return;
+    }
+  });
+  setTimeout(function() {
+    var swalText = document.querySelector('.swal-text');
+    if (swalText) {
+      swalText.style.maxHeight = '100px';
+      swalText.style.overflowY = 'auto';
+    }
+  }, 0);
+}
+

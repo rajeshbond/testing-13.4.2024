@@ -5,6 +5,25 @@ const url = baseurl + dymanicurl;
 console.log(url);
 let count = 0;
 
+function dashboard() {
+  try{
+      // console.log("dashboard");
+      window.location.href = "/dashboard"; 
+  }catch(e){
+      console.log(e);
+  }
+}
+
+function swipedashboard() {
+  try{
+      // console.log("swipedashboard");
+      window.location.href = "/investorboard"; 
+  }catch(e){
+      console.log(e);
+  }
+}
+
+
 async function fetchData(conditionName) {
   try {
     const response = await fetch(url, {

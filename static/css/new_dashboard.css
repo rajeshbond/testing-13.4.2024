@@ -229,7 +229,7 @@ header .title {
   /* Solid font color when active */
 }
 
-.username {
+/* .username {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
@@ -244,7 +244,7 @@ header .title {
 .username i {
   margin-right: 4px;
   color: black;
-}
+} */
 
 .header-menu__nav i {
   margin-right: 8px;
@@ -267,18 +267,12 @@ header .title {
   /* Ensure it sticks below the main header */
   left: 0;
   align-items: center;
-<<<<<<< HEAD
   overflow-x: auto;
   /* Enable horizontal scrolling on small screens */
   overflow-y: hidden;
   /* Hide vertical scrollbar */
   z-index: 100;
   /* Ensure it's above other content */
-=======
-  overflow-x: auto; /* Enable horizontal scrolling on small screens */
-  overflow-y: hidden; /* Hide vertical scrollbar */
-  z-index: 100; /* Ensure it's above other content */
->>>>>>> ef25841deaf4493a10827a0c7133c82552dfbbd2
 }
 
 .sub-header-menu__nav::-webkit-scrollbar {
@@ -314,6 +308,50 @@ header .title {
   /* Solid background color when active */
   color: var(--clr-white) !important;
   /* Solid font color when active */
+}
+
+
+
+/* re main */
+
+.sub-header-menu__nav1 {
+  width: auto;
+  height: 3rem; /* Adjusted height for better spacing */
+  display: none;
+  background: white;
+  position: fixed;
+  top: 8rem; /* Ensure it sticks below the main header */
+  left: 0;
+  align-items: center;
+  overflow-x: auto; /* Enable horizontal scrolling on small screens */
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  z-index: 100; /* Ensure it's above other content */
+}
+
+.sub-header-menu__nav1::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.sub-header-menu__nav1 a {
+  padding: 0.5rem 1rem;
+  color: var(--clr-black); /* Solid font color */
+  font-size: 1.025rem; /* Adjusted font size */
+  font-weight: 500;
+  white-space: nowrap; /* Prevent text wrapping */
+  text-decoration: none;
+  background-color: transparent; /* Solid background color */
+  border: 1px solid transparent; /* Transparent border to handle hover state */
+}
+
+.sub-header-menu__nav1 a:hover {
+  /* color: var(--clr-white); */
+  color: #222;
+  background: #E7A72D;
+  border-radius: 1.2rem;
+}
+
+.sub-header-menu__nav1 a:active {
+  background-color: #E7A72D; /* Solid background color when active */
 }
 
 main {
@@ -399,8 +437,9 @@ main .img-container img {
   max-height: 100%;
   width: auto;
   height: auto;
-  display: block;
+  display: flexbox;
   object-fit: cover;
+  /* z-index: 150; */
   /* Ensures the image covers the container, maintaining aspect ratio */
 }
 
@@ -411,36 +450,6 @@ main .img-container img {
   display: none;
 }
 
-/* user -info Account */
-.user-info {
-  max-width: felx;
-  margin: 50px auto;
-  padding: 20px;
-  border: none;
-  border-radius: 5px;
-}
-
-.user-info h2 {
-  text-align: center;
-  font-size: 24px;
-  border: 2px solid var(--clr-grey);
-  padding: 10px;
-  border: 0.2rem solid #E7A72D;
-  border-radius: 5px;
-  margin-bottom: 2.5rem;
-
-}
-
-.user-info span {
-  margin-left: 0.8rem;
-}
-
-.user-info p {
-  margin-left: 35px;
-  margin-bottom: 3rem;
-  font-size: 18px;
-  font-weight: bold;
-}
 
 /* Styling for images within subscription boxes */
 .subscription-box-container {
