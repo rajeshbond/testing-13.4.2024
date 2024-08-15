@@ -267,12 +267,18 @@ header .title {
   /* Ensure it sticks below the main header */
   left: 0;
   align-items: center;
+<<<<<<< HEAD
   overflow-x: auto;
   /* Enable horizontal scrolling on small screens */
   overflow-y: hidden;
   /* Hide vertical scrollbar */
   z-index: 100;
   /* Ensure it's above other content */
+=======
+  overflow-x: auto; /* Enable horizontal scrolling on small screens */
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  z-index: 100; /* Ensure it's above other content */
+>>>>>>> ef25841deaf4493a10827a0c7133c82552dfbbd2
 }
 
 .sub-header-menu__nav::-webkit-scrollbar {
