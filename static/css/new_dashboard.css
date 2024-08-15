@@ -64,7 +64,7 @@ header {
   position: fixed; /* Fixed positioning to stay at the top */
   top: 0;
   left: 0;
-  z-index: 1000; /* Ensure header stays on top */
+  z-index: 500; /* Ensure header stays on top */
 }
 
 header .logo img {
