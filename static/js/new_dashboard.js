@@ -79,10 +79,12 @@ async function dashboard(){
 async function updateUsername() {
   try {
     const userData = await getUserData();
-    // console.log(userData);
+    // console.log(userData.user.name);
+    // console.log(document.querySelector("#username"));
     const username = userData.user.name;
     const userStatus = userData.user.isSubscribed;
-    document.querySelector("#username").innerHTML  = `<i class="fa-solid fa-user"></i> ${username}`;
+    const user = document.querySelector("#username").innerHTML  = `<i class="fa-solid fa-user"></i> ${username}`;
+    // console.log(user);
   } catch (error) {
     console.error(error);
   }

@@ -173,22 +173,6 @@ async def get_forgetpwd(request: Request):
 
 
     
-# @app.get('/championscreener', response_class=HTMLResponse)
-# async def get_gsheet(request: Request):
-#     try:
-#         user = request.session.get("user")
-#         update_user_subsription(request)
-#         db_data_user= db.collection('users').document(user['localId']).get().to_dict()
-
-#         print(db_data_user)
-    
-#         if (db_data_user['screener_active']):
-#             return templates.TemplateResponse("champion.html", {"request": request})
-#         else:
-#             return RedirectResponse(url="/dashboard")
-#     except Exception as e:
-#         return RedirectResponse(url="/")
-    
 
 @app.get('/screener', response_class=HTMLResponse)
 async def get_gsheet(request: Request):
@@ -221,11 +205,60 @@ async def champ_dashboard(request: Request):
             return templates.TemplateResponse("champapp.html", {"request": request})
         else:
             return RedirectResponse(url="/dashboard")
+    except Exception as e:
+        return RedirectResponse(url="/")
+# @app.get('/campdashboard', response_class=HTMLResponse)
+# async def champ_dashboard(request: Request):
+#     try:
+#         user = request.session.get("user")
+#         update_user_subsription(request)
+#         db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+#         # print(db_data_user)
+#         screener_active = db_data_user['screener_active']
+#         currentSubscription = db_data_user['subscriptionDetails']['currentSubscription']
+#         # print(f"currentSubscription {currentSubscription} <----> screener_active {screener_active}")
+#         if (currentSubscription == 'Champions Club' or currentSubscription == 'Admin') and screener_active == True:
+#             return templates.TemplateResponse("champapp.html", {"request": request})
+#         else:
+#             return RedirectResponse(url="/dashboard")
+#     except Exception as e:
+#         return RedirectResponse(url="/")
+
+# -----------------------------(Traders) champions Dashboard  
+
+@app.get('/traderboard', response_class=HTMLResponse)
+async def champ_dashboard(request: Request):
+    try:
+        user = request.session.get("user")
+        update_user_subsription(request)
+        db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+        # print(db_data_user)
+        screener_active = db_data_user['screener_active']
+        currentSubscription = db_data_user['subscriptionDetails']['currentSubscription']
+        # print(f"currentSubscription {currentSubscription} <----> screener_active {screener_active}")
+        if (currentSubscription == 'Champions Club' or currentSubscription == 'Admin') and screener_active == True:
+            return templates.TemplateResponse("trader.html", {"request": request})
+        else:
+            return RedirectResponse(url="/dashboard")
+    except Exception as e:
+        return RedirectResponse(url="/")
     
-        # if (db_data_user['screener_active']):
-        #     return templates.TemplateResponse("gsheet.html", {"request": request})
-        # else:
-        #     return RedirectResponse(url="/dashboard")
+# -----------------------------(Traders) champions Dashboard  
+
+@app.get('/investorboard', response_class=HTMLResponse)
+async def champ_dashboard(request: Request):
+    try:
+        user = request.session.get("user")
+        update_user_subsription(request)
+        db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+        # print(db_data_user)
+        screener_active = db_data_user['screener_active']
+        currentSubscription = db_data_user['subscriptionDetails']['currentSubscription']
+        # print(f"currentSubscription {currentSubscription} <----> screener_active {screener_active}")
+        if (currentSubscription == 'Champions Club' or currentSubscription == 'Admin') and screener_active == True:
+            return templates.TemplateResponse("investor.html", {"request": request})
+        else:
+            return RedirectResponse(url="/dashboard")
     except Exception as e:
         return RedirectResponse(url="/")
     

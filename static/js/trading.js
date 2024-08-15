@@ -1,4 +1,4 @@
-
+// This for trading Register 
 let pNLGlobal = 0;
 const fetchunRecords = async () => {
   try {
