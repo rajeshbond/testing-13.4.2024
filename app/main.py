@@ -184,7 +184,7 @@ async def get_gsheet(request: Request):
         # print(db_data_user)
     
         if (db_data_user['screener_active']):
-            return templates.TemplateResponse("gsheet.html", {"request": request})
+            return templates.TemplateResponse("achivers.html", {"request": request})
         else:
             return RedirectResponse(url="/dashboard")
     except Exception as e:
