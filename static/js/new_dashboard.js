@@ -325,7 +325,7 @@ async function investorboard() {
 }
 async function achiversboard() {
 
-  console.log("Achivers Board");
+  // console.log("Achivers Board");
   ShowDisclaimer("screener");
 }
 
@@ -1005,7 +1005,7 @@ async function displayNone() {
 // Show notificaton 
 
 function ShowDisclaimer(page){
-  console.log("disclaimer");
+  // console.log("disclaimer");
   swal({
     title: "Disclaimer",
     text: "The data provided herein is sourced from reliable and authorized data providers. However, users are advised to exercise due diligence and verify the accuracy and completeness of the data independently. Neither the data provider nor any associated entity shall be liable for any errors, omissions, or losses arising from the use of this data. Investors should consult their financial advisors and consider their risk tolerance before making any investment decisions based on this information.",
