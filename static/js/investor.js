@@ -2,7 +2,7 @@
 const baseurl = 'https://champions.compoundingfunda.com/';
 const dymanicurl = 'fetchdata/api/fetchdata';
 const url = baseurl + dymanicurl;
-console.log(url);
+// console.log(url);
 let count = 0;
 function dashboard() {
   try{

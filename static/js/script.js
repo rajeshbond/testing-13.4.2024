@@ -34,7 +34,7 @@ function signIn() {
         window.location.href = '/';
       }else if(response.status ==401){
         // throw new Error('Network response was not ok');
-        console.log('Network response was not ok');
+        // console.log('Network response was not ok');
         window.alert('Error: ' + "Invalid username or password");
         window.location.href = '/';
         return response.json();
@@ -77,7 +77,7 @@ function signUp() {
 
     // document.getElementById("processing-indicator").style.display = "block";
     let isDataEntered = name.trim() !== '' && email.trim() !== '' && password.trim() !== ''&& mobile.trim() !== '';
-    console.log(isDataEntered);
+    // console.log(isDataEntered);
     if (isDataEntered) {
       let processingIndicator = document.getElementById('processing-indicator');
       processingIndicator.style.display = isDataEntered ? 'block' : 'none';
@@ -99,7 +99,7 @@ function signUp() {
           mobile: mobile,
         };
       }
-      console.log(data);
+      // console.log(data);
       fetch('/signup', {
         method: 'POST',
         headers: {
@@ -164,7 +164,7 @@ function sendResetEmail() {
     processingIndicator.style.display = isDataEntered ? 'block' : 'none';
     // document.getElementById("processing-indicator").style.display = "none";
      
-    console.log(email);
+    // console.log(email);
     // Create a data object to send in the POST request
     const data = {
      
@@ -187,7 +187,7 @@ function sendResetEmail() {
         document.getElementById("processing-indicator").style.display = "block";
         if (response.status!=200) {
           // throw new Error('Network response was not ok');
-          console.log('Network response was not ok');
+          // console.log('Network response was not ok');
           window.alert('Error: ' + "Please provide a valid email");
           window.location.href = '/forgetpwd';
         }else{
@@ -256,7 +256,7 @@ function refreshToken() {
       })
       .then(data => {
           // Handle the refreshed token received from the server
-          console.log('Token refreshed successfully:', data);
+          // console.log('Token refreshed successfully:', data);
           // Update the existing token with the new token
           // For example, you can update a global variable storing the token
           // or update the token stored in local storage or session storage
@@ -310,10 +310,10 @@ function disPOPup(){
        <div class="but-agg"><button onclick="closePopup()">I Agree</button></div>
     </div>
 </div>`;
-console.log(htmlContent);
+// console.log(htmlContent);
 popdisp.innerHTML = htmlContent;
 function closePopup() {
-  console.log("clicked");
+  // console.log("clicked");
   document.getElementById('overlay').style.display = 'none';
   }
 }

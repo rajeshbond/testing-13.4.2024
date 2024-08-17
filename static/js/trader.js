@@ -2,7 +2,7 @@
 const baseurl = 'https://champions.compoundingfunda.com/';
 const dymanicurl = 'fetchdata/api/fetchdata';
 const url = baseurl + dymanicurl;
-console.log(url);
+// console.log(url);
 let count = 0;
 
 function dashboard() {
@@ -185,7 +185,7 @@ async function getCount(modelName, nsecode, count) {
     throw new Error('Failed to fetch data');
   }
   const data = await response.json();
-  console.log('Success:', data);
+  // console.log('Success:', data);
   return data;
 }
 

@@ -110,14 +110,14 @@ async function account() {
   content.innerHTML = htmlContent;
   try {
     const userData = await getUserData();
-    console.log(userData.user)
+    // console.log(userData.user)
     isScreenerState = userData.user.screener_active
     userName = userData.user.name;
     userEmail = userData.user.email;
     subscriptionStatus = userData.user.subscriptionDetails.subscriptionStatus;
     currentSubscription = userData.user.subscriptionDetails.currentSubscription;
     couponUsed = userData.user.subscriptionDetails.coupon_applied;
-  console.log(`couponUsed: ${couponUsed}`);
+  // console.log(`couponUsed: ${couponUsed}`);
     subscriptionDate = dateconverter(
       userData.user.subscriptionDetails.subscriptionDate
     );
@@ -196,7 +196,7 @@ async function fetchEnvironmentVariables() {
           throw new Error('Failed to fetch environment variables');
       }
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       RAZORPAY_id = data // This will log the environment variables to the console
       return data;
       // Use the environment variables as needed in your JavaScript application
@@ -209,7 +209,7 @@ async function fetchEnvironmentVariables() {
 const tradingButton = document.querySelector('#trading-reg')
 
 tradingButton.addEventListener('click',async function(){
-  console.log("Trading button clicked")
+  // console.log("Trading button clicked")
   try {
     const userData = await getUserData();
     isScreenerState = userData.user.screener_active;
@@ -340,14 +340,14 @@ function dateconverter(date) {
 // Plan display
   // Champions club
 function champions_club(){
-  console.log("champions_club");
+  // console.log("champions_club");
   plan = "Champions Club";
     planAmount = 21999;
     showPopup(plan=plan,planAmont = planAmount);
 }
   // Achivers club
 function achivers_club(){
-  console.log("achivers_club");
+  // console.log("achivers_club");
     plan = "Achivers Club";
     planAmount = 9999;
     showPopup(plan=plan,planAmont = planAmount);
@@ -410,7 +410,7 @@ function showPopup(plan, planAmount ) {
     return;
   }
     couponfetch = await fetchsevercoupon(couponCode);
-    console.log(couponfetch);
+    // console.log(couponfetch);
     const serverState = couponfetch.data.status;
     if(serverState){
       serverCoupon = couponfetch.data.coupon;
@@ -456,7 +456,7 @@ function showPopup(plan, planAmount ) {
   
   // Checkout button click event
   checkoutBtn.addEventListener('click', function() {
-      console.log(`Checkout button clicked! ${coupon_applied}`);
+      // console.log(`Checkout button clicked! ${coupon_applied}`);
       razorpayOrderCreation(plan,finalAmount,coupon_applied);
       popup.innerHTML =`
       <div class="processing-indicator" id="processing-indicator">
@@ -486,7 +486,7 @@ async function razorpayOrderCreation(plan,amount,coupon_applied) {
         body: JSON.stringify(data),
     });
     const server = await response.json();
-    console.log(server.data.id)
+    // console.log(server.data.id)
     rzscreen(server.data, plan,amount,coupon_applied);
   }catch (error) {
     console.log(error);
@@ -499,12 +499,12 @@ async function rzscreen(data, plan , Amount, coupon_applied) {
   var popupOverlay = document.querySelector('.popup-overlay');
   
   const orderId = data.id;
-  console.log('RZScreen');
+  // console.log('RZScreen');
   // console.log(data);
-  console.log(`order_id: ${orderId}`);
-  console.log(`plan: ${plan}`);
-  console.log(`amount: ${Amount}`);
-  console.log(`coupon_applied: ${coupon_applied}`);
+  // console.log(`order_id: ${orderId}`);
+  // console.log(`plan: ${plan}`);
+  // console.log(`amount: ${Amount}`);
+  // console.log(`coupon_applied: ${coupon_applied}`);
   try{
      await fetchEnvironmentVariables();
     // console.log(RZY_ID)
@@ -541,9 +541,9 @@ async function rzscreen(data, plan , Amount, coupon_applied) {
       "handler": function(response) {
         // Handle payment success
      
-        console.log(response.razorpay_payment_id);
-        console.log(response.razorpay_order_id);
-        console.log(response.razorpay_signature);
+        // console.log(response.razorpay_payment_id);
+        // console.log(response.razorpay_order_id);
+        // console.log(response.razorpay_signature);
         paymentConfirmation(response,plan,Amount,coupon_applied);
         
        
@@ -588,8 +588,8 @@ async function paymentConfirmation(paymentResponse, plan, Amount , coupon_applie
       <p>Processing...Please wait</p>`;
   document.body.appendChild(popupOverlay);
   popupOverlay.appendChild(popup);
-  console.log('Payment Confirmation');
-  console.log(paymentResponse.razorpay_order_id);
+  // console.log('Payment Confirmation');
+  // console.log(paymentResponse.razorpay_order_id);
   const data = {
     payment_id: paymentResponse.razorpay_payment_id,
     orderId: paymentResponse.razorpay_order_id,
@@ -606,7 +606,7 @@ async function paymentConfirmation(paymentResponse, plan, Amount , coupon_applie
     body: JSON.stringify(data),
   });
   const serverResponse = await responseFromServer.json();
-  console.log(serverResponse);
+  // console.log(serverResponse);
  
   if (responseFromServer.status == 200) {
     document.getElementById("processing-indicator").style.display = "none";
@@ -639,8 +639,8 @@ async function fetchsevercoupon(couponCode,plan){
     body: JSON.stringify(data),
   });
   const serverResponse = await responseFromServer.json();
-  console.log(serverResponse);
-  console.log(`Data from server ${serverResponse.data}`);
+  // console.log(serverResponse);
+  // console.log(`Data from server ${serverResponse.data}`);
   return serverResponse;
   
 }
@@ -657,7 +657,7 @@ async function updateCouponStatus(coupion_applied){
     body: JSON.stringify(data),
   });
   const serverResponse = await responseFromServer.json();
-  console.log(serverResponse);
+  // console.log(serverResponse);
   return serverResponse;
 
 }
@@ -669,7 +669,7 @@ async function fetchEnvironmentVariables() {
           throw new Error('Failed to fetch environment variables');
       }
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       RAZORPAY_id = data // This will log the environment variables to the console
       return data;
       // Use the environment variables as needed in your JavaScript application
@@ -685,7 +685,7 @@ const referAndEarn = async function () {
   const referralStatus = userfetch.user.referal;
   // console.log(referralStatus);
   if (referralStatus) {
-    console.log("You are already signed up for referral");
+    // console.log("You are already signed up for referral");
     referralDetailspage();
   } else {
     referalSignUpPage();
@@ -757,12 +757,12 @@ referralBtn.addEventListener('click',async function(){
 }
 
 async function referralDetailspage(){
-  console.log("referalDetailspage called");
+  // console.log("referalDetailspage called");
   refdata = await fetchReferralData();
   refdata = refdata;
-  console.log(refdata);
+  // console.log(refdata);
   refReords = refdata.refRecord;
-  console.log(refReords);
+  // console.log(refReords);
   let content = document.querySelector(".content");
   htmlContent = `
   <div class="refral-container">
@@ -989,7 +989,7 @@ async function userReferalRegistration(data = referUserData){ {;
 async function fetchReferralData(){
   const response = await fetch("/api/fetchRefRecord");
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   return data
 }
 

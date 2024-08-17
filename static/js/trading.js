@@ -4,8 +4,8 @@ const fetchunRecords = async () => {
   try {
     const response = await fetch("/api/fetchunregister");
     const data = await response.json();
-    console.log(response)
-    console.log(data.records)
+    // console.log(response)
+    // console.log(data.records)
     return data;
   } catch (error) {
     console.error(error);

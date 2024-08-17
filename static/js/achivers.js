@@ -2,7 +2,7 @@
 const baseurl = 'https://achivers.compoundingfunda.com/';
 const dynamicurl = 'api/fetchScreener';
 const url = baseurl + dynamicurl;
-console.log(url);
+// console.log(url);
 
 
 async function fetchData(conditionName) {
