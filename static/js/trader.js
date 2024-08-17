@@ -81,7 +81,7 @@ function generateStockTable(data, tableId, modelName, tableName) {
 
   const thead = document.createElement('thead');
   const headerRow = document.createElement('tr');
-  const headers = ['NAME', 'LTP', '%CNG', 'Piotroski', 'COUNT'];
+  const headers = ['NAME','LTP','%CNG','PIOTROSKI','COUNT'];
   headers.forEach(headerText => {
     const th = document.createElement('th');
     th.textContent = headerText;
@@ -135,10 +135,11 @@ function generateStockTable(data, tableId, modelName, tableName) {
           companyCell.style.color = 'black'; // Ensure count value text color is black
           // Set background color based on count value
           if (countValue === 1) {
-            companyCell.style.backgroundColor = 'yellow'; // Yellow for count = 1
+            companyCell.style.backgroundColor = 'white'; // Yellow for count = 1
+            companyCell.style.color = 'black';
           } else if (countValue > 1) {
-            companyCell.style.backgroundColor = 'green'; // Green for count > 1
-            companyCell.style.color = 'white'; // Ensure count value text color is white
+            companyCell.style.backgroundColor = '#00C2CB'; // Green for count > 1
+            companyCell.style.color = 'black'; // Ensure count value text color is white
           }
           companyCell.classList.add('count-cell');
           companyCell.setAttribute('data-company', JSON.stringify(company));
