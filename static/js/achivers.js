@@ -1,5 +1,5 @@
 // const baseurl = 'http://192.168.1.6:8005/';
-const baseurl = 'http://achivers.compoundingfunda.com/';
+const baseurl = 'https://achivers.compoundingfunda.com/';
 const dynamicurl = 'api/fetchScreener';
 const url = baseurl + dynamicurl;
 console.log(url);
