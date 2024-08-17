@@ -18,7 +18,7 @@ async function fetchData(conditionName) {
       throw new Error('Failed to fetch data');
     }
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.error('Error fetching data:', error);
