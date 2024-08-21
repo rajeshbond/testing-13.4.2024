@@ -322,6 +322,7 @@ async function fetchDataWithDelay(conditionName, tableId, delay, modelName, tabl
 async function init() {
   await fetchDataWithDelay('Champions Swing', 'swing-table', 50, 'SwingData', 'SWING');
   await fetchDataWithDelay('Champions Positional', 'positional-table', 50, 'PositionalData', 'POSITIONAL');
+  await fetchDataWithDelay('Stage_2', 'stage_2-table', 50, 'Stage_2', 'STAGE_2');
   count++;
   console.log(`------Count: ${count}-----`);
 }
