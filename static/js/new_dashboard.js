@@ -342,14 +342,14 @@ function dateconverter(date) {
 function champions_club(){
   // console.log("champions_club");
   plan = "Champions Club";
-    planAmount = 21999;
+    planAmount = 24999;
     showPopup(plan=plan,planAmont = planAmount);
 }
   // Achivers club
 function achivers_club(){
   // console.log("achivers_club");
     plan = "Achivers Club";
-    planAmount = 9999;
+    planAmount = 11999;
     showPopup(plan=plan,planAmont = planAmount);
 }
 // Show popup
