@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Champions Screener</title>
+  <!-- Bootstrap CSS for styling -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="static/css/advanceachivers.css?v=1.0.0.0">
+  <!-- Chart.js for charting -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="full-height-container">
+    <!-- Back Button -->
+    
+    
+    <h2>Achivers-Champions Screener</h2>
+    <div>
+      <button class="btn btn-primary" onclick="goBack()" style="margin: 20px;">&larr; Dash Board</button>
+    </div>
+    <div class="table-wrapper">
+      <h3>ADVANCE</h3>
+      <div id="advance-table"></div>
+    </div>
+    <div class="table-wrapper">
+      <h3>BULLISH CROSSOVER</h3>
+      <div id="bullish-table"></div>
+    </div>
+    <div class="table-wrapper">
+      <h3>REVERSAL STOCK</h3>
+      <div id="reversal-1-table"></div>
+    </div>
+    <div class="table-wrapper">
+      <h3>ACTIVE BY VOLUME</h3>
+      <div id="volume-table"></div>
+    </div>
+    <div class="table-wrapper">
+      <h3>RANGE BREAKOUT</h3>
+      <div id="range-break-table"></div>
+    </div>
+  </div>
+
+  <!-- Popup HTML -->
+  <div class="popup-overlay" id="popup-overlay">
+    <div class="popup">
+      <div class="popup-header">
+        <span class="popup-close" onclick="closePopup()">&times;</span>
+      </div>
+      <div id="popup-content">Popup Content</div>
+    </div>
+  </div>
+
+  <!-- JavaScript for table generation -->
+  <script src="static/js/advanceachivers.js?v=1.0.0.0"></script>
+
+  <!-- JavaScript for Back Button functionality -->
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>

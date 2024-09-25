@@ -92,8 +92,9 @@ async function updateUsername() {
 
 // Account 
 async function account() {
+  await displayNone();
   let content = document.querySelector(".content");
-  console.log(content);
+  // console.log(content);
   htmlContent = `<div class="user-info">
   <h2>User Information</h2>
   <p><strong>Name:</strong> <span id="displayUser"></span></p>
@@ -151,7 +152,8 @@ async function account() {
 
 // Subscription display 
 
-function subscribePlanDisplay() {
+async function subscribePlanDisplay() {
+  await displayNone();
   let content = document.querySelector(".content");
   htmlContent = `<div class="subscription-box-container">
       <div class="subscription-box">
@@ -271,6 +273,31 @@ async function champDisplay() {
   }
 }
 
+// Hprozontal menu Section
+// Market OverView menu section
+async function marketDisplay() {
+  // Await the completion of displayNone
+  await displayNone();
+
+  const img = document.querySelector('.img-container img');
+
+
+  const subMenuNavBar = document.querySelector('.sub-header-menu__nav1');
+  if (subMenuNavBar) {
+    subMenuNavBar.style.display = "flex";
+  }
+
+  let marketHTML = `
+    <li><a href="#" onclick="marketinsights()">Marker Insights</a></li>
+    <li><a href="#" onclick="marketsnapshot()">Market Snapshot</a></li>
+   
+    
+  `;
+  subMenuNavBar.innerHTML = marketHTML;
+}
+
+
+// Champions menu section
 async function championsDashboard() {
   // Await the completion of displayNone
   await displayNone();
@@ -288,6 +315,8 @@ async function championsDashboard() {
   let champHTML = `
     <li><a href="#" onclick="traderboard()">Trader Board</a></li>
     <li><a href="#" onclick="investorboard()">Investor Board</a></li>
+    <li><a href="#" onclick="advanceachivers()">Adv Achivers Board</a></li>
+    
   `;
   subMenuNavBar.innerHTML = champHTML;
 }
@@ -323,13 +352,37 @@ async function investorboard() {
 
   ShowDisclaimer("investorboard");
 }
+async function advanceachivers(){
+  console.log("advanceachivers");
+  ShowDisclaimer("advaceAchivers");
+}
 async function achiversboard() {
-
+  await contentNone();
   // console.log("Achivers Board");
   ShowDisclaimer("screener");
 }
+// Global Over view menu section 
+async function globalOverview(){
+  await displayNone();
 
 
+  const img = document.querySelector('.img-container img');
+
+
+  const subMenuNavBar = document.querySelector('.sub-header-menu__nav1');
+  if (subMenuNavBar) {
+    subMenuNavBar.style.display = "flex";
+  }
+
+  let globalHTML = `
+    <li><a href="#" onclick="displayGlobalOverlay()">Global Indices</a></li>
+    
+  `;
+  subMenuNavBar.innerHTML = globalHTML;
+  // console.log("globalOverview");
+  // await displayGlobalOverlay();
+
+}
 // date converter 
 
 function dateconverter(date) {
@@ -681,6 +734,7 @@ async function fetchEnvironmentVariables() {
 // Refer and Earn
 
 const referAndEarn = async function () {
+  displayNone
   const userfetch = await getUserData();
   const referralStatus = userfetch.user.referal;
   // console.log(referralStatus);
@@ -995,12 +1049,20 @@ async function fetchReferralData(){
 
 // Make sure to use async/await correctly
 async function displayNone() {
+  let dash = document.querySelector('.content');
   document.querySelector('.sub-header-menu__nav1').style.display = "none";
-  // const img = document.querySelector('.img-container img');
-  // if (!img) {
-  //   img.style.display = "block";
-  // }
+  dash.innerHTML = ""; // Clear the content
+  
+  // Create a new img element
+  const img = document.createElement('img');
+  img.src = "static/images/logo2.png"; // Set image source
+  img.alt = "COMPOUNDING FUNDA"; // Set alt text
+  
+  // Append the img element to the desired container
+  dash.appendChild(img);
 }
+
+
 
 // Show notificaton 
 
@@ -1009,7 +1071,6 @@ function ShowDisclaimer(page){
   swal({
     title: "Disclaimer",
     text: "The data provided herein is sourced from reliable and authorized data providers. However, users are advised to exercise due diligence and verify the accuracy and completeness of the data independently. Neither the data provider nor any associated entity shall be liable for any errors, omissions, or losses arising from the use of this data. Investors should consult their financial advisors and consider their risk tolerance before making any investment decisions based on this information.",
-    type: "warning",
     showCancelButton: true,
     confirmButtonColor: "#DD6B55",
     confirmButtonText: "Yes, I Agree!!!",
@@ -1026,7 +1087,12 @@ function ShowDisclaimer(page){
     }
     else if (page == "screener") {
       window.location.href = `/${page}`;  
-    }else{
+    }
+    else if (page == "advaceAchivers") {
+      console.log(`${page}`);
+      window.location.href = `/${page}`;  
+    }
+    else{
       return;
     }
   });
@@ -1034,8 +1100,1354 @@ function ShowDisclaimer(page){
     var swalText = document.querySelector('.swal-text');
     if (swalText) {
       swalText.style.maxHeight = '100px';
-      swalText.style.overflowY = 'auto';
+      swalText.style.overflowY = 'scroll';
     }
   }, 0);
 }
 
+// injectued codes
+
+// market over view section starts here
+
+
+
+async function marketinsights(){
+  await marketinStatic();
+}
+
+async function marketsnapshot(){
+  await marketsnapstatic();
+}
+
+// Execution code 
+async function marketinStatic(){
+  let marketStructure = document.querySelector('.content');
+  marketStructure.innerHTML = `
+      <div class="main-container">
+    <!-- Top Section starts here -->
+    <div class="top-container">
+      <!-- Bulk Deals Section -->
+      <div class="bulk-deals">
+        <div class="table-container">
+          <div class = "bulkDealsTable">
+            <table id="day-bulkDealsTable"> <!-- Corrected ID to match the JS selector -->
+              <h4>Day's Block Deals</h4>
+              <thead>
+                <tr>
+                  <th>Block Time</th>
+                  <th>Session</th>
+                  <th>Symbol</th>
+                  <th>Last Price</th>
+                  <th>Total Traded Volume</th>
+                  <th>Total Traded Value (Cr.)</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Data will be dynamically inserted here -->
+              </tbody>
+            </table>
+          </div>
+          <div class = "bulkDealsTable">
+          
+            <table id="bulkDealsTable"> <!-- Corrected ID to match the JS selector -->
+              <h4>Block Deals in detail</h4>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Symbol</th>
+                  <th>Name</th>
+                  <th>Client Name</th>
+                  <th>Buy/Sell</th>
+                  <th>Quantity</th>
+                  <th>Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Data will be dynamically inserted here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- FII/DII Charts -->
+      <div class="chart-container">
+        <h4>FII and DII Net Value</h4>
+        <div id="fii-net-value-chart" class="chart"></div>
+        <div id="dii-net-value-chart" class="chart"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Top Section ends here -->
+
+  <div class="ipo-section">
+
+    <!-- IPO Table -->
+    <div class="table-container">
+      <h4>IPO Issue Details</h4>
+      <table id="ipoTable">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Company Name</th>
+            <th>Series</th>
+            <th>Issue Start Date</th>
+            <th>Issue End Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data will be dynamically inserted here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-news">
+    <h4>News</h4>
+    <div class="container-news" id="cardContainer">
+      <!-- News cards will be injected here dynamically -->
+    </div>
+  </div>
+
+  <!-- Board Meetings Section -->
+  <div class="section-news">
+    <h4>Board Meetings</h4>
+    <div class="container-news" id="meetingContainer">
+      <!-- Board meeting cards will be injected here dynamically -->
+    </div>
+  </div>
+
+  <p style="margin-left: 20px;">News credit: Stock Edge and NSE India</p>
+  `;
+  await marketinDynamic();
+}
+
+async function marketinDynamic() {
+
+async function fetchData(endpoint, indexName, containerId) {
+  try {
+      const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ indexName: indexName })
+      });
+
+      const data = await response.json();
+    //   console.log(data);
+      displayData(data, containerId);
+  } catch (error) {
+      console.error('Error fetching data:', error);
+  }
+}
+
+// Display Data Function
+function displayData(data, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) {
+      console.error(`Container with ID ${containerId} not found.`);
+      return; // Exit if the container does not exist
+  }
+  
+  container.innerHTML = ''; // Clear any existing content
+
+  data.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'card-news';
+
+      if (containerId === 'cardContainer') {
+          card.innerHTML = `
+              <h3>${item.SecurityName}</h3>
+              <p>${item.Description}</p>
+              <div class="date">${item.Date}</div>
+          `;
+      } else if (containerId === 'meetingContainer') {
+          const fileExtension = item.attachment.split('.').pop().toLowerCase();
+          let iconSrc = '';
+          
+          switch (fileExtension) {
+              case 'pdf':
+                  iconSrc = 'https://img.icons8.com/ios-filled/50/000000/pdf.png';
+                  break;
+              case 'zip':
+                  iconSrc = 'https://img.icons8.com/ios-filled/50/000000/zip.png';
+                  break;
+              case 'xml':
+                  iconSrc = 'https://img.icons8.com/ios-filled/50/000000/xml.png';
+                  break;
+              default:
+                  iconSrc = 'https://img.icons8.com/ios-filled/50/000000/download.png'; // Default icon
+          }
+
+          card.innerHTML = `
+              <h2>${item.bm_symbol}</h2>
+              <h3>${item.sm_name}</h3>
+              <p><strong>Subject:</strong> ${item.bm_purpose}</p>
+              <p><strong>Meeting Date:</strong> ${item.bm_date}</p>
+              <p><strong>Details:</strong> ${item.bm_desc}</p>
+              <p><strong>Broadcast Date/Time:</strong> ${item.bm_timestamp}</p>
+              <div class="download">
+                  <img src="${iconSrc}" alt="Download">
+                  <a href="${item.attachment}" target="_blank">Download</a>
+              </div>
+          `;
+      }
+
+      container.appendChild(card);
+  });
+}
+
+// Fetch IPO Data
+async function fetchIpoData() {
+  try {
+      const response = await fetch('https://datafetch.compoundingfunda.com/live/api/ipo', {
+          method: 'POST',
+          headers: {
+              'accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ "indexName": "ipo" })
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const ipoData = await response.json();
+      populateTable(ipoData);
+  } catch (error) {
+      console.error('Error fetching IPO data:', error);
+  }
+}
+
+// Populate IPO Table
+function populateTable(ipoData) {
+  const tableBody = document.querySelector("#ipoTable tbody");
+  if (!tableBody) {
+      console.error('Table body not found.');
+      return; // Exit if the table body does not exist
+  }
+  
+  tableBody.innerHTML = '';
+
+  ipoData.forEach((ipo) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+          <td data-label="Symbol">${formatValue(ipo.symbol)}</td>
+          <td data-label="Company Name">${formatValue(ipo.companyName)}</td>
+          <td data-label="Series">${formatValue(ipo.series)}</td>
+          <td data-label="Issue Start Date">${formatDate(ipo.issueStartDate)}</td>
+          <td data-label="Issue End Date">${formatDate(ipo.issueEndDate)}</td>
+          <td data-label="Status">${formatValue(ipo.status)}</td>
+      `;
+      tableBody.appendChild(row);
+  });
+}
+
+// Format Value Function
+function formatValue(value) {
+  return value === null || value === '' ? '-' : value;
+}
+
+// Format Date Function
+function formatDate(dateString) {
+  if (!dateString) return '-';
+  const [year, month, day] = dateString.split('-');
+  return `${day}-${month}-${year}`;
+}
+
+// Fetch Bulk Deals Data
+async function fetchBulkDealsData() {
+    try {
+        const response = await fetch('https://datafetch.compoundingfunda.com/live/api/block_deals', {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "indexName": "done_block" })
+        });
+  
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+  
+        const blockData = await response.json();
+        // console.log(blockData);
+        populateBlockTable(blockData);
+    } catch (error) {
+        console.error('Error fetching bulk deals data:', error);
+    }
+}
+
+// Populate Block Table
+function populateBlockTable(blockData) {
+  const tableBody = document.querySelector("#bulkDealsTable tbody"); // Corrected selector for tbody
+//   console.log(tableBody);
+  if (!tableBody) {
+    console.error('Table body not found.');
+    return; // Exit if the table body does not exist
+  }
+  if (!blockData || blockData.length === 0) {
+    displayNoDataMessage();
+    return;
+ }
+  
+
+  tableBody.innerHTML = ''; // Clear previous rows if any
+
+  blockData.forEach((item) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td data-label="Date">${item.date}</td>
+      <td data-label="Symbol">${item.symbol}</td>
+      <td data-label="Name">${item.name}</td>
+      <td data-label="Client Name">${item.clientName}</td>
+      <td data-label="Buy/Sell">${item.buySell}</td>
+      <td data-label="Quantity">${parseInt(item.qty).toLocaleString()}</td>
+      <td data-label="Rate">${item.watp}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+// Fetch Days Block deatils
+
+async function fetchDayBlockDealData() {
+    try {
+        const response = await fetch('https://datafetch.compoundingfunda.com/live/api/block_deals', {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "indexName": "day_block" })
+        });
+  
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+  
+        const dayBlockData = await response.json();
+        // console.log(dayBlockData);
+        populateDayBlockTable(dayBlockData);
+    } catch (error) {
+        console.error('Error fetching bulk deals data:', error);
+    }
+}
+
+// Populate Block Table
+function populateDayBlockTable(dayBlockData) {
+  const tableBody = document.querySelector("#day-bulkDealsTable tbody"); // Corrected selector for tbody
+//   console.log(tableBody);
+  if (!tableBody) {
+    console.error('Table body not found.');
+    return; // Exit if the table body does not exist
+  }
+  if (!dayBlockData || dayBlockData.length === 0) {
+    displayNoDataMessage();
+    return;
+ }
+
+  tableBody.innerHTML = ''; // Clear previous rows if any
+
+  dayBlockData.forEach((item) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td data-label="Last Update Time">${(item.lastUpdateTime)}</td>  
+      <td data-label="Session">${item.session}</td>
+      <td data-label="Symbol">${item.symbol}</td>
+      <td data-label="Last Price">${item.lastPrice}</td>
+      <td data-label="Total Traded Volume">${item.totalTradedVolume}</td>
+      <td data-label="Total Traded Value">${(item.totalTradedValue / 10000000).toFixed(2)}</td>
+      
+    `;
+    tableBody.appendChild(row);
+  });
+}
+function displayNoDataMessage() {
+    const tableBody = document.querySelector("#day-bulkDealsTable tbody");
+    tableBody.innerHTML = '<tr><td colspan="14" class="no-data">No block deal found</td></tr>';
+}
+
+
+// Fetch FII/DII Data
+let baseURL = 'https://datafetch.compoundingfunda.com/';
+let fiiLink = 'live/api/fii';
+let fiiUrl = baseURL + fiiLink;
+
+async function fetchFiiData() {
+  try {
+      const response = await fetch(fiiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      renderCharts(data);
+  } catch (error) {
+      console.error('Error fetching FII/DII data:', error);
+  }
+}
+
+// Render Charts Function
+function renderCharts(data) {
+  data.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+
+  const dates = data.map(row => row.Date);
+  const fiiNetValues = data.map(row => parseFloat(row["FII Net Value"].replace(/,/g, '')));
+  const diiNetValues = data.map(row => parseFloat(row["DII Net Value"].replace(/,/g, '')));
+
+  const mostRecentIndex = dates.length - 1;
+  const mostRecentFiiValue = fiiNetValues[mostRecentIndex];
+  const mostRecentDiiValue = diiNetValues[mostRecentIndex];
+
+  const fiiNetTrace = {
+      x: dates,
+      y: fiiNetValues,
+      name: 'FII Net Value',
+      type: 'bar',
+      marker: { color: fiiNetValues.map(value => value >= 0 ? 'green' : 'red') }
+  };
+
+  const diiNetTrace = {
+      x: dates,
+      y: diiNetValues,
+      name: 'DII Net Value',
+      type: 'bar',
+      marker: { color: diiNetValues.map(value => value >= 0 ? 'green' : 'red') }
+  };
+
+  const fiiNetLayout = {
+      title: 'FII Net Value (CASH)',
+      xaxis: { title: 'Date', tickangle: -45 },
+      yaxis: { title: 'Net Value (₹ Crores)' },
+      annotations: [{
+          xref: 'x', yref: 'y', x: dates[mostRecentIndex],
+          y: mostRecentFiiValue >= 0 ? fiiNetValues[mostRecentIndex] : fiiNetValues[mostRecentIndex] + mostRecentFiiValue * 0.1,
+          text: `<b style="color:${mostRecentFiiValue >= 0 ? 'green' : 'red'}">₹${mostRecentFiiValue.toFixed(2)}</b>`,
+          showarrow: false, font: { size: 12, color: 'black' }, align: 'center',
+          xanchor: 'center', yanchor: mostRecentFiiValue >= 0 ? 'bottom' : 'top'
+      }]
+  };
+
+  const diiNetLayout = {
+      title: 'DII Net Value (CASH)',
+      xaxis: { title: 'Date', tickangle: -45 },
+      yaxis: { title: 'Net Value (₹ Crores)' },
+      annotations: [{
+          xref: 'x', yref: 'y', x: dates[mostRecentIndex],
+          y: mostRecentDiiValue >= 0 ? diiNetValues[mostRecentIndex] : diiNetValues[mostRecentIndex] + mostRecentDiiValue * 0.1,
+          text: `<b style="color:${mostRecentDiiValue >= 0 ? 'green' : 'red'}">₹${mostRecentDiiValue.toFixed(2)}</b>`,
+          showarrow: false, font: { size: 12, color: 'black' }, align: 'center',
+          xanchor: 'center', yanchor: mostRecentDiiValue >= 0 ? 'bottom' : 'top'
+      }]
+  };
+
+  Plotly.newPlot('fii-net-value-chart', [fiiNetTrace], fiiNetLayout);
+  Plotly.newPlot('dii-net-value-chart', [diiNetTrace], diiNetLayout);
+}
+
+const REFRESH_INTERVAL = 0.5 * 60 * 1000; // 5 minutes in milliseconds
+  setInterval(() => {
+      fetchData('https://datafetch.compoundingfunda.com/live/api/board_meeting', 'board_meetings', 'meetingContainer');
+      fetchData('https://datafetch.compoundingfunda.com/live/api/news', 'new_top_news', 'cardContainer');
+      fetchIpoData();
+      fetchBulkDealsData();
+      fetchDayBlockDealData();
+      fetchFiiData();
+  }, REFRESH_INTERVAL);
+
+  // Initial data fetching
+  fetchData('https://datafetch.compoundingfunda.com/live/api/news', 'new_top_news', 'cardContainer');
+  fetchData('https://datafetch.compoundingfunda.com/live/api/board_meeting', 'board_meetings', 'meetingContainer');
+  fetchIpoData();
+  fetchBulkDealsData();
+  fetchDayBlockDealData();
+  fetchFiiData();
+
+}
+
+async function marketsnapstatic(){
+  let marketStructure = document.querySelector('.content');
+  marketStructure.innerHTML = `
+    <div class="market-container">
+      <!-- Market Indices -->
+    <h2>Market Summary</h2>
+
+    <h4>Nse Index</h4>
+    <div id="market-container">
+        
+    </div>
+
+    <!-- Heatmap Charts -->
+    <div class="chart-container" id="nifty50-treemap"></div>
+    <div class="chart-container" id="niftybank-treemap"></div>
+    
+    <!-- MCX Data -->
+    <h4>MCX Index</h4>
+    <div id="mcx-container">
+        
+    </div>
+
+    </div>
+    
+  `;
+  await marketsnapDynamic();
+}
+
+async function marketsnapDynamic() {
+  let nifty50Chart, niftyBankChart;
+        // const baseURL = 'http://127.0.0.1:8000/';
+        const baseURL = 'https://datafetch.compoundingfunda.com/';
+        const heatmapEndpoint = 'live/api/liveheat';
+        const mcxEndpoint = 'live/api/commodity';
+        const mcxUrl = `${baseURL}${mcxEndpoint}`;
+        const heatmapUrl = `${baseURL}${heatmapEndpoint}`;
+        const indexUrl = `${baseURL}live/api/indexfetch`;
+
+        // Function to fetch heatmap data
+        async function fetchHeatmapData(indexName, chart) {
+            try {
+                const response = await fetch(heatmapUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ indexName })
+                });
+
+                if (!response.ok) throw new Error('Network response was not ok');
+
+                const stockData = await response.json();
+                const seriesData = stockData.map(stock => ({
+                    x: stock.symbol,
+                    y: stock.pChange,
+                    name: `${stock.symbol} - ${stock.lastPrice}`
+                }));
+
+                chart.updateSeries([{ data: seriesData }]);
+            } catch (error) {
+                console.error('Error fetching heatmap data:', error);
+            }
+        }
+
+        // Nifty 50 Chart Setup
+        const nifty50Options = {
+            series: [{ data: [] }],
+            chart: { height: 350, type: 'treemap', toolbar: { show: false } },
+            title: { text: 'NIFTY 50', align: 'center', style: { fontSize: '16px', fontWeight: 'bold', textDecoration: 'underline' }},
+            plotOptions: {
+                treemap: {
+                    distributed: true,
+                    enableShades: true,
+                    shadeIntensity: 0.5,
+                    reverseNegativeShade: true,
+                    colorScale: {
+                        ranges: [
+                            { from: -10, to: 0, color: '#f44336' },
+                            { from: 0, to: 5, color: '#4caf50' },
+                            { from: 5, to: 10, color: '#8bc34a' }
+                        ]
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                style: { fontSize: '12px', fontWeight: 'bold' },
+                formatter: (text, op) => [text, `${op.value}%`]
+            }
+        };
+
+        // Nifty Bank Chart Setup
+        const niftyBankOptions = {
+            series: [{ data: [] }],
+            chart: { height: 350, type: 'treemap', toolbar: { show: false } },
+            title: { text: 'NIFTY BANK', align: 'center', style: { fontSize: '16px', fontWeight: 'bold', textDecoration: 'underline' }},
+            plotOptions: {
+                treemap: {
+                    distributed: true,
+                    enableShades: true,
+                    shadeIntensity: 0.5,
+                    reverseNegativeShade: true,
+                    colorScale: {
+                        ranges: [
+                            { from: -10, to: 0, color: '#f44336' },
+                            { from: 0, to: 5, color: '#4caf50' },
+                            { from: 5, to: 10, color: '#8bc34a' }
+                        ]
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                style: { fontSize: '12px', fontWeight: 'bold' },
+                formatter: (text, op) => [text, `${op.value}%`]
+            }
+        };
+
+        // Create and render charts
+        nifty50Chart = new ApexCharts(document.querySelector("#nifty50-treemap"), nifty50Options);
+        nifty50Chart.render();
+        niftyBankChart = new ApexCharts(document.querySelector("#niftybank-treemap"), niftyBankOptions);
+        niftyBankChart.render();
+
+        // Fetch initial data for both charts
+        fetchHeatmapData('NIFTY 50', nifty50Chart);
+        fetchHeatmapData('NIFTY BANK', niftyBankChart);
+
+
+        // Refresh data every 30 seconds
+        setInterval(() => {
+            fetchHeatmapData('NIFTY 50', nifty50Chart);
+            fetchHeatmapData('NIFTY BANK', niftyBankChart);
+        }, 30000);
+
+        // Function to fetch market indices data
+        async function fetchIndexData() {
+            try {
+                const response = await fetch(indexUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ indexName: 'all_indices' })
+                });
+
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching market indices:', error);
+                return [];
+            }
+        }
+
+        // Function to fetch MCX data
+        async function fetchMcxData() {
+            try {
+                const response = await fetch(mcxUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ indexName: 'all_indices' })
+                });
+
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching MCX data:', error);
+                return [];
+            }
+        }
+
+        // Function to create a card for each index
+        function createCard(indexData) {
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            const name = document.createElement('div');
+            name.className = 'name';
+            name.textContent = indexData.index;
+
+            const price = document.createElement('div');
+            price.className = 'price';
+            price.textContent = indexData.last.toFixed(2);
+
+            const percentChange = document.createElement('div');
+            percentChange.className = 'percent_change';
+            percentChange.textContent = `${indexData.percentChange}%`;
+            percentChange.classList.add(indexData.percentChange > 0 ? 'positive' : 'negative');
+
+            card.appendChild(name);
+            card.appendChild(price);
+            card.appendChild(percentChange);
+
+            return card;
+        }
+
+        // Function to display the market indices data in the container
+        async function displayMarketIndices() {
+            const container = document.getElementById('market-container');
+            container.innerHTML = ''; // Clear existing content
+
+            const indices = await fetchIndexData();
+            indices.forEach(indexData => {
+                const card = createCard(indexData);
+                container.appendChild(card);
+            });
+        }
+
+        // Function to display the MCX data
+        async function displayMcx() {
+    const container = document.getElementById('mcx-container');
+    container.innerHTML = ''; // Clear existing content
+
+    const indices = await fetchMcxData();
+    indices.forEach(commodity => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // Determine text color for market state
+        const marketColor = commodity.market_state.toLowerCase() === 'open' ? '#008000' : '#ff0000'; // Green for open, red for closed
+
+        card.innerHTML = `
+            <div class="title">${commodity.id}</div>
+            <div class="lastprice">₹${commodity.lastprice}</div>
+            <div class="change ${commodity.percentchange > 0 ? 'positive' : 'negative'}">
+                Change: ${commodity.percentchange}%
+            </div>
+            <div class="update">Last Update: ${commodity.lastupdate}</div>
+            <div class="state" style="color: ${marketColor};">
+                Market: ${commodity.market_state.charAt(0).toUpperCase() + commodity.market_state.slice(1)}
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+            // Fetch and display market indices and MCX on page load
+
+        // Refresh market indices and MCX data every 30 seconds
+        setInterval(() => {
+            displayMarketIndices();
+            displayMcx();
+        }, 30000);
+        await displayMarketIndices();
+        await displayMcx();
+}
+
+
+
+
+
+// async function marketinDynamic(){
+//   console.log("marketinDynamic");
+//   async function fetchData(endpoint, indexName, containerId) {
+//     try {
+//         const response = await fetch(endpoint, {
+//             method: 'POST',
+//             headers: {
+//                 'Accept': 'application/json',
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({ indexName: indexName })
+//         });
+  
+//         const data = await response.json();
+//         displayData(data, containerId);
+//     } catch (error) {
+//         console.error('Error fetching data:', error);
+//     }
+//   }
+  
+//   // Display Data Function
+//   function displayData(data, containerId) {
+//     const container = document.getElementById(containerId);
+//     if (!container) {
+//         console.error(`Container with ID ${containerId} not found.`);
+//         return; // Exit if the container does not exist
+//     }
+    
+//     container.innerHTML = ''; // Clear any existing content
+  
+//     data.forEach(item => {
+//         const card = document.createElement('div');
+//         card.className = 'card-news';
+  
+//         if (containerId === 'cardContainer') {
+//             card.innerHTML = `
+//                 <h3>${item.SecurityName}</h3>
+//                 <p>${item.Description}</p>
+//                 <div class="date">${item.Date}</div>
+//             `;
+//         } else if (containerId === 'meetingContainer') {
+//             const fileExtension = item.attachment.split('.').pop().toLowerCase();
+//             let iconSrc = '';
+            
+//             switch (fileExtension) {
+//                 case 'pdf':
+//                     iconSrc = 'https://img.icons8.com/ios-filled/50/000000/pdf.png';
+//                     break;
+//                 case 'zip':
+//                     iconSrc = 'https://img.icons8.com/ios-filled/50/000000/zip.png';
+//                     break;
+//                 case 'xml':
+//                     iconSrc = 'https://img.icons8.com/ios-filled/50/000000/xml.png';
+//                     break;
+//                 default:
+//                     iconSrc = 'https://img.icons8.com/ios-filled/50/000000/download.png'; // Default icon
+//             }
+  
+//             card.innerHTML = `
+//                 <h2>${item.bm_symbol}</h2>
+//                 <h3>${item.sm_name}</h3>
+//                 <p><strong>Subject:</strong> ${item.bm_purpose}</p>
+//                 <p><strong>Meeting Date:</strong> ${item.bm_date}</p>
+//                 <p><strong>Details:</strong> ${item.bm_desc}</p>
+//                 <p><strong>Broadcast Date/Time:</strong> ${item.bm_timestamp}</p>
+//                 <div class="download">
+//                     <img src="${iconSrc}" alt="Download">
+//                     <a href="${item.attachment}" target="_blank">Download</a>
+//                 </div>
+//             `;
+//         }
+  
+//         container.appendChild(card);
+//     });
+//   }
+  
+//   // Fetch IPO Data
+//   async function fetchIpoData() {
+//     try {
+//         const response = await fetch('https://datafetch.compoundingfunda.com/live/api/ipo', {
+//             method: 'POST',
+//             headers: {
+//                 'accept': 'application/json',
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({ "indexName": "ipo" })
+//         });
+  
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! status: ${response.status}`);
+//         }
+  
+//         const ipoData = await response.json();
+//         populateTable(ipoData);
+//     } catch (error) {
+//         console.error('Error fetching IPO data:', error);
+//     }
+//   }
+  
+//   // Populate IPO Table
+//   function populateTable(ipoData) {
+//     const tableBody = document.querySelector("#ipoTable tbody");
+//     if (!tableBody) {
+//         console.error('Table body not found.');
+//         return; // Exit if the table body does not exist
+//     }
+    
+//     tableBody.innerHTML = '';
+  
+//     ipoData.forEach((ipo) => {
+//         const row = document.createElement('tr');
+//         row.innerHTML = `
+//             <td data-label="Symbol">${formatValue(ipo.symbol)}</td>
+//             <td data-label="Company Name">${formatValue(ipo.companyName)}</td>
+//             <td data-label="Series">${formatValue(ipo.series)}</td>
+//             <td data-label="Issue Start Date">${formatDate(ipo.issueStartDate)}</td>
+//             <td data-label="Issue End Date">${formatDate(ipo.issueEndDate)}</td>
+//             <td data-label="Status">${formatValue(ipo.status)}</td>
+//         `;
+//         tableBody.appendChild(row);
+//     });
+//   }
+  
+//   // Format Value Function
+//   function formatValue(value) {
+//     return value === null || value === '' ? '-' : value;
+//   }
+  
+//   // Format Date Function
+//   function formatDate(dateString) {
+//     if (!dateString) return '-';
+//     const [year, month, day] = dateString.split('-');
+//     return `${day}-${month}-${year}`;
+//   }
+  
+//   // Fetch Bulk Deals Data
+//   async function fetchBulkDealsData() {
+//       try {
+//           const response = await fetch('https://datafetch.compoundingfunda.com/live/api/block_deals', {
+//               method: 'POST',
+//               headers: {
+//                   'accept': 'application/json',
+//                   'Content-Type': 'application/json'
+//               },
+//               body: JSON.stringify({ "indexName": "done_block" })
+//           });
+    
+//           if (!response.ok) {
+//               throw new Error(`HTTP error! status: ${response.status}`);
+//           }
+    
+//           const blockData = await response.json();
+//           // console.log(blockData);
+//           populateBlockTable(blockData);
+//       } catch (error) {
+//           console.error('Error fetching bulk deals data:', error);
+//       }
+//   }
+  
+//   // Populate Block Table
+//   function populateBlockTable(blockData) {
+//     const tableBody = document.querySelector("#bulkDealsTable tbody"); // Corrected selector for tbody
+//   //   console.log(tableBody);
+//     if (!tableBody) {
+//       console.error('Table body not found.');
+//       return; // Exit if the table body does not exist
+//     }
+//     if (!blockData || blockData.length === 0) {
+//       displayNoDataMessage();
+//       return;
+//    }
+    
+  
+//     tableBody.innerHTML = ''; // Clear previous rows if any
+  
+//     blockData.forEach((item) => {
+//       const row = document.createElement('tr');
+//       row.innerHTML = `
+//         <td data-label="Date">${item.date}</td>
+//         <td data-label="Symbol">${item.symbol}</td>
+//         <td data-label="Name">${item.name}</td>
+//         <td data-label="Client Name">${item.clientName}</td>
+//         <td data-label="Buy/Sell">${item.buySell}</td>
+//         <td data-label="Quantity">${parseInt(item.qty).toLocaleString()}</td>
+//         <td data-label="Rate">${item.watp}</td>
+//       `;
+//       tableBody.appendChild(row);
+//     });
+//   }
+  
+//   // Fetch Days Block deatils
+  
+//   async function fetchDayBlockDealData() {
+//       try {
+//           const response = await fetch('https://datafetch.compoundingfunda.com/live/api/block_deals', {
+//               method: 'POST',
+//               headers: {
+//                   'accept': 'application/json',
+//                   'Content-Type': 'application/json'
+//               },
+//               body: JSON.stringify({ "indexName": "day_block" })
+//           });
+    
+//           if (!response.ok) {
+//               throw new Error(`HTTP error! status: ${response.status}`);
+//           }
+    
+//           const dayBlockData = await response.json();
+//           // console.log(dayBlockData);
+//           populateDayBlockTable(dayBlockData);
+//       } catch (error) {
+//           console.error('Error fetching bulk deals data:', error);
+//       }
+//   }
+  
+//   // Populate Block Table
+//   function populateDayBlockTable(dayBlockData) {
+//     const tableBody = document.querySelector("#day-bulkDealsTable tbody"); // Corrected selector for tbody
+//   //   console.log(tableBody);
+//     if (!tableBody) {
+//       console.error('Table body not found.');
+//       return; // Exit if the table body does not exist
+//     }
+//     if (!dayBlockData || dayBlockData.length === 0) {
+//       displayNoDataMessage();
+//       return;
+//    }
+  
+//     tableBody.innerHTML = ''; // Clear previous rows if any
+  
+//     dayBlockData.forEach((item) => {
+//       const row = document.createElement('tr');
+//       row.innerHTML = `
+//         <td data-label="Last Update Time">${(item.lastUpdateTime)}</td>  
+//         <td data-label="Session">${item.session}</td>
+//         <td data-label="Symbol">${item.symbol}</td>
+//         <td data-label="Last Price">${item.lastPrice}</td>
+//         <td data-label="Total Traded Volume">${item.totalTradedVolume}</td>
+//         <td data-label="Total Traded Value">${(item.totalTradedValue / 10000000).toFixed(2)}</td>
+        
+//       `;
+//       tableBody.appendChild(row);
+//     });
+//   }
+//   function displayNoDataMessage() {
+//       const tableBody = document.querySelector("#day-bulkDealsTable tbody");
+//       tableBody.innerHTML = '<tr><td colspan="14" class="no-data">No block deal found</td></tr>';
+//   }
+  
+  
+//   // Fetch FII/DII Data
+//   let baseURL = 'https://datafetch.compoundingfunda.com/';
+//   let fiiLink = 'live/api/fii';
+//   let fiiUrl = baseURL + fiiLink;
+  
+//   async function fetchFiiData() {
+//     try {
+//         const response = await fetch(fiiUrl, {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//         });
+  
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+  
+//         const data = await response.json();
+//         renderCharts(data);
+//     } catch (error) {
+//         console.error('Error fetching FII/DII data:', error);
+//     }
+//   }
+  
+//   // Render Charts Function
+//   function renderCharts(data) {
+//     data.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+  
+//     const dates = data.map(row => row.Date);
+//     const fiiNetValues = data.map(row => parseFloat(row["FII Net Value"].replace(/,/g, '')));
+//     const diiNetValues = data.map(row => parseFloat(row["DII Net Value"].replace(/,/g, '')));
+  
+//     const mostRecentIndex = dates.length - 1;
+//     const mostRecentFiiValue = fiiNetValues[mostRecentIndex];
+//     const mostRecentDiiValue = diiNetValues[mostRecentIndex];
+  
+//     const fiiNetTrace = {
+//         x: dates,
+//         y: fiiNetValues,
+//         name: 'FII Net Value',
+//         type: 'bar',
+//         marker: { color: fiiNetValues.map(value => value >= 0 ? 'green' : 'red') }
+//     };
+  
+//     const diiNetTrace = {
+//         x: dates,
+//         y: diiNetValues,
+//         name: 'DII Net Value',
+//         type: 'bar',
+//         marker: { color: diiNetValues.map(value => value >= 0 ? 'green' : 'red') }
+//     };
+  
+//     const fiiNetLayout = {
+//         title: 'FII Net Value (CASH)',
+//         xaxis: { title: 'Date', tickangle: -45 },
+//         yaxis: { title: 'Net Value (₹ Crores)' },
+//         annotations: [{
+//             xref: 'x', yref: 'y', x: dates[mostRecentIndex],
+//             y: mostRecentFiiValue >= 0 ? fiiNetValues[mostRecentIndex] : fiiNetValues[mostRecentIndex] + mostRecentFiiValue * 0.1,
+//             text: `<b style="color:${mostRecentFiiValue >= 0 ? 'green' : 'red'}">₹${mostRecentFiiValue.toFixed(2)}</b>`,
+//             showarrow: false, font: { size: 12, color: 'black' }, align: 'center',
+//             xanchor: 'center', yanchor: mostRecentFiiValue >= 0 ? 'bottom' : 'top'
+//         }]
+//     };
+  
+//     const diiNetLayout = {
+//         title: 'DII Net Value (CASH)',
+//         xaxis: { title: 'Date', tickangle: -45 },
+//         yaxis: { title: 'Net Value (₹ Crores)' },
+//         annotations: [{
+//             xref: 'x', yref: 'y', x: dates[mostRecentIndex],
+//             y: mostRecentDiiValue >= 0 ? diiNetValues[mostRecentIndex] : diiNetValues[mostRecentIndex] + mostRecentDiiValue * 0.1,
+//             text: `<b style="color:${mostRecentDiiValue >= 0 ? 'green' : 'red'}">₹${mostRecentDiiValue.toFixed(2)}</b>`,
+//             showarrow: false, font: { size: 12, color: 'black' }, align: 'center',
+//             xanchor: 'center', yanchor: mostRecentDiiValue >= 0 ? 'bottom' : 'top'
+//         }]
+//     };
+  
+//     Plotly.newPlot('fii-net-value-chart', [fiiNetTrace], fiiNetLayout);
+//     Plotly.newPlot('dii-net-value-chart', [diiNetTrace], diiNetLayout);
+//   }
+  
+//   // Fetch data on page load
+//   window.onload = async () => {
+//     await fetchBulkDealsData();
+//     await fetchDayBlockDealData();  
+//     await fetchIpoData();
+//     await fetchFiiData();
+  
+//     // Set interval for refreshing data every 30 seconds
+//     setInterval(async () => {
+//         await fetchBulkDealsData();
+//         await fetchIpoData();
+//         await fetchFiiData();
+//     }, 30000); // 30 seconds
+  
+//     // Fetch news and meeting data
+//     fetchData('https://datafetch.compoundingfunda.com/live/api/news', 'new_top_news', 'cardContainer');
+//     fetchData('https://datafetch.compoundingfunda.com/live/api/board_meeting', 'board_meetings', 'meetingContainer');
+    
+//     setInterval(() => fetchData('https://datafetch.compoundingfunda.com/live/api/news', 'new_top_news', 'cardContainer'), 60 * 60 * 1000);
+  
+//     // Schedule fetch at 9 PM
+//     scheduleFetchAtNinePM(); // Call the function
+//   };
+  
+//   // Schedule function for fetching at 9 PM
+//   function scheduleFetchAtNinePM() {
+//     const now = new Date();
+//     const ninePM = new Date();
+//     ninePM.setHours(21, 0, 0, 0);
+  
+//     if (now > ninePM) {
+//         ninePM.setDate(ninePM.getDate() + 1);
+//     }
+  
+//     const timeUntilNinePM = ninePM.getTime() - now.getTime();
+//     setTimeout(() => {
+//         fetchData('https://datafetch.compoundingfunda.com/live/api/board_meeting', 'board_meetings', 'meetingContainer');
+//         setInterval(() => fetchData('https://datafetch.compoundingfunda.com/live/api/board_meeting', 'board_meetings', 'meetingContainer'), 60 * 60 * 1000);
+//         fetchBulkDealsData();
+//     }, timeUntilNinePM);
+//   }
+  
+// }
+
+
+
+// market over view section Ends here 
+
+// Global Over view section
+
+async function displayGlobalOverlay() {
+  globalStaticcode();
+  await globalDynamiccode();
+}
+
+async function globalStaticcode() {
+  let globalStructure = document.querySelector('.content');
+  globalStructure.innerHTML = `
+    <div class="go-container">
+        <div class="heading">
+            <h3>Global Index</h3>
+        </div>
+        <div class="card-container" id="market-container">
+            <!-- Global index cards will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Container for ADR -->
+    <div class="go-container">
+        <div class="heading">
+            <h3>Global ADR</h3>
+        </div>
+        <div class="card-container" id="adr-container">
+            <!-- ADR cards will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Container for Global Currency -->
+    <div class="go-container">
+        <div class="heading">
+            <h3>Global Currency</h3>
+        </div>
+        <div class="card-container" id="currency-container">
+            <!-- Currency cards will be inserted here -->
+        </div>
+    </div>
+  `;
+  await globalDynamiccode();
+}
+
+async function globalDynamiccode() {
+  // const baseURL = 'http://127.0.0.1:8000/';
+const baseURL = 'https://datafetch.compoundingfunda.com/';
+const gsLink = 'live/api/globalstatus';
+const adrLink = 'live/api/ard';
+const currencyLink = 'live/api/currency';
+const gsUrl = baseURL + gsLink;
+const adrUrl = baseURL + adrLink;
+const currencyUrl = baseURL + currencyLink;
+
+// Function to convert timestamp to readable time
+function formatTimestamp(timestamp) {
+    const date = new Date(parseInt(timestamp));
+    return date.toLocaleTimeString();
+}
+
+// Function to create a card for Global Index
+function createIndexCard(indexData) {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const name = document.createElement('div');
+    name.className = 'name';
+    name.textContent = indexData.name;
+
+    const price = document.createElement('div');
+    price.className = 'price';
+    price.textContent = indexData.price;
+
+    const percentChange = document.createElement('div');
+    percentChange.className = 'percent_change';
+    percentChange.textContent = `${indexData.percent_change}%`;
+    if (parseFloat(indexData.percent_change) > 0) {
+        percentChange.classList.add('positive');
+    } else {
+        percentChange.classList.add('negative');
+    }
+
+    const lastUpdated = document.createElement('div');
+    lastUpdated.className = 'last_updated';
+    lastUpdated.textContent = formatTimestamp(indexData.last_updated);
+
+    const state = document.createElement('div');
+    state.className = `state ${indexData.state.toLowerCase()}`;
+    state.textContent = indexData.state;
+
+    const flag = document.createElement('img');
+    flag.src = indexData.flag_url;
+    flag.alt = `${indexData.name} Flag`;
+
+    card.appendChild(name);
+    card.appendChild(price);
+    card.appendChild(percentChange);
+    card.appendChild(lastUpdated);
+    card.appendChild(state);
+    card.appendChild(flag);
+
+    return card;
+}
+
+// Function to create a card for ADR
+function createAdrCard(stock) {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const title = document.createElement('div');
+    title.className = 'title';
+    title.textContent = stock.shortname;
+
+    const price = document.createElement('div');
+    price.className = 'price';
+    price.textContent = `$${stock.lastprice}`;
+
+    const change = document.createElement('div');
+    change.className = 'change';
+    change.textContent = `Change: ${stock.percentchange}%`;
+    if (parseFloat(stock.percentchange) > 0) {
+        change.classList.add('positive');
+    } else {
+        change.classList.add('negative');
+    }
+
+    const state = document.createElement('div');
+    state.className = 'state';
+    state.textContent = `Market: ${stock.market_state.charAt(0).toUpperCase() + stock.market_state.slice(1)}`;
+
+    card.appendChild(title);
+    card.appendChild(price);
+    card.appendChild(change);
+    card.appendChild(state);
+
+    return card;
+}
+
+// Function to create a card for Currency
+function createCurrencyCard(currency) {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const title = document.createElement('div');
+    title.className = 'title';
+    title.textContent = currency.name;
+
+    const ltp = document.createElement('div');
+    ltp.className = 'price';
+    ltp.textContent = `$${currency.ltp}`;
+
+    const change = document.createElement('div');
+    change.className = 'change';
+    change.textContent = `Change: ${currency.chgper}%`;
+    if (parseFloat(currency.chgper) > 0) {
+        change.classList.add('positive');
+    } else {
+        change.classList.add('negative');
+    }
+
+    const state = document.createElement('div');
+    state.className = 'state';
+    state.textContent = `Market: ${currency.market_state.charAt(0).toUpperCase() + currency.market_state.slice(1)}`;
+
+    card.appendChild(title);
+    card.appendChild(ltp);
+    card.appendChild(change);
+    card.appendChild(state);
+
+    return card;
+}
+
+// Fetch and render data for Global Indices
+async function renderGlobalIndices() {
+    try {
+        const response = await fetch(gsUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        const marketContainer = document.getElementById('market-container');
+        marketContainer.innerHTML = '';
+        data.forEach(indexData => {
+            const card = createIndexCard(indexData);
+            marketContainer.appendChild(card);
+        });
+    } catch (error) {
+        console.error('Error fetching global indices:', error);
+    }
+}
+
+// Fetch and render data for ADR
+async function renderADR() {
+    try {
+        const response = await fetch(adrUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        const adrContainer = document.getElementById('adr-container');
+        adrContainer.innerHTML = '';
+        data.forEach(stock => {
+            const card = createAdrCard(stock);
+            adrContainer.appendChild(card);
+        });
+    } catch (error) {
+        console.error('Error fetching ADR data:', error);
+    }
+}
+
+// Fetch and render data for Global Currency
+async function renderGlobalCurrency() {
+    try {
+        const response = await fetch(currencyUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        const currencyContainer = document.getElementById('currency-container');
+        currencyContainer.innerHTML = '';
+        data.forEach(currency => {
+            const card = createCurrencyCard(currency);
+            currencyContainer.appendChild(card);
+        });
+    } catch (error) {
+        console.error('Error fetching global currency data:', error);
+    }
+}
+
+// Initial rendering
+renderGlobalIndices();
+renderADR();
+renderGlobalCurrency();
+
+// Auto-refresh every 60 seconds for each type of data
+setInterval(renderGlobalIndices, 30000);
+setInterval(renderADR, 60000);
+setInterval(renderGlobalCurrency, 60000);
+
+}
+
+
+// Global Over view section ends

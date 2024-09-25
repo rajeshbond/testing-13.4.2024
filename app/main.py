@@ -245,7 +245,26 @@ async def champ_dashboard(request: Request):
             return RedirectResponse(url="/dashboard")
     except Exception as e:
         return RedirectResponse(url="/")
-    
+
+# -----------------------------(Advance Achivers Board) champions Dashboard  
+
+@app.get('/advaceAchivers', response_class=HTMLResponse)
+async def champ_dashboard(request: Request):
+    try:
+        user = request.session.get("user")
+        update_user_subsription(request)
+        db_data_user= db.collection('users').document(user['localId']).get().to_dict()
+        # print(db_data_user)
+        screener_active = db_data_user['screener_active']
+        currentSubscription = db_data_user['subscriptionDetails']['currentSubscription']
+        # print(f"currentSubscription {currentSubscription} <----> screener_active {screener_active}")
+        if (currentSubscription == 'Champions Club' or currentSubscription == 'Admin') and screener_active == True:
+            return templates.TemplateResponse("advanceachivers.html", {"request": request})
+        else:
+            return RedirectResponse(url="/dashboard")
+    except Exception as e:
+        return RedirectResponse(url="/")
+
 
 @app.get('/logout', response_class=HTMLResponse)
 async def get_logout(request: Request):
@@ -944,6 +963,8 @@ def createUserCoupon(coup1:schemes.CreateCoupon, request: Request):
                      "discount_multiplier":coup1.discountPercentage,
                      "valid":coup1.validDate,
                      "coupon_used":False,
+                    "created_by":user['localId'],
+                    "created_at":datetime.now().isoformat()
                 }
           
                 db.collection('coupon').document(coup1.couponName.upper()).set(coup_data)
@@ -968,6 +989,8 @@ async def createAllCoupon(coup:schemes.CreateCoupon, request: Request):
                      "discount_flat":coup.discountFlat,
                      "discount_multiplier":coup.discountPercentage,
                      "valid":coup.validDate,
+                     "Created_by":user['localId'],
+                     "created_at":datetime.now().isoformat()
                 }
           
                 db.collection('coupon').document(coup.couponName.upper()).set(coup_data)
@@ -1041,7 +1064,8 @@ async def editUserSubscrition(sub:schemes.EditUser, request: Request):
                 data = {
                     "screener_active": True,
                     "subscriptionDetails": subscriptionStatus,
-                    "razorpayconfimation": razorpayconfimation,   
+                    "razorpayconfimation": razorpayconfimation,
+                    "updated_by":user['localId'],   
                 }  
                 db.collection('users').document(sub.uid).update(data)
                 if flag == 0:

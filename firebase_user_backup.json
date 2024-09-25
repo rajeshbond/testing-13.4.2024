@@ -266,15 +266,15 @@
     "created_at": "2024-04-24T08:36:50.299925",
     "uid": "1WQZpMzSY7UI7e8Wg7yS9ZuyZuS2",
     "isBlocked": false,
-    "screener_active": true,
+    "screener_active": false,
     "isUserAdmin": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-04-24T08:36:50.299891",
+      "subscriptionDate": "2024-09-12T13:30:04.411196",
       "subscriptionEndDate": "2024-07-23T08:36:50.299920",
-      "currentSubscription": "Free - trial - 90 days",
+      "currentSubscription": "Free - trial - 90 days - Ended",
       "coupon_applied": "no coupon applied"
     },
     "email": "shail@live.in",
@@ -2233,10 +2233,10 @@
       "Amount": 0
     },
     "razorpayorder": {
-      "created_at": "2024-08-31T14:13:14.225801",
-      "order_id": "order_OrRcs2J40mHlgt",
+      "created_at": "2024-09-05T23:41:45.027063",
+      "order_id": "order_OtZz0q3lBatQ05",
       "plan": "Champions Club",
-      "amount": 21999,
+      "amount": 24999,
       "notes": {
         "plan": "Champions Club",
         "coupon_applied": "no coupon applied"
@@ -4190,7 +4190,6 @@
       }
     },
     "referal": true,
-    "updatedBy": "3csjUGdonDTK59TpzNCfopwFSuw2",
     "updatedAt": "2024-08-11T12:06:12.911499",
     "referral_code": "3csjUGdonDTK59TpzNCfopwFSuw2",
     "screener_active": true,
@@ -4199,14 +4198,15 @@
     "razorpayconfimation": {
       "Amount": 0.0
     },
+    "updated_by": "3csjUGdonDTK59TpzNCfopwFSuw2",
     "isUserAdmin": false,
     "subscriptionDetails": {
       "free_trial_over": true,
       "subscriptionStatus": "Active",
       "paidSubscription": true,
       "subscriptionDate": "2024-06-07T11:40:58.705291",
-      "subscriptionEndDate": "2049-07-11T12:06:12.911499",
-      "currentSubscription": "Achivers Club",
+      "subscriptionEndDate": "2025-06-06T11:40:58.705291",
+      "currentSubscription": "Market Talk Club",
       "coupon_applied": "Admin Upgrade"
     },
     "email": "rajesh.sntsolutions@rediffmail.com",
@@ -4670,6 +4670,27 @@
     },
     "email": "24.shishir@gmail.com",
     "mobile": "+919716627999",
+    "referral_code": null,
+    "isBlocked": false
+  },
+  {
+    "created_at": "2024-09-22T13:13:29.966873",
+    "uid": "mO8zZNj6dkMnFCUM51JDkp52h5H2",
+    "name": "Vijay Harikrishnan ",
+    "isEmailVerified": false,
+    "isUserAdmin": false,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-09-22T13:13:29.966789",
+      "subscriptionEndDate": "2024-12-21T13:13:29.966846",
+      "currentSubscription": "Free - trial - 90 days",
+      "coupon_applied": "TRIAL90"
+    },
+    "email": "vjey79@gmail.com",
+    "mobile": "9994530003",
     "referral_code": null,
     "isBlocked": false
   },
@@ -5348,6 +5369,86 @@
     "mobile": "7032770298",
     "referral_code": null,
     "isBlocked": false
+  },
+  {
+    "created_at": "2024-09-07T11:46:27.069175",
+    "uid": "t17rqi4U5GM2LTCGEC51iGHheWe2",
+    "razorpayconfimation": {
+      "payment_time": "2024-09-07T12:10:46.300022",
+      "payments_status": {
+        "fee": 28318,
+        "created_at": 1725691229,
+        "method": "upi",
+        "error_step": null,
+        "wallet": null,
+        "bank": null,
+        "order_id": "order_OuBGcHy7XN1k1T",
+        "error_source": null,
+        "status": "captured",
+        "notes": {
+          "address": "company address",
+          "plan": "Achivers Club",
+          "coupon_applied": "no coupon applied"
+        },
+        "card_id": null,
+        "error_reason": null,
+        "amount_refunded": 0,
+        "currency": "INR",
+        "international": false,
+        "description": "Payment for Achivers Club plan",
+        "vpa": "sharma.a9666@oksbi",
+        "entity": "payment",
+        "id": "pay_OuBH2xkGpFU6Yq",
+        "error_code": null,
+        "captured": true,
+        "acquirer_data": {
+          "rrn": "425109081448"
+        },
+        "tax": 4320,
+        "amount": 1199900,
+        "error_description": null,
+        "upi": {
+          "vpa": "sharma.a9666@oksbi",
+          "payer_account_type": "bank_account"
+        },
+        "contact": "+918146567358",
+        "email": "sharma.a9666@gmail.com",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "d01a25683dd950d0e10a67a5ade5763b698f14fcfcad73195e2a977d5d9b1b92",
+      "payment_id": "pay_OuBH2xkGpFU6Yq",
+      "Amount": 11999,
+      "orderId": "order_OuBGcHy7XN1k1T",
+      "plan": "Achivers Club"
+    },
+    "razorpayorder": {
+      "created_at": "2024-09-07T12:10:04.691726",
+      "order_id": "order_OuBGcHy7XN1k1T",
+      "plan": "Achivers Club",
+      "amount": 11999,
+      "notes": {
+        "plan": "Achivers Club",
+        "coupon_applied": "no coupon applied"
+      }
+    },
+    "isUserAdmin": false,
+    "screener_active": true,
+    "isEmailVerified": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2024-09-07T12:10:46.299977",
+      "subscriptionEndDate": "2049-08-07T12:10:45.333040",
+      "currentSubscription": "Achivers Club",
+      "coupon_applied": "no coupon applied"
+    },
+    "email": "sharma.a9666@gmail.com",
+    "mobile": "8146567358",
+    "referral_code": null,
+    "name": "Ayush Sharma"
   },
   {
     "created_at": "2024-07-27T02:25:10.565031",
