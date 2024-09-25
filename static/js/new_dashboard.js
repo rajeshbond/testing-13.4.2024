@@ -336,10 +336,10 @@ async function achiversDashboard() {
     subMenuNavBar.style.display = "flex";
   }
 
-  let champHTML = `
+  let achiversHTML = `
     <li><a href="#" onclick="achiversboard()">Achivers Board</a></li>
   `;
-  subMenuNavBar.innerHTML = champHTML;
+  subMenuNavBar.innerHTML = achiversHTML;
 }
 
 
@@ -357,7 +357,6 @@ async function advanceachivers(){
   ShowDisclaimer("advaceAchivers");
 }
 async function achiversboard() {
-  await contentNone();
   // console.log("Achivers Board");
   ShowDisclaimer("screener");
 }
