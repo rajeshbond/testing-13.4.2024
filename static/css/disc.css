@@ -15,6 +15,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: scroll
 } 
 .popup h2, h3{
     text-align: center;
