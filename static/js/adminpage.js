@@ -1,3 +1,34 @@
+const closeBtn = document.querySelector("#close-btn");
+const sidebar = document.querySelector("aside");
+const menuBtn = document.querySelector("#menu-bar");
+
+// Show the sidebar when the menu button is clicked
+menuBtn.addEventListener("click", () => {
+  console.log("Menu button clicked");
+  sidebar.style.display = "block";
+});
+
+// Hide the sidebar when the close button is clicked
+closeBtn.addEventListener("click", () => {
+  console.log("Close button clicked");
+  sidebar.style.display = "none";
+});
+
+// Hide the sidebar when clicking outside of it
+document.addEventListener("click", (event) => {
+  const isClickInsideSidebar = sidebar.contains(event.target);
+  const isClickInsideMenuButton = menuBtn.contains(event.target);
+
+  // Check if the click is outside the sidebar and the menu button
+  if (!isClickInsideSidebar && !isClickInsideMenuButton) {
+    console.log("Clicked outside. Hiding sidebar.");
+    sidebar.style.display = "none";
+  }
+});
+
+
+
+
 
 const getUserData = async () => {
   try {
