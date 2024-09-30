@@ -23,6 +23,15 @@ function swipedashboard() {
   }
 }
 
+function achiversbr() {
+  try{
+      console.log("swipedashboard");
+      window.location.href = "/advaceAchivers"; 
+  }catch(e){
+      console.log(e);
+  }
+}
+
 
 async function fetchData(conditionName) {
   try {

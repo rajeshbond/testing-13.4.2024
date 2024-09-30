@@ -22,6 +22,14 @@ function swipedashboard() {
   }
 }
 
+function achiversbr() {
+  try {
+      console.log("Navigating to Adv Achivers Board");
+      window.location.href = "/advaceAchivers"; 
+  } catch(e) {
+      console.error("Error:", e);
+  }
+}
 async function fetchData(conditionName) {
   try {
     const response = await fetch(url, {

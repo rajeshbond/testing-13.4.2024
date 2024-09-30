@@ -1459,3 +1459,56 @@ select {
     /* Ensures the image covers the container, maintaining aspect ratio */
   }
 }
+
+
+
+/* ffkjhfkjhfkjshfkjhsdjkf */
+
+@media (max-width: 640px) {
+  .sweet-alert {
+      width: auto;    
+      margin-bottom: 20px;              /* Allow width to adjust to the screen */
+      margin-left: 0;              /* Remove left margin */
+      margin-right: 0;             /* Remove right margin */
+      left: 15px;                  /* Set left position */
+      right: 15px;   
+      left: 50%;
+      top: 30% !important;              /* Set right position */
+      max-height: 70vh !important;            /* Limit the height to 90% of the viewport height*/
+      padding: 20px;               /* Optional: add some padding */
+      box-sizing: border-box;       /* Ensure padding is included in the height calculation */
+  }
+
+  /* Optional: Customize the scrollbar */
+  .sweet-alert::-webkit-scrollbar {
+      width: 8px;                  /* Width of the scrollbar */
+  }
+
+  .sweet-alert::-webkit-scrollbar-thumb {
+      background: #888;            /* Color of the scrollbar */
+      border-radius: 10px;         /* Rounded corners */
+  }
+
+  .sweet-alert::-webkit-scrollbar-thumb:hover {
+      background: #555;            /* Darker color on hover */
+  }
+}
+
+.sweet-alert {
+  background-color: white;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 478px;
+  padding: 17px;
+  border-radius: 5px;
+  text-align: center;
+  max-height: 70vh;
+  position: fixed;
+  left: 50%;
+  top: 50% ;
+  margin-left: -256px;
+  margin-top: -200px;
+  overflow: hidden;
+  display: none;
+  z-index: 99999;
+  overflow-y: scroll !important ;
+}
