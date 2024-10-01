@@ -1868,8 +1868,8 @@ async function globalStaticcode() {
 }
 
 async function globalDynamiccode() {
-  const baseURL = 'http://127.0.0.1:8000/';
-// const baseURL = 'https://datafetch.compoundingfunda.com/';
+  // const baseURL = 'http://127.0.0.1:8000/';
+const baseURL = 'https://datafetch.compoundingfunda.com/';
 const gsLink = 'live/api/globalstatus';
 const adrLink = 'live/api/ard';
 const currencyLink = 'live/api/currency';
