@@ -324,13 +324,16 @@ async function fetchDataWithDelay(conditionName, tableId, delay, modelName, tabl
   const data = await fetchData(conditionName);
   if (data) {
     generateStockTable(data, tableId, modelName, tableName);
-  }
+   }
 }
 
 async function init() {
-  await fetchDataWithDelay('Champions Swing', 'swing-table', 50, 'SwingData', 'SWING');
-  await fetchDataWithDelay('Champions Positional', 'positional-table', 50, 'PositionalData', 'POSITIONAL');
-  await fetchDataWithDelay('Stage_2', 'stage_2-table', 50, 'Stage_2', 'STAGE_2');
+  await fetchDataWithDelay('Champions Swing', 'swing-table', 50, 'SwingData', 'DAILY');
+  await fetchDataWithDelay('Champions Positional', 'positional-table', 50, 'PositionalData', 'WEEKLY');
+  await fetchDataWithDelay('Stage_2', 'stage_2-table', 50, 'Stage_2', 'MONTHLY');
+  // await fetchDataWithDelay('Champions Swing', 'swing-table', 50, 'SwingData', 'SWING');
+  // await fetchDataWithDelay('Champions Positional', 'positional-table', 50, 'PositionalData', 'POSITIONAL');
+  // await fetchDataWithDelay('Stage_2', 'stage_2-table', 50, 'Stage_2', 'STAGE_2');
   count++;
   console.log(`------Count: ${count}-----`);
 }

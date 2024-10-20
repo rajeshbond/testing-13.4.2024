@@ -332,7 +332,7 @@ async function fetchDataWithDelay(conditionName, tableId, delay, modelName, tabl
 
 async function init() {
   await fetchDataWithDelay('Champions Intraday', 'intraday-table', 50, 'IntradayData', 'INTRADAY');
-  await fetchDataWithDelay('Champions Condition 6', 'condition6-table', 50, 'Condition6', 'CONDITION6');
+  await fetchDataWithDelay('Champions Condition 6', 'condition6-table', 50, 'Condition6', 'SWING');
   await fetchDataWithDelay('Champions Reversal Stocks', 'reversal-table', 50, 'ReversalData', 'REVERSAL');
   await fetchDataWithDelay('Champions Over Brought', 'overbrought-table', 50, 'OverBroughtData', 'OVERBOUGHT');
   // await fetchDataWithDelay('Champions Positional', 'positional-table', 50, 'PositionalData', 'POSITIONAL');

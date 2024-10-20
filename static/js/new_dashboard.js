@@ -313,9 +313,9 @@ async function championsDashboard() {
   }
 
   let champHTML = `
-    <li><a href="#" onclick="traderboard()">Trader Board</a></li>
-    <li><a href="#" onclick="investorboard()">Investor Board</a></li>
-    <li><a href="#" onclick="advanceachivers()">Adv Achivers Board</a></li>
+    <li><a href="#" onclick="traderboard()">Trader Dashboard</a></li>
+    <li><a href="#" onclick="investorboard()">Investor Dashboard</a></li>
+    <li><a href="#" onclick="advanceachivers()">Adv. Achivers Dashboard</a></li>
     
   `;
   subMenuNavBar.innerHTML = champHTML;
