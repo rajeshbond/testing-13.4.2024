@@ -237,7 +237,7 @@ async function showPopup(company, tableName, sector, modelName) {
       <p>Sector: ${sector}</p>
       <p>Price: ${company.close}</p>
       <p>Percentage Change: ${company.per_chg}%</p>
-      <p>Appearance in Last 30 days: ${company.count} times</p>
+      <p>Appearance in Last 90 days: ${company.count} times</p>
       <canvas id="close-chart" width="400" height="200"></canvas>
       ${listTableHtml}
     `;
