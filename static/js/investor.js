@@ -234,7 +234,7 @@ async function showPopup(company, tableName, sector, modelName) {
       <p>Sector: ${sector}</p>
       <p>Price: ${company.close}</p>
       <p>Percentage Change: ${company.per_chg}%</p>
-      <p>Appearance in Last 30 days: ${company.count} times</p>
+      <p>Appearance in Last 90 days: ${company.count} times</p>
       <canvas id="close-chart" width="400" height="200"></canvas>
       ${listTableHtml}
     `;
@@ -319,6 +319,7 @@ function closePopup() {
   popupOverlay.style.display = 'none';
 }
 
+
 async function fetchDataWithDelay(conditionName, tableId, delay, modelName, tableName) {
   await new Promise(resolve => setTimeout(resolve, delay));
   const data = await fetchData(conditionName);
@@ -331,7 +332,7 @@ async function init() {
   await fetchDataWithDelay('Champions Swing', 'swing-table', 50, 'SwingData', 'DAILY');
   await fetchDataWithDelay('Champions Positional', 'positional-table', 50, 'PositionalData', 'WEEKLY');
   await fetchDataWithDelay('Stage_2', 'stage_2-table', 50, 'Stage_2', 'MONTHLY');
-  // await fetchDataWithDelay('Champions Swing', 'swing-table', 50, 'SwingData', 'SWING');
+  await fetchDataWithDelay('Six Month Breakout', 'monthly-table', 50, 'SixMonthBreakoutData', 'Six Month Breakout');
   // await fetchDataWithDelay('Champions Positional', 'positional-table', 50, 'PositionalData', 'POSITIONAL');
   // await fetchDataWithDelay('Stage_2', 'stage_2-table', 50, 'Stage_2', 'STAGE_2');
   count++;
