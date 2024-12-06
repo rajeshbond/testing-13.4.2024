@@ -412,7 +412,7 @@ def signup(request: schemes.Signup):
             'subscriptionDetails':{
                 'currentSubscription': 'Free - trial - 7 days', 
                 'subscriptionStatus': 'Active',
-                'coupon_applied':'TRIAL90',
+                'coupon_applied':'TRIAL_7',
                 'free_trial_over': False,
                 'subscriptionDate': datetime.now().isoformat(),
                 'subscriptionEndDate': (datetime.now() + timedelta(7)).isoformat(),
