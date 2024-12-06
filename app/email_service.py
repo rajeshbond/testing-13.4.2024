@@ -47,7 +47,7 @@ class EmailService:
         print(f"Email confirmation {email_to} {name} {plan}") 
         if plan == 'free_plan':
             # print("=============================={Free plan}=================================")
-            body = f" Dear {name},\n\nThank you for Signingup with Compounding Funda.\n As welcome gift, we offer you a 90 days free access to our most powerful and accurate live market dynamic Screener.\n for more details or any issue \n Please contact us info@compoundingfunda.com.\n\nBest Regards,\nTeam Compounding Funda"
+            body = f" Dear {name},\n\nThank you for Signingup with Compounding Funda.\n As welcome gift, we offer you a 7 days free access to our most powerful and accurate live market dynamic Screener.\n for more details or any issue \n Please contact us info@compoundingfunda.com.\n\nBest Regards,\nTeam Compounding Funda"
             self.send_format(email_to=email_to, subject=f"Screener Access Confirmation for {plan}", body=body)
             return
 

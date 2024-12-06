@@ -1,0 +1,13 @@
+[Unit]
+Description= compoundingfunda application
+After=network.target
+
+[Service]
+User=tanu
+Group=tanu
+WorkingDirectory=/home/tanu/compound/src
+Environment="PATH=/home/tanu/compound/venv/bin"
+ExecStart=/home/tanu/compound/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8004
+
+[Install]
+WantedBy=multi-user.target
