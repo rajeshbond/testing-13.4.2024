@@ -1,0 +1,51 @@
+document.addEventListener("DOMContentLoaded", () => {
+  loadReviews();
+});
+
+async function loadReviews() {
+  try {
+    const res = await fetch("http://127.0.0.1:8000/api/allcustomerReview");
+    const reviews = await res.json();
+
+    const container = document.querySelector(".review-window");
+    if (!container || !reviews.length) return;
+
+    const track = document.createElement("div");
+    track.className = "review-track";
+
+    // Duplicate data for seamless scrolling
+    const data = [...reviews, ...reviews];
+
+    data.forEach(r => {
+      const card = document.createElement("div");
+      card.className = "review-card";
+
+      card.innerHTML = `
+        <div class="review-name">${r.name}</div>
+        <div class="review-stars">${renderStars(r.rating)}</div>
+        <div class="review-text">${r.review_text}</div>
+      `;
+
+      track.appendChild(card);
+    });
+
+    container.innerHTML = "";
+    container.appendChild(track);
+
+  } catch (err) {
+    console.error("Failed to load reviews", err);
+  }
+}
+
+/* ⭐ Rating renderer (supports 4.5) */
+function renderStars(rating) {
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.5;
+  let stars = "";
+
+  for (let i = 0; i < full; i++) stars += "★";
+  if (half) stars += "½";
+  while (stars.replace("½","").length < 5) stars += "☆";
+
+  return stars;
+}

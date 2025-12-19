@@ -118,6 +118,20 @@ class EditMobile(BaseModel):
 class GetUser(BaseModel):
     uid : str
 
+class CustomerReviewIn(BaseModel):
+    review_text: Optional[str]
+    rating: Optional[float]
+
+class CustomerReviewOut(BaseModel):
+    name : str
+    review_text: str
+    rating: float
+    # current_subscription: str
+    created_at: datetime
+
+    class Config:
+       from_attributes = True
+
 
   
 

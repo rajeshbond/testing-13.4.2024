@@ -1,6 +1,10 @@
 
-from fastapi import FastAPI, HTTPException, status, WebSocket, Response
+from typing import List
+from fastapi import Depends, FastAPI, HTTPException, status, WebSocket, Response
 from fastapi.responses import HTMLResponse, JSONResponse
+from sqlalchemy.orm import Session
+from . import models
+from .database import engine, get_db
 import random , uuid
 from starlette.middleware.sessions import SessionMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -37,7 +41,8 @@ from googleapiclient.discovery import build # pip install google-auth
 # --------------------Rqazor Pay------------------------------------------------------------------------
 import razorpay
 # ----------------------------------
-
+# 
+models.Base.metadata.create_all(bind=engine) # commented becase now alembic is genetatic the table for us
 # -----------------Email Service-----------------
 # env_path = Path('.', '.env')
 # -----------------------------------------------
@@ -45,6 +50,8 @@ import razorpay
 settings = Settings()
 
 # print(f"============={settings.google_cloud_api_main}")
+
+
 # -----------------FastAPI-----------------
 app = FastAPI(title="Comounding Funda",description="Comounding Funda",version="1.0.0")
 
@@ -1078,6 +1085,205 @@ async def editUserSubscrition(sub:schemes.EditUser, request: Request):
                 return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Used is not Admin User")
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error while getting user data: {e}")
+
+# Customer Review post method
+
+
+@app.post('/api/customerReview', status_code=status.HTTP_201_CREATED)
+async def customer_review(
+    review: schemes.CustomerReviewIn,
+    request: Request,
+    data_db: Session = Depends(get_db)
+):
+    try:
+        user = request.session.get("user")
+        if not user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not Logged In")
+
+        db_user = db.collection('users').document(user['localId']).get().to_dict()
+        if not db_user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+        if db_user['subscriptionDetails']['currentSubscription'] != 'Champions Club':
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail= f"You should be of Champions Club Member!!!")
+
+        current_user_review = data_db.query(models.CustomerReview).filter(models.CustomerReview.uid == user['localId']).first()
+        if current_user_review:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Review already submitted")
+        if db_user['subscriptionDetails']['currentSubscription'] != 'Champions Club':
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail= f"You should be of Champions Club Member!!!")
+        # print("Creating new review...")
+        new_review = {
+            "uid": db_user['uid'],
+            "name": db_user['name'],
+            "current_subscription": db_user['subscriptionDetails']['currentSubscription'],
+            "rating": review.rating,
+            "review_text": review.review_text,
+            "created_at": datetime.now()
+        }
+
+        review = models.CustomerReview(**new_review)
+        data_db.add(review)
+        data_db.commit()
+        data_db.refresh(review)
+
+        return {"detail": "Review Submitted Successfully", 'review': schemes.CustomerReviewOut.model_validate(review)}
+
+    except HTTPException:
+        # 🔹 Let FastAPI handle known HTTP errors (401, 400, etc.)
+        raise
+    except Exception as e:
+        # 🔹 Only unexpected errors become 500s
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {e}")
+
+
+@app.patch('/api/customerReview', status_code=status.HTTP_200_OK)
+async def update_review(
+    review: schemes.CustomerReviewIn,
+    request: Request,
+    data_db: Session = Depends(get_db)
+):
+    try:
+        user = request.session.get("user")
+        if not user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not Logged In")
+
+        db_user = db.collection('users').document(user['localId']).get().to_dict()
+        if not db_user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+        if db_user['subscriptionDetails']['currentSubscription'] != 'Champions Club':
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail= f"You should be of Champions Club Member!!!")
+        
+
+        current_user_review = data_db.query(models.CustomerReview).filter(models.CustomerReview.uid == user['localId']).first()
+
+        # print(current_user_review.uid)
+
+        if not current_user_review:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Review not found")
+
+        current_user_review.rating = review.rating
+        current_user_review.review_text = review.review_text
+        current_user_review.created_at = datetime.now()
+
+        data_db.commit()
+        data_db.refresh(current_user_review)
+
+        return {"detail": "Review Updated Successfully", 'review': schemes.CustomerReviewOut.model_validate(current_user_review)}
+    except HTTPException:
+        
+
+        
+        # 🔹 Let FastAPI handle known HTTP errors (401, 400, etc.)
+            raise
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {e}")
+    
+@app.delete('/api/customerReview', status_code=status.HTTP_200_OK)
+async def delete_review(
+    request: Request,
+    data_db: Session = Depends(get_db)
+):
+    try:
+        user = request.session.get("user")
+        if not user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not Logged In")
+
+        db_user = db.collection('users').document(user['localId']).get().to_dict()
+        if not db_user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+        if db_user['subscriptionDetails']['currentSubscription'] != 'Champions Club':
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail= f"You should be of Champions Club Member!!!")
+        
+
+        current_user_review = data_db.query(models.CustomerReview).filter(models.CustomerReview.uid == user['localId']).first()
+
+        print(current_user_review.uid)
+
+        if not current_user_review:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Review not found")
+
+        data_db.delete(current_user_review)
+        data_db.commit()
+
+
+        return {"detail": f"Review Deleted Successfully"}
+    except HTTPException:
+        
+
+        
+        # 🔹 Let FastAPI handle known HTTP errors (401, 400, etc.)
+            raise
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {e}")
+   
+@app.get('/api/customerReview', status_code=status.HTTP_200_OK)
+async def get_user_review(
+    request: Request,
+    data_db: Session = Depends(get_db)
+):
+    try:
+        user = request.session.get("user")
+        if not user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not Logged In")
+
+        db_user = db.collection('users').document(user['localId']).get().to_dict()
+        if not db_user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+        if db_user['subscriptionDetails']['currentSubscription'] != 'Champions Club':
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail= f"You should be of Champions Club Member!!!")
+        
+
+        current_user_review = data_db.query(models.CustomerReview).filter(models.CustomerReview.uid == user['localId']).first()
+
+        # print(current_user_review.uid)
+
+        if not current_user_review:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Review not found")
+
+        
+
+        return {'review': schemes.CustomerReviewOut.model_validate(current_user_review)}
+    except HTTPException:
+        
+        # 🔹 Let FastAPI handle known HTTP errors (401, 400, etc.)
+            raise
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {e}")
+    
+@app.get('/api/allcustomerReview', status_code=status.HTTP_200_OK,response_model=List[schemes.CustomerReviewOut])
+async def get_all_review(
+    request: Request,
+    data_db: Session = Depends(get_db)
+):
+    try:
+        user = request.session.get("user")
+        if not user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not Logged In")
+
+        db_user = db.collection('users').document(user['localId']).get().to_dict()
+        if not db_user:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+        # if db_user['subscriptionDetails']['currentSubscription'] != 'Champions Club':
+        #     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail= f"You should be of Champions Club Member!!!")
+        
+
+        current_user_reviews = data_db.query(models.CustomerReview).filter(models.CustomerReview.rating >= 3.5).all()
+
+        # print(current_user_review.uid)
+
+        if not current_user_reviews:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Review not found")
+
+        
+        return current_user_reviews
+        # return {"review": [schemes.CustomerReviewOut.model_validate(r) for r in current_user_review]}
+    except HTTPException:
+        
+        # 🔹 Let FastAPI handle known HTTP errors (401, 400, etc.)
+            raise
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Error: {e}")
+
 
 
 @app.post('/api/backup', status_code=status.HTTP_200_OK)

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 
 :root {
   --clr-primary: #737fece5;
@@ -42,7 +42,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 0.88rem;
   background-color: var(--clr-color-background);
   user-select: text;
@@ -64,7 +64,7 @@ header {
   height: 5rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
-  background-color: #E7A72D;
+  background-color: #e7a72d;
   position: fixed;
   /* Fixed positioning to stay at the top */
   top: 0;
@@ -142,9 +142,6 @@ header .title {
   margin-right: 1rem;
 }
 
-
-
-
 .header-menu__nav {
   display: flex;
   flex-direction: column;
@@ -216,20 +213,18 @@ header .title {
 
 .header-menu__nav a:hover {
   color: blue;
-  border-left: 0.25rem solid #E7A72D;
+  border-left: 0.25rem solid #e7a72d;
   /* Border color to match background */
-  border-right: 0.25rem solid #01A75A;
+  border-right: 0.25rem solid #01a75a;
   /* Border color to match background */
 }
 
 .header-menu__nav a:active {
-  background-color: #E7A72D;
+  background-color: #e7a72d;
   /* Solid background color when active */
   color: var(--clr-white);
   /* Solid font color when active */
 }
-
-
 
 .header-menu__nav i {
   margin-right: 8px;
@@ -283,19 +278,17 @@ header .title {
 
 .sub-header-menu__nav a:hover {
   color: blue;
-  border-top: 0.25rem solid #E7A72D;
+  border-top: 0.25rem solid #e7a72d;
   /* Border color to match background */
-  border-bottom: 0.25rem solid #01A75A;
+  border-bottom: 0.25rem solid #01a75a;
 }
 
 .sub-header-menu__nav a:active {
-  background-color: #E7A72D;
+  background-color: #e7a72d;
   /* Solid background color when active */
   color: var(--clr-white) !important;
   /* Solid font color when active */
 }
-
-
 
 /* re main */
 
@@ -332,12 +325,12 @@ header .title {
 .sub-header-menu__nav1 a:hover {
   /* color: var(--clr-white); */
   color: #222;
-  background: #E7A72D;
+  background: #e7a72d;
   border-radius: 1.2rem;
 }
 
 .sub-header-menu__nav1 a:active {
-  background-color: #E7A72D; /* Solid background color when active */
+  background-color: #e7a72d; /* Solid background color when active */
 }
 
 main {
@@ -352,7 +345,7 @@ main {
 }
 
 footer {
-  background-color: #01A75A;
+  background-color: #01a75a;
   color: black;
   text-align: center;
   padding: 1rem;
@@ -375,15 +368,12 @@ footer {
   flex-direction: column;
   text-align: left;
   padding: 0 0.55rem;
-
 }
 
 .footer-table i {
   margin-right: 4px;
   /* Space between icon and username */
 }
-
-
 
 .footer-table__center a,
 .footer-table__right a,
@@ -435,7 +425,6 @@ main .img-container img {
 #admin-panel {
   display: none;
 }
-
 
 /* Styling for images within subscription boxes */
 .subscription-box-container {
@@ -616,7 +605,7 @@ select {
   height: 18px;
   border: 2px solid #fff;
   /* White border for a light tick */
-  background-color: #4CAF50;
+  background-color: #4caf50;
   /* Green background for the checkbox */
 }
 
@@ -654,7 +643,6 @@ select {
 #bank-submit:hover {
   background-color: green;
 }
-
 
 .popup p {
   color: var(--clr-dark);
@@ -718,7 +706,6 @@ select {
   list-style-type: none;
   font-size: 15px;
   /* Sets the bullet style to a filled circle */
-
 }
 
 .text-artilce li {
@@ -728,7 +715,6 @@ select {
 .text-artilce li:before {
   content: "• ";
   /* Adding bullet manually */
-
 }
 
 .course {
@@ -753,7 +739,6 @@ select {
   cursor: pointer;
 }
 
-
 /* user refereal page */
 
 .content .container-refer {
@@ -766,7 +751,7 @@ select {
   /* background: #f5f5f5; */
 
   background-color: #f5f5f5;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .refral-container {
@@ -777,7 +762,7 @@ select {
 .top-section {
   display: flex;
   flex-direction: column;
-  background-color: #E7A72D;
+  background-color: #e7a72d;
   width: 100%;
   height: 20%;
   color: white;
@@ -800,7 +785,7 @@ select {
 }
 
 .top-section h3 {
-  font-size: 0.70rem;
+  font-size: 0.7rem;
   color: var(--clr-color-background);
 }
 
@@ -811,7 +796,6 @@ select {
   border-radius: 12px;
   background-color: white;
   color: var(--clr-primary-variant);
-
 }
 
 .copy-btn:hover {
@@ -821,7 +805,7 @@ select {
 .copy-btn i {
   height: 30px;
   font-size: 30px;
-  color: #E7A72D;
+  color: #e7a72d;
   padding: 5px;
 }
 
@@ -845,15 +829,11 @@ select {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   border: 1px solid var(--clr-primary-variant);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   flex-direction: column;
   align-items: center;
   z-index: 10rem;
-
 }
-
-
-
 
 .middle-section h4 {
   margin-top: 5px;
@@ -910,7 +890,6 @@ select {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 2.5rem;
-
 }
 
 .user-support p {
@@ -929,8 +908,7 @@ select {
 
 /* *********************************End*************************************** */
 /* Global section starts here====================== */
-.go-container{
-
+.go-container {
   width: 100%;
   max-width: 1200px;
   padding: 20px;
@@ -971,7 +949,6 @@ select {
   box-sizing: border-box;
   transition: transform 0.2s;
 }
-
 
 .go-container .card:hover {
   transform: scale(1.05);
@@ -1040,16 +1017,18 @@ select {
 .table-container h4 {
   margin-left: 20px;
   font-size: 24px;
-  color: #512DA8;
+  color: #512da8;
 }
 
-.bulk-deals, .fii-dii {
+.bulk-deals,
+.fii-dii {
   color: black;
   padding: 10px;
   border: 2px solid black;
 }
 
-.bulk-deals h3, .fii-dii h3 {
+.bulk-deals h3,
+.fii-dii h3 {
   text-align: center;
 }
 
@@ -1061,26 +1040,32 @@ select {
 }
 
 /* Table Styles */
-.bulk-deals table,.ipo-section table {
+.bulk-deals table,
+.ipo-section table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
 }
 
-.bulk-deals th,.bulk-deals td,.ipo-section td,.ipo-section th {  
+.bulk-deals th,
+.bulk-deals td,
+.ipo-section td,
+.ipo-section th {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
   word-wrap: break-word;
 }
 
-.bulk-deals th,.ipo-section th {
+.bulk-deals th,
+.ipo-section th {
   padding-top: 12px;
-  background-color:  #512DA8;
+  background-color: #512da8;
   color: #fff;
 }
 
-.bulk-deals tr:hover,.ipo-section tr:hover {
+.bulk-deals tr:hover,
+.ipo-section tr:hover {
   background-color: #f1f1f1;
 }
 
@@ -1096,7 +1081,7 @@ select {
 .section-news h4 {
   margin-left: 20px;
   font-size: 24px;
-  color: #512DA8;
+  color: #512da8;
 }
 .container-news {
   display: flex;
@@ -1105,13 +1090,13 @@ select {
   padding: 20px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: #512DA8 #f4f4f4;
+  scrollbar-color: #512da8 #f4f4f4;
 }
 .container-news::-webkit-scrollbar {
   height: 8px;
 }
 .container-news::-webkit-scrollbar-thumb {
-  background-color: #512DA8;
+  background-color: #512da8;
   border-radius: 10px;
 }
 .container-news::-webkit-scrollbar-track {
@@ -1129,20 +1114,20 @@ select {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-top: 5px solid #512DA8;
+  border-top: 5px solid #512da8;
 }
 .card-news h2 {
   font-size: 18px;
   margin: 0;
   color: #fff;
-  background-color: #512DA8;
+  background-color: #512da8;
   padding: 10px;
   border-radius: 5px 5px 0 0;
 }
 .card-news h3 {
   font-size: 16px;
   margin: 10px 0;
-  color: #512DA8;
+  color: #512da8;
 }
 .card-news p {
   margin: 5px 0;
@@ -1161,7 +1146,7 @@ select {
 }
 .download a {
   text-decoration: none;
-  color: #512DA8;
+  color: #512da8;
   font-weight: bold;
 }
 .download img {
@@ -1181,8 +1166,8 @@ select {
 .chart-container h4 {
   margin-left: 20px;
   font-size: 24px;
-  color: #512DA8;
-} 
+  color: #512da8;
+}
 
 .chart {
   margin-top: auto;
@@ -1191,27 +1176,27 @@ select {
 }
 @media (max-width: 768px) {
   .container-news {
-      padding: 10px;
+    padding: 10px;
   }
   .card-news {
-      width: 200px;
+    width: 200px;
   }
-  .top-container{
-    grid-template-columns: 1fr;}
+  .top-container {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 480px) {
   .container-news {
-      padding: 5px;
+    padding: 5px;
   }
   .card-news {
-      width: 180px;
+    width: 180px;
   }
 }
 /* news ends */
 /* NSE section starts here */
 
-
-.market-container{
+.market-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1222,7 +1207,8 @@ select {
   margin-top: 20px;
 }
 
-#market-container, #mcx-container {
+#market-container,
+#mcx-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 15px;
@@ -1233,7 +1219,8 @@ select {
   border: 2px solid black;
 }
 
-#market-container .card, #mcx-container .card {
+#market-container .card,
+#mcx-container .card {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -1241,18 +1228,22 @@ select {
   text-align: center;
   box-sizing: border-box;
 }
-#market-container .card:hover, #mcx-container .card:hover {
-      transform: scale(1.1);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+#market-container .card:hover,
+#mcx-container .card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-.market-container .update{
+.market-container .update {
   text-align: center;
   margin-top: 10px;
   font-size: 14px;
   color: gray;
 }
 
-#market-container .card .name,#mcx-container .card .title,#mcx-container .card .name,#mcx-container .card .title {
+#market-container .card .name,
+#mcx-container .card .title,
+#mcx-container .card .name,
+#mcx-container .card .title {
   font-size: 16px;
   font-weight: bold;
 }
@@ -1273,11 +1264,17 @@ select {
   font-size: 14px;
 }
 
-#market-container .card .percent_change.positive,#market-container .card .change.positive,#mcx-container .card .percent_change.positive,#mcx-container .card .change.positive {
+#market-container .card .percent_change.positive,
+#market-container .card .change.positive,
+#mcx-container .card .percent_change.positive,
+#mcx-container .card .change.positive {
   color: #008000;
 }
 
-#market-container .card .percent_change.negative,#market-container .card .change.negative,#mcx-container .card .percent_change.negative, .card .change.negative {
+#market-container .card .percent_change.negative,
+#market-container .card .change.negative,
+#mcx-container .card .percent_change.negative,
+.card .change.negative {
   color: #ff0000;
 }
 
@@ -1293,78 +1290,104 @@ select {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  #market-container, #mcx-container {
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  #market-container,
+  #mcx-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
 
-  #market-container .card, #mcx-container .card {
-      padding: 10px;
-  }
- 
-  #market-container .card .name,#mcx-container .card .title {
-      font-size: 14px;
+  #market-container .card,
+  #mcx-container .card {
+    padding: 10px;
   }
 
-  #market-container .card .price,#mcx-container .card .lastprice,#mcx-container .card .price,#mcx-container .card .lastprice {
-      font-size: 18px;
+  #market-container .card .name,
+  #mcx-container .card .title {
+    font-size: 14px;
   }
 
-  #market-container .card .percent_change,#market-container .card .change,#mcx-container .card .percent_change,#mcx-container .card .change {
-      font-size: 12px;
+  #market-container .card .price,
+  #mcx-container .card .lastprice,
+  #mcx-container .card .price,
+  #mcx-container .card .lastprice {
+    font-size: 18px;
+  }
+
+  #market-container .card .percent_change,
+  #market-container .card .change,
+  #mcx-container .card .percent_change,
+  #mcx-container .card .change {
+    font-size: 12px;
   }
 
   .market-container .chart-container {
-      margin-bottom: 40px;
+    margin-bottom: 40px;
   }
 }
 
 @media (max-width: 480px) {
-  #market-container, #mcx-container {
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  #market-container,
+  #mcx-container {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 
-  #market-container .card, #mcx-container .card {
-      padding: 8px;
+  #market-container .card,
+  #mcx-container .card {
+    padding: 8px;
   }
 
-  #market-container .card .name,#market-container .card .title,#mcx-container .card .name,#mcx-container .card .title {
-      font-size: 12px;
+  #market-container .card .name,
+  #market-container .card .title,
+  #mcx-container .card .name,
+  #mcx-container .card .title {
+    font-size: 12px;
   }
 
-  #market-container .card .price,#market-container .card .lastprice,#mcx-container .card .price,#mcx-container .card .price, .card .lastprice {
-      font-size: 16px;
+  #market-container .card .price,
+  #market-container .card .lastprice,
+  #mcx-container .card .price,
+  #mcx-container .card .price,
+  .card .lastprice {
+    font-size: 16px;
   }
 
-  #market-container .card .percent_change,#market-container .card .change,#mcx-container .card .percent_change, .card .change {
-      font-size: 10px;
+  #market-container .card .percent_change,
+  #market-container .card .change,
+  #mcx-container .card .percent_change,
+  .card .change {
+    font-size: 10px;
   }
 
   .market-container .chart-container {
-      margin-bottom: 30px;
+    margin-bottom: 30px;
   }
 }
-
-
-
 
 /* Nse Section ends here */
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
-  .bulk-deals .table,.bulk-deals th,.bulk-deals td,.ipo-section .table,.ipo-section th,.ipo-section td {
+  .bulk-deals .table,
+  .bulk-deals th,
+  .bulk-deals td,
+  .ipo-section .table,
+  .ipo-section th,
+  .ipo-section td {
     width: 90%;
   }
 
-  .bulk-deals thead,.ipo-section thead {
+  .bulk-deals thead,
+  .ipo-section thead {
     display: none;
   }
 
-  .bulk-deals tr,.ipo-section tr{
+  .bulk-deals tr,
+  .ipo-section tr {
     margin-bottom: 15px;
     display: block;
     border-bottom: 1px solid #ddd;
   }
 
-  .bulk-deals td,.ipo-section td {
+  .bulk-deals td,
+  .ipo-section td {
     display: flex;
     justify-content: space-between;
     padding: 10px 5px;
@@ -1372,7 +1395,8 @@ select {
     border-bottom: 1px solid #ddd;
   }
 
-   .bulk-deals td::before,.ipo-section td::before {
+  .bulk-deals td::before,
+  .ipo-section td::before {
     content: attr(data-label);
     font-weight: bold;
     flex-basis: 50%;
@@ -1444,10 +1468,8 @@ select {
   }
 }
 
-
 /* tv screen  */
 @media screen and (orientation: landscape) and (min-width: 1024px) {
-
   /* CSS rules for wide screens with minimum width */
   main .img-container img {
     max-width: 100%;
@@ -1460,43 +1482,41 @@ select {
   }
 }
 
-
-
 /* ffkjhfkjhfkjshfkjhsdjkf */
 
 @media (max-width: 640px) {
   .sweet-alert {
-      width: auto;    
-      margin-bottom: 20px;              /* Allow width to adjust to the screen */
-      margin-left: 0;              /* Remove left margin */
-      margin-right: 0;             /* Remove right margin */
-      left: 15px;                  /* Set left position */
-      right: 15px;   
-      left: 50%;
-      top: 30% !important;              /* Set right position */
-      max-height: 70vh !important;            /* Limit the height to 90% of the viewport height*/
-      padding: 20px;               /* Optional: add some padding */
-      box-sizing: border-box;       /* Ensure padding is included in the height calculation */
+    width: auto;
+    margin-bottom: 20px; /* Allow width to adjust to the screen */
+    margin-left: 0; /* Remove left margin */
+    margin-right: 0; /* Remove right margin */
+    left: 15px; /* Set left position */
+    right: 15px;
+    left: 50%;
+    top: 30% !important; /* Set right position */
+    max-height: 70vh !important; /* Limit the height to 90% of the viewport height*/
+    padding: 20px; /* Optional: add some padding */
+    box-sizing: border-box; /* Ensure padding is included in the height calculation */
   }
 
   /* Optional: Customize the scrollbar */
   .sweet-alert::-webkit-scrollbar {
-      width: 8px;                  /* Width of the scrollbar */
+    width: 8px; /* Width of the scrollbar */
   }
 
   .sweet-alert::-webkit-scrollbar-thumb {
-      background: #888;            /* Color of the scrollbar */
-      border-radius: 10px;         /* Rounded corners */
+    background: #888; /* Color of the scrollbar */
+    border-radius: 10px; /* Rounded corners */
   }
 
   .sweet-alert::-webkit-scrollbar-thumb:hover {
-      background: #555;            /* Darker color on hover */
+    background: #555; /* Darker color on hover */
   }
 }
 
 .sweet-alert {
   background-color: white;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 478px;
   padding: 17px;
   border-radius: 5px;
@@ -1504,11 +1524,120 @@ select {
   max-height: 70vh;
   position: fixed;
   left: 50%;
-  top: 50% ;
+  top: 50%;
   margin-left: -256px;
   margin-top: -200px;
   overflow: hidden;
   display: none;
   z-index: 99999;
   overflow-y: scroll !important ;
+}
+
+/*Review  */
+
+/* ===============================
+   REVIEW CAROUSEL CONTAINER
+================================ */
+
+.review-window {
+  width: 100%;
+  overflow: hidden;
+  background: #f8f9fa;
+  padding: 12px 0;
+}
+
+/* ===============================
+   HORIZONTAL SCROLL TRACK
+================================ */
+
+.review-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: reviewScroll 30s linear infinite;
+}
+
+.review-window:hover .review-track {
+  animation-play-state: paused;
+}
+
+/* ===============================
+   REVIEW CARD
+================================ */
+
+.review-card {
+  min-width: 280px;
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+}
+
+/* ===============================
+   TEXT STYLES
+================================ */
+
+.review-name {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.review-text {
+  color: #444;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* ===============================
+   STAR RATING (TRUE HALF-FILL)
+================================ */
+
+.review-stars {
+  display: flex;
+  gap: 4px;
+  font-size: 32px; /* ⭐ STAR SIZE */
+  margin-bottom: 6px;
+}
+
+/* base empty star */
+.star {
+  position: relative;
+  display: inline-block;
+  color: #ddd;
+}
+
+/* empty star shape */
+.star::before {
+  content: "★";
+}
+
+/* full star */
+.star.full::before {
+  color: #f4c430;
+}
+
+/* half star – left side filled */
+.star.half::after {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #f4c430;
+}
+
+/* ===============================
+   SCROLL ANIMATION
+================================ */
+
+@keyframes reviewScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

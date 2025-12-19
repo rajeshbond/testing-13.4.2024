@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dash Board</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="icon" href="static/images/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="static/css/test123.css?v=1.0.0.0.4">
   <!-- <link rel="stylesheet" href="static/css/dashboard.css?v=1.0.0.0.0"> -->
@@ -47,6 +48,7 @@
         <li><a href="#" class="scrneer" onclick="globalOverview()">Global Overview</a></li>
         <li><a href="#" id="trading-reg">Trading Journal</a></li>
         <li><a href="#" onclick="subscribePlanDisplay()"><i class="fa-solid fa-ticket"></i> offers</a></li>
+        <li><a href="#" onclick="subscribePlanDisplay()"><i class="fa-solid fa-ticket"></i> Rate us</a></li>
       </ul>
     </div>
     <div class="container-fluid">
@@ -75,19 +77,20 @@
           <img src="static/images/logo2.png" alt="COMPOUNDING FUNDA">
          </div>
       </div>
-    </div>
+       <!-- Customer Reviews Section -->
+      <!-- Add this ABOVE your footer
+<div id="reviewsScroll" style="overflow-x:auto; white-space:nowrap; padding:10px; background:#f9f9f9; border-top:1px solid #ccc;"></div> -->
 
-    
-      
-    <div class="review-window">
-    </div>
-      
-    <div>
     </div>
   </main>
+ 
+<!-- Customer Reviews Section -->
+<section class="reviews-section">
+  <h3 class="reviews-title">Customer Reviews</h3>
+  <div id="reviewsScroll" class="reviews-scroll"></div>
+</section>
 
-  
-  
+
   <footer>
     <!-- Add footer content here -->
      <div class="footer-table">
@@ -134,8 +137,6 @@
         </ul>
       </div>
      </div>
-
-     
      
      <div class="copy-right-footer">
        <p>Compounding Funda © 2025. All rights reserved.</p>
@@ -149,10 +150,9 @@
       type="text/css"
       href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css"
     />
-    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
-
+    <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-  <script src="static/js/new_dashboard.js?v=1.0.0.0.12"></script>
+  <script src="static/js/new_dashboard.js?v=1.0.0.0.13"></script>
 
    <!-- <script src="static/js/dashboard.js?v=1.0.0.0.0"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

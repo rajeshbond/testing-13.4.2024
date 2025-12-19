@@ -5,7 +5,9 @@ displayNone();
 
 document.addEventListener('DOMContentLoaded', function() {
   const menuIcon = document.querySelector('.header-menu__icon');
-  const menu = document.querySelector('.header-menu__nav');
+  const menu = document.querySelector('.header-menu__nav'); 
+  //  loadReviews();
+  
 
   function toggleMenu() {
     menu.classList.toggle('open');
@@ -28,11 +30,19 @@ const getUserData = async () => {
   try {
     const response = await fetch("/api/getUsername");
     const data = await response.json();
-    // console.log(data);
+    // console.log(data.user.subscriptionDetails.currentSubscription);
+
     const adminDisplay = document.querySelector('#admin-panel');
+    const rateUsDisplay = document.querySelector('#rate-us');
     isAdmin = data.user.isUserAdmin
     if (isAdmin == true) {
       adminDisplay.style.display = "block";
+    }
+    currentSubscription = data.user.subscriptionDetails.currentSubscription;
+  
+    if (currentSubscription == "Champions Club") {
+      // console.log("true");
+      rateUsDisplay.style.display = "block";
     }
     return data;
   } catch (error) {
@@ -40,6 +50,8 @@ const getUserData = async () => {
   }
 };
 getUserData();
+
+// loadReviews();
 
 updateUsername();
 // Logout code 
@@ -71,6 +83,7 @@ function logout() {
 async function adminPanel(){
   window.location.href = '/admin';
 }
+
 async function dashboard(){
   window.location.href = '/dashboard';
 }
@@ -2071,3 +2084,289 @@ setInterval(renderGlobalCurrency, 60000);
 
 
 // Global Over view section ends
+
+// Rating code 
+
+let hasExistingReview = false;
+
+async function rateus(e) {
+  e.preventDefault();
+  console.log('Rate us button clicked');
+
+  try {
+    const res = await fetch('http://127.0.0.1:8000/api/customerReview');
+    console.log('Review fetch response:', res.status);
+
+    // ✅ Review exists
+    if (res.status === 200) {
+      const data = await res.json();
+      console.log('Review data:', data);
+
+      if (data && data.review) {
+        hasExistingReview = true;
+
+        const rating = parseFloat(data.review.rating) || 0;
+        const reviewText = data.review.review_text || '';
+
+        console.log('Opening popup with existing review');
+        showReviewPopup(rating, reviewText);
+        return;
+      }
+    }
+
+    // ❌ No review found
+    if (res.status === 404) {
+      console.log('No existing review found');
+      hasExistingReview = false;
+      showReviewPopup(0, '');
+      return;
+    }
+
+    // ⚠️ Unexpected response
+    throw new Error(`Unexpected response: ${res.status}`);
+
+  } catch (err) {
+    console.error('Review fetch error:', err);
+
+    // fallback → open blank popup
+    hasExistingReview = false;
+    showReviewPopup(0, '');
+  }
+}
+
+
+
+
+
+function showReviewPopup(initialRating = 0, initialReview = '') {
+  const overlay = document.createElement('div');
+  Object.assign(overlay.style, {
+    position: 'fixed', inset: '0',
+    background: 'rgba(0,0,0,0.6)',
+    display: 'flex', alignItems: 'center',
+    justifyContent: 'center', zIndex: 9999
+  });
+
+  const popup = document.createElement('div');
+  Object.assign(popup.style, {
+    background: '#fff', padding: '20px',
+    borderRadius: '10px', width: '90%',
+    maxWidth: '400px', textAlign: 'center',
+    position: 'relative'
+  });
+
+  popup.dataset.rating = initialRating;
+
+  /* Close */
+  const close = document.createElement('span');
+  close.innerHTML = '&times;';
+  Object.assign(close.style, {
+    position: 'absolute', top: '10px',
+    right: '15px', fontSize: '22px',
+    cursor: 'pointer'
+  });
+  close.onclick = () => overlay.remove();
+
+  /* Title */
+  const title = document.createElement('h3');
+  title.textContent = hasExistingReview ? 'Update Review' : 'Rate Us';
+
+  /* Stars */
+  const stars = document.createElement('div');
+  stars.style.fontSize = '30px';
+  stars.style.margin = '10px 0';
+
+  for (let i = 1; i <= 5; i++) {
+    const star = document.createElement('i');
+    star.className = 'fa-regular fa-star';
+    star.style.cursor = 'pointer';
+    star.style.margin = '0 3px';
+
+    star.onmousemove = e => {
+      const r = e.target.getBoundingClientRect();
+      highlightStars(stars, i - (e.clientX - r.left < r.width / 2 ? 0.5 : 0));
+    };
+
+    star.onclick = e => {
+      const r = e.target.getBoundingClientRect();
+      popup.dataset.rating =
+        (i - (e.clientX - r.left < r.width / 2 ? 0.5 : 0)).toFixed(1);
+      highlightStars(stars, popup.dataset.rating);
+    };
+
+    stars.appendChild(star);
+  }
+
+  function highlightStars(container, rating) {
+    container.querySelectorAll('i').forEach((s, idx) => {
+      const val = idx + 1;
+      if (val <= rating) {
+        s.className = 'fa-solid fa-star';
+        s.style.color = 'gold';
+      } else if (val - 0.5 == rating) {
+        s.className = 'fa-solid fa-star-half-stroke';
+        s.style.color = 'gold';
+      } else {
+        s.className = 'fa-regular fa-star';
+        s.style.color = '#ccc';
+      }
+    });
+  }
+
+  highlightStars(stars, initialRating);
+
+  /* Review */
+  const textarea = document.createElement('textarea');
+  textarea.value = initialReview;
+  textarea.placeholder = 'Write your review...';
+  Object.assign(textarea.style, {
+    width: '100%', marginTop: '10px', padding: '10px'
+  });
+
+  /* Error message */
+  const errorBox = document.createElement('div');
+  errorBox.style.color = 'red';
+  errorBox.style.fontSize = '13px';
+
+  /* Buttons */
+  const save = document.createElement('button');
+  save.textContent = hasExistingReview ? 'Update' : 'Save';
+  save.className = 'btn btn-primary';
+  save.style.margin = '6px';
+
+  save.onclick = () => {
+    const rating = parseFloat(popup.dataset.rating);
+    const review = textarea.value.trim();
+
+    if (!rating) {
+      errorBox.textContent = 'Please select a rating';
+      return;
+    }
+
+    submitReviewAPI(rating, review, overlay, errorBox);
+  };
+
+  const cancel = document.createElement('button');
+  cancel.textContent = 'Cancel';
+  cancel.className = 'btn btn-danger';
+  cancel.style.margin = '6px';
+  cancel.onclick = () => overlay.remove();
+
+  popup.append(close, title, stars, textarea, errorBox, save, cancel);
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+}
+
+function submitReviewAPI(rating, review, overlay, errorBox) {
+  fetch('http://127.0.0.1:8000/api/customerReview', {
+    method: hasExistingReview ? 'PATCH' : 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+  "review_text": review,
+  "rating": rating
+})
+  })
+  .then(res => {
+    if (!res.ok) throw new Error('Server error');
+    return res.json();
+  })
+  .then(() => {
+    overlay.remove();
+    alert('✅ Thank you for your feedback!');
+    window.location.reload();
+  })
+  .catch(() => {
+    errorBox.textContent = '❌ Failed to submit review. Try again.';
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadReviews();
+});
+
+async function loadReviews() {
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/allcustomerReview");
+    const reviews = await response.json();
+
+    if (!Array.isArray(reviews) || reviews.length === 0) {
+      console.warn("No reviews found");
+      return;
+    }
+
+    const container = document.querySelector(".review-window");
+    if (!container) {
+      console.error("review-window not found");
+      return;
+    }
+
+    const track = document.createElement("div");
+    track.className = "review-track";
+
+    // Duplicate reviews for infinite scroll
+    const loopData = [...reviews, ...reviews];
+
+    loopData.forEach(review => {
+      const card = document.createElement("div");
+      card.className = "review-card";
+
+      card.innerHTML = `
+        <div class="review-name">${escapeHTML(review.name)}</div>
+        <div class="review-text">${escapeHTML(review.review_text)}</div>
+        <div class="review-stars">${renderStars(review.rating)}</div>
+      `;
+
+      track.appendChild(card);
+    });
+
+    container.innerHTML = "";
+    container.appendChild(track);
+
+  } catch (error) {
+    console.error("Failed to load reviews:", error);
+  }
+}
+
+/* ===============================
+   TRUE HALF-FILLED STAR RENDERER
+================================ */
+
+function renderStars(rating) {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+  const totalStars = 5;
+
+  let html = "";
+
+  for (let i = 0; i < fullStars; i++) {
+    html += `<span class="star full"></span>`;
+  }
+
+  if (hasHalfStar) {
+    html += `<span class="star half"></span>`;
+  }
+
+  const remaining = totalStars - fullStars - (hasHalfStar ? 1 : 0);
+  for (let i = 0; i < remaining; i++) {
+    html += `<span class="star"></span>`;
+  }
+
+  return html;
+}
+
+/* ===============================
+   BASIC XSS SAFE ESCAPE
+================================ */
+
+function escapeHTML(text) {
+  if (!text) return "";
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+
+
