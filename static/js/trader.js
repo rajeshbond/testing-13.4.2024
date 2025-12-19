@@ -230,14 +230,14 @@ async function showPopup(company, tableName, sector, modelName) {
     } else {
       listTableHtml = '<p>No data available.</p>';
     }
-
+    const appearanceDays = tableName === 'OVERBOUGHT' ? 5 : 90;
     popupContent.innerHTML = `
       <h4 id="popup-title">In - ${tableName}</h4>
       <h3>${company.nsecode}</h3>
       <p>Sector: ${sector}</p>
       <p>Price: ${company.close}</p>
       <p>Percentage Change: ${company.per_chg}%</p>
-      <p>Appearance in Last 90 days: ${company.count} times</p>
+      <p>Appearance in Last ${appearanceDays} days: ${company.count} times</p>
       <canvas id="close-chart" width="400" height="200"></canvas>
       ${listTableHtml}
     `;
