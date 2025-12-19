@@ -1565,13 +1565,28 @@ select {
    REVIEW CARD
 ================================ */
 
-.review-card {
+/* .review-card {
   min-width: 280px;
   background: #ffffff;
   padding: 14px;
   border-radius: 10px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
   font-size: 14px;
+} */
+
+.review-card {
+  max-width: 350px;
+  min-width: 350px;
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+
+  display: flex;
+  flex-direction: column;
+  /* min-height: 180px;
+  max-height: flex; /* adjust as needed */ */ */
 }
 
 /* ===============================
@@ -1584,10 +1599,21 @@ select {
   margin-bottom: 6px;
 }
 
-.review-text {
+/* .review-text {
   color: #444;
   font-weight: 400;
   font-size: 16px;
+} */
+
+.review-text {
+  color: #444;
+  font-size: 16px;
+  font-weight: 400;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 👈 LIMIT TO 3 LINES */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ===============================
