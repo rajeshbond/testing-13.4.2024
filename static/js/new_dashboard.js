@@ -1612,7 +1612,7 @@ async function marketsnapstatic(){
 
     </div>
     
-  `;
+  `; 
   await marketsnapDynamic();
 }
 
@@ -1620,7 +1620,7 @@ async function marketsnapDynamic() {
   let nifty50Chart, niftyBankChart;
         // const baseURL = 'http://127.0.0.1:8000/';
         const baseURL = 'https://datafetch.compoundingfunda.com/';
-        const heatmapEndpoint = 'live/api/liveheat';
+        const heatmapEndpoint = 'live/api/liveheat'; 
         const mcxEndpoint = 'live/api/commodity';
         const mcxUrl = `${baseURL}${mcxEndpoint}`;
         const heatmapUrl = `${baseURL}${heatmapEndpoint}`;
@@ -2094,7 +2094,8 @@ async function rateus(e) {
   console.log('Rate us button clicked');
 
   try {
-    const res = await fetch('http://127.0.0.1:8000/api/customerReview');
+    // const res = await fetch('http://127.0.0.1:8000/api/customerReview');
+    const res = await fetch('/api/customerReview');
     console.log('Review fetch response:', res.status);
 
     // ✅ Review exists
@@ -2258,7 +2259,9 @@ function showReviewPopup(initialRating = 0, initialReview = '') {
 }
 
 function submitReviewAPI(rating, review, overlay, errorBox) {
-  fetch('http://127.0.0.1:8000/api/customerReview', {
+  // fetch('http://127.0.0.1:8000/api/customerReview'
+fetch('http://127.0.0.1:8000/api/customerReview', 
+    {
     method: hasExistingReview ? 'PATCH' : 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -2286,7 +2289,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadReviews() {
   try {
-    const response = await fetch("http://127.0.0.1:8000/api/allcustomerReview");
+    // const response = await fetch("http://127.0.0.1:8000/api/allcustomerReview");
+     const response = await fetch("/api/allcustomerReview");
     const reviews = await response.json();
 
     if (!Array.isArray(reviews) || reviews.length === 0) {
