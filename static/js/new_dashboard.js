@@ -2260,7 +2260,7 @@ function showReviewPopup(initialRating = 0, initialReview = '') {
 
 function submitReviewAPI(rating, review, overlay, errorBox) {
   // fetch('http://127.0.0.1:8000/api/customerReview'
-fetch('http://127.0.0.1:8000/api/customerReview', 
+fetch('/api/customerReview', 
     {
     method: hasExistingReview ? 'PATCH' : 'POST',
     headers: { 'Content-Type': 'application/json' },
