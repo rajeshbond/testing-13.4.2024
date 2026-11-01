@@ -1,0 +1,108 @@
+/*Review  */
+
+/* ===============================
+   REVIEW CAROUSEL CONTAINER
+================================ */
+
+.review-window {
+  width: 100%;
+  overflow: hidden;
+  background: #f8f9fa;
+  padding: 12px 0;
+}
+
+/* ===============================
+   HORIZONTAL SCROLL TRACK
+================================ */
+
+.review-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: reviewScroll 30s linear infinite;
+}
+
+.review-window:hover .review-track {
+  animation-play-state: paused;
+}
+
+/* ===============================
+   REVIEW CARD
+================================ */
+
+.review-card {
+  min-width: 280px;
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+}
+
+/* ===============================
+   TEXT STYLES
+================================ */
+
+.review-name {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.review-text {
+  color: #444;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* ===============================
+   STAR RATING (TRUE HALF-FILL)
+================================ */
+
+.review-stars {
+  display: flex;
+  gap: 4px;
+  font-size: 32px; /* ⭐ STAR SIZE */
+  margin-bottom: 6px;
+}
+
+/* base empty star */
+.star {
+  position: relative;
+  display: inline-block;
+  color: #ddd;
+}
+
+/* empty star shape */
+.star::before {
+  content: "★";
+}
+
+/* full star */
+.star.full::before {
+  color: #f4c430;
+}
+
+/* half star – left side filled */
+.star.half::after {
+  content: "★";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #f4c430;
+}
+
+/* ===============================
+   SCROLL ANIMATION
+================================ */
+
+@keyframes reviewScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

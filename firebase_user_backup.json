@@ -83,6 +83,27 @@
     "name": "AJAY DODDAGOUDAR"
   },
   {
+    "created_at": "2025-08-11T13:27:43.852008",
+    "uid": "0Sl52j8uYUV6ksj3op9tFO5YIc62",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-11T13:27:43.851968",
+      "subscriptionEndDate": "2025-08-18T13:27:43.851994",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "drtutzz@gmail.com",
+    "mobile": "+917795814533",
+    "isEmailVerified": false,
+    "name": "Naveen"
+  },
+  {
     "created_at": "2024-06-12T13:37:37.621051",
     "uid": "14e8B9cPoLXmgLqQ3QBNI5LrzFI2",
     "razorpayconfimation": {
@@ -265,22 +286,137 @@
   {
     "created_at": "2024-04-24T08:36:50.299925",
     "uid": "1WQZpMzSY7UI7e8Wg7yS9ZuyZuS2",
-    "isBlocked": false,
-    "screener_active": false,
+    "razorpayconfimation": {
+      "payment_time": "2025-07-15T11:50:52.648894",
+      "payments_status": {
+        "fee": 5900,
+        "created_at": 1752560311,
+        "method": "netbanking",
+        "error_step": null,
+        "wallet": null,
+        "error_source": null,
+        "status": "captured",
+        "order_id": "order_QtF22KI1IBjCmf",
+        "bank": "KKBK",
+        "notes": {
+          "address": "company address",
+          "plan": "Champions Club",
+          "coupon_applied": "SHAIL90"
+        },
+        "card_id": null,
+        "error_reason": null,
+        "currency": "INR",
+        "amount_refunded": 0,
+        "vpa": null,
+        "error_code": null,
+        "description": "Payment for Champions Club plan",
+        "entity": "payment",
+        "id": "pay_QtF2J0Uvt9C2Tf",
+        "international": false,
+        "captured": true,
+        "tax": 900,
+        "acquirer_data": {
+          "bank_transaction_id": "0232484871"
+        },
+        "amount": 250000,
+        "error_description": null,
+        "contact": "+919897040016",
+        "email": "shail@live.in",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "86af4619041f7c0b1dee11479c2839805b44585aed64d38fd550cc9217cf9a14",
+      "payment_id": "pay_QtF2J0Uvt9C2Tf",
+      "Amount": 2500,
+      "orderId": "order_QtF22KI1IBjCmf",
+      "plan": "Champions Club"
+    },
+    "razorpayorder": {
+      "created_at": "2025-07-15T11:48:16.133901",
+      "order_id": "order_QtF22KI1IBjCmf",
+      "plan": "Champions Club",
+      "amount": 2500,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "SHAIL90"
+      }
+    },
     "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
     "subscriptionDetails": {
       "free_trial_over": true,
-      "subscriptionStatus": "In-Active",
-      "paidSubscription": false,
-      "subscriptionDate": "2024-09-12T13:30:04.411196",
-      "subscriptionEndDate": "2024-07-23T08:36:50.299920",
-      "currentSubscription": "Free - trial - 90 days - Ended",
-      "coupon_applied": "no coupon applied"
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-07-15T11:50:52.645373",
+      "subscriptionEndDate": "2050-06-14T11:50:51.818111",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "SHAIL90"
     },
     "email": "shail@live.in",
     "mobile": "9897040016",
     "isEmailVerified": false,
     "name": "SHELESH AGARWAL"
+  },
+  {
+    "created_at": "2024-12-25T19:04:16.054583",
+    "uid": "1YtCOHIiI8RSBBrK5oRWUjcpuBF2",
+    "razorpayorder": {
+      "created_at": "2024-12-25T20:56:02.497391",
+      "order_id": "order_PbSSL03FxN3RK4",
+      "plan": "Champions Club",
+      "amount": 19999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "FESTIVAL20"
+      }
+    },
+    "referral_code": null,
+    "isBlocked": false,
+    "screener_active": true,
+    "name": "Krishnam Raju",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "ORUNKyB1c2YF1WICfxdPvQQKw6Q2",
+    "isUserAdmin": false,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2024-12-25T19:04:16.054562",
+      "subscriptionEndDate": "2049-11-24T21:02:40.428648",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "krishrajuc@gmail.com",
+    "mobile": "9845197322",
+    "isEmailVerified": false
+  },
+  {
+    "created_at": "2025-09-10T16:34:02.383905",
+    "uid": "1zUMYPbPBjegVuTN6KAcXgJqJTd2",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "guBd35j7gmNxZtuVUVqlaJdH15m2",
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "referral_code": null,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-09-10T16:34:02.383805",
+      "subscriptionEndDate": "2050-08-19T13:31:32.761250",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "kjtech79@gmail.com",
+    "mobile": "9769037711",
+    "isEmailVerified": false,
+    "name": "Kalpna J"
   },
   {
     "created_at": "2024-05-01T06:25:53.505249",
@@ -324,6 +460,48 @@
     "mobile": "9897555550",
     "isEmailVerified": false,
     "name": "Saurabh Sawhney "
+  },
+  {
+    "created_at": "2024-12-25T15:55:40.491642",
+    "uid": "2HOqtDtAmtVS9MW80tNpXL0vqPz1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-25T15:55:40.491623",
+      "subscriptionEndDate": "2025-01-01T15:55:40.491637",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "sangeeta_k77@rediffmail.com",
+    "mobile": "6362484406",
+    "isEmailVerified": false,
+    "name": "sangeeta"
+  },
+  {
+    "created_at": "2025-05-02T10:55:15.553739",
+    "uid": "2VSz4TzCsSS4AtSwgDIDh8IFg7M2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-05-02T10:55:15.553722",
+      "subscriptionEndDate": "2025-05-09T10:55:15.553734",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "prasanta79935@gmail.com",
+    "mobile": "7008153469",
+    "isEmailVerified": false,
+    "name": "Prasanta Kumar sahoo"
   },
   {
     "created_at": "2024-07-20T10:36:08.406824",
@@ -415,8 +593,8 @@
       "plan": "Achivers Club"
     },
     "razorpayorder": {
-      "created_at": "2024-11-12T12:44:55.067771",
-      "order_id": "order_PKJ7MusZe0TocF",
+      "created_at": "2025-12-07T18:34:28.369755",
+      "order_id": "order_RojPaiWx1jik4v",
       "plan": "Champions Club",
       "amount": 24999,
       "notes": {
@@ -644,6 +822,48 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-10-12T02:46:50.769144",
+    "uid": "4HeBNbMYDhZ1i8UhIifjEoBEmUw2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-12T02:46:50.769098",
+      "subscriptionEndDate": "2025-10-19T02:46:50.769131",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "hwpood@gmail.com",
+    "mobile": "9951814725",
+    "isEmailVerified": false,
+    "name": "Shekar"
+  },
+  {
+    "created_at": "2025-08-03T18:04:34.728144",
+    "uid": "4TNStX6SIBgkTR2vSUB0lfupWd13",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-03T18:04:34.728124",
+      "subscriptionEndDate": "2025-08-10T18:04:34.728139",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "cifij30771@im5z.com",
+    "mobile": "9784648465",
+    "isEmailVerified": false,
+    "name": "cifiim"
+  },
+  {
     "created_at": "2024-04-28T07:04:54.015946",
     "uid": "4YvKJ8SKt3RnaT0Yu7ueptPwCtw2",
     "isBlocked": false,
@@ -662,6 +882,27 @@
     "mobile": "9767762184",
     "isEmailVerified": false,
     "name": "vishwanath bisane"
+  },
+  {
+    "created_at": "2024-12-02T07:43:50.323685",
+    "uid": "4dpXPmUILDbERDSTRLedzoA1mLA2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-02T07:43:50.323631",
+      "subscriptionEndDate": "2025-03-02T07:43:50.323667",
+      "currentSubscription": "Free - trial - 90 days",
+      "coupon_applied": "TRIAL90"
+    },
+    "email": "tecnicaltrade82@gmail.com",
+    "mobile": "9892319251",
+    "isEmailVerified": false,
+    "name": "Sadaf "
   },
   {
     "created_at": "2024-10-13T15:41:02.362890",
@@ -731,6 +972,100 @@
     "name": "SRIDHAR SUNKARANAM"
   },
   {
+    "created_at": "2025-08-19T19:41:20.452273",
+    "uid": "5GozW5oAHpUopj8jLfavCc6Zg3G3",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-19T19:41:20.452241",
+      "subscriptionEndDate": "2025-08-26T19:41:20.452263",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "figmentwave@gmail.com",
+    "mobile": "7907402190",
+    "isEmailVerified": false,
+    "name": "Vishnuraj J"
+  },
+  {
+    "created_at": "2025-09-02T16:36:42.015842",
+    "uid": "5V91zJ29M5ckUwIJPKfALStg37b2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-02T16:36:42.015777",
+      "subscriptionEndDate": "2025-09-09T16:36:42.015821",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "kulkarnishrikantp@gmail.com",
+    "mobile": "+919067119447",
+    "isEmailVerified": false,
+    "name": "Shrikant p kulkarni"
+  },
+  {
+    "created_at": "2025-07-09T17:47:44.477763",
+    "uid": "5ivuN2uvcsXcVMA2aMGwVT1Uppe2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-07-09T17:47:44.477696",
+      "subscriptionEndDate": "2025-07-16T17:47:44.477741",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "sherinroopa@gmail.com",
+    "mobile": "9620417280",
+    "isEmailVerified": false,
+    "name": "Sherin Roopa "
+  },
+  {
+    "created_at": "2025-07-20T17:31:51.141150",
+    "uid": "5pBLL5FmAGdtIPP5ac1myVHy2Gg2",
+    "referral_code": null,
+    "razorpayorder": {
+      "created_at": "2025-07-20T17:38:14.423981",
+      "order_id": "order_QvJfKNn3BzqEVM",
+      "plan": "Champions Club",
+      "amount": 24999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "no coupon applied"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-07-20T17:31:51.141109",
+      "subscriptionEndDate": "2025-07-27T17:31:51.141137",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "fopit89006@utipal.com",
+    "mobile": "8754568889",
+    "isEmailVerified": false,
+    "name": "foti"
+  },
+  {
     "created_at": "2024-04-29T07:55:28.757039",
     "uid": "5qbjZFi9EWVBNolSZUKi5L3LjEp1",
     "razorpayconfimation": {
@@ -756,23 +1091,90 @@
   {
     "created_at": "2024-08-31T20:08:31.546595",
     "uid": "5sywaNLfHQXPh3y96rviwRSI6Di1",
-    "name": "Mahesh Vasantrao Mutyalwar",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-08-31T20:08:31.546564",
+      "subscriptionDate": "2024-12-01T15:40:37.575271",
       "subscriptionEndDate": "2024-11-29T20:08:31.546586",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "mahesh.mutyalwar1977@gmail.com",
     "mobile": "9967367353",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Mahesh Vasantrao Mutyalwar"
+  },
+  {
+    "created_at": "2025-04-21T14:09:22.261620",
+    "uid": "5uMFLYPOmafsbaImaiFIg89Db323",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "guBd35j7gmNxZtuVUVqlaJdH15m2",
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "referral_code": null,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-04-21T14:09:22.261518",
+      "subscriptionEndDate": "2050-03-21T14:57:52.603110",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "viveknamas1@gmail.com",
+    "mobile": "+916362180035",
+    "isEmailVerified": false,
+    "name": "Vivek N"
+  },
+  {
+    "created_at": "2025-09-03T15:17:40.752809",
+    "uid": "60dSBFiWWvUT7qbvZ5o8Wt3FrID2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-03T15:17:40.752749",
+      "subscriptionEndDate": "2025-09-10T15:17:40.752789",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "sudhakar035@gmail.com",
+    "mobile": "8500163724",
+    "isEmailVerified": false,
+    "name": "Sudhakar"
+  },
+  {
+    "created_at": "2025-09-21T15:30:34.886326",
+    "uid": "62C9k0qJjbXuJsWYoYmjNhWI9253",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-21T15:30:34.886249",
+      "subscriptionEndDate": "2025-09-28T15:30:34.886300",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "jumbovolt1991@gmail.com",
+    "mobile": "9427052571",
+    "isEmailVerified": false,
+    "name": "Jignesh "
   },
   {
     "created_at": "2024-07-06T12:02:27.460479",
@@ -799,21 +1201,146 @@
     "created_at": "2024-05-01T09:38:08.387606",
     "uid": "6oIzaCOpknbwlzIDZnfkTLyeBpJ3",
     "isBlocked": false,
-    "screener_active": true,
+    "screener_active": false,
     "isUserAdmin": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-05-01T09:38:08.387584",
+      "subscriptionDate": "2024-12-29T12:26:16.736667",
       "subscriptionEndDate": "2024-07-30T09:38:08.387601",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "vspote95@gmail.com",
     "mobile": "8408072836",
     "isEmailVerified": false,
     "name": "Vishal pote"
+  },
+  {
+    "created_at": "2025-09-17T13:39:07.194605",
+    "uid": "6x1AavECFUOL5Nc0v3czWQzAhxg2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-17T13:39:07.194544",
+      "subscriptionEndDate": "2025-09-24T13:39:07.194586",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "harshpatel2887@gmail.com",
+    "mobile": "9099099870",
+    "isEmailVerified": false,
+    "name": "Harshvadan patel"
+  },
+  {
+    "created_at": "2025-06-20T22:45:44.620856",
+    "uid": "7ButGGH2TQX7hBBeube3VstxhOt1",
+    "razorpayconfimation": {
+      "payment_time": "2025-09-25T11:36:14.745787",
+      "payments_status": {
+        "fee": 47198,
+        "created_at": 1758780337,
+        "method": "upi",
+        "error_step": null,
+        "wallet": null,
+        "provider": null,
+        "status": "captured",
+        "error_source": null,
+        "order_id": "order_RLjHBABgybto41",
+        "bank": null,
+        "notes": {
+          "address": "company address",
+          "plan": "Champions Club",
+          "coupon_applied": "DURGA20"
+        },
+        "card_id": null,
+        "error_reason": null,
+        "currency": "INR",
+        "amount_refunded": 0,
+        "vpa": "7019052459@ybl",
+        "error_code": null,
+        "description": "Payment for Champions Club plan",
+        "entity": "payment",
+        "id": "pay_RLjHLZ3MDTCMzv",
+        "international": false,
+        "captured": true,
+        "tax": 7200,
+        "acquirer_data": {
+          "rrn": "062656250537"
+        },
+        "amount": 1999900,
+        "reward": null,
+        "error_description": null,
+        "amount_captured": null,
+        "upi": {
+          "vpa": "7019052459@ybl",
+          "payer_account_type": "bank_account"
+        },
+        "contact": "+917019052459",
+        "email": "shaileshu@gmail.com",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "d19e1a0fecbe986b102255e333758a1664b15cbd41f332c84d5be632121de42d",
+      "payment_id": "pay_RLjHLZ3MDTCMzv",
+      "Amount": 19999,
+      "orderId": "order_RLjHBABgybto41",
+      "plan": "Champions Club"
+    },
+    "razorpayorder": {
+      "created_at": "2025-09-25T11:35:27.846575",
+      "order_id": "order_RLjHBABgybto41",
+      "plan": "Champions Club",
+      "amount": 19999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "DURGA20"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "referral_code": null,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-09-25T11:36:14.745738",
+      "subscriptionEndDate": "2050-08-25T11:36:14.082980",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "DURGA20"
+    },
+    "email": "shaileshu@gmail.com",
+    "mobile": "+917019052459",
+    "isEmailVerified": false,
+    "name": "Shailesh Kumar U"
+  },
+  {
+    "created_at": "2025-10-13T14:38:02.385867",
+    "uid": "7VVNNy26gVOlOXd3TFBYFPRAuAx1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-13T14:38:02.385639",
+      "subscriptionEndDate": "2025-10-20T14:38:02.385761",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "ucantbeatsp@gmail.com",
+    "mobile": "+919994391632",
+    "isEmailVerified": false,
+    "name": "Satheeskumar S P"
   },
   {
     "created_at": "2024-04-28T17:44:37.395518",
@@ -843,16 +1370,16 @@
     "created_at": "2024-05-04T10:21:12.110369",
     "uid": "7xJYHeco0hT784sBYbEKT3HSq3K2",
     "isBlocked": false,
-    "screener_active": true,
+    "screener_active": false,
     "isUserAdmin": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-05-04T10:21:12.110347",
+      "subscriptionDate": "2025-08-17T16:57:36.870087",
       "subscriptionEndDate": "2024-08-02T10:21:12.110364",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "sarathbcm@gmail.com",
     "mobile": "09440535899",
@@ -921,6 +1448,27 @@
     "name": "Vinit"
   },
   {
+    "created_at": "2025-11-08T19:56:25.431318",
+    "uid": "8ZBqde3qvEPBvOn6VM7aOqOfPvg1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-11-08T19:56:25.431248",
+      "subscriptionEndDate": "2025-11-15T19:56:25.431295",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "native.amitesh@gmail.com",
+    "mobile": "9999504791",
+    "isEmailVerified": false,
+    "name": "Amitesh singhal"
+  },
+  {
     "created_at": "2024-05-07T11:51:55.608285",
     "uid": "8eq5eWmq20bLKwfYqTRC7ureDzz2",
     "isBlocked": false,
@@ -959,6 +1507,128 @@
     "mobile": "09830713698",
     "isEmailVerified": false,
     "name": "Tejash Daga"
+  },
+  {
+    "created_at": "2025-09-03T12:15:01.932741",
+    "uid": "8jLVat7EARc4jtcqvMvDiaQroFh2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-03T12:15:01.932678",
+      "subscriptionEndDate": "2025-09-10T12:15:01.932721",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "soprdh@gmail.com",
+    "mobile": "9664036353",
+    "isEmailVerified": false,
+    "name": "Neeraj Dhindhwal"
+  },
+  {
+    "created_at": "2025-06-14T21:56:31.059871",
+    "uid": "8lUfLc4Q4fXWcZz6ItKsdClU3Ej1",
+    "razorpayconfimation": {
+      "payment_time": "2025-06-26T21:31:23.834719",
+      "payments_status": {
+        "fee": 47198,
+        "created_at": 1750953671,
+        "method": "upi",
+        "error_step": null,
+        "wallet": null,
+        "error_source": null,
+        "status": "captured",
+        "order_id": "order_QlsmTTY8hoRG9r",
+        "bank": null,
+        "notes": {
+          "address": "company address",
+          "plan": "Champions Club",
+          "coupon_applied": "SPECIAL20"
+        },
+        "card_id": null,
+        "error_reason": null,
+        "currency": "INR",
+        "amount_refunded": 0,
+        "vpa": "nitinsariya@okicici",
+        "error_code": null,
+        "description": "Payment for Champions Club plan",
+        "entity": "payment",
+        "id": "pay_QlsoV91GMFIfr9",
+        "international": false,
+        "captured": true,
+        "tax": 7200,
+        "acquirer_data": {
+          "rrn": "517743883440"
+        },
+        "amount": 1999900,
+        "error_description": null,
+        "upi": {
+          "vpa": "nitinsariya@okicici",
+          "payer_account_type": "bank_account"
+        },
+        "contact": "+919325320525",
+        "email": "nitinsariya@gmail.com",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "9c3252dd0e49e695bcdc113f95edc8c3fd50c76dfdb50ac02410b41b5fa52446",
+      "payment_id": "pay_QlsoV91GMFIfr9",
+      "Amount": 19999,
+      "orderId": "order_QlsmTTY8hoRG9r",
+      "plan": "Champions Club"
+    },
+    "razorpayorder": {
+      "created_at": "2025-06-26T21:29:15.799226",
+      "order_id": "order_QlsmTTY8hoRG9r",
+      "plan": "Champions Club",
+      "amount": 19999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "SPECIAL20"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "referral_code": null,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-06-26T21:31:23.834671",
+      "subscriptionEndDate": "2050-05-26T21:31:23.016996",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "SPECIAL20"
+    },
+    "email": "nitinsariya@gmail.com",
+    "mobile": "9325320525",
+    "isEmailVerified": false,
+    "name": "Nitin Bhagwat"
+  },
+  {
+    "created_at": "2025-05-25T08:21:45.439473",
+    "uid": "8ni64nafzwPMxblMQFVdWoGsvZH3",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-05-25T08:21:45.439411",
+      "subscriptionEndDate": "2025-06-01T08:21:45.439450",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "sunitaagrey@gmail.com",
+    "mobile": "+919764681708",
+    "isEmailVerified": false,
+    "name": "Sunita Agrey"
   },
   {
     "created_at": "2024-07-20T14:49:05.015391",
@@ -1003,6 +1673,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-09-16T14:56:10.848182",
+    "uid": "9FKkIP17yIcRjTWCNE2JyL0lOKM2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-16T14:56:10.848107",
+      "subscriptionEndDate": "2025-09-23T14:56:10.848156",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "aminmeman20@gmail.com",
+    "mobile": "7588334497",
+    "isEmailVerified": false,
+    "name": "newt"
+  },
+  {
     "created_at": "2024-07-23T15:48:34.667236",
     "uid": "9KhKTjexLcY7qILVVXFSICVBHul1",
     "name": "Alfred Parry",
@@ -1022,6 +1713,27 @@
     "mobile": "7588682392",
     "referral_code": null,
     "isBlocked": false
+  },
+  {
+    "created_at": "2024-12-22T15:17:19.121581",
+    "uid": "9MlD9B6S0iUIJ4k9nJSyPP8KdWY2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-22T15:17:19.121516",
+      "subscriptionEndDate": "2024-12-29T15:17:19.121560",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "servantmanish@gmail.com",
+    "mobile": "9818340841",
+    "isEmailVerified": false,
+    "name": "Manish TRIKHA "
   },
   {
     "created_at": "2024-07-09T20:02:22.334751",
@@ -1045,6 +1757,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-10-12T00:17:35.315388",
+    "uid": "9jIW1LA98XaVSgKc7LmLmYnVzGy2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-12T00:17:35.315358",
+      "subscriptionEndDate": "2025-10-19T00:17:35.315378",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "vallabhkulkarni6@gmail.com",
+    "mobile": "8087218408",
+    "isEmailVerified": false,
+    "name": "vallabh"
+  },
+  {
     "created_at": "2024-07-15T10:02:34.967303",
     "uid": "9lLF2okzDZem3XNfWYRMXsMUIT33",
     "name": "Atul kapoor ",
@@ -1064,6 +1797,27 @@
     "mobile": "9342415859",
     "referral_code": null,
     "isBlocked": false
+  },
+  {
+    "created_at": "2025-09-21T12:29:47.617238",
+    "uid": "AIg3WCglugaHEgb7Z1WJouUjHDD2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-21T12:29:47.617190",
+      "subscriptionEndDate": "2025-09-28T12:29:47.617223",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "lakshmanlucky0812@gmail.com",
+    "mobile": "9441238020",
+    "isEmailVerified": false,
+    "name": "Lakshman Sabavat"
   },
   {
     "created_at": "2024-04-28T10:21:07.242897",
@@ -1113,38 +1867,42 @@
   {
     "created_at": "2024-06-27T18:09:49.683700",
     "uid": "Ad3pUiKxWIgKWNgnBnpjmzx2Rkl2",
-    "name": "Harshad b pandya",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-06-27T18:09:49.683643",
+      "subscriptionDate": "2024-12-22T20:56:52.635137",
       "subscriptionEndDate": "2024-09-25T18:09:49.683685",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "harshadpandya66@gmail.com",
     "mobile": "09924566483",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Harshad b pandya"
   },
   {
     "created_at": "2024-04-28T14:25:04.517894",
     "uid": "AvNYSB0TtggQrPg8S0CIQuerqRx1",
-    "isBlocked": false,
-    "screener_active": true,
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "ORUNKyB1c2YF1WICfxdPvQQKw6Q2",
     "isUserAdmin": false,
+    "screener_active": true,
+    "isBlocked": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
+      "free_trial_over": true,
       "subscriptionStatus": "Active",
-      "paidSubscription": false,
-      "subscriptionDate": "2024-04-28T14:25:04.517869",
-      "subscriptionEndDate": "2024-07-27T14:25:04.517886",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "paidSubscription": true,
+      "subscriptionDate": "2024-12-25T15:19:43.311401",
+      "subscriptionEndDate": "2049-11-24T17:54:07.978252",
+      "currentSubscription": "Achivers Club",
+      "coupon_applied": "Admin Upgrade"
     },
     "email": "krunalbarde1788@gmail.com",
     "mobile": "9049772831",
@@ -1315,6 +2073,31 @@
     "name": "Anandhkumar C"
   },
   {
+    "created_at": "2024-11-16T23:22:33.274722",
+    "uid": "Ckkm3edMV3a0bZtWosHC6Nx4lTs1",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "3csjUGdonDTK59TpzNCfopwFSuw2",
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "referral_code": null,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2024-11-16T23:22:33.274660",
+      "subscriptionEndDate": "2049-10-16T23:36:38.373038",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "pushkaraalte@gmail.com",
+    "mobile": "9930748181",
+    "isEmailVerified": false,
+    "name": "Pushkar "
+  },
+  {
     "created_at": "2024-05-27T09:20:21.626009",
     "uid": "D41eW8Iec6QobSfte38WDix333r1",
     "isBlocked": false,
@@ -1335,19 +2118,61 @@
     "name": "Aditya Parikh"
   },
   {
-    "created_at": "2024-04-28T16:02:51.421044",
-    "uid": "DbMl7sT0sLSw0SJlTjwWm0wG3Dw1",
-    "isBlocked": false,
+    "created_at": "2025-09-22T08:12:17.259137",
+    "uid": "DFXKE9yqMwToietYOPwVa9uCJeW2",
+    "referral_code": null,
     "screener_active": true,
     "isUserAdmin": false,
+    "isBlocked": false,
     "subscriptionDetails": {
       "free_trial_over": false,
       "subscriptionStatus": "Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-04-28T16:02:51.421018",
+      "subscriptionDate": "2025-09-22T08:12:17.259073",
+      "subscriptionEndDate": "2025-09-29T08:12:17.259117",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "bhavesht0721@gmail.com",
+    "mobile": "9510107067",
+    "isEmailVerified": false,
+    "name": "Bhavesh Thakkar"
+  },
+  {
+    "created_at": "2024-12-23T10:37:41.800603",
+    "uid": "DHCfFRnXCAQ8zOWjtEy7xr1L8S93",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-23T10:37:41.800584",
+      "subscriptionEndDate": "2024-12-30T10:37:41.800598",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "ashoklulla30@gmail.com",
+    "mobile": "+919890936696",
+    "isEmailVerified": false,
+    "name": "Ashok Lulla"
+  },
+  {
+    "created_at": "2024-04-28T16:02:51.421044",
+    "uid": "DbMl7sT0sLSw0SJlTjwWm0wG3Dw1",
+    "isBlocked": false,
+    "screener_active": false,
+    "isUserAdmin": false,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-07-21T19:27:13.507191",
       "subscriptionEndDate": "2024-07-27T16:02:51.421037",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "thatsjani@gmail.com",
     "mobile": "7353189786",
@@ -1450,6 +2275,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2024-12-22T23:53:12.043578",
+    "uid": "EO9W4cKh2hXDNUAIdtNtvM0Bicn2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-22T23:53:12.043558",
+      "subscriptionEndDate": "2024-12-29T23:53:12.043573",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "ankur.newb@gmail.com",
+    "mobile": "7217690889",
+    "isEmailVerified": false,
+    "name": "Er Ankur"
+  },
+  {
     "created_at": "2024-07-28T11:26:44.361156",
     "uid": "Ez1imQaHSRMyggzHRQ9IW81vWgS2",
     "name": "Rajiv",
@@ -1471,6 +2317,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-07-10T14:15:43.283073",
+    "uid": "F8K2xz00kuY6AaTh1Vg6TJbJttp1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-07-10T14:15:43.283019",
+      "subscriptionEndDate": "2025-07-17T14:15:43.283055",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "tomrisimri@gmail.com",
+    "mobile": "8928140550",
+    "isEmailVerified": false,
+    "name": "XYZ"
+  },
+  {
     "created_at": "2024-07-09T17:15:31.114920",
     "uid": "FXDomg8GGWZ7EXNZE58obhc4PII2",
     "name": "uday pandit",
@@ -1490,6 +2357,27 @@
     "mobile": "+919726077339",
     "referral_code": null,
     "isBlocked": false
+  },
+  {
+    "created_at": "2025-02-06T12:35:06.655430",
+    "uid": "Fnz27hZ6cXXHQOEuR3qAvjoJc2R2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-02-06T12:35:06.655386",
+      "subscriptionEndDate": "2025-02-13T12:35:06.655417",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "shankarlalmange67@gmail.com",
+    "mobile": "8169356894",
+    "isEmailVerified": false,
+    "name": "ashish ffbfbfb"
   },
   {
     "created_at": "2024-07-20T14:47:55.018524",
@@ -1533,6 +2421,110 @@
     "name": "Pankaj Deshpande"
   },
   {
+    "created_at": "2025-06-03T20:02:42.351647",
+    "uid": "GjFAydaqLmSwHXbODDkmI193FQJ2",
+    "razorpayconfimation": {
+      "payment_time": "2025-07-09T12:26:55.840560",
+      "payments_status": {
+        "fee": 47198,
+        "created_at": 1752044178,
+        "method": "upi",
+        "error_step": null,
+        "wallet": null,
+        "provider": null,
+        "status": "captured",
+        "error_source": null,
+        "order_id": "order_QqsTGDxcDGJqL6",
+        "bank": null,
+        "notes": {
+          "address": "company address",
+          "plan": "Champions Club",
+          "coupon_applied": "SPECIAL20"
+        },
+        "card_id": null,
+        "error_reason": null,
+        "currency": "INR",
+        "amount_refunded": 0,
+        "vpa": "hrsht921998-1@okaxis",
+        "error_code": null,
+        "description": "Payment for Champions Club plan",
+        "entity": "payment",
+        "id": "pay_QqsTUVbXdiCt9m",
+        "international": false,
+        "captured": true,
+        "tax": 7200,
+        "acquirer_data": {
+          "rrn": "519090607730"
+        },
+        "amount": 1999900,
+        "reward": null,
+        "error_description": null,
+        "amount_captured": null,
+        "upi": {
+          "vpa": "hrsht921998-1@okaxis",
+          "payer_account_type": "bank_account"
+        },
+        "contact": "+919316034915",
+        "email": "hrsht921998@gmail.com",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "f0df035aca791feb65e1e93ef12c5c3485c8b21b9ea5fe7088feeb9c9da06d9c",
+      "payment_id": "pay_QqsTUVbXdiCt9m",
+      "Amount": 19999,
+      "orderId": "order_QqsTGDxcDGJqL6",
+      "plan": "Champions Club"
+    },
+    "razorpayorder": {
+      "created_at": "2025-07-09T12:26:05.082436",
+      "order_id": "order_QqsTGDxcDGJqL6",
+      "plan": "Champions Club",
+      "amount": 19999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "SPECIAL20"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "referral_code": null,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-07-09T12:26:55.840526",
+      "subscriptionEndDate": "2050-06-08T12:26:54.692063",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "SPECIAL20"
+    },
+    "email": "hrsht921998@gmail.com",
+    "mobile": "+919316034915",
+    "isEmailVerified": false,
+    "name": "Harshit"
+  },
+  {
+    "created_at": "2025-09-18T00:06:37.159045",
+    "uid": "H7Ww4batAbfO5DgjZ51mhtAKwxh1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-18T00:06:37.158972",
+      "subscriptionEndDate": "2025-09-25T00:06:37.159020",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "nkrishna3699@gmail.com",
+    "mobile": "+919986056885",
+    "isEmailVerified": false,
+    "name": "Nataraj Krishna"
+  },
+  {
     "created_at": "2024-07-16T08:50:16.611352",
     "uid": "HpH22cUBFChwuH07Apu62SnxWkl1",
     "name": "Thamizhselvan ",
@@ -1556,23 +2548,96 @@
   {
     "created_at": "2024-08-27T15:51:17.771138",
     "uid": "I9aAWiAyYTZYBQmsUIYkg1Lk4Ah2",
-    "name": "Amit Mutyalwar ",
-    "isEmailVerified": false,
+    "razorpayconfimation": {
+      "payment_time": "2025-08-04T11:51:42.962687",
+      "payments_status": {
+        "fee": 58998,
+        "created_at": 1754288464,
+        "method": "card",
+        "error_step": null,
+        "wallet": null,
+        "error_source": null,
+        "status": "captured",
+        "order_id": "order_R19gSsCttipFUK",
+        "bank": null,
+        "notes": {
+          "address": "company address",
+          "plan": "Champions Club",
+          "coupon_applied": "no coupon applied"
+        },
+        "card_id": "card_R19lPKV87y6tsS",
+        "authentication": {
+          "version": "3DS2",
+          "authentication_channel": "browser"
+        },
+        "error_reason": null,
+        "currency": "INR",
+        "card": {
+          "international": false,
+          "last4": "8243",
+          "type": "credit",
+          "entity": "card",
+          "id": "card_R19lPKV87y6tsS",
+          "network": "Visa",
+          "issuer": "UTIB",
+          "sub_type": "consumer",
+          "emi": false,
+          "name": ""
+        },
+        "amount_refunded": 0,
+        "vpa": null,
+        "error_code": null,
+        "description": "Payment for Champions Club plan",
+        "entity": "payment",
+        "id": "pay_R19lPKV87y6tsS",
+        "international": false,
+        "captured": true,
+        "tax": 9000,
+        "acquirer_data": {
+          "auth_code": "177607",
+          "rrn": "521606415928"
+        },
+        "amount": 2499900,
+        "error_description": null,
+        "amount_captured": 2499900,
+        "contact": "+919822801333",
+        "email": "amitmutyalwar@gmail.com",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "68452ceca030c183b2eeba9f40d715d8825328660d410d65fae267dba56eb75f",
+      "payment_id": "pay_R19lPKV87y6tsS",
+      "Amount": 24999,
+      "orderId": "order_R19gSsCttipFUK",
+      "plan": "Champions Club"
+    },
+    "razorpayorder": {
+      "created_at": "2025-08-04T11:46:23.614833",
+      "order_id": "order_R19gSsCttipFUK",
+      "plan": "Champions Club",
+      "amount": 24999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "no coupon applied"
+      }
+    },
     "isUserAdmin": false,
+    "isEmailVerified": false,
+    "isBlocked": false,
     "screener_active": true,
     "subscriptionDetails": {
-      "free_trial_over": false,
+      "free_trial_over": true,
       "subscriptionStatus": "Active",
-      "paidSubscription": false,
-      "subscriptionDate": "2024-08-27T15:51:17.771096",
-      "subscriptionEndDate": "2024-11-25T15:51:17.771123",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "paidSubscription": true,
+      "subscriptionDate": "2025-08-04T11:51:42.961904",
+      "subscriptionEndDate": "2050-07-04T11:51:41.497701",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "no coupon applied"
     },
     "email": "amitmutyalwar@gmail.com",
     "mobile": "98228013333",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Amit Mutyalwar "
   },
   {
     "created_at": "2024-07-13T15:19:34.855652",
@@ -1614,6 +2679,27 @@
     "mobile": "09016163968",
     "isEmailVerified": false,
     "name": "Amit Karra"
+  },
+  {
+    "created_at": "2025-10-01T19:14:16.131507",
+    "uid": "IYrx86Qx1WgleLIsfbzLifdwugp1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-01T19:14:16.131441",
+      "subscriptionEndDate": "2025-10-08T19:14:16.131484",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "rohitrewar2126@gmail.com",
+    "mobile": "7976212696",
+    "isEmailVerified": false,
+    "name": "Rohit Rewar"
   },
   {
     "created_at": "2024-04-28T14:54:44.579577",
@@ -1700,6 +2786,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-07-10T14:15:30.305387",
+    "uid": "J974lPedD6UHJzctGTL6burY0aq1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-07-10T14:15:30.305369",
+      "subscriptionEndDate": "2025-07-17T14:15:30.305383",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "tomrisimri@gmsil.com",
+    "mobile": "8928140550",
+    "isEmailVerified": false,
+    "name": "XYZ"
+  },
+  {
     "created_at": "2024-05-01T13:53:29.080605",
     "uid": "JGQK1Xv9ixXfND9cvokghLRN67d2",
     "isBlocked": false,
@@ -1722,23 +2829,23 @@
   {
     "created_at": "2024-07-16T17:38:19.483130",
     "uid": "JeMwetmnMaXS4OcKBUsYeUL2lPy1",
-    "name": "Sanchita Jindal",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-07-16T17:38:19.483072",
+      "subscriptionDate": "2025-05-23T12:46:03.583787",
       "subscriptionEndDate": "2024-10-14T17:38:19.483110",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "sansom_2859@yahoo.co.in",
     "mobile": "+919810865227",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Sanchita Jindal"
   },
   {
     "created_at": "2024-04-28T07:07:39.800578",
@@ -1803,6 +2910,48 @@
     "name": "Amit Kumar Gupta"
   },
   {
+    "created_at": "2025-06-24T11:12:21.049423",
+    "uid": "JsZYVyUrGMgjwUN07xmVXWJaY1j2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-06-24T11:12:21.049396",
+      "subscriptionEndDate": "2025-07-01T11:12:21.049411",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "kuber.munavalli@gmail.com",
+    "mobile": "9845426320",
+    "isEmailVerified": false,
+    "name": "lavith"
+  },
+  {
+    "created_at": "2024-11-29T09:19:49.145016",
+    "uid": "KA7Hqv06SNfD8em3wrAuMJfigfv1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-11-29T09:19:49.144999",
+      "subscriptionEndDate": "2025-02-27T09:19:49.145011",
+      "currentSubscription": "Free - trial - 90 days",
+      "coupon_applied": "TRIAL90"
+    },
+    "email": "vinod.samantrai@gmail.com",
+    "mobile": "9871949658",
+    "isEmailVerified": false,
+    "name": "Vinod Samantrai"
+  },
+  {
     "created_at": "2024-05-09T09:55:23.519740",
     "uid": "KQU8TeAbcaYVoI67JPbCVLXvX2m2",
     "razorpayconfimation": {
@@ -1838,44 +2987,116 @@
   {
     "created_at": "2024-07-11T19:38:23.685157",
     "uid": "KZDQmvaYGPX72NdtoQ9oKdJ4EGj2",
-    "name": "Inderjit Singh",
-    "isEmailVerified": false,
+    "razorpayconfimation": {
+      "payment_time": "2024-12-28T22:33:33.348827",
+      "payments_status": {
+        "fee": 47198,
+        "created_at": 1735405388,
+        "method": "card",
+        "error_step": null,
+        "wallet": null,
+        "error_source": null,
+        "status": "captured",
+        "order_id": "order_PcfTY94TylVlaN",
+        "bank": null,
+        "notes": {
+          "address": "company address",
+          "plan": "Champions Club",
+          "coupon_applied": "FESTIVAL20"
+        },
+        "card_id": "card_PcfiGQpMEvnueo",
+        "authentication": {
+          "version": "3DS2",
+          "authentication_channel": "browser"
+        },
+        "error_reason": null,
+        "card": {
+          "international": false,
+          "last4": "1007",
+          "type": "credit",
+          "entity": "card",
+          "id": "card_PcfiGQpMEvnueo",
+          "network": "Visa",
+          "issuer": "ICIC",
+          "sub_type": "consumer",
+          "emi": false,
+          "name": ""
+        },
+        "currency": "INR",
+        "amount_refunded": 0,
+        "vpa": null,
+        "error_code": null,
+        "description": "Payment for Champions Club plan",
+        "entity": "payment",
+        "id": "pay_PcfiGQpMEvnueo",
+        "international": false,
+        "captured": true,
+        "tax": 7200,
+        "acquirer_data": {
+          "auth_code": "451746",
+          "rrn": "436317165194"
+        },
+        "amount": 1999900,
+        "error_description": null,
+        "contact": "+919967642096",
+        "email": "prudentinderjit@gmail.com",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "0da1f135698c99d84b8ac4541fb71f48013df232d167ca13e5a07bc0386d16ff",
+      "payment_id": "pay_PcfiGQpMEvnueo",
+      "Amount": 19999,
+      "orderId": "order_PcfTY94TylVlaN",
+      "plan": "Champions Club"
+    },
+    "razorpayorder": {
+      "created_at": "2024-12-28T22:19:12.367216",
+      "order_id": "order_PcfTY94TylVlaN",
+      "plan": "Champions Club",
+      "amount": 19999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "FESTIVAL20"
+      }
+    },
     "isUserAdmin": false,
+    "isEmailVerified": false,
+    "isBlocked": false,
     "screener_active": true,
     "subscriptionDetails": {
-      "free_trial_over": false,
+      "free_trial_over": true,
       "subscriptionStatus": "Active",
-      "paidSubscription": false,
-      "subscriptionDate": "2024-07-11T19:38:23.685135",
-      "subscriptionEndDate": "2024-10-09T19:38:23.685151",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "paidSubscription": true,
+      "subscriptionDate": "2024-12-28T22:33:33.348785",
+      "subscriptionEndDate": "2049-11-27T22:33:32.215246",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "FESTIVAL20"
     },
     "email": "PRUDENTINDERJIT@GMAIL.COM",
     "mobile": "09967642096",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Inderjit Singh"
   },
   {
     "created_at": "2024-08-24T13:04:05.571597",
     "uid": "KeRmiv1676TiyIhl675kS36Q8XC2",
-    "name": "Paresh ",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-08-24T13:04:05.571549",
+      "subscriptionDate": "2024-12-11T16:02:04.161727",
       "subscriptionEndDate": "2024-11-22T13:04:05.571582",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "Bhanushaliparesh21@gmail.com",
     "mobile": "9029436264",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Paresh "
   },
   {
     "created_at": "2024-08-17T13:00:27.459175",
@@ -2080,23 +3301,23 @@
   {
     "created_at": "2024-07-15T09:11:33.538574",
     "uid": "M0ffa09NAjMnGPMGsg9BCLdIWoP2",
-    "name": "Sunil Singh",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-07-15T09:11:33.538522",
+      "subscriptionDate": "2025-07-03T18:32:25.188371",
       "subscriptionEndDate": "2024-10-13T09:11:33.538558",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "singhsunilprahlad@gmail.com",
     "mobile": "+918088141638",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Sunil Singh"
   },
   {
     "created_at": "2024-04-30T07:49:19.699107",
@@ -2183,23 +3404,23 @@
   {
     "created_at": "2024-06-29T22:06:34.435781",
     "uid": "MlNqGQ4vpgZd69hlSQFioQC2Lhj1",
-    "name": "Ramesh Babu",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-06-29T22:06:34.435731",
+      "subscriptionDate": "2025-05-23T12:02:05.756259",
       "subscriptionEndDate": "2024-09-27T22:06:34.435768",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "rbwithu84@gmail.com",
     "mobile": "8639747166",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Ramesh Babu"
   },
   {
     "created_at": "2024-04-30T20:38:06.343424",
@@ -2220,6 +3441,27 @@
     "mobile": "9831463540",
     "isEmailVerified": false,
     "name": "RUDRA PRASAD DE"
+  },
+  {
+    "created_at": "2025-05-23T12:11:35.243901",
+    "uid": "MqnKVgTooLczGn6HFfhbIDfnhXF3",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-05-23T12:11:35.243845",
+      "subscriptionEndDate": "2025-05-30T12:11:35.243885",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "mohit.ted12@gmail.com",
+    "mobile": "9416322752",
+    "isEmailVerified": false,
+    "name": "Mohit"
   },
   {
     "created_at": "2024-05-05T13:55:42.434815",
@@ -2336,18 +3578,60 @@
     "isEmailVerified": false
   },
   {
+    "created_at": "2025-09-21T18:28:37.807593",
+    "uid": "NOEaEjy60GcfCe26nY7cn2nnp3m2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-21T18:28:37.807556",
+      "subscriptionEndDate": "2025-09-28T18:28:37.807583",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "nlakhupota@gmail.com",
+    "mobile": "+919327484852",
+    "isEmailVerified": false,
+    "name": "Nimesh Lakhupota "
+  },
+  {
+    "created_at": "2025-08-20T11:44:47.697076",
+    "uid": "Nyzp8Zh5YqWtsEFSPQwOoL1seLm1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-20T11:44:47.697004",
+      "subscriptionEndDate": "2025-08-27T11:44:47.697060",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "min2444@yahoo.in",
+    "mobile": "+917678082039",
+    "isEmailVerified": false,
+    "name": "Sushant Pandey"
+  },
+  {
     "created_at": "2024-04-11T17:13:55.023500",
     "uid": "ORUNKyB1c2YF1WICfxdPvQQKw6Q2",
     "razorpayconfimation": {
       "Amount": 0
     },
     "razorpayorder": {
-      "created_at": "2024-09-05T23:41:45.027063",
-      "order_id": "order_OtZz0q3lBatQ05",
-      "plan": "Champions Club",
-      "amount": 24999,
+      "created_at": "2024-12-25T20:43:24.329547",
+      "order_id": "order_PbSEzNxNZ6JNIT",
+      "plan": "Achivers Club",
+      "amount": 11999,
       "notes": {
-        "plan": "Champions Club",
+        "plan": "Achivers Club",
         "coupon_applied": "no coupon applied"
       }
     },
@@ -2488,6 +3772,27 @@
     "name": "Manoj Kumar Ranjan"
   },
   {
+    "created_at": "2025-09-07T12:24:30.275694",
+    "uid": "P95mQQvhrtZdelzOZH6FcYbLcgj2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-07T12:24:30.275612",
+      "subscriptionEndDate": "2025-09-14T12:24:30.275667",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "MANIYAR2412@GMAIL.COM",
+    "mobile": "8849958839",
+    "isEmailVerified": false,
+    "name": "MANIYAR"
+  },
+  {
     "created_at": "2024-06-27T14:50:06.637347",
     "uid": "P9L7uX6xrNgBv30GYQVT3iKV3542",
     "name": "Saurabh Jaiswal",
@@ -2528,6 +3833,27 @@
     "mobile": "07010826664",
     "referral_code": null,
     "isBlocked": false
+  },
+  {
+    "created_at": "2025-06-14T16:34:33.679129",
+    "uid": "PdKpm01zmqYWkyfL5WiFHaZC4ox2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-06-14T16:34:33.679049",
+      "subscriptionEndDate": "2025-06-21T16:34:33.679109",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "poojasunil1513@gmail.com",
+    "mobile": "+918088141638",
+    "isEmailVerified": false,
+    "name": "Sunil Singh"
   },
   {
     "created_at": "2024-05-19T14:12:17.292718",
@@ -2580,6 +3906,27 @@
     "name": "Sonal Jomraj "
   },
   {
+    "created_at": "2025-10-27T17:14:09.853516",
+    "uid": "Q5Mh6KFDVmeayg5N7PfjsGtWDy53",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-27T17:14:09.853491",
+      "subscriptionEndDate": "2025-11-03T17:14:09.853509",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "liteshjangale@gmail.com",
+    "mobile": "8669700752",
+    "isEmailVerified": false,
+    "name": "Litesh Jangale"
+  },
+  {
     "created_at": "2024-05-26T12:13:35.179760",
     "uid": "Q6enF7hjaUVqvMu6IimywGSb2ZJ2",
     "isBlocked": false,
@@ -2621,6 +3968,48 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-03-24T23:01:49.598861",
+    "uid": "QP0iMb3xaSaPj7RdvMjSmr1vEXM2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-03-24T23:01:49.598809",
+      "subscriptionEndDate": "2025-03-31T23:01:49.598845",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "siva.87here@gmail.com",
+    "mobile": "9845289616",
+    "isEmailVerified": false,
+    "name": "Siva"
+  },
+  {
+    "created_at": "2024-12-24T08:38:49.771165",
+    "uid": "QW9STSDSvVcUjPKaKdSKcFEwkrI3",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-24T08:38:49.771131",
+      "subscriptionEndDate": "2024-12-31T08:38:49.771153",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "raaj7joshi@gmail.com",
+    "mobile": "9140774121",
+    "isEmailVerified": false,
+    "name": "raaj"
+  },
+  {
     "created_at": "2024-08-24T16:30:26.278701",
     "uid": "QdFwuZ2tdnZMNolMpgnhi0NB5eE3",
     "name": "Pravin",
@@ -2640,6 +4029,27 @@
     "mobile": "9823056066",
     "referral_code": null,
     "isBlocked": false
+  },
+  {
+    "created_at": "2024-12-24T21:29:07.332703",
+    "uid": "Qg746qg06xbsYWcePj6SYW6XXtm2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-24T21:29:07.332683",
+      "subscriptionEndDate": "2024-12-31T21:29:07.332698",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "amritkalash.net@gmail.com",
+    "mobile": "+919759433303",
+    "isEmailVerified": false,
+    "name": "Manav sharma"
   },
   {
     "created_at": "2024-05-19T14:14:15.827164",
@@ -2724,23 +4134,23 @@
   {
     "created_at": "2024-06-30T17:28:34.889655",
     "uid": "R3T75RDz7JZrv4G7hOXC9ndolMt2",
-    "name": "Sameer",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-06-30T17:28:34.889624",
+      "subscriptionDate": "2024-12-02T07:35:06.352218",
       "subscriptionEndDate": "2024-09-28T17:28:34.889643",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "goalabc55@gmail.com",
     "mobile": "9987313915",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Sameer"
   },
   {
     "created_at": "2024-08-18T10:33:55.299385",
@@ -2767,21 +4177,52 @@
     "created_at": "2024-05-04T12:46:07.800146",
     "uid": "RDO1OZ7eb1To0m6dbRoVerwlvQ02",
     "isBlocked": false,
-    "screener_active": true,
+    "screener_active": false,
     "isUserAdmin": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-05-04T12:46:07.800121",
+      "subscriptionDate": "2025-07-30T18:19:17.210082",
       "subscriptionEndDate": "2024-08-02T12:46:07.800140",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "katariarajesh815@gmail.com",
     "mobile": "09323010777",
     "isEmailVerified": false,
     "name": "Rajesh B"
+  },
+  {
+    "created_at": "2025-10-12T01:45:44.660457",
+    "uid": "RPHde9xgzaeQxW0zUZx2HX8Dr1H3",
+    "referral_code": null,
+    "razorpayorder": {
+      "created_at": "2025-10-12T02:12:10.123905",
+      "order_id": "order_RSIlCkCLybUokY",
+      "plan": "Champions Club",
+      "amount": 24999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "no coupon applied"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-12T01:45:44.660388",
+      "subscriptionEndDate": "2025-10-19T01:45:44.660434",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "riteshgupta22@gmail.com",
+    "mobile": "9899532290",
+    "isEmailVerified": false,
+    "name": "Ritesh"
   },
   {
     "created_at": "2024-07-23T22:21:29.443611",
@@ -2805,6 +4246,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-10-13T14:35:33.219039",
+    "uid": "RwUC5RLHYufe44aIb4e50bPLyli1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-13T14:35:33.219017",
+      "subscriptionEndDate": "2025-10-20T14:35:33.219033",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "ucantbeatsp@gmaol.com",
+    "mobile": "+919994391632",
+    "isEmailVerified": false,
+    "name": "Satheeskumar S P"
+  },
+  {
     "created_at": "2024-05-07T09:43:07.893520",
     "uid": "S5qW6tpr3lPB5zWBFTUc1o3w1On1",
     "isBlocked": false,
@@ -2825,25 +4287,46 @@
     "name": "Hamir"
   },
   {
-    "created_at": "2024-08-23T17:15:19.486047",
-    "uid": "SDaNzxEcsAODC63RR3LJtPeb9tU2",
-    "name": "Mahendra ",
-    "isEmailVerified": false,
-    "isUserAdmin": false,
+    "created_at": "2025-09-16T22:13:25.654390",
+    "uid": "S7cVAeP8vnhL44WvhiT3QZ9gxwf1",
+    "referral_code": null,
     "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
     "subscriptionDetails": {
       "free_trial_over": false,
       "subscriptionStatus": "Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-08-23T17:15:19.486001",
+      "subscriptionDate": "2025-09-16T22:13:25.654367",
+      "subscriptionEndDate": "2025-09-23T22:13:25.654384",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "bbj3060@gmail.com",
+    "mobile": "+919714757754",
+    "isEmailVerified": false,
+    "name": "Bipin kumar Joshi"
+  },
+  {
+    "created_at": "2024-08-23T17:15:19.486047",
+    "uid": "SDaNzxEcsAODC63RR3LJtPeb9tU2",
+    "isBlocked": false,
+    "isEmailVerified": false,
+    "isUserAdmin": false,
+    "screener_active": false,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-22T20:28:36.293638",
       "subscriptionEndDate": "2024-11-21T17:15:19.486031",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "mahendra.hotte@gmail.com",
     "mobile": "9886051040",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Mahendra "
   },
   {
     "created_at": "2024-07-09T23:14:23.469595",
@@ -2951,6 +4434,86 @@
     "name": "Ravikumar Garoda"
   },
   {
+    "created_at": "2025-08-04T17:18:57.408780",
+    "uid": "TmoRFRwJlVcGOpDPWcpBw9vf5UB2",
+    "razorpayconfimation": {
+      "payment_time": "2025-08-06T13:00:45.020935",
+      "payments_status": {
+        "fee": 29498,
+        "created_at": 1754465428,
+        "method": "upi",
+        "error_step": null,
+        "wallet": null,
+        "error_source": null,
+        "status": "captured",
+        "order_id": "order_R1xvXgud8MGTA2",
+        "bank": null,
+        "notes": {
+          "address": "company address",
+          "plan": "Champions Club",
+          "coupon_applied": "FLAT50"
+        },
+        "card_id": null,
+        "error_reason": null,
+        "currency": "INR",
+        "amount_refunded": 0,
+        "vpa": "nitinlvaswani@okaxis",
+        "error_code": null,
+        "description": "Payment for Champions Club plan",
+        "entity": "payment",
+        "id": "pay_R1y0wonG6pXLlK",
+        "international": false,
+        "captured": true,
+        "tax": 4500,
+        "acquirer_data": {
+          "rrn": "558407271110"
+        },
+        "amount": 1249900,
+        "error_description": null,
+        "upi": {
+          "vpa": "nitinlvaswani@okaxis",
+          "payer_account_type": "bank_account"
+        },
+        "contact": "+919819391040",
+        "email": "nitinlvaswani@gmail.com",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "643b0035032bbbf99ba73cd87c96e4baab9d80d92058f22a84940f9d5cf9e8fd",
+      "payment_id": "pay_R1y0wonG6pXLlK",
+      "Amount": 12499,
+      "orderId": "order_R1xvXgud8MGTA2",
+      "plan": "Champions Club"
+    },
+    "razorpayorder": {
+      "created_at": "2025-08-06T12:55:20.690595",
+      "order_id": "order_R1xvXgud8MGTA2",
+      "plan": "Champions Club",
+      "amount": 12499,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "FLAT50"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "referral_code": null,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-08-06T13:00:45.020885",
+      "subscriptionEndDate": "2050-07-06T13:00:44.020790",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "FLAT50"
+    },
+    "email": "nitinlvaswani@gmail.com",
+    "mobile": "+919819391040",
+    "isEmailVerified": false,
+    "name": "Nitin Vaswani"
+  },
+  {
     "created_at": "2024-07-31T08:05:18.513827",
     "uid": "TscYv5lDXChpiGIKHhIuaMLAuVt1",
     "razorpayconfimation": {
@@ -3048,16 +4611,16 @@
     "created_at": "2024-05-05T13:03:26.116958",
     "uid": "U3X90nfMqeXkQjKEE5iWJLGw4po1",
     "isBlocked": false,
-    "screener_active": true,
+    "screener_active": false,
     "isUserAdmin": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-05-05T13:03:26.116930",
+      "subscriptionDate": "2024-11-14T22:32:39.732972",
       "subscriptionEndDate": "2024-08-03T13:03:26.116952",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "durgesh09@gmail.com",
     "mobile": "9999197922",
@@ -3085,25 +4648,88 @@
     "name": "Rajaram"
   },
   {
-    "created_at": "2024-08-23T19:40:04.369515",
-    "uid": "Unf0g7BBTWgcxtMKBEGR8Ear9nm1",
-    "name": "J Singh ",
-    "isEmailVerified": false,
-    "isUserAdmin": false,
+    "created_at": "2024-12-22T15:18:37.267079",
+    "uid": "ULeu0EmgDNOv2Nnheg66DEowIz63",
+    "referral_code": null,
     "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
     "subscriptionDetails": {
       "free_trial_over": false,
       "subscriptionStatus": "Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-08-23T19:40:04.369485",
-      "subscriptionEndDate": "2024-11-21T19:40:04.369506",
+      "subscriptionDate": "2024-12-22T15:18:37.267057",
+      "subscriptionEndDate": "2024-12-29T15:18:37.267073",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "rakeshbutala@gmail.com",
+    "mobile": "+91800777065",
+    "isEmailVerified": false,
+    "name": "Rakesh Butala"
+  },
+  {
+    "created_at": "2024-12-06T18:11:01.318285",
+    "uid": "US4XzzhYMddhfbCGN35m5kN0bvd2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-06T18:11:01.318228",
+      "subscriptionEndDate": "2025-03-06T18:11:01.318260",
       "currentSubscription": "Free - trial - 90 days",
       "coupon_applied": "TRIAL90"
+    },
+    "email": "pramodnemade@gmail.com",
+    "mobile": "9823147603",
+    "isEmailVerified": false,
+    "name": "Pramod Nemade"
+  },
+  {
+    "created_at": "2024-08-23T19:40:04.369515",
+    "uid": "Unf0g7BBTWgcxtMKBEGR8Ear9nm1",
+    "isBlocked": false,
+    "isEmailVerified": false,
+    "isUserAdmin": false,
+    "screener_active": false,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-11-27T15:09:16.305925",
+      "subscriptionEndDate": "2024-11-21T19:40:04.369506",
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "sj0203434@gmail.com",
     "mobile": "8511324299",
     "referral_code": null,
-    "isBlocked": false
+    "name": "J Singh "
+  },
+  {
+    "created_at": "2025-09-21T14:25:33.922839",
+    "uid": "UujckZvqAJQAwqGt81q7Nvf0GIE3",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-21T14:25:33.922738",
+      "subscriptionEndDate": "2025-09-28T14:25:33.922819",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "abhitanwar560@gmail.com",
+    "mobile": "9599745890",
+    "isEmailVerified": false,
+    "name": "Abhi Tanwar"
   },
   {
     "created_at": "2024-11-12T12:47:00.756731",
@@ -3214,6 +4840,89 @@
     "mobile": "9850459390",
     "isEmailVerified": false,
     "name": "Pramodkumar"
+  },
+  {
+    "created_at": "2025-07-13T14:39:50.520567",
+    "uid": "VXHOo8Y98WVkPXgRxzpeRUCgu1Z2",
+    "razorpayconfimation": {
+      "payment_time": "2025-07-13T15:03:01.439564",
+      "payments_status": {
+        "fee": 47198,
+        "created_at": 1752399147,
+        "method": "upi",
+        "error_step": null,
+        "wallet": null,
+        "provider": null,
+        "status": "captured",
+        "error_source": null,
+        "order_id": "order_QsVGiJxhJAE8g5",
+        "bank": null,
+        "notes": {
+          "address": "company address",
+          "plan": "Champions Club",
+          "coupon_applied": "SPECIAL20"
+        },
+        "card_id": null,
+        "error_reason": null,
+        "currency": "INR",
+        "amount_refunded": 0,
+        "vpa": "vimalmervana21477-1@okaxis",
+        "error_code": null,
+        "description": "Payment for Champions Club plan",
+        "entity": "payment",
+        "id": "pay_QsVGupeGniCt8x",
+        "international": false,
+        "captured": true,
+        "tax": 7200,
+        "acquirer_data": {
+          "rrn": "556015964961"
+        },
+        "amount": 1999900,
+        "reward": null,
+        "error_description": null,
+        "amount_captured": null,
+        "upi": {
+          "vpa": "vimalmervana21477-1@okaxis",
+          "payer_account_type": "bank_account"
+        },
+        "contact": "+919004527839",
+        "email": "theinvestor775@gmail.com",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "e4ffa7d6357876cdd19cbfc9df9b9502a95f0af7098bdd664635ed6d0b53431c",
+      "payment_id": "pay_QsVGupeGniCt8x",
+      "Amount": 19999,
+      "orderId": "order_QsVGiJxhJAE8g5",
+      "plan": "Champions Club"
+    },
+    "razorpayorder": {
+      "created_at": "2025-07-13T15:02:15.460671",
+      "order_id": "order_QsVGiJxhJAE8g5",
+      "plan": "Champions Club",
+      "amount": 19999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "SPECIAL20"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "referral_code": null,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-07-13T15:03:01.439542",
+      "subscriptionEndDate": "2050-06-12T15:03:01.005936",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "SPECIAL20"
+    },
+    "email": "theinvestor775@gmail.com",
+    "mobile": "09004527839",
+    "isEmailVerified": false,
+    "name": "Vimal R mervana"
   },
   {
     "created_at": "2024-05-05T12:39:10.267145",
@@ -3380,25 +5089,46 @@
     "name": "Dawood Suleman"
   },
   {
-    "created_at": "2024-06-12T18:38:07.491072",
-    "uid": "WsTQk1FwEoY0ld7AdCjFxG3a2aM2",
-    "name": "Sudhansu",
-    "isEmailVerified": false,
-    "isUserAdmin": false,
+    "created_at": "2025-08-19T14:57:52.952544",
+    "uid": "WjE7I8aVvCX9I1X38e7i3cNcccr2",
+    "referral_code": null,
     "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
     "subscriptionDetails": {
       "free_trial_over": false,
       "subscriptionStatus": "Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-06-12T18:38:07.491051",
+      "subscriptionDate": "2025-08-19T14:57:52.952522",
+      "subscriptionEndDate": "2025-08-26T14:57:52.952537",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "thegargrohit@gmail.com",
+    "mobile": "+919814014353",
+    "isEmailVerified": false,
+    "name": "Rohit GARG"
+  },
+  {
+    "created_at": "2024-06-12T18:38:07.491072",
+    "uid": "WsTQk1FwEoY0ld7AdCjFxG3a2aM2",
+    "isBlocked": false,
+    "isEmailVerified": false,
+    "isUserAdmin": false,
+    "screener_active": false,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-29T11:00:41.312586",
       "subscriptionEndDate": "2024-09-10T18:38:07.491066",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "Sudhansusenapati81@gmail.com",
     "mobile": "7013773381",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Sudhansu"
   },
   {
     "created_at": "2024-07-26T18:34:01.272715",
@@ -3464,6 +5194,104 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-05-27T22:20:31.032767",
+    "uid": "Xr8oePbi3QS8OjyqPn1RpKrzArR2",
+    "referral_code": null,
+    "razorpayorder": {
+      "created_at": "2025-05-28T17:56:51.377609",
+      "order_id": "order_QaLfbjpwCha0V4",
+      "plan": "Achivers Club",
+      "amount": 11999,
+      "notes": {
+        "plan": "Achivers Club",
+        "coupon_applied": "no coupon applied"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-05-27T22:20:31.032704",
+      "subscriptionEndDate": "2025-06-03T22:20:31.032746",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "dhuvanitsadhwani@gmail.com",
+    "mobile": "9327083496",
+    "isEmailVerified": false,
+    "name": "Dhuvanit Sadhwani "
+  },
+  {
+    "created_at": "2024-11-26T20:25:38.907252",
+    "uid": "Y7zhif04DSOVc36t4EINnbZfv112",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-11-26T20:25:38.907231",
+      "subscriptionEndDate": "2025-02-24T20:25:38.907245",
+      "currentSubscription": "Free - trial - 90 days",
+      "coupon_applied": "TRIAL90"
+    },
+    "email": "Kumarsatish1858@gmail.com",
+    "mobile": "+917352232342",
+    "isEmailVerified": false,
+    "name": "Satish Kumar"
+  },
+  {
+    "created_at": "2025-10-06T19:13:50.802686",
+    "uid": "YDMMznTXVWOh4lyfxkAGHrKAAls1",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "3csjUGdonDTK59TpzNCfopwFSuw2",
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "referral_code": null,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-10-06T19:13:50.802663",
+      "subscriptionEndDate": "2050-09-23T11:58:22.282861",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "srikanthwarrier9@gmail.com",
+    "mobile": "9820555814",
+    "isEmailVerified": false,
+    "name": "srikanth warrier"
+  },
+  {
+    "created_at": "2025-05-05T20:20:53.506405",
+    "uid": "YZG5Lkz5ypZmsrX0OgmMs4OaGlA3",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-05-05T20:20:53.506291",
+      "subscriptionEndDate": "2025-05-12T20:20:53.506381",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "mansi.shankhwar77@gmail.com",
+    "mobile": "9818481815",
+    "isEmailVerified": false,
+    "name": "Mansi"
+  },
+  {
     "created_at": "2024-07-28T10:25:58.456559",
     "uid": "Ya7fP4QKqHTHeQVCCCY69Hq68512",
     "name": "Anjali singh",
@@ -3483,6 +5311,131 @@
     "mobile": "+918127480025",
     "referral_code": null,
     "isBlocked": false
+  },
+  {
+    "created_at": "2025-07-10T18:11:25.194772",
+    "uid": "Yc5wRFY59VQYnW5cyoR64zX79192",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-07-10T18:11:25.194748",
+      "subscriptionEndDate": "2025-07-17T18:11:25.194764",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "raaj7joshi@gmal.com",
+    "mobile": "+919140774121",
+    "isEmailVerified": false,
+    "name": "raaj"
+  },
+  {
+    "created_at": "2025-09-21T13:02:44.557753",
+    "uid": "ZE5zBBrRWUZEJlqj15DXkmDyYKe2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-21T13:02:44.557644",
+      "subscriptionEndDate": "2025-09-28T13:02:44.557722",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "anu629281@gmail.com",
+    "mobile": "9746463474",
+    "isEmailVerified": false,
+    "name": "Anu Sn"
+  },
+  {
+    "created_at": "2025-06-08T15:01:10.247813",
+    "uid": "ZMLoCB58e5fPpkEfpYQ5GQJ7NBz1",
+    "razorpayconfimation": {
+      "payment_time": "2025-07-12T14:00:46.153573",
+      "payments_status": {
+        "fee": 29498,
+        "created_at": 1752308999,
+        "method": "upi",
+        "error_step": null,
+        "wallet": null,
+        "provider": null,
+        "status": "captured",
+        "error_source": null,
+        "order_id": "order_Qs5ehOaCiw46kr",
+        "bank": null,
+        "notes": {
+          "address": "company address",
+          "plan": "Champions Club",
+          "coupon_applied": "AMIT50"
+        },
+        "card_id": null,
+        "error_reason": null,
+        "currency": "INR",
+        "amount_refunded": 0,
+        "vpa": "9837479545@upi",
+        "error_code": null,
+        "description": "Payment for Champions Club plan",
+        "entity": "payment",
+        "id": "pay_Qs5fohbdivz5Hp",
+        "international": false,
+        "captured": true,
+        "tax": 4500,
+        "acquirer_data": {
+          "rrn": "519314395621"
+        },
+        "amount": 1249900,
+        "reward": null,
+        "error_description": null,
+        "amount_captured": null,
+        "upi": {
+          "vpa": "9837479545@upi",
+          "payer_account_type": "bank_account"
+        },
+        "contact": "+919837479545",
+        "email": "dheeraj.agra1985@gmail.com",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "ff2fe0342f9bec8489896df64402d3cbdab1679c6f05e182d1421741305adfa7",
+      "payment_id": "pay_Qs5fohbdivz5Hp",
+      "Amount": 12499,
+      "orderId": "order_Qs5ehOaCiw46kr",
+      "plan": "Champions Club"
+    },
+    "razorpayorder": {
+      "created_at": "2025-07-12T13:58:55.817260",
+      "order_id": "order_Qs5ehOaCiw46kr",
+      "plan": "Champions Club",
+      "amount": 12499,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "AMIT50"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "referral_code": null,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-07-12T14:00:46.153555",
+      "subscriptionEndDate": "2050-06-11T14:00:45.917685",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "AMIT50"
+    },
+    "email": "dheeraj.agra1985@gmail.com",
+    "mobile": "9837479545",
+    "isEmailVerified": false,
+    "name": "Deeraj Agarwal"
   },
   {
     "created_at": "2024-07-16T19:21:37.998830",
@@ -3506,6 +5459,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-09-19T20:04:15.685941",
+    "uid": "ZUuykW161ZTs3RKXrxdmQNMYG3i2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-19T20:04:15.685844",
+      "subscriptionEndDate": "2025-09-26T20:04:15.685917",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "sv.sure79@gmail.com",
+    "mobile": "6382403090",
+    "isEmailVerified": false,
+    "name": "Suresh"
+  },
+  {
     "created_at": "2024-05-06T10:27:35.137164",
     "uid": "ZZ21B3CscDTXZ0TP6k3nMKMYMoy2",
     "isBlocked": false,
@@ -3526,6 +5500,27 @@
     "name": "DIGANT JOSHI"
   },
   {
+    "created_at": "2024-12-22T18:31:43.777070",
+    "uid": "ZmX0mkJuAHhB7TqJNRJesskt6qt1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-22T18:31:43.777003",
+      "subscriptionEndDate": "2024-12-29T18:31:43.777037",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "santhoshrvn@gmail.com",
+    "mobile": "+919496949039",
+    "isEmailVerified": false,
+    "name": "Santhosh "
+  },
+  {
     "created_at": "2024-04-11T16:11:02.025911",
     "uid": "ZvJ1cWvyoTUoy1Q4qgRaOVThQn62",
     "isBlocked": false,
@@ -3544,6 +5539,27 @@
     "mobile": "9405560420",
     "isEmailVerified": false,
     "name": "Ajinkya Sanjay Mummadwar"
+  },
+  {
+    "created_at": "2025-07-30T05:41:31.567990",
+    "uid": "ZwO5QM37JeTZOudVuh2hQDXg2SB3",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-07-30T05:41:31.567919",
+      "subscriptionEndDate": "2025-08-06T05:41:31.567966",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "jameelk786@gmail.com",
+    "mobile": "+918178386268",
+    "isEmailVerified": false,
+    "name": "Jameel Ahmed Khan"
   },
   {
     "created_at": "2024-06-29T09:53:31.165663",
@@ -3745,6 +5761,101 @@
     "mobile": "9967780609",
     "referral_code": null,
     "name": "Bhavin Bhanushali"
+  },
+  {
+    "created_at": "2025-05-23T12:01:41.493982",
+    "uid": "bjNsaOc0uyRHE2oxmAwVK3rICz23",
+    "razorpayconfimation": {
+      "payment_time": "2025-10-27T17:06:49.915415",
+      "payments_status": {
+        "fee": 20532,
+        "created_at": 1761564987,
+        "method": "card",
+        "error_step": null,
+        "wallet": null,
+        "token_id": "token_RYU0tQ2NvQUiig",
+        "error_source": null,
+        "status": "captured",
+        "order_id": "order_RYTrjHHSyx7mFP",
+        "bank": null,
+        "notes": {
+          "address": "company address",
+          "plan": "Champions Club",
+          "coupon_applied": "DIWALI20"
+        },
+        "card_id": "card_RYU0g341oV7nSl",
+        "authentication": {
+          "version": "3DS2",
+          "authentication_channel": "browser"
+        },
+        "error_reason": null,
+        "currency": "INR",
+        "card": {
+          "international": false,
+          "last4": "3516",
+          "type": "debit",
+          "entity": "card",
+          "id": "card_RYU0g341oV7nSl",
+          "network": "MasterCard",
+          "issuer": "ICIC",
+          "sub_type": "consumer",
+          "emi": false,
+          "name": ""
+        },
+        "amount_refunded": 0,
+        "vpa": null,
+        "error_code": null,
+        "description": "Payment for Champions Club plan",
+        "entity": "payment",
+        "id": "pay_RYU0g341oV7nSl",
+        "international": false,
+        "captured": true,
+        "tax": 3132,
+        "acquirer_data": {
+          "auth_code": "015736",
+          "rrn": "530011196711"
+        },
+        "amount": 1999900,
+        "error_description": null,
+        "amount_captured": 1999900,
+        "contact": "+919884036111",
+        "email": "archanaduseja1968@gmail.com",
+        "invoice_id": null,
+        "refund_status": null
+      },
+      "signature": "93d6a2411fc25cbda79da16a0d0303ff4442d8898c7139e6aa7d160cb541c359",
+      "payment_id": "pay_RYU0g341oV7nSl",
+      "Amount": 19999,
+      "orderId": "order_RYTrjHHSyx7mFP",
+      "plan": "Champions Club"
+    },
+    "razorpayorder": {
+      "created_at": "2025-10-27T16:57:59.086014",
+      "order_id": "order_RYTrjHHSyx7mFP",
+      "plan": "Champions Club",
+      "amount": 19999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "DIWALI20"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "referral_code": null,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-10-27T17:06:49.915398",
+      "subscriptionEndDate": "2050-09-26T17:06:49.463595",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "DIWALI20"
+    },
+    "email": "archanaduseja1968@gmail.com",
+    "mobile": "9884036111",
+    "isEmailVerified": false,
+    "name": "Archana Duseja"
   },
   {
     "created_at": "2024-05-06T08:55:16.399444",
@@ -4106,23 +6217,23 @@
   {
     "created_at": "2024-09-29T00:13:16.794575",
     "uid": "eY1uUomPfecd2b0RmiL2JA20FKq1",
-    "name": "navya Krishna",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-09-29T00:13:16.794554",
+      "subscriptionDate": "2025-07-20T22:45:57.183144",
       "subscriptionEndDate": "2024-12-28T00:13:16.794568",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "tatavamsikrishna101@gmail.com",
     "mobile": "7989851818",
     "referral_code": null,
-    "isBlocked": false
+    "name": "navya Krishna"
   },
   {
     "created_at": "2024-05-04T14:40:02.914494",
@@ -4400,6 +6511,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-10-11T10:41:41.333255",
+    "uid": "hmMMPaMKdDW5B9kTetzVzIsH99h1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-11T10:41:41.333229",
+      "subscriptionEndDate": "2025-10-18T10:41:41.333248",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "siri.palutla@gmail.com",
+    "mobile": "9966126596",
+    "isEmailVerified": false,
+    "name": "Sirisha Narahari"
+  },
+  {
     "created_at": "2024-05-31T16:02:52.445623",
     "uid": "hmWCwx5fqHcVJYyU4LkziQWZ1gT2",
     "isBlocked": false,
@@ -4422,23 +6554,23 @@
   {
     "created_at": "2024-07-18T21:05:21.939368",
     "uid": "hpb4YvDPNta9DuE1a37RlXR2sRI2",
-    "name": "Sagar Awale",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-07-18T21:05:21.939350",
+      "subscriptionDate": "2024-12-13T08:00:23.178636",
       "subscriptionEndDate": "2024-10-16T21:05:21.939363",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "sagar.awale@gmail.com",
     "mobile": "+919766037343",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Sagar Awale"
   },
   {
     "created_at": "2024-04-30T07:16:37.052563",
@@ -4464,25 +6596,46 @@
     "name": "Sunil Kumar"
   },
   {
-    "created_at": "2024-06-27T16:55:59.757938",
-    "uid": "iOpe0XlnpOcYsJ5EVyCIhce3LBa2",
-    "name": "Sangeeta ",
-    "isEmailVerified": false,
-    "isUserAdmin": false,
+    "created_at": "2025-08-20T14:02:40.068028",
+    "uid": "hxUw0Ew3H7gAFuN0XzuWeReaCED3",
+    "referral_code": null,
     "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
     "subscriptionDetails": {
       "free_trial_over": false,
       "subscriptionStatus": "Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-06-27T16:55:59.757911",
+      "subscriptionDate": "2025-08-20T14:02:40.068009",
+      "subscriptionEndDate": "2025-08-27T14:02:40.068023",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "moh.janu101@gmail.com",
+    "mobile": "8109442819",
+    "isEmailVerified": false,
+    "name": "Moh janu"
+  },
+  {
+    "created_at": "2024-06-27T16:55:59.757938",
+    "uid": "iOpe0XlnpOcYsJ5EVyCIhce3LBa2",
+    "isBlocked": false,
+    "isEmailVerified": false,
+    "isUserAdmin": false,
+    "screener_active": false,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-22T12:32:18.268570",
       "subscriptionEndDate": "2024-09-25T16:55:59.757929",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "sangeetamunavalli18@gmail.com",
     "mobile": "6362484406",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Sangeeta "
   },
   {
     "created_at": "2024-07-19T09:48:06.187967",
@@ -4634,17 +6787,17 @@
     "created_at": "2024-11-05T10:54:59.324528",
     "uid": "jABxDXia2mgaOoek7rZlpLdKpaI3",
     "referral_code": null,
-    "screener_active": true,
-    "isUserAdmin": false,
     "isBlocked": false,
+    "isUserAdmin": false,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-11-05T10:54:59.324467",
+      "subscriptionDate": "2025-02-06T12:32:48.265856",
       "subscriptionEndDate": "2025-02-03T10:54:59.324507",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "kanaiyatraders22@gmail.com",
     "mobile": "8169356894",
@@ -4673,6 +6826,31 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-06-27T21:08:50.295448",
+    "uid": "jjpMKRcV7NXtB2zcS50sFLoJ9TE3",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "3csjUGdonDTK59TpzNCfopwFSuw2",
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "referral_code": null,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-06-27T21:08:50.295387",
+      "subscriptionEndDate": "2050-05-28T07:09:35.990545",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "prabojwasti@gmail.com",
+    "mobile": "7249890188",
+    "isEmailVerified": false,
+    "name": "Prashasti Abojwar"
+  },
+  {
     "created_at": "2024-06-04T02:02:52.161178",
     "uid": "k1i5M5aSszSYc2OMTeX3qEhafzr1",
     "isBlocked": false,
@@ -4691,6 +6869,48 @@
     "mobile": "8600107015",
     "isEmailVerified": false,
     "name": "Nirav"
+  },
+  {
+    "created_at": "2025-08-08T06:17:55.306708",
+    "uid": "kIIav9vKwNhaNXg8eQgHN2R5Kxy1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-08T06:17:55.306684",
+      "subscriptionEndDate": "2025-08-15T06:17:55.306702",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "sumababurao1603@gmail.com",
+    "mobile": "+916304626767",
+    "isEmailVerified": false,
+    "name": "K BABURAO0709"
+  },
+  {
+    "created_at": "2025-09-21T20:37:44.128133",
+    "uid": "kTydhnEIUgTDELdU6OSyicika3g1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-21T20:37:44.128073",
+      "subscriptionEndDate": "2025-09-28T20:37:44.128115",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "Bhavesh072@gmail.com",
+    "mobile": "9510107067",
+    "isEmailVerified": false,
+    "name": "Bhavesh "
   },
   {
     "created_at": "2024-06-26T10:36:43.271366",
@@ -4737,7 +6957,6 @@
   {
     "created_at": "2024-08-15T19:44:24.245009",
     "uid": "lFMdre8ahyT5c3nboiTsPnGZs493",
-    "name": "Vamsi",
     "razorpayorder": {
       "created_at": "2024-08-21T09:53:07.313867",
       "order_id": "order_OnPqtg6Pwj2Mfc",
@@ -4748,22 +6967,27 @@
         "coupon_applied": "no coupon applied"
       }
     },
-    "isUserAdmin": false,
+    "referral_code": null,
+    "isBlocked": false,
+    "name": "Vamsi",
     "screener_active": true,
-    "isEmailVerified": false,
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "ORUNKyB1c2YF1WICfxdPvQQKw6Q2",
+    "isUserAdmin": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
+      "free_trial_over": true,
       "subscriptionStatus": "Active",
-      "paidSubscription": false,
-      "subscriptionDate": "2024-08-15T19:44:24.244956",
-      "subscriptionEndDate": "2024-11-13T19:44:24.244992",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "paidSubscription": true,
+      "subscriptionDate": "2024-12-07T22:25:26.081802",
+      "subscriptionEndDate": "2050-06-20T12:22:48.904487",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
     },
     "email": "vamsi.org@gmail.com",
     "mobile": "7989851818",
-    "referral_code": null,
-    "isBlocked": false
+    "isEmailVerified": false
   },
   {
     "created_at": "2024-05-23T12:56:00.013977",
@@ -4802,16 +7026,16 @@
     "created_at": "2024-05-26T12:20:54.144650",
     "uid": "lRrPJ1DwR8dQlG6XLS22LN5rytA2",
     "isBlocked": false,
-    "screener_active": true,
+    "screener_active": false,
     "isUserAdmin": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-05-26T12:20:54.144629",
+      "subscriptionDate": "2024-12-25T07:38:24.949894",
       "subscriptionEndDate": "2024-08-24T12:20:54.144643",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "anuaravind6662@gmail.com",
     "mobile": "8247063480",
@@ -4837,6 +7061,27 @@
     "mobile": "982509864",
     "isEmailVerified": false,
     "name": "Rakesh khambholja "
+  },
+  {
+    "created_at": "2025-05-15T15:40:58.362524",
+    "uid": "lyiAB8HG9qVerZQUSfWVO6DH8oB2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-05-15T15:40:58.362500",
+      "subscriptionEndDate": "2025-05-22T15:40:58.362516",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "abhishekthakur7505@gmail.com",
+    "mobile": "7983635880",
+    "isEmailVerified": false,
+    "name": "abhishek"
   },
   {
     "created_at": "2024-07-28T09:52:27.648202",
@@ -5017,23 +7262,23 @@
   {
     "created_at": "2024-08-23T19:11:48.450717",
     "uid": "n7d7WyQYqdh5tS6aSr3o31nEwhf1",
-    "name": "Bharath",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-08-23T19:11:48.450695",
+      "subscriptionDate": "2025-06-06T12:07:06.141439",
       "subscriptionEndDate": "2024-11-21T19:11:48.450711",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "tulasi_bharath2002@yahoo.com",
     "mobile": "8050406003",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Bharath"
   },
   {
     "created_at": "2024-07-15T09:44:38.860485",
@@ -5099,6 +7344,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-08-28T15:41:37.888654",
+    "uid": "ntzKW4D0dZTFfYtxbgHb8uqNeu32",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-28T15:41:37.888584",
+      "subscriptionEndDate": "2025-09-04T15:41:37.888631",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "badalmotiramani@gmail.com",
+    "mobile": "9820009658",
+    "isEmailVerified": false,
+    "name": "Badal"
+  },
+  {
     "created_at": "2024-08-23T10:25:54.650257",
     "uid": "o0vHKm0g9kfwzDbOv6Swq9kzbGg2",
     "name": "Vipul Singla",
@@ -5118,6 +7384,58 @@
     "mobile": "9909022482",
     "referral_code": null,
     "isBlocked": false
+  },
+  {
+    "created_at": "2025-08-07T22:43:03.502491",
+    "uid": "o6mCqKKlybfM2fijq2X0NQRJ3p23",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-07T22:43:03.502413",
+      "subscriptionEndDate": "2025-08-14T22:43:03.502464",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "ravik014@gmail.com",
+    "mobile": "9004893930",
+    "isEmailVerified": false,
+    "name": "Ravi kawade"
+  },
+  {
+    "created_at": "2025-09-21T13:15:57.355443",
+    "uid": "oaJQGZ4mzySQ0JlmbM7gItQTBPQ2",
+    "referral_code": null,
+    "razorpayorder": {
+      "created_at": "2025-09-21T13:21:48.411992",
+      "order_id": "order_RKAx2K1nCowA0r",
+      "plan": "Champions Club",
+      "amount": 24999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "no coupon applied"
+      }
+    },
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-21T13:15:57.355402",
+      "subscriptionEndDate": "2025-09-28T13:15:57.355431",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "zaidvahora31@gmail.com",
+    "mobile": "7359014554",
+    "isEmailVerified": false,
+    "name": "Jaid vahora"
   },
   {
     "created_at": "2024-05-02T09:11:17.344187",
@@ -5161,6 +7479,27 @@
     "mobile": "9879244111",
     "isEmailVerified": false,
     "name": "SONALI SHAH"
+  },
+  {
+    "created_at": "2025-09-17T16:10:21.337148",
+    "uid": "peBIZZBTZ9X3yiZqhv0icW0aCb83",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-17T16:10:21.337100",
+      "subscriptionEndDate": "2025-09-24T16:10:21.337134",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "shardikd@gmail.com",
+    "mobile": "9824100533",
+    "isEmailVerified": false,
+    "name": "Hardik"
   },
   {
     "created_at": "2024-05-29T16:42:49.267510",
@@ -5236,6 +7575,31 @@
     "mobile": "821084205257",
     "isEmailVerified": false,
     "name": "Dhiraj Murale"
+  },
+  {
+    "created_at": "2025-10-24T14:26:52.155180",
+    "uid": "pz0ZWQhaUxQuSow7PqBnevUgfSi2",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "3csjUGdonDTK59TpzNCfopwFSuw2",
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "referral_code": null,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-10-24T14:26:52.155012",
+      "subscriptionEndDate": "2050-09-23T14:40:36.117843",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "contraainvesting@gmail.com",
+    "mobile": "+917589301441",
+    "isEmailVerified": false,
+    "name": "Gurvinder Malhotra"
   },
   {
     "created_at": "2024-05-21T10:34:21.462708",
@@ -5369,20 +7733,41 @@
     },
     "isBlocked": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
       "free_trial_over": true,
-      "subscriptionStatus": "Active",
-      "paidSubscription": true,
-      "subscriptionDate": "2024-08-01T10:15:30.505354",
+      "subscriptionStatus": "In-Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-05-23T13:12:25.474945",
       "subscriptionEndDate": "2025-03-29T11:28:02.060779",
-      "currentSubscription": "Market Talk Club",
-      "coupon_applied": "Admin Upgrade"
+      "currentSubscription": "Market Talk Club - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "giet13ece041@gmail.com",
     "mobile": "8076154821",
     "isEmailVerified": false,
     "name": "Ankit Kumar"
+  },
+  {
+    "created_at": "2025-09-21T12:31:37.014043",
+    "uid": "rWsfO44e9Ng7ycFgILmFix819bh2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-09-21T12:31:37.014023",
+      "subscriptionEndDate": "2025-09-28T12:31:37.014039",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "lakshmansabavat93@gmail.com",
+    "mobile": "9441238020",
+    "isEmailVerified": false,
+    "name": "Lakshman Sabavat"
   },
   {
     "created_at": "2024-07-20T10:40:38.187239",
@@ -5557,6 +7942,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2024-11-29T14:47:08.144104",
+    "uid": "sjk59yauBifMFT6biIDodyKNmpN2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-11-29T14:47:08.144083",
+      "subscriptionEndDate": "2025-02-27T14:47:08.144097",
+      "currentSubscription": "Free - trial - 90 days",
+      "coupon_applied": "TRIAL90"
+    },
+    "email": "Bhanushaliparesh777@gmail.com",
+    "mobile": "7666556443",
+    "isEmailVerified": false,
+    "name": "Paresh "
+  },
+  {
     "created_at": "2024-09-07T11:46:27.069175",
     "uid": "t17rqi4U5GM2LTCGEC51iGHheWe2",
     "razorpayconfimation": {
@@ -5658,6 +8064,48 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-10-16T13:03:22.887898",
+    "uid": "t289c9G1GPXJxCGzanhcfuyU7ta2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-16T13:03:22.887869",
+      "subscriptionEndDate": "2025-10-23T13:03:22.887889",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "hiteshahirrao111@gmail.com",
+    "mobile": "8788986237",
+    "isEmailVerified": false,
+    "name": "Hitesh Patil"
+  },
+  {
+    "created_at": "2024-12-02T09:48:38.276742",
+    "uid": "t3b8LXbeAVXAPXruDSfTTObRrq83",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-02T09:48:38.276690",
+      "subscriptionEndDate": "2025-03-02T09:48:38.276725",
+      "currentSubscription": "Free - trial - 90 days",
+      "coupon_applied": "TRIAL90"
+    },
+    "email": "prajktapatil0310@gmail.com",
+    "mobile": "9870779979",
+    "isEmailVerified": false,
+    "name": "Prajkta Patil"
+  },
+  {
     "created_at": "2024-04-28T13:57:38.399321",
     "uid": "t4jqSwHwTuTmzEk5pkCQRn1HFmE2",
     "isBlocked": false,
@@ -5699,6 +8147,27 @@
     "isBlocked": false
   },
   {
+    "created_at": "2025-10-27T06:46:34.589240",
+    "uid": "tTlatsrakKfo4hkXKbtwsA5RCVB3",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-27T06:46:34.589158",
+      "subscriptionEndDate": "2025-11-03T06:46:34.589211",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "ssiddharth80@gmail.com",
+    "mobile": "9500988330",
+    "isEmailVerified": false,
+    "name": "Siddharth Sezhiyan"
+  },
+  {
     "created_at": "2024-08-23T19:37:00.826658",
     "uid": "tnmgSpK4UbYNL7SVgoM7Aiwaxcv2",
     "name": "Satu",
@@ -5718,6 +8187,27 @@
     "mobile": "9662054291",
     "referral_code": null,
     "isBlocked": false
+  },
+  {
+    "created_at": "2025-07-31T06:42:26.327377",
+    "uid": "tsFOSV3mg8hL8s0ZFuF8yvBk8Um1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-07-31T06:42:26.327153",
+      "subscriptionEndDate": "2025-08-07T06:42:26.327357",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "devenbavaria@gmail.com",
+    "mobile": "9324864859",
+    "isEmailVerified": false,
+    "name": "Deven Bavaria "
   },
   {
     "created_at": "2024-05-04T10:33:07.716465",
@@ -5830,6 +8320,52 @@
     "mobile": "09869280675",
     "isEmailVerified": false,
     "name": "oscar fernandes"
+  },
+  {
+    "created_at": "2024-12-06T21:20:34.169214",
+    "uid": "uRmbjGSMOqdPrZtlWuxdS4zoaOX2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-06T21:20:34.169174",
+      "subscriptionEndDate": "2024-12-13T21:20:34.169203",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "ratnakarkasarlewar@gmail.com",
+    "mobile": "9764007155",
+    "isEmailVerified": false,
+    "name": "ratn k"
+  },
+  {
+    "created_at": "2025-07-03T18:37:05.926589",
+    "uid": "uko4VohAdNS2WR7kfkUE24CXOs62",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "ORUNKyB1c2YF1WICfxdPvQQKw6Q2",
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "referral_code": null,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-07-03T18:37:05.926565",
+      "subscriptionEndDate": "2050-06-21T17:19:52.049361",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "poojasunil01513@gmail.com",
+    "mobile": "6362889325",
+    "isEmailVerified": false,
+    "name": "Pooja Devi"
   },
   {
     "created_at": "2024-07-11T12:39:31.952204",
@@ -6020,23 +8556,79 @@
   {
     "created_at": "2024-08-25T18:24:19.116735",
     "uid": "vfeZjshuWSPN7o53xCorzCHLWaX2",
-    "name": "Deep",
+    "isBlocked": false,
     "isEmailVerified": false,
     "isUserAdmin": false,
-    "screener_active": true,
+    "screener_active": false,
     "subscriptionDetails": {
-      "free_trial_over": false,
-      "subscriptionStatus": "Active",
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-08-25T18:24:19.116693",
+      "subscriptionDate": "2024-12-22T11:35:56.647816",
       "subscriptionEndDate": "2024-11-23T18:24:19.116715",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "22onjob@gmail.com",
     "mobile": "7086356565",
     "referral_code": null,
-    "isBlocked": false
+    "name": "Deep"
+  },
+  {
+    "created_at": "2025-08-20T05:23:15.838506",
+    "uid": "viowNFk6BXMmvzOBWPk3CS3FEko1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-20T05:23:15.838486",
+      "subscriptionEndDate": "2025-08-27T05:23:15.838501",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "ankitvyas.va@gmail.com",
+    "mobile": "9413140449",
+    "isEmailVerified": false,
+    "name": "Ankit "
+  },
+  {
+    "created_at": "2025-09-22T21:06:01.616743",
+    "uid": "w3tkRsDageN2jys6Iu49kVsj3JD3",
+    "razorpayorder": {
+      "created_at": "2025-09-25T19:08:21.536977",
+      "order_id": "order_RLqzaqTGYiWXMx",
+      "plan": "Champions Club",
+      "amount": 19999,
+      "notes": {
+        "plan": "Champions Club",
+        "coupon_applied": "DURGA20"
+      }
+    },
+    "referral_code": null,
+    "isBlocked": false,
+    "screener_active": true,
+    "name": "Bharat",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "3csjUGdonDTK59TpzNCfopwFSuw2",
+    "isUserAdmin": false,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-09-22T21:06:01.616718",
+      "subscriptionEndDate": "2050-09-23T12:01:23.677758",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "bharathcl30@gmail.com",
+    "mobile": "9686519271",
+    "isEmailVerified": false
   },
   {
     "created_at": "2024-08-06T14:24:01.234300",
@@ -6100,6 +8692,27 @@
     "name": "Yogendra Kumar"
   },
   {
+    "created_at": "2025-06-16T15:04:53.378267",
+    "uid": "x8H70T6nzVM4k8whDbSG0KTrYVq1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-06-16T15:04:53.378210",
+      "subscriptionEndDate": "2025-06-23T15:04:53.378250",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "mhussain.zerodha@gmail.com",
+    "mobile": "8097461206",
+    "isEmailVerified": false,
+    "name": "Mohammed Hussain"
+  },
+  {
     "created_at": "2024-06-08T21:55:11.666941",
     "uid": "xB6QurvDY2heVYhu7nmyvzvFz8n1",
     "razorpayconfimation": {
@@ -6134,19 +8747,40 @@
     "name": "Sandeep Kumar Ahuja"
   },
   {
-    "created_at": "2024-04-28T06:35:58.989127",
-    "uid": "xCnR0tTzn7hvSzU1cSdmfTv1sBv1",
-    "isBlocked": false,
+    "created_at": "2025-09-20T06:12:46.388971",
+    "uid": "xBNXjvoKeBbYZVkBoasuFdI4UDo2",
+    "referral_code": null,
     "screener_active": true,
     "isUserAdmin": false,
+    "isBlocked": false,
     "subscriptionDetails": {
       "free_trial_over": false,
       "subscriptionStatus": "Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-04-28T06:35:58.989106",
+      "subscriptionDate": "2025-09-20T06:12:46.388900",
+      "subscriptionEndDate": "2025-09-27T06:12:46.388946",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "giri.vip.vipin@gmail.com",
+    "mobile": "6265515964",
+    "isEmailVerified": false,
+    "name": "Vipin Giri"
+  },
+  {
+    "created_at": "2024-04-28T06:35:58.989127",
+    "uid": "xCnR0tTzn7hvSzU1cSdmfTv1sBv1",
+    "isBlocked": false,
+    "screener_active": false,
+    "isUserAdmin": false,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2024-12-06T10:42:50.031993",
       "subscriptionEndDate": "2024-07-27T06:35:58.989121",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "rdshah1980@gmail.com",
     "mobile": "9820458312",
@@ -6195,6 +8829,27 @@
     "name": "Bharat R. Bahl"
   },
   {
+    "created_at": "2025-10-12T15:31:11.002610",
+    "uid": "xgasfEHmqWXGQXhy22oAydSg7cS2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-10-12T15:31:11.002580",
+      "subscriptionEndDate": "2025-10-19T15:31:11.002600",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "umamahesh.bhavanam@gmail.com",
+    "mobile": "+918886994992",
+    "isEmailVerified": false,
+    "name": "Umamaheswara Reddy"
+  },
+  {
     "created_at": "2024-04-30T17:56:48.599462",
     "uid": "xsIM9oH4AjdL9rky8mf9fA8yhig1",
     "isBlocked": false,
@@ -6213,6 +8868,27 @@
     "mobile": "8886980789",
     "isEmailVerified": false,
     "name": "Shreenath"
+  },
+  {
+    "created_at": "2025-04-07T02:21:29.359772",
+    "uid": "xsz6nyezWrY3lAWXHRG6n3R8uVx2",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-04-07T02:21:29.359234",
+      "subscriptionEndDate": "2025-04-14T02:21:29.359750",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "pradylearner@gmail.com",
+    "mobile": "+919980160169",
+    "isEmailVerified": false,
+    "name": "Pradeep Iyer"
   },
   {
     "created_at": "2024-06-01T14:07:05.001535",
@@ -6422,24 +9098,87 @@
     "isBlocked": false
   },
   {
-    "created_at": "2024-05-30T22:01:33.588320",
-    "uid": "yZ8d0fiAEEZiUitiJem8MF5hicc2",
-    "isBlocked": false,
+    "created_at": "2025-07-09T17:58:56.574317",
+    "uid": "ySUexTxMQYWoZXti8Xen3YtBo5C3",
+    "referral_code": null,
     "screener_active": true,
     "isUserAdmin": false,
+    "isBlocked": false,
     "subscriptionDetails": {
       "free_trial_over": false,
       "subscriptionStatus": "Active",
       "paidSubscription": false,
-      "subscriptionDate": "2024-05-30T22:01:33.588301",
+      "subscriptionDate": "2025-07-09T17:58:56.574296",
+      "subscriptionEndDate": "2025-07-16T17:58:56.574312",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "ridhi.ted12@gmail.com",
+    "mobile": "+919468117976",
+    "isEmailVerified": false,
+    "name": "Ridhi"
+  },
+  {
+    "created_at": "2024-05-30T22:01:33.588320",
+    "uid": "yZ8d0fiAEEZiUitiJem8MF5hicc2",
+    "isBlocked": false,
+    "screener_active": false,
+    "isUserAdmin": false,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "In-Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-03T13:40:56.502437",
       "subscriptionEndDate": "2024-08-28T22:01:33.588313",
-      "currentSubscription": "Free - trial - 90 days",
-      "coupon_applied": "TRIAL90"
+      "currentSubscription": "Free - trial - 90 days - Ended",
+      "coupon_applied": "no coupon applied"
     },
     "email": "ankur1975@gmail.com",
     "mobile": "9654516098",
     "isEmailVerified": false,
     "name": "Ankur Bhatnagar"
+  },
+  {
+    "created_at": "2025-08-03T22:43:14.873108",
+    "uid": "ybi9HCJY2jbkRRdm8HiTcKJPZCu1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-03T22:43:14.873035",
+      "subscriptionEndDate": "2025-08-10T22:43:14.873083",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "shvmhn978@gmail.com",
+    "mobile": "+917895253807",
+    "isEmailVerified": false,
+    "name": "Shiva Mohan "
+  },
+  {
+    "created_at": "2025-08-02T14:59:02.926969",
+    "uid": "ys3YqlEGlreqIKHcwBvN035hC8s1",
+    "referral_code": null,
+    "screener_active": true,
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "subscriptionDetails": {
+      "free_trial_over": false,
+      "subscriptionStatus": "Active",
+      "paidSubscription": false,
+      "subscriptionDate": "2025-08-02T14:59:02.926942",
+      "subscriptionEndDate": "2025-08-09T14:59:02.926959",
+      "currentSubscription": "Free - trial - 7 days",
+      "coupon_applied": "TRIAL_7"
+    },
+    "email": "saurabh.dabir@gmail.com",
+    "mobile": "9096291084",
+    "isEmailVerified": false,
+    "name": "Saurabh D"
   },
   {
     "created_at": "2024-05-01T08:34:24.051564",
@@ -6463,6 +9202,56 @@
     "mobile": "9773312287",
     "isEmailVerified": false,
     "name": "Pratik Jani"
+  },
+  {
+    "created_at": "2025-10-28T11:27:53.935598",
+    "uid": "yznQJodxuhdBRniHGriFHSUoK3a2",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "3csjUGdonDTK59TpzNCfopwFSuw2",
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "referral_code": null,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-10-28T11:27:53.934599",
+      "subscriptionEndDate": "2050-11-18T10:40:02.846719",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "rajesh.infomiles@gmail.com",
+    "mobile": "9764007155",
+    "isEmailVerified": false,
+    "name": "Rajesh test "
+  },
+  {
+    "created_at": "2025-10-12T13:30:22.295678",
+    "uid": "z1m0HOubJWcqMPfEKvKmF5k45IB3",
+    "razorpayconfimation": {
+      "Amount": 0.0
+    },
+    "updated_by": "ORUNKyB1c2YF1WICfxdPvQQKw6Q2",
+    "isUserAdmin": false,
+    "isBlocked": false,
+    "referral_code": null,
+    "screener_active": true,
+    "subscriptionDetails": {
+      "free_trial_over": true,
+      "subscriptionStatus": "Active",
+      "paidSubscription": true,
+      "subscriptionDate": "2025-10-12T13:30:22.295644",
+      "subscriptionEndDate": "2050-09-23T12:03:20.840431",
+      "currentSubscription": "Champions Club",
+      "coupon_applied": "Admin Upgrade"
+    },
+    "email": "krishnakumar.tm@gmail.com",
+    "mobile": "+919886454481",
+    "isEmailVerified": false,
+    "name": "Krishna Kumar Thimmireddy Muni"
   },
   {
     "created_at": "2024-05-04T10:52:54.464085",
