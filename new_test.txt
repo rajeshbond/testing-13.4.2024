@@ -1,0 +1,1177 @@
+package handler
+
+import (
+	"context"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"log"
+	"runtime"
+	"sync"
+	"sync/atomic"
+	"time"
+
+	paho "github.com/eclipse/paho.mqtt.golang"
+
+	dto "github.com/rajeshbond/smart/internal/mqtt/assembly/production_dto"
+	service "github.com/rajeshbond/smart/internal/mqtt/assembly/service"
+)
+
+// ============================================================
+// CONFIGURATION
+// ============================================================
+
+const (
+	// ==========================================================
+	// QUEUE
+	// ==========================================================
+
+	ProductionQueueSize = 1000
+
+	// ==========================================================
+	// DYNAMIC WORKERS
+	// ==========================================================
+
+	MinProductionWorkers = 2
+	MaxProductionWorkers = 20
+
+	// How often the supervisor checks queue pressure.
+	WorkerScaleInterval = 500 * time.Millisecond
+
+	// Extra workers are removed after being idle this long.
+	WorkerIdleTimeout = 30 * time.Second
+
+	// ==========================================================
+	// DATABASE
+	// ==========================================================
+
+	ProductionDBTimeout = 5 * time.Second
+
+	// Maximum number of attempts.
+	ProductionSaveRetries = 3
+
+	// Initial retry delay.
+	ProductionRetryDelay = 500 * time.Millisecond
+
+	// ==========================================================
+	// QUEUE BACKPRESSURE
+	// ==========================================================
+
+	// If queue is full, MQTT callback waits for this period
+	// for a worker to consume a message.
+	ProductionEnqueueTimeout = 2 * time.Second
+
+	// ==========================================================
+	// STATISTICS
+	// ==========================================================
+
+	ProductionStatsInterval = 30 * time.Second
+)
+
+// ============================================================
+// ERRORS
+// ============================================================
+
+var (
+	ErrProductionHandlerClosed = errors.New(
+		"production handler is closed",
+	)
+
+	ErrProductionQueueFull = errors.New(
+		"production queue is full",
+	)
+)
+
+// ============================================================
+// JOB
+// ============================================================
+
+type productionJob struct {
+	payload []byte
+}
+
+// ============================================================
+// STATISTICS
+// ============================================================
+
+type ProductionStats struct {
+	QueueLength int
+	QueueSize   int
+	Workers     int
+
+	Received  uint64
+	Queued    uint64
+	Processed uint64
+	Failed    uint64
+	Dropped   uint64
+	Retries   uint64
+}
+
+// ============================================================
+// PRODUCTION HANDLER
+// ============================================================
+
+type ProductionHandler struct {
+
+	// ----------------------------------------------------------
+	// Production service
+	// ----------------------------------------------------------
+
+	service service.ProductionSerive
+
+	// ----------------------------------------------------------
+	// Bounded queue
+	// ----------------------------------------------------------
+
+	queue chan productionJob
+
+	// ----------------------------------------------------------
+	// Supervisor context
+	//
+	// IMPORTANT:
+	//
+	// This context controls only the supervisor and statistics
+	// goroutines.
+	//
+	// It does NOT cancel workers during graceful shutdown.
+	// ----------------------------------------------------------
+
+	supervisorCtx    context.Context
+	supervisorCancel context.CancelFunc
+
+	// ----------------------------------------------------------
+	// Lifecycle
+	// ----------------------------------------------------------
+
+	mu sync.RWMutex
+
+	accepting bool
+	closed    bool
+
+	// ----------------------------------------------------------
+	// Worker lifecycle
+	// ----------------------------------------------------------
+
+	workersWG sync.WaitGroup
+
+	// Protect worker count / worker retirement.
+	workerMu sync.Mutex
+
+	workerCount atomic.Int32
+
+	// ----------------------------------------------------------
+	// Supervisor lifecycle
+	// ----------------------------------------------------------
+
+	supervisorWG sync.WaitGroup
+
+	// ----------------------------------------------------------
+	// Statistics
+	// ----------------------------------------------------------
+
+	receivedCount  atomic.Uint64
+	queuedCount    atomic.Uint64
+	processedCount atomic.Uint64
+	failedCount    atomic.Uint64
+	droppedCount   atomic.Uint64
+	retryCount     atomic.Uint64
+}
+
+// ============================================================
+// CONSTRUCTOR
+// ============================================================
+
+func NewProductionHandler(
+	productionService *service.ProductionSerive,
+) *ProductionHandler {
+
+	if productionService == nil {
+		panic("productionService cannot be nil")
+	}
+
+	supervisorCtx, supervisorCancel :=
+		context.WithCancel(context.Background())
+
+	h := &ProductionHandler{
+		service: *productionService,
+
+		queue: make(
+			chan productionJob,
+			ProductionQueueSize,
+		),
+
+		supervisorCtx:    supervisorCtx,
+		supervisorCancel: supervisorCancel,
+
+		accepting: true,
+		closed:    false,
+	}
+
+	// ========================================================
+	// START MINIMUM WORKERS
+	// ========================================================
+
+	for i := 0; i < MinProductionWorkers; i++ {
+		h.startWorker()
+	}
+
+	// ========================================================
+	// START SUPERVISOR
+	// ========================================================
+
+	h.supervisorWG.Add(1)
+
+	go h.workerSupervisor()
+
+	// ========================================================
+	// START STATISTICS LOGGER
+	// ========================================================
+
+	h.supervisorWG.Add(1)
+
+	go h.statisticsLogger()
+
+	// ========================================================
+	// STARTUP LOG
+	// ========================================================
+
+	log.Println(
+		"============================================================",
+	)
+
+	log.Println(
+		"Production Handler Started",
+	)
+
+	log.Printf(
+		"Queue Size          : %d",
+		ProductionQueueSize,
+	)
+
+	log.Printf(
+		"Minimum Workers     : %d",
+		MinProductionWorkers,
+	)
+
+	log.Printf(
+		"Maximum Workers     : %d",
+		MaxProductionWorkers,
+	)
+
+	log.Printf(
+		"Worker Idle Timeout : %v",
+		WorkerIdleTimeout,
+	)
+
+	log.Printf(
+		"DB Timeout          : %v",
+		ProductionDBTimeout,
+	)
+
+	log.Printf(
+		"DB Retries          : %d",
+		ProductionSaveRetries,
+	)
+
+	log.Println(
+		"============================================================",
+	)
+
+	return h
+}
+
+// ============================================================
+// MQTT MESSAGE HANDLER
+// ============================================================
+
+func (h *ProductionHandler) ProductionHandler() paho.MessageHandler {
+
+	return func(
+		client paho.Client,
+		msg paho.Message,
+	) {
+
+		if msg == nil {
+
+			log.Printf(
+				"❌ Production MQTT message is nil",
+			)
+
+			return
+		}
+
+		h.receivedCount.Add(1)
+
+		// ------------------------------------------------------
+		// IMPORTANT
+		//
+		// Paho owns the MQTT payload.
+		//
+		// Always make our own copy before asynchronous processing.
+		// ------------------------------------------------------
+
+		payload := make(
+			[]byte,
+			len(msg.Payload()),
+		)
+
+		copy(
+			payload,
+			msg.Payload(),
+		)
+
+		// ------------------------------------------------------
+		// Queue
+		// ------------------------------------------------------
+
+		if err := h.enqueue(payload); err != nil {
+
+			h.droppedCount.Add(1)
+
+			log.Printf(
+				"❌ Production Queue Error | "+
+					"Error=%v | "+
+					"Queue=%d/%d",
+				err,
+				len(h.queue),
+				cap(h.queue),
+			)
+
+			return
+		}
+
+		h.queuedCount.Add(1)
+	}
+}
+
+// ============================================================
+// ENQUEUE
+// ============================================================
+
+func (h *ProductionHandler) enqueue(
+	payload []byte,
+) error {
+
+	// ----------------------------------------------------------
+	// IMPORTANT
+	//
+	// RLock remains held until the send is complete.
+	//
+	// Close() requires the write lock before closing the channel.
+	//
+	// This prevents:
+	//
+	// send on closed channel
+	//
+	// during shutdown.
+	// ----------------------------------------------------------
+
+	h.mu.RLock()
+
+	if !h.accepting || h.closed {
+
+		h.mu.RUnlock()
+
+		return ErrProductionHandlerClosed
+	}
+
+	// ----------------------------------------------------------
+	// Fast path
+	// ----------------------------------------------------------
+
+	select {
+
+	case h.queue <- productionJob{
+		payload: payload,
+	}:
+
+		h.mu.RUnlock()
+
+		return nil
+
+	default:
+	}
+
+	// ----------------------------------------------------------
+	// Queue full.
+	//
+	// Give workers a chance to catch up.
+	// ----------------------------------------------------------
+
+	timer := time.NewTimer(
+		ProductionEnqueueTimeout,
+	)
+
+	defer timer.Stop()
+
+	select {
+
+	case h.queue <- productionJob{
+		payload: payload,
+	}:
+
+		h.mu.RUnlock()
+
+		return nil
+
+	case <-timer.C:
+
+		h.mu.RUnlock()
+
+		return ErrProductionQueueFull
+	}
+}
+
+// ============================================================
+// WORKER SUPERVISOR
+// ============================================================
+
+func (h *ProductionHandler) workerSupervisor() {
+
+	defer h.supervisorWG.Done()
+
+	ticker := time.NewTicker(
+		WorkerScaleInterval,
+	)
+
+	defer ticker.Stop()
+
+	for {
+
+		select {
+
+		case <-ticker.C:
+
+			h.scaleWorkers()
+
+		case <-h.supervisorCtx.Done():
+
+			return
+		}
+	}
+}
+
+// ============================================================
+// SCALE WORKERS
+// ============================================================
+
+func (h *ProductionHandler) scaleWorkers() {
+
+	h.mu.RLock()
+
+	accepting := h.accepting
+	closed := h.closed
+
+	h.mu.RUnlock()
+
+	if !accepting || closed {
+		return
+	}
+
+	queueLength := len(h.queue)
+	queueCapacity := cap(h.queue)
+
+	workers := int(
+		h.workerCount.Load(),
+	)
+
+	if workers >= MaxProductionWorkers {
+		return
+	}
+
+	if queueLength == 0 {
+		return
+	}
+
+	utilization :=
+		float64(queueLength) /
+			float64(queueCapacity)
+
+	workersToAdd := 0
+
+	switch {
+
+	case utilization >= 0.75:
+
+		workersToAdd = 4
+
+	case utilization >= 0.50:
+
+		workersToAdd = 3
+
+	case utilization >= 0.25:
+
+		workersToAdd = 2
+
+	case utilization >= 0.10:
+
+		workersToAdd = 1
+	}
+
+	if workersToAdd == 0 {
+		return
+	}
+
+	targetWorkers :=
+		workers + workersToAdd
+
+	if targetWorkers > MaxProductionWorkers {
+		targetWorkers = MaxProductionWorkers
+	}
+
+	for workers < targetWorkers {
+
+		h.mu.RLock()
+
+		allowed :=
+			h.accepting &&
+				!h.closed
+
+		h.mu.RUnlock()
+
+		if !allowed {
+			return
+		}
+
+		h.startWorker()
+
+		workers++
+	}
+}
+
+// ============================================================
+// START WORKER
+// ============================================================
+
+func (h *ProductionHandler) startWorker() {
+
+	h.mu.RLock()
+
+	if !h.accepting || h.closed {
+
+		h.mu.RUnlock()
+
+		return
+	}
+
+	h.mu.RUnlock()
+
+	// ----------------------------------------------------------
+	// Worker count protected by workerMu.
+	// ----------------------------------------------------------
+
+	h.workerMu.Lock()
+
+	current :=
+		int(h.workerCount.Load())
+
+	if current >= MaxProductionWorkers {
+
+		h.workerMu.Unlock()
+
+		return
+	}
+
+	workerID := current + 1
+
+	h.workerCount.Store(
+		int32(workerID),
+	)
+
+	h.workerMu.Unlock()
+
+	h.workersWG.Add(1)
+
+	go h.worker(workerID)
+
+	log.Printf(
+		"🚀 Production Worker Started | "+
+			"Worker=%d | "+
+			"Workers=%d | "+
+			"Queue=%d/%d",
+		workerID,
+		h.workerCount.Load(),
+		len(h.queue),
+		cap(h.queue),
+	)
+}
+
+// ============================================================
+// WORKER
+// ============================================================
+
+func (h *ProductionHandler) worker(
+	workerID int,
+) {
+
+	defer h.workersWG.Done()
+
+	defer func() {
+
+		h.workerMu.Lock()
+
+		h.workerCount.Add(-1)
+
+		h.workerMu.Unlock()
+
+		log.Printf(
+			"🛑 Production Worker Stopped | "+
+				"Worker=%d | "+
+				"Workers=%d",
+			workerID,
+			h.workerCount.Load(),
+		)
+	}()
+
+	log.Printf(
+		"Production Worker %d running",
+		workerID,
+	)
+
+	idleTimer := time.NewTimer(
+		WorkerIdleTimeout,
+	)
+
+	defer idleTimer.Stop()
+
+	for {
+
+		select {
+
+		// ======================================================
+		// JOB
+		// ======================================================
+
+		case job, ok := <-h.queue:
+
+			if !ok {
+
+				// ------------------------------------------------
+				// Queue closed.
+				//
+				// Worker exits only after queued work has been
+				// consumed.
+				// ------------------------------------------------
+
+				return
+			}
+
+			// --------------------------------------------------
+			// Reset idle timer.
+			// --------------------------------------------------
+
+			if !idleTimer.Stop() {
+
+				select {
+
+				case <-idleTimer.C:
+
+				default:
+				}
+			}
+
+			idleTimer.Reset(
+				WorkerIdleTimeout,
+			)
+
+			// --------------------------------------------------
+			// Process
+			// --------------------------------------------------
+
+			h.processProduction(
+				workerID,
+				job.payload,
+			)
+
+		// ======================================================
+		// IDLE
+		// ======================================================
+
+		case <-idleTimer.C:
+
+			// --------------------------------------------------
+			// Atomically decide whether this worker is allowed
+			// to retire.
+			// --------------------------------------------------
+
+			h.workerMu.Lock()
+
+			current :=
+				int(h.workerCount.Load())
+
+			if current > MinProductionWorkers {
+
+				h.workerCount.Add(-1)
+
+				h.workerMu.Unlock()
+
+				log.Printf(
+					"🛑 Production Worker Idle Exit | "+
+						"Worker=%d | Workers=%d",
+					workerID,
+					h.workerCount.Load(),
+				)
+
+				return
+			}
+
+			h.workerMu.Unlock()
+
+			// --------------------------------------------------
+			// Minimum worker stays alive.
+			// --------------------------------------------------
+
+			idleTimer.Reset(
+				WorkerIdleTimeout,
+			)
+		}
+	}
+}
+
+// ============================================================
+// PROCESS PRODUCTION
+// ============================================================
+
+func (h *ProductionHandler) processProduction(
+	workerID int,
+	data []byte,
+) {
+
+	// ----------------------------------------------------------
+	// Panic protection.
+	// ----------------------------------------------------------
+
+	defer func() {
+
+		if r := recover(); r != nil {
+
+			h.failedCount.Add(1)
+
+			log.Printf(
+				"🔥 Production Worker Panic | "+
+					"Worker=%d | "+
+					"Panic=%v",
+				workerID,
+				r,
+			)
+
+			log.Printf(
+				"Stack Trace:\n%s",
+				stackTrace(),
+			)
+		}
+	}()
+
+	// ==========================================================
+	// JSON
+	// ==========================================================
+
+	var req dto.ProductionDTO
+
+	if err := json.Unmarshal(
+		data,
+		&req,
+	); err != nil {
+
+		h.failedCount.Add(1)
+
+		log.Printf(
+			"❌ Production JSON Error | "+
+				"Worker=%d | "+
+				"Error=%v",
+			workerID,
+			err,
+		)
+
+		log.Printf(
+			"Raw Payload: %q",
+			string(data),
+		)
+
+		return
+	}
+
+	// ==========================================================
+	// EVENT ID
+	// ==========================================================
+
+	if req.EventID == "" {
+
+		h.failedCount.Add(1)
+
+		log.Printf(
+			"❌ Production Validation Error | "+
+				"Worker=%d | "+
+				"event_id is empty",
+			workerID,
+		)
+
+		return
+	}
+
+	// ==========================================================
+	// VARIANT
+	// ==========================================================
+
+	if req.Variant == "" {
+		req.Variant = "none"
+	}
+
+	// ==========================================================
+	// PROCESSING LOG
+	// ==========================================================
+
+	log.Printf(
+		"📥 Production Processing | "+
+			"Worker=%d | "+
+			"Tenant=%s | "+
+			"EventID=%s | "+
+			"Variant=%s | "+
+			"Device=%s | "+
+			"Station=%s | "+
+			"Count=%d | "+
+			"Cycle=%.3f sec",
+		workerID,
+		req.TenantID,
+		req.EventID,
+		req.Variant,
+		req.DeviceID,
+		req.Station,
+		req.Count,
+		req.CycleTimeSec,
+	)
+
+	// ==========================================================
+	// DATABASE SAVE
+	// ==========================================================
+
+	start := time.Now()
+
+	err := h.saveWithRetry(
+		&req,
+	)
+
+	if err != nil {
+
+		h.failedCount.Add(1)
+
+		log.Printf(
+			"❌ Production Save FAILED | "+
+				"Worker=%d | "+
+				"EventID=%s | "+
+				"Tenant=%s | "+
+				"Device=%s | "+
+				"Station=%s | "+
+				"Duration=%v | "+
+				"Error=%v",
+			workerID,
+			req.EventID,
+			req.TenantID,
+			req.DeviceID,
+			req.Station,
+			time.Since(start),
+			err,
+		)
+
+		return
+	}
+
+	// ==========================================================
+	// SUCCESS
+	// ==========================================================
+
+	h.processedCount.Add(1)
+
+	log.Printf(
+		"✅ Production Saved | "+
+			"Worker=%d | "+
+			"EventID=%s | "+
+			"Tenant=%s | "+
+			"Device=%s | "+
+			"Station=%s | "+
+			"Count=%d | "+
+			"Cycle Time=%.3f sec | "+
+			"Duration=%v",
+		workerID,
+		req.EventID,
+		req.TenantID,
+		req.DeviceID,
+		req.Station,
+		req.Count,
+		req.CycleTimeSec,
+		time.Since(start),
+	)
+}
+
+// ============================================================
+// DATABASE SAVE WITH RETRY
+// ============================================================
+
+func (h *ProductionHandler) saveWithRetry(
+	req *dto.ProductionDTO,
+) error {
+
+	var lastErr error
+
+	for attempt := 1;
+		attempt <= ProductionSaveRetries;
+		attempt++ {
+
+		// ------------------------------------------------------
+		// IMPORTANT:
+		//
+		// This context is intentionally independent from the
+		// supervisor context.
+		//
+		// Therefore graceful shutdown does NOT kill a DB save
+		// halfway through queue draining.
+		// ------------------------------------------------------
+
+		ctx, cancel := context.WithTimeout(
+			context.Background(),
+			ProductionDBTimeout,
+		)
+
+		err := h.service.Save(
+			ctx,
+			req,
+		)
+
+		cancel()
+
+		if err == nil {
+			return nil
+		}
+
+		lastErr = err
+
+		// ------------------------------------------------------
+		// Last attempt
+		// ------------------------------------------------------
+
+		if attempt >= ProductionSaveRetries {
+			break
+		}
+
+		h.retryCount.Add(1)
+
+		log.Printf(
+			"⚠️ Production DB Retry | "+
+				"EventID=%s | "+
+				"Attempt=%d/%d | "+
+				"Error=%v",
+			req.EventID,
+			attempt,
+			ProductionSaveRetries,
+			err,
+		)
+
+		// ------------------------------------------------------
+		// Exponential backoff.
+		//
+		// Retry 1 = 500ms
+		// Retry 2 = 1s
+		// Retry 3 = 1.5s
+		// ------------------------------------------------------
+
+		delay :=
+			ProductionRetryDelay *
+				time.Duration(attempt)
+
+		time.Sleep(delay)
+	}
+
+	return fmt.Errorf(
+		"database save failed after %d attempts: %w",
+		ProductionSaveRetries,
+		lastErr,
+	)
+}
+
+// ============================================================
+// STATISTICS LOGGER
+// ============================================================
+
+func (h *ProductionHandler) statisticsLogger() {
+
+	defer h.supervisorWG.Done()
+
+	ticker := time.NewTicker(
+		ProductionStatsInterval,
+	)
+
+	defer ticker.Stop()
+
+	for {
+
+		select {
+
+		case <-ticker.C:
+
+			h.logStatistics()
+
+		case <-h.supervisorCtx.Done():
+
+			return
+		}
+	}
+}
+
+// ============================================================
+// STATISTICS
+// ============================================================
+
+func (h *ProductionHandler) logStatistics() {
+
+	log.Printf(
+		"📊 Production Stats | "+
+			"Queue=%d/%d | "+
+			"Workers=%d | "+
+			"Received=%d | "+
+			"Queued=%d | "+
+			"Processed=%d | "+
+			"Failed=%d | "+
+			"Dropped=%d | "+
+			"Retries=%d",
+		len(h.queue),
+		cap(h.queue),
+		h.workerCount.Load(),
+		h.receivedCount.Load(),
+		h.queuedCount.Load(),
+		h.processedCount.Load(),
+		h.failedCount.Load(),
+		h.droppedCount.Load(),
+		h.retryCount.Load(),
+	)
+}
+
+// ============================================================
+// PUBLIC STATS
+// ============================================================
+
+func (h *ProductionHandler) Stats() ProductionStats {
+
+	return ProductionStats{
+		QueueLength: len(h.queue),
+		QueueSize:   cap(h.queue),
+
+		Workers: int(
+			h.workerCount.Load(),
+		),
+
+		Received: h.receivedCount.Load(),
+
+		Queued: h.queuedCount.Load(),
+
+		Processed: h.processedCount.Load(),
+
+		Failed: h.failedCount.Load(),
+
+		Dropped: h.droppedCount.Load(),
+
+		Retries: h.retryCount.Load(),
+	}
+}
+
+// ============================================================
+// GRACEFUL SHUTDOWN
+// ============================================================
+
+func (h *ProductionHandler) Close() {
+
+	// ==========================================================
+	// STOP ACCEPTING MQTT EVENTS
+	// ==========================================================
+
+	h.mu.Lock()
+
+	if h.closed {
+
+		h.mu.Unlock()
+
+		return
+	}
+
+	h.accepting = false
+	h.closed = true
+
+	log.Println(
+		"============================================================",
+	)
+
+	log.Println(
+		"Stopping Production Handler...",
+	)
+
+	log.Printf(
+		"Queue before shutdown: %d/%d",
+		len(h.queue),
+		cap(h.queue),
+	)
+
+	// ----------------------------------------------------------
+	// Close queue while holding write lock.
+	//
+	// enqueue() uses RLock, so any active enqueue operation
+	// completes before this point.
+	// ----------------------------------------------------------
+
+	close(h.queue)
+
+	h.mu.Unlock()
+
+	// ==========================================================
+	// STOP SUPERVISOR
+	// ==========================================================
+
+	h.supervisorCancel()
+
+	// ==========================================================
+	// WAIT FOR ALL WORKERS
+	//
+	// Workers continue processing all queued messages.
+	// ==========================================================
+
+	h.workersWG.Wait()
+
+	// ==========================================================
+	// WAIT FOR SUPERVISOR / STATS
+	// ==========================================================
+
+	h.supervisorWG.Wait()
+
+	// ==========================================================
+	// FINAL STATISTICS
+	// ==========================================================
+
+	h.logStatistics()
+
+	log.Println(
+		"✅ Production Handler stopped successfully",
+	)
+
+	log.Println(
+		"============================================================",
+	)
+}
+
+// ============================================================
+// STACK TRACE
+// ============================================================
+
+func stackTrace() string {
+
+	buf := make(
+		[]byte,
+		64*1024,
+	)
+
+	n := runtime.Stack(
+		buf,
+		false,
+	)
+
+	return string(
+		buf[:n],
+	)
+}
